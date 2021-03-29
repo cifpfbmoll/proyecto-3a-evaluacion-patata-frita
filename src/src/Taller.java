@@ -1,8 +1,8 @@
 /**
  * TALLERES
  * Esta clase almacena la información de los diversos talleres de cada concesionario.
- * ¿DESCRIPCION DE LA INTERFICIE QUE INCLUYE?
- * ¿FUNCIONAMIENTO,LIMITACIONES,VARIABLES UTILIZADAS...?
+ * ¿DESCRIPCION DE LA INTERFICIE QUE INCLUYE? (Se refiere al tema de interficies que Rafa dijo que no daríamos? si es asi no pongo esa info.)
+ * ¿FUNCIONAMIENTO,LIMITACIONES,VARIABLES UTILIZADAS...? (Hasta que no hayan metodos y tal no puedo poner esa info.)
  * @author José Luis Cardona
  * @version 29/03/2021
  */

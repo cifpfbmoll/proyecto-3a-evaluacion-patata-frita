@@ -1,8 +1,8 @@
 /**
  * VENTAS
  * Esta clase contiene las ventas de cada uno de los concesionarios.
- * ¿DESCRIPCION DE LA INTERFICIE QUE INCLUYE?
- * ¿FUNCIONAMIENTO,LIMITACIONES,VARIABLES UTILIZADAS...?
+ * ¿DESCRIPCION DE LA INTERFICIE QUE INCLUYE? (Se refiere al tema de interficies que Rafa dijo que no daríamos? si es asi no pongo esa info.)
+ * ¿FUNCIONAMIENTO,LIMITACIONES,VARIABLES UTILIZADAS...? (Hasta que no hayan metodos y tal no puedo poner esa info.)
  * @author José Luis Cardona
  * @version 29/03/2021
  */
