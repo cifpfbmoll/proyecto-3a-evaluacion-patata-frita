@@ -45,19 +45,7 @@ public class Factura {
         return costeFactura;
     }
 
-    /**
-     * setter setCosteFactura con control que no se introduce valor negativo o
-     * zero
-     *
-     * @param costeFactura
-     */
     public void setCosteFactura(double costeFactura) {
-        Scanner sc = new Scanner(System.in);
-        this.costeFactura = costeFactura;
-        while (costeFactura <= 0) {
-            System.out.println("no puede insertar coste negativo");
-            costeFactura = sc.nextDouble();
-        }
         this.costeFactura = costeFactura;
     }
 
@@ -74,7 +62,6 @@ public class Factura {
         return "Factura{" + "fechaFactura=" + fechaFactura + ", costeFactura=" + costeFactura + ", trabajoRealizado=" + trabajoRealizado + '}';
     }
 
-
     /**
      * metodo estatico para crear una factura
      *
@@ -82,19 +69,27 @@ public class Factura {
      */
     public static Factura crearFactura() throws InputMismatchException {
         Factura factura = new Factura();
+        try {
+            String fechaFactura = Util.establecerFechaActual();
+            factura.setFechaFactura(fechaFactura);
 
-        String fechaFactura = Util.establecerFechaActual();
-        factura.setFechaFactura(fechaFactura);
+            System.out.println("Coste: ");
+            Scanner sc = new Scanner(System.in);
+            double coste = sc.nextDouble();
+            if (coste < 0) {
+                throw new InputMismatchException();
+            }
+            factura.setCosteFactura(coste);
+            sc.nextLine();
 
-        System.out.println("Coste: ");
-        Scanner sc = new Scanner(System.in);
-        double coste = sc.nextDouble();
-        factura.setCosteFactura(coste);
-        sc.nextLine();
+            System.out.println("Trabajos realizados: ");
+            String trabajos = sc.nextLine();
 
-        System.out.println("Trabajos realizados: ");
-        String trabajos = sc.nextLine();
-        factura.setTrabajoRealizado(trabajos);
+            factura.setTrabajoRealizado(trabajos);
+
+        } catch (InputMismatchException e) {
+            System.out.println("Error al crear factura");
+        }
 
         //toString para comprobar, se puede borrar
         System.out.println(factura.toString());

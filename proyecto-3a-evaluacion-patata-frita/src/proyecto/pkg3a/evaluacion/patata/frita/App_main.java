@@ -1,5 +1,6 @@
 package proyecto.pkg3a.evaluacion.patata.frita;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -28,7 +29,7 @@ public class App_main {
                 case 2:
                     try {
                     Nomina.crearNomina();
-                } catch (Exception e) {
+                } catch (InputMismatchException e) {
                 }
 
                 break;
