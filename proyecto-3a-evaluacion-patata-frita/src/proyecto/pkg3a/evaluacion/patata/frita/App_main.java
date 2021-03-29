@@ -26,8 +26,12 @@ public class App_main {
                     Factura.crearFactura();
                     break;
                 case 2:
+                    try {
                     Nomina.crearNomina();
-                    break;
+                } catch (Exception e) {
+                }
+
+                break;
                 case 3:
                     salir = true;
                     break;

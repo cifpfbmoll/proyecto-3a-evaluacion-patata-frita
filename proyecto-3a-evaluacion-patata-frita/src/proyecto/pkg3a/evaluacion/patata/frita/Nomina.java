@@ -1,7 +1,5 @@
 package proyecto.pkg3a.evaluacion.patata.frita;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**
@@ -9,8 +7,7 @@ import java.util.Scanner;
  * @author Marat Rafael
  */
 public class Nomina {
-    private static Scanner scNum = new Scanner(System.in);
-    private static Scanner scLine = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
     //atributos
     private int horasTrabajadas;
     private double sueldoTotal;
@@ -42,14 +39,14 @@ public class Nomina {
         return horasTrabajadas;
     }
 
-    public void setHorasTrabajadas(int horasTrabajadas) {
-        
-        this.horasTrabajadas = horasTrabajadas;
-        while(horasTrabajadas<0){
-            System.out.println("no puede establecer horas negativas");
-            horasTrabajadas=scNum.nextInt();            
+    public void setHorasTrabajadas(int horasTrabajadas) throws Exception {
+        try {
+            this.horasTrabajadas = horasTrabajadas;
+            if (horasTrabajadas < 0) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
         }
-        this.horasTrabajadas=horasTrabajadas;
     }
 
     public double getSueldoTotal() {
@@ -82,39 +79,27 @@ public class Nomina {
         return "Nomina{" + "horasTrabajadas=" + horasTrabajadas + ", sueldoTotal=" + sueldoTotal + ", sueldoSinImpuestos=" + sueldoSinImpuestos + ", fechaNomina=" + fechaNomina + '}';
     }
 
-    
-    
-    /**
-     * metodo estatico para sacar fecha y hora del sistema 
-     * @return String fecha
-     */
-    private static String establecerFechaActual() {
-        LocalDateTime dateTime = LocalDateTime.now(); // fecha y hora del sistema
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"); //formato
-        String fecha = dateTime.format(formatter); //variable guarda fecha y hora como string       
-        return fecha;
-    }
-    
     /**
      * metodo estatico para crear nueva nomina
      * @return Object Nomina
+     * @throws java.lang.Exception
      */
-    public static Nomina crearNomina(){
+    public static Nomina crearNomina() throws Exception {
         Nomina nomina = new Nomina();
         System.out.println("horas trabajadas: ");
-        nomina.setHorasTrabajadas(scNum.nextInt());
-        
-        String fecha = Nomina.establecerFechaActual();
+        nomina.setHorasTrabajadas(sc.nextInt());
+
+        String fecha = Util.establecerFechaActual();
         nomina.setFechaNomina(fecha);
-        
+
         System.out.println("Sueldo sin impuestos: ");
-        nomina.setSueldoSinImpuestos(scNum.nextDouble());
-        
+        nomina.setSueldoSinImpuestos(sc.nextDouble());
+
         System.out.println("Sueldo total: ");
-        nomina.setSueldoTotal(scNum.nextDouble());
-        
+        nomina.setSueldoTotal(sc.nextDouble());
+
         System.out.println(nomina.toString());
         return nomina;
-    }
+    }// fin metodo crearNomina
 
 }//fin clase nomina
