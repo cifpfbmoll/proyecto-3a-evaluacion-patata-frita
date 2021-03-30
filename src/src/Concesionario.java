@@ -1,10 +1,12 @@
+import java.util.InputMismatchException;
+
 /**
  * CONCESIONARIOS
  * Esta clase  guarda la información sobre los diferentes concesionarios del proyecto.
- * ¿DESCRIPCION DE LA INTERFICIE QUE INCLUYE? (Se refiere al tema de interficies que Rafa dijo que no daríamos? si es asi no pongo esa info.)
+ * ¿DESCRIPCION DE LA INTERFICIE QUE INCLUYE?
  * ¿FUNCIONAMIENTO,LIMITACIONES,VARIABLES UTILIZADAS...? (Hasta que no hayan metodos y tal no puedo poner esa info.)
  * @author José Luis Cardona
- * @version 29/03/2021
+ * @version 1 - 29/03/2021
  */
 public class Concesionario {
     private int id;
@@ -37,24 +39,36 @@ public class Concesionario {
         return ubicacion;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setUbicacion(String ubicacion) throws IllegalArgumentException{
+        if (ubicacion.length()==0){
+            throw new IllegalArgumentException("Ubicación no introducida.");
+        }else {
+            this.ubicacion = ubicacion;
+        }
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String nombre) throws IllegalArgumentException{
+        if (nombre.length()==0){
+            throw new IllegalArgumentException("Nombre no introducido.");
+        }else {
+            this.nombre = nombre;
+        }
     }
 
     public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
+    public void setTelefono(int telefono) throws IllegalArgumentException {
+        if(telefono<999){
+            throw new IllegalArgumentException("Número de teléfono inválido o no completo.");
+        }else {
+            this.telefono = telefono;
+        }
     }
 
     @Override
