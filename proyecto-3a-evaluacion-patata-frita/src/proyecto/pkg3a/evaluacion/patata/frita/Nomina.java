@@ -82,7 +82,7 @@ public class Nomina {
     // toString
     @Override
     public String toString() {
-        return "Nomina{" + "horasTrabajadas=" + horasTrabajadas + ", sueldoTotal=" + sueldoTotal + ", sueldoSinImpuestos=" + sueldoSinImpuestos + ", fechaNomina=" + fechaNomina + '}';
+        return "Nomina {" + "horasTrabajadas=" + horasTrabajadas +  ", sueldoSinImpuestos=" + sueldoSinImpuestos +", sueldoTotal=" + sueldoTotal + ", fechaNomina=" + fechaNomina + '}';
     }
 
     /**
@@ -99,19 +99,13 @@ public class Nomina {
             nomina.setFechaNomina(fecha);
 
             System.out.println("horas trabajadas: ");
-            int horasTrabajadas = sc.nextInt();
-
-            nomina.setHorasTrabajadas(horasTrabajadas);
+            nomina.setHorasTrabajadas(sc.nextInt());
 
             System.out.println("Sueldo sin impuestos: ");
-            double sueldoSinImpuesto = sc.nextDouble();
-
-            nomina.setSueldoSinImpuestos(sueldoSinImpuesto);
+            nomina.setSueldoSinImpuestos(sc.nextDouble());
 
             System.out.println("Sueldo total: ");
-            double sueldoTotal = sc.nextDouble();
-
-            nomina.setSueldoTotal(sueldoTotal);
+            nomina.setSueldoTotal(sc.nextDouble());
 
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getLocalizedMessage());

@@ -43,7 +43,7 @@ public class Reserva {
 
     public void setEspacioReservado(String espacioReservado) throws IllegalArgumentException {
         this.espacioReservado = espacioReservado;
-        if (espacioReservado.length() == 0) {
+        if (espacioReservado.length() == 0 ) {
             throw new IllegalArgumentException("Espacio reservado no puede estar vacio");
         }
     }
@@ -57,20 +57,16 @@ public class Reserva {
     public static Reserva crearReserva() throws IllegalArgumentException {
         Reserva reserva = new Reserva();
         try {
-
             String fecha = Util.establecerFechaActual();
             reserva.setFechaHoraReserva(fecha);
 
             System.out.println("Espacio reservado: ");
             Scanner sc = new Scanner(System.in);
+            reserva.setEspacioReservado(sc.nextLine());
 
-            String espacio = sc.nextLine();
-            reserva.setEspacioReservado(espacio);
-            
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
         }
-
         return reserva;
     }
 

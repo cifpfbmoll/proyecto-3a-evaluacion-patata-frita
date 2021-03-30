@@ -78,15 +78,11 @@ public class Factura {
 
             System.out.println("Coste: ");
             Scanner sc = new Scanner(System.in);
-            double coste = sc.nextDouble();
-
-            factura.setCosteFactura(coste);
+            factura.setCosteFactura(sc.nextDouble());
             sc.nextLine();
 
             System.out.println("Trabajos realizados: ");
-            String trabajos = sc.nextLine();
-
-            factura.setTrabajoRealizado(trabajos);
+            factura.setTrabajoRealizado(sc.nextLine());
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
