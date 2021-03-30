@@ -10,6 +10,7 @@ package eu.fp.concesionario;
  * @author Karina
  */
 public abstract class Persona {
+
     private String nombre;
     private String apellidos;
     private String nif;
@@ -24,6 +25,7 @@ public abstract class Persona {
 
     /**
      * Constructor con todos los parámetros
+     *
      * @param nombre Nombre de la persona
      * @param apellidos Apellidos de la persona
      * @param nif NIF de la persona
@@ -33,13 +35,14 @@ public abstract class Persona {
     public Persona(String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.nif = nif;
+        this.setNif(nif);
         this.telefono = telefono;
         this.domicilio = domicilio;
     }
 
     /**
-     * toString de los atributos de la clase 
+     * toString de los atributos de la clase
+     *
      * @return String con los atributos
      */
     @Override
@@ -69,7 +72,18 @@ public abstract class Persona {
     }
 
     public void setNif(String nif) {
-        this.nif = nif;
+        boolean correcto = false;
+        try {
+            Integer.parseInt(nif.substring(0, 7));
+            nif.substring(8).toString();
+            correcto = true;
+        } finally {
+            if (!correcto) {
+                throw new IllegalArgumentException("Esto no es un NIF válido.");
+            } else {
+                this.nif = nif;
+            }
+        }
     }
 
     public Integer getTelefono() {
@@ -87,7 +101,5 @@ public abstract class Persona {
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
-    
-    
-    
+
 }
