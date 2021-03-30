@@ -3,7 +3,7 @@ package proyecto.pkg3a.evaluacion.patata.frita;
 import java.util.Scanner;
 
 /**
- *
+ * Clase Nomina
  * @author Marat Rafael
  */
 public class Nomina {
@@ -14,17 +14,20 @@ public class Nomina {
     private double sueldoTotal;
     private double sueldoSinImpuestos;
     private String fechaNomina;
+    private double precioPorHora;
+  
 
     // constructor vacio
     public Nomina() {
     }
 
     // constructor con todos atributos
-    public Nomina(int horasTrabajadas, double sueldoTotal, double sueldoSinImpuestos, String fechaNomina) {
+    public Nomina(int horasTrabajadas, double sueldoTotal, double sueldoSinImpuestos, String fechaNomina, double precioPorHora) {
         this.horasTrabajadas = horasTrabajadas;
         this.sueldoTotal = sueldoTotal;
         this.sueldoSinImpuestos = sueldoSinImpuestos;
         this.fechaNomina = fechaNomina;
+        this.precioPorHora=precioPorHora;
     }
 
     // constructor copia
@@ -33,6 +36,7 @@ public class Nomina {
         this.sueldoTotal = nomina.getSueldoTotal();
         this.sueldoSinImpuestos = nomina.getSueldoSinImpuestos();
         this.fechaNomina = nomina.getFechaNomina();
+        this.precioPorHora=nomina.getPrecioPorHora();
     }
 
     // setter/getter
@@ -79,6 +83,16 @@ public class Nomina {
         this.fechaNomina = fechaNomina;
     }
 
+    public double getPrecioPorHora() {
+        return precioPorHora;
+    }
+
+    public void setPrecioPorHora(double precioPorHora) {
+        this.precioPorHora = precioPorHora;
+        if(precioPorHora<0){
+            throw new IllegalArgumentException("Valor precio por hora no valido");
+        }
+    }    
     // toString
     @Override
     public String toString() {
@@ -101,11 +115,13 @@ public class Nomina {
             System.out.println("horas trabajadas: ");
             nomina.setHorasTrabajadas(sc.nextInt());
 
-            System.out.println("Sueldo sin impuestos: ");
-            nomina.setSueldoSinImpuestos(sc.nextDouble());
+            System.out.println("Precio por hora: ");
+            nomina.setPrecioPorHora(sc.nextDouble());                   
 
-            System.out.println("Sueldo total: ");
-            nomina.setSueldoTotal(sc.nextDouble());
+            nomina.setSueldoSinImpuestos(nomina.getHorasTrabajadas()*nomina.precioPorHora);
+
+            double impuestoSobreNomina = nomina.getSueldoSinImpuestos()*Util.IMPUESTO;
+            nomina.setSueldoTotal(nomina.getSueldoSinImpuestos()-impuestoSobreNomina);
 
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getLocalizedMessage());

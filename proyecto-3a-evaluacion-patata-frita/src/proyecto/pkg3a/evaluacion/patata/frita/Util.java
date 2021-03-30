@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
  * @author Marat Rafael
  */
 public class Util {
+     public static final double IMPUESTO=0.21;
 
     /**
      * metodo estatico para sacar fecha y hora del sistema

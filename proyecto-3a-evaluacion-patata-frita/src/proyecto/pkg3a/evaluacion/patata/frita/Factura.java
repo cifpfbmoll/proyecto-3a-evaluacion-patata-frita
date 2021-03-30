@@ -3,7 +3,7 @@ package proyecto.pkg3a.evaluacion.patata.frita;
 import java.util.Scanner;
 
 /**
- *
+ * Clase Factura
  * @author Marat Rafael
  */
 public class Factura {
@@ -60,9 +60,10 @@ public class Factura {
         this.trabajoRealizado = trabajoRealizado;
     }
 
+    // toString
     @Override
     public String toString() {
-        return "Factura{" + "fechaFactura=" + fechaFactura + ", costeFactura=" + costeFactura + ", trabajoRealizado=" + trabajoRealizado + '}';
+        return "Factura {" + "fechaFactura=" + fechaFactura + ", costeFactura=" + costeFactura + ", trabajoRealizado=" + trabajoRealizado + '}';
     }
 
     /**

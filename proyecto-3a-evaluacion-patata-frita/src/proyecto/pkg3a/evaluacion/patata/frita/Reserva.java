@@ -3,7 +3,7 @@ package proyecto.pkg3a.evaluacion.patata.frita;
 import java.util.Scanner;
 
 /**
- *
+ * Clase Reserva
  * @author Marat Rafael
  */
 public class Reserva {
@@ -51,7 +51,7 @@ public class Reserva {
     // toString
     @Override
     public String toString() {
-        return "Reserva{" + "fechaHoraReserva=" + fechaHoraReserva + ", espacioReservado=" + espacioReservado + '}';
+        return "Reserva {" + "fechaHoraReserva=" + fechaHoraReserva + ", espacioReservado=" + espacioReservado + '}';
     }
 
     public static Reserva crearReserva() throws IllegalArgumentException {
