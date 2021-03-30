@@ -1,6 +1,5 @@
 package proyecto.pkg3a.evaluacion.patata.frita;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -41,24 +40,35 @@ public class Nomina {
         return horasTrabajadas;
     }
 
-    public void setHorasTrabajadas(int horasTrabajadas) throws InputMismatchException {
+    public void setHorasTrabajadas(int horasTrabajadas) throws IllegalArgumentException {
         this.horasTrabajadas = horasTrabajadas;
+        if (horasTrabajadas < 0) {
+            throw new IllegalArgumentException("Valor horas trabajadas no es valido");
+        }
     }
 
     public double getSueldoTotal() {
         return sueldoTotal;
     }
 
-    public void setSueldoTotal(double sueldoTotal) {
+    public void setSueldoTotal(double sueldoTotal) throws IllegalArgumentException {
+
         this.sueldoTotal = sueldoTotal;
+        if (sueldoTotal < 0) {
+            throw new IllegalArgumentException("Valor del sueldo no es valido");
+        }
     }
 
     public double getSueldoSinImpuestos() {
         return sueldoSinImpuestos;
     }
 
-    public void setSueldoSinImpuestos(double sueldoSinImpuestos) {
+    public void setSueldoSinImpuestos(double sueldoSinImpuestos) throws IllegalArgumentException {
+
         this.sueldoSinImpuestos = sueldoSinImpuestos;
+        if (sueldoSinImpuestos < 0) {
+            throw new IllegalArgumentException("Valor del sueldo no es valido");
+        }
     }
 
     public String getFechaNomina() {
@@ -81,7 +91,7 @@ public class Nomina {
      * @return Object Nomina
      *
      */
-    public static Nomina crearNomina() throws InputMismatchException {
+    public static Nomina crearNomina() throws IllegalArgumentException {
         Nomina nomina = new Nomina();
 
         try {
@@ -90,27 +100,21 @@ public class Nomina {
 
             System.out.println("horas trabajadas: ");
             int horasTrabajadas = sc.nextInt();
-            if (horasTrabajadas < 0) {
-                throw new InputMismatchException();
-            }
+
             nomina.setHorasTrabajadas(horasTrabajadas);
 
             System.out.println("Sueldo sin impuestos: ");
             double sueldoSinImpuesto = sc.nextDouble();
-            if (sueldoSinImpuesto < 0) {
-                throw new InputMismatchException();
-            }
+
             nomina.setSueldoSinImpuestos(sueldoSinImpuesto);
 
             System.out.println("Sueldo total: ");
             double sueldoTotal = sc.nextDouble();
-            if (sueldoTotal < 0) {
-                throw new InputMismatchException();
-            }
+
             nomina.setSueldoTotal(sueldoTotal);
 
-        } catch (InputMismatchException e) {
-            System.out.println("Error al crear nomina");
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getLocalizedMessage());
         }
         System.out.println(nomina.toString());
         return nomina;

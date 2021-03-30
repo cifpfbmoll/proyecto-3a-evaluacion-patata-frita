@@ -1,6 +1,5 @@
 package proyecto.pkg3a.evaluacion.patata.frita;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -45,8 +44,12 @@ public class Factura {
         return costeFactura;
     }
 
-    public void setCosteFactura(double costeFactura) {
+    public void setCosteFactura(double costeFactura) throws IllegalArgumentException {
+
         this.costeFactura = costeFactura;
+        if (costeFactura < 0) {
+            throw new IllegalArgumentException("Valor coste factura no valido");
+        }
     }
 
     public String getTrabajoRealizado() {
@@ -67,7 +70,7 @@ public class Factura {
      *
      * @return objeto Factura
      */
-    public static Factura crearFactura() throws InputMismatchException {
+    public static Factura crearFactura() throws IllegalArgumentException {
         Factura factura = new Factura();
         try {
             String fechaFactura = Util.establecerFechaActual();
@@ -76,9 +79,7 @@ public class Factura {
             System.out.println("Coste: ");
             Scanner sc = new Scanner(System.in);
             double coste = sc.nextDouble();
-            if (coste < 0) {
-                throw new InputMismatchException();
-            }
+
             factura.setCosteFactura(coste);
             sc.nextLine();
 
@@ -87,10 +88,9 @@ public class Factura {
 
             factura.setTrabajoRealizado(trabajos);
 
-        } catch (InputMismatchException e) {
-            System.out.println("Error al crear factura");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getLocalizedMessage());
         }
-
         //toString para comprobar, se puede borrar
         System.out.println(factura.toString());
 
