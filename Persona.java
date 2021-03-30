@@ -47,6 +47,7 @@ public abstract class Persona {
         return "{ Nombre: " + nombre + " | Apellidos: " + apellidos + " | NIF: " + nif + " | Telefono: " + telefono + " | Domicilio: " + domicilio + "}";
     }
 
+    // GETTERS Y SETTERS
     public String getNombre() {
         return nombre;
     }

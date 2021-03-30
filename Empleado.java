@@ -42,6 +42,7 @@ public class Empleado extends Persona {
         return "{ Nóminas almacenadas: " + listaNominas.size() + " | Puesto de trabajo: " + puestoTrabajo + " }" + super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
+    // GETTERS Y SETTERS
     public ArrayList<Nomina> getListaNominas() {
         return listaNominas;
     }
