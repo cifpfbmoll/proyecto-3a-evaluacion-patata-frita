@@ -1,21 +1,17 @@
-package proyecto.pkg3a.evaluacion.patata.frita;
-
-import java.util.Scanner;
 
 /**
  * Clase Nomina
+ *
  * @author Marat Rafael
  */
 public class Nomina {
 
-    private static Scanner sc = new Scanner(System.in);
     //atributos
     private int horasTrabajadas;
     private double sueldoTotal;
     private double sueldoSinImpuestos;
     private String fechaNomina;
     private double precioPorHora;
-  
 
     // constructor vacio
     public Nomina() {
@@ -27,7 +23,7 @@ public class Nomina {
         this.sueldoTotal = sueldoTotal;
         this.sueldoSinImpuestos = sueldoSinImpuestos;
         this.fechaNomina = fechaNomina;
-        this.precioPorHora=precioPorHora;
+        this.precioPorHora = precioPorHora;
     }
 
     // constructor copia
@@ -36,7 +32,7 @@ public class Nomina {
         this.sueldoTotal = nomina.getSueldoTotal();
         this.sueldoSinImpuestos = nomina.getSueldoSinImpuestos();
         this.fechaNomina = nomina.getFechaNomina();
-        this.precioPorHora=nomina.getPrecioPorHora();
+        this.precioPorHora = nomina.getPrecioPorHora();
     }
 
     // setter/getter
@@ -89,14 +85,15 @@ public class Nomina {
 
     public void setPrecioPorHora(double precioPorHora) {
         this.precioPorHora = precioPorHora;
-        if(precioPorHora<0){
+        if (precioPorHora < 0) {
             throw new IllegalArgumentException("Valor precio por hora no valido");
         }
-    }    
+    }
+
     // toString
     @Override
     public String toString() {
-        return "Nomina {" + "horasTrabajadas=" + horasTrabajadas +  ", sueldoSinImpuestos=" + sueldoSinImpuestos +", sueldoTotal=" + sueldoTotal + ", fechaNomina=" + fechaNomina + '}';
+        return "Nomina {" + "horasTrabajadas=" + horasTrabajadas + ", sueldoSinImpuestos=" + sueldoSinImpuestos + ", sueldoTotal=" + sueldoTotal + ", fechaNomina=" + fechaNomina + '}';
     }
 
     /**
@@ -109,25 +106,24 @@ public class Nomina {
         Nomina nomina = new Nomina();
 
         try {
-            String fecha = Util.establecerFechaActual();
+            String fecha = Utils.establecerFechaActual();
             nomina.setFechaNomina(fecha);
 
             System.out.println("horas trabajadas: ");
-            nomina.setHorasTrabajadas(sc.nextInt());
+            nomina.setHorasTrabajadas(Utils.sc.nextInt());
 
             System.out.println("Precio por hora: ");
-            nomina.setPrecioPorHora(sc.nextDouble());                   
+            nomina.setPrecioPorHora(Utils.sc.nextDouble());
 
-            nomina.setSueldoSinImpuestos(nomina.getHorasTrabajadas()*nomina.precioPorHora);
+            nomina.setSueldoSinImpuestos(nomina.getHorasTrabajadas() * nomina.precioPorHora);
 
-            double impuestoSobreNomina = nomina.getSueldoSinImpuestos()*Util.IMPUESTO;
-            nomina.setSueldoTotal(nomina.getSueldoSinImpuestos()-impuestoSobreNomina);
+            double impuestoSobreNomina = nomina.getSueldoSinImpuestos() * Utils.IMPUESTO;
+            nomina.setSueldoTotal(nomina.getSueldoSinImpuestos() - impuestoSobreNomina);
 
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getLocalizedMessage());
         }
         System.out.println(nomina.toString());
         return nomina;
-    }// fin metodo crearNomina
-
-}//fin clase nomina
+    }
+}

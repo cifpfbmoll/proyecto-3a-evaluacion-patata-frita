@@ -1,7 +1,8 @@
-package proyecto.pkg3a.evaluacion.patata.frita;
+
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 /**
  * Clase para los metodos que no entran en otros clases
@@ -10,6 +11,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Utils {
      public static final double IMPUESTO=0.21;
+     public static Scanner sc = new Scanner(System.in);
 
     /**
      * metodo estatico para sacar fecha y hora del sistema
@@ -22,5 +24,4 @@ public class Utils {
         String fecha = dateTime.format(formatter); //variable guarda fecha y hora como string       
         return fecha;
     }
-
 }

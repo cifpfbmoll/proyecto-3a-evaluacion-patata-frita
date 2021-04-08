@@ -1,6 +1,4 @@
-package proyecto.pkg3a.evaluacion.patata.frita;
 
-import java.util.Scanner;
 
 /**
  * Clase Reserva
@@ -57,17 +55,15 @@ public class Reserva {
     public static Reserva crearReserva() throws IllegalArgumentException {
         Reserva reserva = new Reserva();
         try {
-            String fecha = Util.establecerFechaActual();
+            String fecha = Utils.establecerFechaActual();
             reserva.setFechaHoraReserva(fecha);
 
             System.out.println("Espacio reservado: ");
-            Scanner sc = new Scanner(System.in);
-            reserva.setEspacioReservado(sc.nextLine());
+            reserva.setEspacioReservado(Utils.sc.nextLine());
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
         }
         return reserva;
     }
-
-}//fin clase reserva
+}
