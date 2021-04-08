@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Marat Rafael
  */
-public class Util {
+public class Utils {
      public static final double IMPUESTO=0.21;
 
     /**
