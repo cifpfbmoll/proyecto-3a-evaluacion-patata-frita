@@ -1,5 +1,3 @@
-package proyecto.pkg3a.evaluacion.patata.frita;
-
 import java.util.Scanner;
 
 /**
@@ -74,10 +72,11 @@ public class Factura {
     public static Factura crearFactura() throws IllegalArgumentException {
         Factura factura = new Factura();
         try {
-            String fechaFactura = Util.establecerFechaActual();
+            String fechaFactura = Utils.establecerFechaActual();
             factura.setFechaFactura(fechaFactura);
 
             System.out.println("Coste: ");
+            // TODO: Cambiar el scanner por el scanner del utils, asi se comparte uno solo
             Scanner sc = new Scanner(System.in);
             factura.setCosteFactura(sc.nextDouble());
             sc.nextLine();
@@ -88,10 +87,7 @@ public class Factura {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
         }
-        //toString para comprobar, se puede borrar
-        System.out.println(factura.toString());
 
         return factura;
-    }// fin metodo crearFactura
-
-}// fin class factura
+    }
+}

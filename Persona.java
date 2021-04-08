@@ -3,8 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.fp.concesionario;
-
 /**
  *
  * @author Karina
@@ -71,6 +69,7 @@ public abstract class Persona {
         return nif;
     }
 
+    // TODO: revisar los errores, falta el throws en la funcion (el checkeo de errores creo que esta mal directamente)
     public void setNif(String nif) {
         boolean correcto = false;
         try {
@@ -102,4 +101,5 @@ public abstract class Persona {
         this.domicilio = domicilio;
     }
 
+    //TODO: Constructor copia
 }

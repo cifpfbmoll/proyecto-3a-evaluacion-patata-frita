@@ -1,5 +1,3 @@
-package proyecto.pkg3a.evaluacion.patata.frita;
-
 import java.util.Scanner;
 
 /**
@@ -8,6 +6,7 @@ import java.util.Scanner;
  */
 public class Nomina {
 
+    // TODO: Cambiar scanner por el sanner del utils, para solo usar uno
     private static Scanner sc = new Scanner(System.in);
     //atributos
     private int horasTrabajadas;
@@ -92,7 +91,8 @@ public class Nomina {
         if(precioPorHora<0){
             throw new IllegalArgumentException("Valor precio por hora no valido");
         }
-    }    
+    }   
+
     // toString
     @Override
     public String toString() {
@@ -109,7 +109,7 @@ public class Nomina {
         Nomina nomina = new Nomina();
 
         try {
-            String fecha = Util.establecerFechaActual();
+            String fecha = Utils.establecerFechaActual();
             nomina.setFechaNomina(fecha);
 
             System.out.println("horas trabajadas: ");
@@ -120,7 +120,7 @@ public class Nomina {
 
             nomina.setSueldoSinImpuestos(nomina.getHorasTrabajadas()*nomina.precioPorHora);
 
-            double impuestoSobreNomina = nomina.getSueldoSinImpuestos()*Util.IMPUESTO;
+            double impuestoSobreNomina = nomina.getSueldoSinImpuestos()*Utils.IMPUESTO;
             nomina.setSueldoTotal(nomina.getSueldoSinImpuestos()-impuestoSobreNomina);
 
         } catch (IllegalArgumentException ex) {
@@ -128,6 +128,6 @@ public class Nomina {
         }
         System.out.println(nomina.toString());
         return nomina;
-    }// fin metodo crearNomina
+    }
 
-}//fin clase nomina
+}

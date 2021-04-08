@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.fp.concesionario;
 
 /**
  *
@@ -52,4 +51,7 @@ public class Cliente extends Persona {
         this.factura = factura;
     }
     
+    //TODO falta el toString, basta con llamar al super.toString(), reservas y facturas iran por base de datos
+    //TODO constructor copia
+
 }

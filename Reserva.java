@@ -1,5 +1,4 @@
-package proyecto.pkg3a.evaluacion.patata.frita;
-
+//TODO: Usar el scanner de la clase utils para usar un unico scanner
 import java.util.Scanner;
 
 /**
@@ -57,7 +56,7 @@ public class Reserva {
     public static Reserva crearReserva() throws IllegalArgumentException {
         Reserva reserva = new Reserva();
         try {
-            String fecha = Util.establecerFechaActual();
+            String fecha = Utils.establecerFechaActual();
             reserva.setFechaHoraReserva(fecha);
 
             System.out.println("Espacio reservado: ");
@@ -70,4 +69,4 @@ public class Reserva {
         return reserva;
     }
 
-}//fin clase reserva
+}
