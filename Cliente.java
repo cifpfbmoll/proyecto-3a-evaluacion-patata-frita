@@ -34,6 +34,16 @@ public class Cliente extends Persona {
         this.factura = factura;
     }
     
+    /**
+     * Constructor copia de un cliente
+     * @param copia Cliente a copiar
+     */
+    public Cliente(Cliente copia) {
+        super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio());
+        this.setReserva(copia.getReserva());
+        this.setFactura(copia.getFactura());
+    }
+    
     // GETTERS Y SETTERS
     public Integer getReserva() {
         return reserva;
@@ -50,8 +60,11 @@ public class Cliente extends Persona {
     public void setFactura(Integer factura) {
         this.factura = factura;
     }
-    
+        
     //TODO falta el toString, basta con llamar al super.toString(), reservas y facturas iran por base de datos
-    //TODO constructor copia
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 
 }
