@@ -39,6 +39,19 @@ public abstract class Persona {
     }
 
     /**
+     * Constructor copia de la clase persona
+     *
+     * @param copia Persona a copiar
+     */
+    public Persona(Persona copia) {
+        this.setNombre(copia.getNombre());
+        this.setApellidos(copia.getApellidos());
+        this.setNif(copia.getNif());
+        this.setTelefono(copia.getTelefono());
+        this.setDomicilio(copia.getDomicilio());
+    }
+
+    /**
      * toString de los atributos de la clase
      *
      * @return String con los atributos
@@ -69,19 +82,17 @@ public abstract class Persona {
         return nif;
     }
 
-    // TODO: revisar los errores, falta el throws en la funcion (el checkeo de errores creo que esta mal directamente)
-    public void setNif(String nif) {
-        boolean correcto = false;
-        try {
-            Integer.parseInt(nif.substring(0, 7));
-            nif.substring(8).toString();
-            correcto = true;
-        } finally {
-            if (!correcto) {
-                throw new IllegalArgumentException("Esto no es un NIF válido.");
-            } else {
+    public void setNif(String nif) throws IllegalArgumentException {
+        if (nif.length() != 9) {
+            try {
+                Integer.parseInt(nif.substring(0, 7));
+                nif.substring(8).toString();
                 this.nif = nif;
+            } catch (Exception ex) {
+                throw new IllegalArgumentException("Esto no es un NIF válido.");
             }
+        } else {
+            throw new IllegalArgumentException("Esto no es un NIF válido.");
         }
     }
 
@@ -100,6 +111,4 @@ public abstract class Persona {
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
-
-    //TODO: Constructor copia
 }
