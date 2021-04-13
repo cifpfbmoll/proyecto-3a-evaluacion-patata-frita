@@ -1,10 +1,6 @@
-import java.lang.reflect.Array;
-
 /**
  * TALLERES
- * Esta clase almacena la información de los diversos talleres de cada concesionario.
- * ¿DESCRIPCION DE LA INTERFICIE QUE INCLUYE?
- * ¿FUNCIONAMIENTO,LIMITACIONES,VARIABLES UTILIZADAS...? (Hasta que no hayan metodos y tal no puedo poner esa info.)
+ * Esta clase almacena la información de los diversos talleres de cada concesionario
  * @author José Luis Cardona
  * @version 1 - 29/03/2021
  */
@@ -22,6 +18,7 @@ public class Taller {
         this.horario = horario;
     }
 
+    // TODO: Pasar a getters
     public Taller(Taller copia) {
         this.id = copia.id;
         this.espacios = copia.espacios;
@@ -48,17 +45,18 @@ public class Taller {
         return horario;
     }
 
+    // TODO: Revisar (funciona, solo entiende como va) y solucionar el checkeo de errores
     public void setHorario(String horario) throws IllegalArgumentException{
         //ENTENDER BIEN ESTO
         String[] listaHorarios=horario.split("-");
         String[] lista2Horarios=listaHorarios[0].split(":");
         String[] lista3Horarios=listaHorarios[1].split(":");
         int[] numHorarios = new int[3];
+        int pointer = 0;
         for (int i=0;i<numHorarios.length/2;i++){
-            numHorarios[i]=Integer.parseInt(lista2Horarios[i]);
-        }
-        for (int i=0;i<numHorarios.length/2;i++){
-            numHorarios[i]=Integer.parseInt(lista3Horarios[i]);
+            numHorarios[pointer]=Integer.parseInt(lista2Horarios[i]);
+            pointer++;
+            numHorarios[pointer]=Integer.parseInt(lista3Horarios[i]);
         }
         if (Integer.parseInt(lista2Horarios[0])==0){
             throw new IllegalArgumentException("Horario no válido.");

@@ -1,10 +1,6 @@
-import java.util.InputMismatchException;
-
 /**
  * CONCESIONARIOS
  * Esta clase  guarda la información sobre los diferentes concesionarios del proyecto.
- * ¿DESCRIPCION DE LA INTERFICIE QUE INCLUYE?
- * ¿FUNCIONAMIENTO,LIMITACIONES,VARIABLES UTILIZADAS...? (Hasta que no hayan metodos y tal no puedo poner esa info.)
  * @author José Luis Cardona
  * @version 1 - 29/03/2021
  */
@@ -24,6 +20,7 @@ public class Concesionario {
         this.telefono = telefono;
     }
 
+    //TODO: Cambiar a getters
     public Concesionario(Concesionario copia) {
         this.id = copia.id;
         this.ubicacion = copia.ubicacion;
