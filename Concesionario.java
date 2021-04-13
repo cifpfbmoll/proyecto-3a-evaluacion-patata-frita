@@ -20,12 +20,11 @@ public class Concesionario {
         this.telefono = telefono;
     }
 
-    //TODO: Cambiar a getters
     public Concesionario(Concesionario copia) {
-        this.id = copia.id;
-        this.ubicacion = copia.ubicacion;
-        this.nombre = copia.nombre;
-        this.telefono = copia.telefono;
+        this.id = copia.getId();
+        this.ubicacion = copia.getUbicacion();
+        this.nombre = copia.getNombre();
+        this.telefono = copia.getTelefono();
     }
 
     public int getId() {
