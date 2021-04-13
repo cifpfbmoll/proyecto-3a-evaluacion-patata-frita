@@ -61,7 +61,7 @@ public class Concesionario {
 
     public void setTelefono(int telefono) throws IllegalArgumentException {
         if(telefono<999){
-            throw new IllegalArgumentException("Número de teléfono inválido o no completo.");
+            throw new IllegalArgumentException("Número de teléfono inválido/no completo.");
         }else {
             this.telefono = telefono;
         }

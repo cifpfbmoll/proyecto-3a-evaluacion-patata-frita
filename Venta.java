@@ -16,10 +16,9 @@ public class Venta {
         this.horario = horario;
     }
 
-    // TODO: Pasar a getters
     public Venta(Venta copia) {
-        this.id = copia.id;
-        this.horario = copia.horario;
+        this.id = copia.getId();
+        this.horario = copia.getHorario();
     }
 
     public int getId() {
@@ -30,23 +29,26 @@ public class Venta {
         return horario;
     }
 
-    // TODO: Revisar esto (funciona el for), no se checkea bien el error
     public void setHorario(String horario) throws IllegalArgumentException{
         //ENTENDER BIEN ESTO
         String[] listaHorarios=horario.split("-");
         String[] lista2Horarios=listaHorarios[0].split(":");
         String[] lista3Horarios=listaHorarios[1].split(":");
-        int[] numHorarios = new int[3];
-        int pointer = 0;
-        for (int i=0;i<numHorarios.length/2;i++){
-            numHorarios[pointer]=Integer.parseInt(lista2Horarios[i]);
-            pointer++;
-            numHorarios[pointer]=Integer.parseInt(lista3Horarios[i]);
-        }
-        if (Integer.parseInt(lista2Horarios[0])==0){
-            throw new IllegalArgumentException("Horario no válido.");
+        if (lista2Horarios.length + lista3Horarios.length != 4){
+            throw new IllegalArgumentException("Demasiados numeros.");
         }else{
-            this.horario = horario;
+            try{
+                int[] numHorarios = new int[3];
+                int pointer = 0;
+                for (int i=0;i<numHorarios.length/2;i++){
+                    numHorarios[pointer]=Integer.parseInt(lista2Horarios[i]);
+                    pointer++;
+                    numHorarios[pointer]=Integer.parseInt(lista3Horarios[i]);
+                    pointer++;
+                }
+            }catch (Exception ex){
+                throw new IllegalArgumentException("Caracter/es inválido/s.");
+            }
         }
     }
 
