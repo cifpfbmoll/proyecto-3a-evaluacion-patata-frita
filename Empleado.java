@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.fp.concesionario;
 
 import java.util.ArrayList;
 
@@ -37,11 +36,6 @@ public class Empleado extends Persona {
         this.puestoTrabajo = puestoTrabajo;
     }
 
-    @Override
-    public String toString() {
-        return "{ Nóminas almacenadas: " + nomina.size() + " | Puesto de trabajo: " + puestoTrabajo + " }" + super.toString(); //To change body of generated methods, choose Tools | Templates.
-    }
-
     // GETTERS Y SETTERS
     public Nomina getListaNominas() {
         return nomina;
@@ -58,5 +52,12 @@ public class Empleado extends Persona {
     public void setPuestoTrabajo(String puestoTrabajo) {
         this.puestoTrabajo = puestoTrabajo;
     }
+
+    public String toString(){
+        return super.toString() + " puesto de trabajo: " + puestoTrabajo; //Sin el conjunto de nominas, eso vendra con la base de datos y serà una simple llamada
+    }
+
+    // TODO: Crear una funcion para crear una nueva nomina directamente (pide los datos al usuario y las pasa a la nomina, controlar errores!)
+    // TODO: Constructor copia
     
 }

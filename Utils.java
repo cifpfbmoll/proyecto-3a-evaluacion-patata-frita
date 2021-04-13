@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.fp.concesionario;
 
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -15,6 +16,19 @@ import java.util.Scanner;
 public class Utils {
 
     public static Scanner lector = new Scanner(System.in); // Establecer el objeto scanner
+    public static final double IMPUESTO = 0.21;
+
+    /**
+     * metodo estatico para sacar fecha y hora del sistema
+     *
+     * @return String fecha
+     */
+    public static String establecerFechaActual() {
+        LocalDateTime dateTime = LocalDateTime.now(); // fecha y hora del sistema
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"); // formato
+        String fecha = dateTime.format(formatter); // variable guarda fecha y hora como string
+        return fecha;
+    }
 
     /**
      *
@@ -27,6 +41,10 @@ public class Utils {
         return valor;
     }
 
+    /**
+     * Espera input del usuario
+     * @return String del usuario escrito
+     */
     public static String kString() {
         String valor = lector.nextLine();
         return valor;
