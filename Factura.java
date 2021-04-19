@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 /**
  * Clase Factura
@@ -76,18 +75,15 @@ public class Factura {
             factura.setFechaFactura(fechaFactura);
 
             System.out.println("Coste: ");
-            // TODO: Cambiar el scanner por el scanner del utils, asi se comparte uno solo
-            Scanner sc = new Scanner(System.in);
-            factura.setCosteFactura(sc.nextDouble());
-            sc.nextLine();
+            factura.setCosteFactura(Utils.sc.nextDouble());
+            Utils.sc.nextLine();
 
             System.out.println("Trabajos realizados: ");
-            factura.setTrabajoRealizado(sc.nextLine());
+            factura.setTrabajoRealizado(Utils.sc.nextLine());
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
         }
-
         return factura;
     }
 }
