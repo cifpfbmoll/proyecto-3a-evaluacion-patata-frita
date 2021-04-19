@@ -61,7 +61,6 @@ public class Cliente extends Persona {
         this.factura = factura;
     }
         
-    //TODO falta el toString, basta con llamar al super.toString(), reservas y facturas iran por base de datos
     @Override
     public String toString() {
         return super.toString();
