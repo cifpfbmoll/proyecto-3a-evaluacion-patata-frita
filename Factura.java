@@ -1,3 +1,4 @@
+package eu.fp.concesionario;
 
 /**
  * Clase Factura
@@ -75,11 +76,10 @@ public class Factura {
             factura.setFechaFactura(fechaFactura);
 
             System.out.println("Coste: ");
-            factura.setCosteFactura(Utils.sc.nextDouble());
-            Utils.sc.nextLine();
+            factura.setCosteFactura(Utils.kDouble());
 
             System.out.println("Trabajos realizados: ");
-            factura.setTrabajoRealizado(Utils.sc.nextLine());
+            factura.setTrabajoRealizado(Utils.kString());
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
