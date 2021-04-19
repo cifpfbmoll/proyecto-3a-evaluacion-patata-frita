@@ -34,7 +34,7 @@ public class Empleado extends Persona {
      * Constructor copia de empleado
      * @param copia Empleado a copiar
      */
-    public Empleado(Empleado copia) {
+    public Empleado(Persona copia) {
         super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio());
         this.setNomina(copia.getNomina());
         this.setPuestoTrabajo(copia.getPuestoTrabajo());
