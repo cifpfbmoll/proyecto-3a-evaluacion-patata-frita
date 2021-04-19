@@ -1,3 +1,5 @@
+package eu.fp.concesionario;
+
 /**
  *
  * @author Karina

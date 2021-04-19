@@ -1,8 +1,9 @@
-
+package eu.fp.concesionario;
 /**
  * Clase Nomina
  *
- * @author Marat Rafael
+
+* @author Marat Rafael
  */
 public class Nomina {
 
@@ -110,10 +111,10 @@ public class Nomina {
             nomina.setFechaNomina(fecha);
 
             System.out.println("horas trabajadas: ");
-            nomina.setHorasTrabajadas(Utils.sc.nextInt());
+            nomina.setHorasTrabajadas(Utils.kInt());
 
             System.out.println("Precio por hora: ");
-            nomina.setPrecioPorHora(Utils.sc.nextDouble());
+            nomina.setPrecioPorHora(Utils.kDouble());
 
             nomina.setSueldoSinImpuestos(nomina.getHorasTrabajadas() * nomina.precioPorHora);
 
