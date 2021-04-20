@@ -59,7 +59,7 @@ public class Reserva {
             reserva.setFechaHoraReserva(fecha);
 
             System.out.println("Espacio reservado: ");
-            reserva.setEspacioReservado(Utils.sc.nextLine());
+            reserva.setEspacioReservado(Utils.kString());
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());

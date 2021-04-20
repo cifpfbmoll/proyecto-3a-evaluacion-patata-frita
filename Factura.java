@@ -7,7 +7,7 @@ public class Factura {
 
     //atributos
     private String fechaFactura;
-    private double costeFactura;
+    private float costeFactura;
     private String trabajoRealizado;
 
     //constructor vacio
@@ -15,7 +15,7 @@ public class Factura {
     }
 
     //constructor con todos atributos
-    public Factura(String fechaFactura, double costeFactura, String trabajoRealizado) {
+    public Factura(String fechaFactura, float costeFactura, String trabajoRealizado) {
         this.fechaFactura = fechaFactura;
         this.costeFactura = costeFactura;
         this.trabajoRealizado = trabajoRealizado;
@@ -37,11 +37,11 @@ public class Factura {
         this.fechaFactura = fechaFactura;
     }
 
-    public double getCosteFactura() {
+    public float getCosteFactura() {
         return costeFactura;
     }
 
-    public void setCosteFactura(double costeFactura) throws IllegalArgumentException {
+    public void setCosteFactura(float costeFactura) throws IllegalArgumentException {
 
         this.costeFactura = costeFactura;
         if (costeFactura < 0) {
@@ -75,11 +75,10 @@ public class Factura {
             factura.setFechaFactura(fechaFactura);
 
             System.out.println("Coste: ");
-            factura.setCosteFactura(Utils.sc.nextDouble());
-            Utils.sc.nextLine();
+            factura.setCosteFactura(Utils.kFloat());
 
             System.out.println("Trabajos realizados: ");
-            factura.setTrabajoRealizado(Utils.sc.nextLine());
+            factura.setTrabajoRealizado(Utils.kString());
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
