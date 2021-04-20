@@ -1,8 +1,8 @@
-
 /**
  * Clase Nomina
  *
- * @author Marat Rafael
+
+* @author Marat Rafael
  */
 public class Nomina {
 

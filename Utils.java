@@ -1,3 +1,5 @@
+package eu.fp.concesionario;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -89,6 +91,24 @@ public class Utils {
 
     public static int kInt() {
         int valor = lector.nextInt();
+        lector.nextLine(); // Limpiar buffer dentro del input
+        return valor;
+    }
+    
+    /**
+     *
+     * @param texto Texto para imprimir y solicitar la informacion a escanear
+     * @return Devuelve el valor que se ha solicitado escanear
+     */
+    public static double kDouble(String texto) {
+        System.out.println(">>> " + texto + ": ");
+        double valor = lector.nextDouble();
+        lector.nextLine(); // Limpiar buffer dentro del input
+        return valor;
+    }
+
+    public static double kDouble() {
+        double valor = lector.nextDouble();
         lector.nextLine(); // Limpiar buffer dentro del input
         return valor;
     }
