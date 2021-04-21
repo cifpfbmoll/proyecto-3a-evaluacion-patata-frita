@@ -191,17 +191,21 @@ public class Utils {
     /**
      * @author José Luis
      */
-    public static void deleteGeneral(String tabla, int fila) {
+    public static void deleteGeneral(String tabla, int id) {
         PreparedStatement prst;
         try {
-            String consulta = "delete+ "+fila+" from "+tabla;
+            String consulta = "DELETE FROM "+tabla+" WHERE ID=? ";
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setInt(1, fila);
+            Utils.prst.setInt(1, id);
             Utils.prst.executeUpdate();
             System.out.println("Se ha borrado correctamente");
         } catch (SQLException ex) {
             System.out.println("¡ERROR!, no se ha podido borrar");
+        }finally {
+            if (Utils.prst! = null) Utils.prst.close ();//cierra el objeto Statement llamado st
+            if (Utils.connection! = null) Utils.connection.close (); //cierra el objeto Connection llamado con
+        }
         }
     }
 }
