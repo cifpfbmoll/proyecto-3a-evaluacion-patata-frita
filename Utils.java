@@ -128,6 +128,11 @@ public class Utils {
         return valor;
     }
 
+    /**
+     * motodo de conectar a la BBDD y devolver un objeto de conexion
+     *
+     * @return
+     */
     public static Connection conectarBBDD() {
 //        String url = "jdbc:mysql://51.178.152.221:3306/concesionario";
 //        String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
@@ -147,6 +152,22 @@ public class Utils {
     }
 
     /**
+     * Metodo para conectar a la base de datos, no devuelve nada
+     */
+    public static void conectarBBDD2() {
+        String url = "jdbc:mysql://51.178.152.221:3306/concesionario";
+        String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
+        String password = "ContraseñaDeLaOstia69";
+        try {
+            //Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (SQLException ex) {
+            System.out.println("No hay conexion a la BBDD");
+            ex.printStackTrace();
+        }
+    }
+
+    /**
      * Un select general para todas las clases. Acrodarse de cerrar el ResultSet
      * después de leerlo.
      *
@@ -156,8 +177,8 @@ public class Utils {
      * @return
      */
     public static void selectGeneral(String selector, String tabla, String busqueda) {
-        String consulta = "select " + selector + " from " + tabla + " WHERE ?";
-        PreparedStatement prs;
+        String consulta = "select " + selector + " from " + tabla + " WHERE " + busqueda;
+        PreparedStatement prs = null;
         try {
             //Volver a probar con prepared statement
             prs = connection.prepareStatement(consulta);
@@ -165,6 +186,21 @@ public class Utils {
             rs = prs.executeQuery();
         } catch (SQLException ex) {
             ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (prs != null) {
+                    prs.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error cerrar conexion");
+            }
+
         }
     }
 

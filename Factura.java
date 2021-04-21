@@ -101,6 +101,12 @@ public class Factura {
         return factura;
     }
 
+    /**
+     * buscar una factura por su ID
+     *
+     * @param numID
+     * @return ResultSet
+     */
     public static ResultSet consultaFacturaPorID(int numID) {
 
         String consultaPreparada = "SELECT * FROM FACTURA WHERE ID=?";
@@ -118,45 +124,6 @@ public class Factura {
             System.out.println("Error consulta");
         }
         return Utils.rs;
-
-    }
-
-    /**
-     * metodo para meter en la BBDD una insert con 4 campos
-     *
-     * @param facturaID int insert id ( a lo mejor lo quitamos para usar
-     * autoincrement en BBDD)
-     * @param fechaFactura String fecha de la insert
-     * @param facturaCoste Double
-     * @param trabajosRealizados String
-     */
-    public static void insertarDatosFacturaBBDD(int facturaID, String fechaFactura, double facturaCoste, String trabajosRealizados) {
-        String factura = "INSERT INTO factura VALUES (?,?,?,?)";
-        try {
-            Connection con = Utils.conectarBBDD();
-            Utils.prst = con.prepareStatement(factura);
-            Utils.prst.setInt(1, facturaID);
-            Utils.prst.setString(2, fechaFactura);
-            Utils.prst.setDouble(3, facturaCoste);
-            Utils.prst.setString(4, trabajosRealizados);
-
-            Utils.prst.executeUpdate();
-            System.out.println("Datos insertados");
-
-        } catch (SQLException e) {
-            System.out.println("Error al insertar datos");
-        } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
-            }
-        }
     }
 
     /**
@@ -165,17 +132,16 @@ public class Factura {
      * @param factura
      */
     public static void insertarObjetoFacturaBBDD(Factura factura) {
-        String insert = "INSERT INTO factura VALUES (?,?,?,?)";
+        String insert = "INSERT INTO FACTURA (FECHA, COSTE, TRABAJO_REALIZADO)  VALUES (?,?,?)";
         try {
             Connection con = Utils.conectarBBDD();
             Utils.prst = con.prepareStatement(insert);
-            Utils.prst.setInt(1, factura.getIdFactura());
-            Utils.prst.setString(2, factura.getFechaFactura());
-            Utils.prst.setDouble(3, factura.getCosteFactura());
-            Utils.prst.setString(4, factura.getTrabajoRealizado());
+            Utils.prst.setString(1, factura.getFechaFactura());
+            Utils.prst.setDouble(2, factura.getCosteFactura());
+            Utils.prst.setString(3, factura.getTrabajoRealizado());
 
             Utils.prst.executeUpdate();
-            System.out.println("Datos insertados");
+            System.out.println("Datos insertados correctamente señor");
 
         } catch (SQLException e) {
             System.out.println("Error al insertar datos");
@@ -205,7 +171,11 @@ public class Factura {
             Utils.rs = Utils.st.executeQuery(consulta);
 
             while (Utils.rs.next()) {
-                System.out.println(Utils.rs.getString(1) + " " + Utils.rs.getString(2) + " " + Utils.rs.getString(3) + " " + Utils.rs.getString(4));
+                System.out.println(
+                        "ID: "+Utils.rs.getString(1) + ", " + 
+                        "FECHA: "+Utils.rs.getString(2) + ", " + 
+                        "COSTE: "+Utils.rs.getString(3) + ", " + 
+                        "TRABAJO REALIZADO: "+Utils.rs.getString(4));
             }
         } catch (SQLException ex) {
             System.out.println("Error al mostrar datos de la tabla");
@@ -295,7 +265,7 @@ public class Factura {
             System.out.println("Datos uctualizados correctamente");
         } catch (SQLException ex) {
             System.out.println("Error actualizar datos");
-        }finally{
+        } finally {
             try {
                 if (Utils.prst != null) {
                     Utils.prst.close();
@@ -319,17 +289,11 @@ public class Factura {
             Utils.prst.setInt(1, IDFactura);
             Utils.rs = Utils.prst.executeQuery();
 
-            if (Utils.rs.next()) {
-                Utils.rs.next();
+            while (Utils.rs.next()) {
                 posicion = Utils.rs.getInt(1);
-                return posicion;
-            } else {
-                return posicion;
             }
-
         } catch (SQLException ex) {
             System.out.println("error buscar factura");
-            return posicion;
         } finally {
             try {
                 if (Utils.rs != null) {
@@ -345,5 +309,6 @@ public class Factura {
                 System.out.println("Error al cerrar conexiones");
             }
         }
+        return posicion;
     }
 }
