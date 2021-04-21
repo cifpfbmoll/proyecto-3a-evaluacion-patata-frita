@@ -182,10 +182,26 @@ public class Utils {
             */
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }
+
     }
 
     public static ResultSet getResults(){
         return rs;
+    }
+    /**
+     * @author José Luis
+     */
+    public static void deleteGeneral(String tabla, int fila) {
+        PreparedStatement prst;
+        try {
+            String consulta = "delete+ "+fila+" from "+tabla;
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, fila);
+            Utils.prst.executeUpdate();
+            System.out.println("Se ha borrado correctamente");
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR!, no se ha podido borrar");
+        }
     }
 }
