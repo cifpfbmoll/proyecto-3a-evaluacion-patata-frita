@@ -1,9 +1,10 @@
+package eu.fp.concesionario;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.sql.*;
 import java.util.Scanner;
 import java.time.LocalDateTime;
@@ -89,7 +90,7 @@ public class Utils {
         lector.nextLine(); // Limpiar buffer dentro del input
         return valor;
     }
-    
+
     /**
      *
      * @param texto Texto para imprimir y solicitar la informacion a escanear
@@ -136,11 +137,12 @@ public class Utils {
         } catch (SQLException ex) {
             System.out.println("No hay conexion a la BBDD");
             ex.printStackTrace();
-        }  
+        }
     }
 
     /**
-     * Un select general para todas las clases. Acrodarse de cerrar el ResultSet después de leerlo.
+     * Un select general para todas las clases. Acrodarse de cerrar el ResultSet
+     * después de leerlo.
      *
      * @param tabla la tabla que selecionamos
      * @param busqueda el where de SQL
@@ -153,15 +155,16 @@ public class Utils {
         try {
             //Volver a probar con prepared statement
             prs = connection.prepareStatement(consulta);
-            prs.setString(1,busqueda);
+            prs.setString(1, busqueda);
             rs = prs.executeQuery();
         } catch (SQLException ex) {
-           ex.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
     /**
-     * Un select general para todas las clases. Acrodarse de cerrar el ResultSet después de leerlo.
+     * Un select general para todas las clases. Acrodarse de cerrar el ResultSet
+     * después de leerlo.
      *
      * @param tabla la tabla que selecionamos
      * @param selector datos de la tabla a devolver
@@ -179,13 +182,26 @@ public class Utils {
             /*
             DatabaseMetaData md = connection.getMetaData();
             md.getTables(null,null,null,null);
-            */
+             */
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-    public static ResultSet getResults(){
+    public static ResultSet getResults() {
         return rs;
+    }
+
+    /**
+     * Cerrar la conexión a la base de datos
+     * @throws SQLException 
+     */
+    public static void cerrarGeneral() throws SQLException {
+        try {
+            if (rs != null) rs.close();
+            if (connection != null) connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
