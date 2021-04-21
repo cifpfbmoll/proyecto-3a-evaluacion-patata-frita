@@ -1,6 +1,3 @@
-//TODO: Usar el scanner de la clase utils para usar un unico scanner
-import java.util.Scanner;
-
 /**
  * Clase Reserva
  * @author Marat Rafael
@@ -60,13 +57,11 @@ public class Reserva {
             reserva.setFechaHoraReserva(fecha);
 
             System.out.println("Espacio reservado: ");
-            Scanner sc = new Scanner(System.in);
-            reserva.setEspacioReservado(sc.nextLine());
+            reserva.setEspacioReservado(Utils.kString());
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
         }
         return reserva;
     }
-
 }
