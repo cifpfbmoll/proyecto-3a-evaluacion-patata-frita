@@ -91,7 +91,7 @@ public class Utils {
         lector.nextLine(); // Limpiar buffer dentro del input
         return valor;
     }
-
+    
     /**
      *
      * @param texto Texto para imprimir y solicitar la informacion a escanear
@@ -128,19 +128,10 @@ public class Utils {
         return valor;
     }
 
-    /**
-     * motodo de conectar a la BBDD y devolver un objeto de conexion
-     *
-     * @return
-     */
     public static Connection conectarBBDD() {
-//        String url = "jdbc:mysql://51.178.152.221:3306/concesionario";
-//        String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
-//        String password = "ContraseñaDeLaOstia69";
-        String url = "jdbc:oracle:thin:@//localhost:1521/ORCLCDB.localdomain";
-        String user = "dummy";
-        String password = "dummy";
-
+        String url = "jdbc:mysql://51.178.152.221:3306/concesionario";
+        String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
+        String password = "ContraseñaDeLaOstia69";
         try {
             //Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url, user, password);
@@ -218,19 +209,14 @@ public class Utils {
         try {
             //Volver a probar con prepared statement
             prs = connection.prepareStatement(consulta);
+            prs.setString(1,busqueda);
             rs = prs.executeQuery();
-
-            //Probar databasemetadata?
-            /*
-            DatabaseMetaData md = connection.getMetaData();
-            md.getTables(null,null,null,null);
-             */
         } catch (SQLException ex) {
-            ex.printStackTrace();
+           ex.printStackTrace();
         }
     }
 
-    public static ResultSet getResults() {
+    public static ResultSet getResults(){
         return rs;
     }
 }

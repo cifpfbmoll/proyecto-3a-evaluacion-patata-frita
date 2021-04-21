@@ -1,7 +1,5 @@
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Clase Nomina
@@ -13,17 +11,17 @@ public class Nomina {
 
     //atributos
     private int horasTrabajadas;
-    private double sueldoTotal;
-    private double sueldoSinImpuestos;
+    private float sueldoTotal;
+    private float sueldoSinImpuestos;
     private String fechaNomina;
-    private double precioPorHora;
+    private float precioPorHora;
 
     // constructor vacio
     public Nomina() {
     }
 
     // constructor con todos atributos
-    public Nomina(int horasTrabajadas, double sueldoTotal, double sueldoSinImpuestos, String fechaNomina, double precioPorHora) {
+    public Nomina(int horasTrabajadas, float sueldoTotal, float sueldoSinImpuestos, String fechaNomina, float precioPorHora) {
         this.horasTrabajadas = horasTrabajadas;
         this.sueldoTotal = sueldoTotal;
         this.sueldoSinImpuestos = sueldoSinImpuestos;
@@ -52,11 +50,11 @@ public class Nomina {
         }
     }
 
-    public double getSueldoTotal() {
+    public float getSueldoTotal() {
         return sueldoTotal;
     }
 
-    public void setSueldoTotal(double sueldoTotal) throws IllegalArgumentException {
+    public void setSueldoTotal(float sueldoTotal) throws IllegalArgumentException {
 
         this.sueldoTotal = sueldoTotal;
         if (sueldoTotal < 0) {
@@ -64,11 +62,11 @@ public class Nomina {
         }
     }
 
-    public double getSueldoSinImpuestos() {
+    public float getSueldoSinImpuestos() {
         return sueldoSinImpuestos;
     }
 
-    public void setSueldoSinImpuestos(double sueldoSinImpuestos) throws IllegalArgumentException {
+    public void setSueldoSinImpuestos(float sueldoSinImpuestos) throws IllegalArgumentException {
 
         this.sueldoSinImpuestos = sueldoSinImpuestos;
         if (sueldoSinImpuestos < 0) {
@@ -84,11 +82,11 @@ public class Nomina {
         this.fechaNomina = fechaNomina;
     }
 
-    public double getPrecioPorHora() {
+    public float getPrecioPorHora() {
         return precioPorHora;
     }
 
-    public void setPrecioPorHora(double precioPorHora) {
+    public void setPrecioPorHora(float precioPorHora) {
         this.precioPorHora = precioPorHora;
         if (precioPorHora < 0) {
             throw new IllegalArgumentException("Valor precio por hora no valido");
@@ -118,11 +116,11 @@ public class Nomina {
             nomina.setHorasTrabajadas(Utils.kInt());
 
             System.out.println("Precio por hora: ");
-            nomina.setPrecioPorHora(Utils.kDouble());
+            nomina.setPrecioPorHora(Utils.kFloat());
 
             nomina.setSueldoSinImpuestos(nomina.getHorasTrabajadas() * nomina.precioPorHora);
 
-            double impuestoSobreNomina = nomina.getSueldoSinImpuestos() * Utils.IMPUESTO;
+            float impuestoSobreNomina = nomina.getSueldoSinImpuestos() * Utils.IMPUESTO;
             nomina.setSueldoTotal(nomina.getSueldoSinImpuestos() - impuestoSobreNomina);
 
         } catch (IllegalArgumentException ex) {
