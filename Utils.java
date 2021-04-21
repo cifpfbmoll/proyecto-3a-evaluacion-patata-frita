@@ -19,8 +19,10 @@ public class Utils {
 
     public static Scanner lector = new Scanner(System.in); // Establecer el objeto scanner
     public static final float IMPUESTO = (float) 0.21;
-    private static Connection connection;
-    private static ResultSet rs;
+    public static Connection connection;
+    public static ResultSet rs;
+    public static PreparedStatement prst;
+    public static Statement st;
 
     /**
      * metodo estatico para sacar fecha y hora del sistema
@@ -127,7 +129,24 @@ public class Utils {
         return valor;
     }
 
-    public static void conectarBBDD() {
+    public static Connection conectarBBDD() {
+        String url = "jdbc:mysql://51.178.152.221:3306/concesionario";
+        String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
+        String password = "ContraseñaDeLaOstia69";
+        try {
+            //Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (SQLException ex) {
+            System.out.println("No hay conexion a la BBDD");
+            ex.printStackTrace();
+        }
+        return connection;
+    }
+
+    /**
+     * Metodo para conectar a la base de datos, no devuelve nada
+     */
+    public static void conectarBBDD2() {
         String url = "jdbc:mysql://51.178.152.221:3306/concesionario";
         String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
         String password = "ContraseñaDeLaOstia69";
@@ -150,8 +169,8 @@ public class Utils {
      * @return
      */
     public static void selectGeneral(String selector, String tabla, String busqueda) {
-        String consulta = "select " + selector + " from " + tabla + " WHERE ?";
-        PreparedStatement prs;
+        String consulta = "select " + selector + " from " + tabla + " WHERE " + busqueda;
+        PreparedStatement prs = null;
         try {
             //Volver a probar con prepared statement
             prs = connection.prepareStatement(consulta);
@@ -159,6 +178,21 @@ public class Utils {
             rs = prs.executeQuery();
         } catch (SQLException ex) {
             ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (prs != null) {
+                    prs.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error cerrar conexion");
+            }
+
         }
     }
 
@@ -176,15 +210,10 @@ public class Utils {
         try {
             //Volver a probar con prepared statement
             prs = connection.prepareStatement(consulta);
+            prs.setString(1,busqueda);
             rs = prs.executeQuery();
-
-            //Probar databasemetadata?
-            /*
-            DatabaseMetaData md = connection.getMetaData();
-            md.getTables(null,null,null,null);
-             */
         } catch (SQLException ex) {
-            ex.printStackTrace();
+           ex.printStackTrace();
         }
     }
 
