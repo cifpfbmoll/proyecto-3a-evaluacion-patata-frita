@@ -228,7 +228,23 @@ public class Utils {
     public static void cerrarGeneral() throws SQLException {
         try {
             if (rs != null) rs.close();
+            if (prst != null) prst.close();
+            if (st != null) st.close();
             if (connection != null) connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Cerrar la conexión a la base de datos
+     * @throws SQLException 
+     */
+    public static void cerrarVariables() throws SQLException {
+        try {
+            if (rs != null) rs.close();
+            if (prst != null) prst.close();
+            if (st != null) st.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
