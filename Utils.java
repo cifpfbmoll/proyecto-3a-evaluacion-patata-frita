@@ -1,9 +1,10 @@
+package eu.fp.concesionario;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.sql.*;
 import java.util.Scanner;
 import java.time.LocalDateTime;
@@ -91,7 +92,7 @@ public class Utils {
         lector.nextLine(); // Limpiar buffer dentro del input
         return valor;
     }
-    
+
     /**
      *
      * @param texto Texto para imprimir y solicitar la informacion a escanear
@@ -216,7 +217,36 @@ public class Utils {
         }
     }
 
-    public static ResultSet getResults(){
+    public static ResultSet getResults() {
         return rs;
+    }
+
+    /**
+     * Cerrar la conexión a la base de datos
+     * @throws SQLException 
+     */
+    public static void cerrarGeneral() throws SQLException {
+        try {
+            if (rs != null) rs.close();
+            if (prst != null) prst.close();
+            if (st != null) st.close();
+            if (connection != null) connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Cerrar la conexión a la base de datos
+     * @throws SQLException 
+     */
+    public static void cerrarVariables() throws SQLException {
+        try {
+            if (rs != null) rs.close();
+            if (prst != null) prst.close();
+            if (st != null) st.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
