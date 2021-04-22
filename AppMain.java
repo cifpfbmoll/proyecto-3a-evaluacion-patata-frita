@@ -100,7 +100,7 @@ public class AppMain {
                                     Factura.mostrarTablaFacturaCompleta();
                                     break;
                                 case 6:
-                                    System.out.println("Relacionamos una FACTURA existente con una RESERVA existente");
+                                    System.out.println("Relacionamos una FACTURA con una RESERVA ");
                                     System.out.println("ID de la FACTURA");
                                     int idFacturaReserva = Utils.kInt();
                                     System.out.println("ID de la RESERVA");
@@ -108,7 +108,7 @@ public class AppMain {
                                     Factura.relacionarFacturaConReserva(idFacturaReserva, idReserva);
                                     break;
                                 case 7:
-                                    System.out.println("Relacionamos una FACTURA existente con una VENTA existente");
+                                    System.out.println("Relacionamos una FACTURA con una VENTA");
                                     System.out.println("ID de la FACTURA");
                                     int idFacturaVenta = Utils.kInt();
                                     System.out.println("ID de la VENTA");
@@ -116,7 +116,7 @@ public class AppMain {
                                     Factura.relacionarFacturaConVenta(idFacturaVenta, idVenta);
                                     break;
                                 case 8:
-                                    System.out.println("Relacionamos una FACTURA existente con un VEHICULO existente");
+                                    System.out.println("Relacionamos una FACTURA con un VEHICULO ");
                                     System.out.println("ID de la FACTURA");
                                     int idFacturaVehiculo = Utils.kInt();
                                     System.out.println("ID de la RESERVA");
@@ -138,6 +138,7 @@ public class AppMain {
                             System.out.println("3 Modificar nomina en BBDD");
                             System.out.println("4 Borrar nomina en BBDD");
                             System.out.println("5 Mostrar todos nominas en BBDD");
+                            System.out.println("6 Relacionar una NOMINA con un EMPLEADO");
                             System.out.println("0 Volver Menu Principal");
                             System.out.println(hr);
                             opcion = Utils.kInt();
@@ -150,8 +151,8 @@ public class AppMain {
                                 case 2:
                                     System.out.println("Indica ID nomina para comprobar si existe BBDD");
                                     int buscarNomina = Utils.kInt();
-                                    int posicionNomina = Nomina.buscarNominaBBDD(buscarNomina);
-                                    if (posicionNomina != -1) {
+                                    boolean posicionNomina = Nomina.buscarNominaBBDD(buscarNomina);
+                                    if (posicionNomina) {
                                         System.out.println("existe");
                                     } else {
                                         System.out.println("No existe");
@@ -160,17 +161,14 @@ public class AppMain {
                                 case 3:
                                     System.out.println("Indica ID de la nomina que desea modificar");
                                     int IdNominaModificar = Utils.kInt();
-                                    System.out.println("Horas de trabajo:");
-                                    float horasTrabajo = Utils.kFloat();
-                                    System.out.println("Precio por hora:");
-                                    int precioPorHora = Utils.kInt();
-                                    System.out.println("Sueldo total:");
-                                    float sueldoTotal = Utils.kFloat();
-                                    System.out.println("Suldo sin impuestos");
-                                    float sueldoSinImpuesto = Utils.kFloat();
-                                    System.out.println("Fecha:");
+                                    System.out.println("Horas de trabajo: ");
+                                    int horasTrabajo = Utils.kInt();
+                                    System.out.println("Sueldo total , bruto: ");
+                                    float sueldoTotal = Utils.kFloat();                                  
+                                    float sueldoSinImpuesto = sueldoTotal-(sueldoTotal*Utils.IMPUESTO);
+                                    System.out.println("Fecha: con formato formato DD-MM-YYYY HH:MM:SS");
                                     String fecha = Utils.kString();
-                                    Nomina.modificarNominaBBDD(IdNominaModificar, precioPorHora, precioPorHora, sueldoTotal, sueldoSinImpuesto, fecha);
+                                    Nomina.modificarNominaBBDD(IdNominaModificar,horasTrabajo , sueldoTotal, sueldoSinImpuesto, fecha);
                                     break;
                                 case 4:
                                     System.out.println("Indica ID de la nomina que desea borrar");
@@ -181,6 +179,12 @@ public class AppMain {
                                     System.out.println("mostrar todos nominas");
                                     Nomina.mostrarTodasNominas();
                                     break;
+                                case 6:
+                                    System.out.println("ID DE LA NOMINA que desea añadir al empleado");
+                                    int NominaIDRelacionar=Utils.kInt();
+                                    System.out.println("NIF  del empleado ");
+                                    String NifEmpledoRelacionar=Utils.kString();
+                                    Nomina.relacionarNominaConEmpleado(NominaIDRelacionar, NifEmpledoRelacionar);
                                 case 0:
                                     volver = true;
                             }

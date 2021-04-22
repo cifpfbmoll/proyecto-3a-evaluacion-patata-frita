@@ -388,7 +388,7 @@ public class Factura {
      * @return boolean  o true o false
      */
     public static boolean buscarFacturaBBDD(int IDFactura) {
-        boolean existe = false;
+        boolean encontrado = false;
         String consulta = "SELECT * FROM FACTURA WHERE ID=?";
         try {
 
@@ -398,7 +398,7 @@ public class Factura {
             Utils.rs = Utils.prst.executeQuery();
 
             if(Utils.rs.next()){
-                existe=true;
+                encontrado=true;
             }
 
         } catch (SQLException ex) {
@@ -418,6 +418,6 @@ public class Factura {
                 System.out.println("Error al cerrar conexiones");
             }
         }
-        return existe;
+        return encontrado;
     }
 }
