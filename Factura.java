@@ -165,7 +165,7 @@ public class Factura {
     }
 
     /**
-     * Metodo para mostrar toda informacion de la tabla factura
+     * Metodo para mostrar toda informacion de la tabla insert
      */
     public static void mostrarTablaFacturaCompleta() {
         String consulta = "SELECT * FROM FACTURA ORDER BY ID";
@@ -251,7 +251,7 @@ public class Factura {
     }
 
     /**
-     * Relacionar una factura con una reserva
+     * Relacionar una factura con una reserva en BBDD
      *
      * @param idFactura
      * @param idReserva
@@ -280,12 +280,14 @@ public class Factura {
             }
         }
     }
-        /**
-         * Relacionamos una factura con una venta 
-         * @param idFactura
-         * @param idVenta 
-         */
-        public static void relacionarFacturaConVenta(int idFactura, int idVenta) {
+
+    /**
+     * Relacionamos una factura con una venta registrada en BBDD
+     *
+     * @param idFactura
+     * @param idVenta
+     */
+    public static void relacionarFacturaConVenta(int idFactura, int idVenta) {
         String consulta = "UPDATE FACTURA SET VENTAID=? WHERE ID=?";
         try {
             Utils.connection = Utils.conectarBBDD();
@@ -309,7 +311,14 @@ public class Factura {
             }
         }
     }
-            public static void relacionarFacturaConVehiculo(int idFactura, int idVehiculo) {
+
+    /**
+     * relacionamos una factura con un vehiculo que ya esta en la base de datos
+     *
+     * @param idFactura
+     * @param idVehiculo
+     */
+    public static void relacionarFacturaConVehiculo(int idFactura, int idVehiculo) {
         String consulta = "UPDATE FACTURA SET VEHICULOID=? WHERE ID=?";
         try {
             Utils.connection = Utils.conectarBBDD();
@@ -335,7 +344,7 @@ public class Factura {
     }
 
     /**
-     * Metodo para modifica insert existente
+     * Metodo para modifica factura existente
      *
      * @param id
      * @param trabajos
@@ -385,7 +394,7 @@ public class Factura {
      * buscar factura en BBDD segun ID, devuelve true o false
      *
      * @param IDFactura
-     * @return boolean  o true o false
+     * @return boolean o true o false
      */
     public static boolean buscarFacturaBBDD(int IDFactura) {
         boolean encontrado = false;
@@ -397,8 +406,8 @@ public class Factura {
             Utils.prst.setInt(1, IDFactura);
             Utils.rs = Utils.prst.executeQuery();
 
-            if(Utils.rs.next()){
-                encontrado=true;
+            if (Utils.rs.next()) {
+                encontrado = true;
             }
 
         } catch (SQLException ex) {

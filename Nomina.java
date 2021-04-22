@@ -273,6 +273,15 @@ public class Nomina {
         return encontrado;
     }
 
+    /**
+     * modificamos nomina
+     *
+     * @param IDNomina
+     * @param HorasTrabajo
+     * @param SueldoBruto
+     * @param SueldoNeto
+     * @param fecha
+     */
     public static void modificarNominaBBDD(int IDNomina, int HorasTrabajo, float SueldoBruto, float SueldoNeto, String fecha) {
         String consulta = "UPDATE NOMINA SET HORAS=?, SUELDO_BRUTO=?, SUELDO_NETO=?, FECHA=?  WHERE ID=?";
 
@@ -315,6 +324,13 @@ public class Nomina {
         }
     }
 
+    /**
+     * relacionamos una nomina con un empleado usando ID de la nomina i NIF del
+     * empleado
+     *
+     * @param NominaID
+     * @param NifEmpleado
+     */
     public static void relacionarNominaConEmpleado(int NominaID, String NifEmpleado) {
         String consulta = "UPDATE NOMINA SET EMPLEADONIF=? WHERE ID=?";
 
