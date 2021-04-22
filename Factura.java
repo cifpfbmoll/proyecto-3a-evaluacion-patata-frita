@@ -1,7 +1,12 @@
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.DateFormat;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase Factura
@@ -11,21 +16,16 @@ import java.sql.SQLException;
 public class Factura {
 
     //atributos
-    private static int idFacturaGeneral = 1;
-    private int idFactura = idFacturaGeneral;
-
-    private String fechaFactura;
-    private double costeFactura;
     private String trabajoRealizado;
+    private float costeFactura;
+    private String fechaFactura;
 
     //constructor vacio
     public Factura() {
-        idFacturaGeneral++;
     }
 
     //constructor con todos atributos
-    public Factura(String fechaFactura, double costeFactura, String trabajoRealizado) {
-        idFacturaGeneral++;
+    public Factura(String fechaFactura, float costeFactura, String trabajoRealizado) {
         this.fechaFactura = fechaFactura;
         this.costeFactura = costeFactura;
         this.trabajoRealizado = trabajoRealizado;
@@ -33,7 +33,6 @@ public class Factura {
 
     //constructor copia
     public Factura(Factura factura) {
-        idFacturaGeneral++;
         this.fechaFactura = factura.getFechaFactura();
         this.costeFactura = factura.getCosteFactura();
         this.trabajoRealizado = factura.getTrabajoRealizado();
@@ -48,11 +47,11 @@ public class Factura {
         this.fechaFactura = fechaFactura;
     }
 
-    public double getCosteFactura() {
+    public float getCosteFactura() {
         return costeFactura;
     }
 
-    public void setCosteFactura(double costeFactura) throws IllegalArgumentException {
+    public void setCosteFactura(float costeFactura) throws IllegalArgumentException {
 
         this.costeFactura = costeFactura;
         if (costeFactura < 0) {
@@ -68,14 +67,10 @@ public class Factura {
         this.trabajoRealizado = trabajoRealizado;
     }
 
-    public int getIdFactura() {
-        return idFactura;
-    }
-
     // toString
     @Override
     public String toString() {
-        return "Factura { " + "idFactura=" + idFactura + ", fechaFactura=" + fechaFactura + ", costeFactura=" + costeFactura + ", trabajoRealizado=" + trabajoRealizado + '}';
+        return "Factura { " + ", trabajoRealizado=" + trabajoRealizado + ", costeFactura=" + costeFactura + ", fechaFactura=" + fechaFactura + '}';
     }
 
     /**
@@ -90,7 +85,7 @@ public class Factura {
             factura.setFechaFactura(fechaFactura);
 
             System.out.println("Coste: ");
-            factura.setCosteFactura(Utils.kDouble());
+            factura.setCosteFactura(Utils.kFloat());
 
             System.out.println("Trabajos realizados: ");
             factura.setTrabajoRealizado(Utils.kString());
@@ -132,16 +127,26 @@ public class Factura {
      * @param factura
      */
     public static void insertarObjetoFacturaBBDD(Factura factura) {
-        String insert = "INSERT INTO FACTURA (FECHA, COSTE, TRABAJO_REALIZADO)  VALUES (?,?,?)";
+        String insert = "INSERT INTO FACTURA (TRABAJO, COSTE, FECHA )  VALUES (?,?,?)";
         try {
+            // adaptamos fecha de factura a la fecha de mysql
+            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            Date myDate = null;
+            try {
+                myDate = formatter.parse(factura.getFechaFactura());
+            } catch (ParseException ex) {
+                System.out.println("Error aplicar formato fecha");
+            }
+            // casting a mysql formato
+            java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+
             Connection con = Utils.conectarBBDD();
             Utils.prst = con.prepareStatement(insert);
-            Utils.prst.setString(1, factura.getFechaFactura());
-            Utils.prst.setDouble(2, factura.getCosteFactura());
-            Utils.prst.setString(3, factura.getTrabajoRealizado());
-
+            Utils.prst.setString(1, factura.getTrabajoRealizado());
+            Utils.prst.setFloat(2, factura.getCosteFactura());
+            Utils.prst.setDate(3, sqlDate);
             Utils.prst.executeUpdate();
-            System.out.println("Datos insertados correctamente señor");
+            System.out.println("Datos insertados correctamente");
 
         } catch (SQLException e) {
             System.out.println("Error al insertar datos");
@@ -156,7 +161,6 @@ public class Factura {
             } catch (SQLException e) {
                 System.out.println("Error al cerrar conexion");
             }
-
         }
     }
 
@@ -172,10 +176,14 @@ public class Factura {
 
             while (Utils.rs.next()) {
                 System.out.println(
-                        "ID: "+Utils.rs.getString(1) + ", " + 
-                        "FECHA: "+Utils.rs.getString(2) + ", " + 
-                        "COSTE: "+Utils.rs.getString(3) + ", " + 
-                        "TRABAJO REALIZADO: "+Utils.rs.getString(4));
+                        "ID: " + Utils.rs.getString(1) + ", "
+                        + "TRABAJO REALIZADO: " + Utils.rs.getString(2) + ", "
+                        + "COSTE: " + Utils.rs.getString(3) + ", "
+                        + "FECHA: " + Utils.rs.getString(4) + ", "
+                        + "RESERVA ID: " + Utils.rs.getInt(5) + ", "
+                        + "VENTA ID: " + Utils.rs.getInt(6) + ", "
+                        + "VEHICULO ID: " + Utils.rs.getInt(7)
+                );
             }
         } catch (SQLException ex) {
             System.out.println("Error al mostrar datos de la tabla");
@@ -213,7 +221,7 @@ public class Factura {
     }
 
     /**
-     * metodo para borrar de la base de datos una insert, indicando ID de esta
+     * metodo para borrar de la base de datos una factura, indicando ID de esta
      * insert
      *
      * @param id
@@ -243,22 +251,116 @@ public class Factura {
     }
 
     /**
+     * Relacionar una factura con una reserva
+     *
+     * @param idFactura
+     * @param idReserva
+     */
+    public static void relacionarFacturaConReserva(int idFactura, int idReserva) {
+        String consulta = "UPDATE FACTURA SET RESERVAID=? WHERE ID=?";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, idReserva);
+            Utils.prst.setInt(2, idFactura);
+            Utils.prst.executeUpdate();
+            System.out.println("Factura " + idFactura + " esta relacionada con Reserva " + idReserva + " correctamente");
+        } catch (SQLException e) {
+            System.out.println("Error relacionar Factura con Reserva");
+        } finally {
+            try {
+                if (Utils.st != null) {
+                    Utils.st.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar conexion");
+            }
+        }
+    }
+        /**
+         * Relacionamos una factura con una venta 
+         * @param idFactura
+         * @param idVenta 
+         */
+        public static void relacionarFacturaConVenta(int idFactura, int idVenta) {
+        String consulta = "UPDATE FACTURA SET VENTAID=? WHERE ID=?";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, idVenta);
+            Utils.prst.setInt(2, idFactura);
+            Utils.prst.executeUpdate();
+            System.out.println("Factura " + idFactura + " esta relacionada con Venta " + idVenta + " correctamente");
+        } catch (SQLException e) {
+            System.out.println("Error relacionar Factura con Venta");
+        } finally {
+            try {
+                if (Utils.st != null) {
+                    Utils.st.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar conexion");
+            }
+        }
+    }
+            public static void relacionarFacturaConVehiculo(int idFactura, int idVehiculo) {
+        String consulta = "UPDATE FACTURA SET VEHICULOID=? WHERE ID=?";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, idVehiculo);
+            Utils.prst.setInt(2, idFactura);
+            Utils.prst.executeUpdate();
+            System.out.println("Factura " + idFactura + " esta relacionada con Vehiculo " + idVehiculo + " correctamente");
+        } catch (SQLException e) {
+            System.out.println("Error relacionar Factura con Vehiculo");
+        } finally {
+            try {
+                if (Utils.st != null) {
+                    Utils.st.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar conexion");
+            }
+        }
+    }
+
+    /**
      * Metodo para modifica insert existente
      *
      * @param id
+     * @param trabajos
      * @param fechaFactura
      * @param costeFactura
-     * @param trabajosRealizados
      */
-    public static void modificarFacturaBBDD(int id, String fechaFactura, double costeFactura, String trabajosRealizados) {
-        String consulta = "UPDATE FACTURA SET FECHA=? , COSTE=? , TRABAJOREALIZADO=? WHERE ID=?";
+    public static void modificarFacturaBBDD(int id, String trabajos, float costeFactura, String fechaFactura) {
+        String consulta = "UPDATE FACTURA SET TRABAJO=?, COSTE=? , FECHA=?  WHERE ID=?";
+        // adaptamos fecha de factura a la fecha de mysql
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date myDate = null;
+        try {
+            myDate = formatter.parse(fechaFactura);
+        } catch (ParseException ex) {
+            System.out.println("Error aplicar formato fecha");
+        }
+        // casting a mysql formato
+        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setString(1, fechaFactura);
-            Utils.prst.setDouble(2, costeFactura);
-            Utils.prst.setString(3, trabajosRealizados);
+            Utils.prst.setString(1, trabajos);
+            Utils.prst.setFloat(2, costeFactura);
+            Utils.prst.setDate(3, sqlDate);
             Utils.prst.setInt(4, id);
 
             Utils.prst.executeUpdate();
@@ -279,8 +381,14 @@ public class Factura {
         }
     }
 
-    public static int buscarFacturaBBDD(int IDFactura) {
-        int posicion = -1;
+    /**
+     * buscar factura en BBDD segun ID, devuelve true o false
+     *
+     * @param IDFactura
+     * @return boolean  o true o false
+     */
+    public static boolean buscarFacturaBBDD(int IDFactura) {
+        boolean existe = false;
         String consulta = "SELECT * FROM FACTURA WHERE ID=?";
         try {
 
@@ -289,9 +397,10 @@ public class Factura {
             Utils.prst.setInt(1, IDFactura);
             Utils.rs = Utils.prst.executeQuery();
 
-            while (Utils.rs.next()) {
-                posicion = Utils.rs.getInt(1);
+            if(Utils.rs.next()){
+                existe=true;
             }
+
         } catch (SQLException ex) {
             System.out.println("error buscar factura");
         } finally {
@@ -309,6 +418,6 @@ public class Factura {
                 System.out.println("Error al cerrar conexiones");
             }
         }
-        return posicion;
+        return existe;
     }
 }

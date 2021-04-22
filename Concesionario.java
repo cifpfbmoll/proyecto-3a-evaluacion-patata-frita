@@ -10,7 +10,6 @@ import java.sql.*;
 
 public class Concesionario {
 
-    private int id;
     private String ubicacion;
     private String nombre;
     private int telefono;
@@ -18,8 +17,8 @@ public class Concesionario {
     public Concesionario() {
     }
 
-    public Concesionario(int id, String ubicacion, String nombre, int telefono) {
-        this.id = id;
+    public Concesionario(String ubicacion, String nombre, int telefono) {
+
         this.ubicacion = ubicacion;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -27,14 +26,10 @@ public class Concesionario {
 
     //TODO: Cambiar a getters
     public Concesionario(Concesionario copia) {
-        this.id = copia.id;
+
         this.ubicacion = copia.ubicacion;
         this.nombre = copia.nombre;
         this.telefono = copia.telefono;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getUbicacion() {
@@ -76,7 +71,6 @@ public class Concesionario {
     @Override
     public String toString() {
         return "Concesionario{"
-                + "id=" + id
                 + ", ubicacion='" + ubicacion + '\''
                 + ", nombre='" + nombre + '\''
                 + ", telefono=" + telefono
@@ -136,8 +130,9 @@ public class Concesionario {
 
     /**
      * buscamos un concesionario segun id, si nolo ecuentra devuelve -1
+     *
      * @param id
-     * @return 
+     * @return
      */
     public static int buscarConcesionarioBBDD(int id) {
         String consulta = "SELECT * FROM CONCESIONARIO WHERE ID=?";
@@ -168,7 +163,84 @@ public class Concesionario {
                 System.out.println("Error cerrar connexion");
             }
         }
-
         return posicion;
+    }
+
+    /**
+     * modificamos concesionario ya existente
+     *
+     * @param ID
+     * @param ubicacion
+     * @param nombre
+     * @param telefono
+     */
+    public static void modificarConcesionarioBBDD(int ID, String ubicacion, String nombre, int telefono) {
+        String consulta = "UPDATE CONCESIONARIO SET UBICACION=?, NOMBRE=?, TELEFONO=? WHERE ID=?";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, ubicacion);
+            Utils.prst.setString(2, nombre);
+            Utils.prst.setInt(3, telefono);
+            Utils.prst.executeUpdate();
+            System.out.println("Datos actualizados correctamente señor !");
+        } catch (SQLException e) {
+            System.out.println("Error actualizar datos");
+        } finally {
+            try {
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error cerrar connexion");
+            }
+        }
+    }
+
+    public static void borrarConcesionarioBBDD(int id) {
+        String consulta = " DELETE FROM CONCESIONARIO WHERE ID=?";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, id);
+            Utils.prst.executeUpdate();
+            System.out.println("Concesionario con id " + id + " borrado correctamente");
+
+        } catch (SQLException e) {
+            System.out.println("Error borrar datos");
+        } finally {
+            try {
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error cerrar connexion");
+            }
+        }
+    }
+
+    public static void mostrarTodosConcesionariosBBDD() {
+        String consulta = "SELECT * FROM CONCESIONARIO ORDER BY ID";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.st = Utils.connection.createStatement();
+            Utils.rs = Utils.st.executeQuery(consulta);
+
+            while (Utils.rs.next()) {
+                System.out.println(
+                        "ID: " + Utils.rs.getString(1) + ", "
+                        + "UBICACION: " + Utils.rs.getString(2) + ", "
+                        + "NOMBRE: " + Utils.rs.getString(3) + ", "
+                        + "TELEFONO: " + Utils.rs.getInt(4));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrar todos concesionarios");
+        }
     }
 }

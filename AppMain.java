@@ -57,6 +57,9 @@ public class AppMain {
                             System.out.println("3 Modificar factura en BBDD");
                             System.out.println("4 Borrar factura en BBDD");
                             System.out.println("5 Mostrar todos facturas en BBDD");
+                            System.out.println("6 Relacionar factura con reserva ID");
+                            System.out.println("7 Relacionar factura con venta ID");
+                            System.out.println("8 Relacionar factura con vehiculo ID");
                             System.out.println("0 Volver Menu Principal");
                             System.out.println(hr);
                             opcion = Utils.kInt();
@@ -69,8 +72,8 @@ public class AppMain {
                                 case 2:
                                     System.out.println("Indica ID factura para comprobar si existe BBDD");
                                     int buscarFactura = Utils.kInt();
-                                    int posicionFactura = Factura.buscarFacturaBBDD(buscarFactura);
-                                    if (posicionFactura != -1) {
+                                    boolean posicionFactura = Factura.buscarFacturaBBDD(buscarFactura);
+                                    if (posicionFactura) {
                                         System.out.println("existe");
                                     } else {
                                         System.out.println("No existe");
@@ -79,13 +82,13 @@ public class AppMain {
                                 case 3:
                                     System.out.println("Indica ID de la factura que desea modificar");
                                     int IDFacturaModificar = Utils.kInteger();
-                                    System.out.println("nueva fecha");
+                                    System.out.println("nueva fecha, formato dd-MM-yyyy HH:mm:ss");
                                     String fechaModificar = Utils.kString();
                                     System.out.println("nuevo coste");
-                                    double costeModificar = Utils.kDouble();
+                                    float costeModificar = Utils.kFloat();
                                     System.out.println("nuevo trabajo realizado");
                                     String trabajosModificar = Utils.kString();
-                                    Factura.modificarFacturaBBDD(IDFacturaModificar, fechaModificar, costeModificar, trabajosModificar);
+                                    Factura.modificarFacturaBBDD(IDFacturaModificar, trabajosModificar, costeModificar, fechaModificar);
                                     break;
                                 case 4:
                                     System.out.println("Indica ID de la factura que desea borrar");
@@ -95,6 +98,30 @@ public class AppMain {
                                 case 5:
                                     System.out.println("mostrar todos");
                                     Factura.mostrarTablaFacturaCompleta();
+                                    break;
+                                case 6:
+                                    System.out.println("Relacionamos una FACTURA existente con una RESERVA existente");
+                                    System.out.println("ID de la FACTURA");
+                                    int idFacturaReserva = Utils.kInt();
+                                    System.out.println("ID de la RESERVA");
+                                    int idReserva = Utils.kInt();
+                                    Factura.relacionarFacturaConReserva(idFacturaReserva, idReserva);
+                                    break;
+                                case 7:
+                                    System.out.println("Relacionamos una FACTURA existente con una VENTA existente");
+                                    System.out.println("ID de la FACTURA");
+                                    int idFacturaVenta = Utils.kInt();
+                                    System.out.println("ID de la VENTA");
+                                    int idVenta = Utils.kInt();
+                                    Factura.relacionarFacturaConVenta(idFacturaVenta, idVenta);
+                                    break;
+                                case 8:
+                                    System.out.println("Relacionamos una FACTURA existente con un VEHICULO existente");
+                                    System.out.println("ID de la FACTURA");
+                                    int idFacturaVehiculo = Utils.kInt();
+                                    System.out.println("ID de la RESERVA");
+                                    int idVehiculo = Utils.kInt();
+                                    Factura.relacionarFacturaConVenta(idFacturaVehiculo, idVehiculo);
                                     break;
                                 case 0:
                                     volver = true;
@@ -134,13 +161,13 @@ public class AppMain {
                                     System.out.println("Indica ID de la nomina que desea modificar");
                                     int IdNominaModificar = Utils.kInt();
                                     System.out.println("Horas de trabajo:");
-                                    double horasTrabajo = Utils.kDouble();
+                                    float horasTrabajo = Utils.kFloat();
                                     System.out.println("Precio por hora:");
                                     int precioPorHora = Utils.kInt();
                                     System.out.println("Sueldo total:");
-                                    double sueldoTotal = Utils.kDouble();
+                                    float sueldoTotal = Utils.kFloat();
                                     System.out.println("Suldo sin impuestos");
-                                    double sueldoSinImpuesto = Utils.kDouble();
+                                    float sueldoSinImpuesto = Utils.kFloat();
                                     System.out.println("Fecha:");
                                     String fecha = Utils.kString();
                                     Nomina.modificarNominaBBDD(IdNominaModificar, precioPorHora, precioPorHora, sueldoTotal, sueldoSinImpuesto, fecha);
@@ -181,10 +208,9 @@ public class AppMain {
                                     System.out.println("Indica ID reseva para comprobar si existe BBDD");
                                     int buscarReserva = Utils.kInt();
                                     int posicionReserva = Reserva.buscarReservaBBDD(buscarReserva);
-                                    if(posicionReserva !=-1){
+                                    if (posicionReserva != -1) {
                                         System.out.println("Existe");
-                                    }
-                                    else{
+                                    } else {
                                         System.out.println("No existe");
                                     }
                                     break;
@@ -192,7 +218,7 @@ public class AppMain {
                                     System.out.println("Indica ID de la reserva que desea modificar");
                                     int IdNominaModificar = Utils.kInt();
                                     System.out.println("Fecha y hora: ");
-                                    String FechaHoraReserva=Utils.kString();
+                                    String FechaHoraReserva = Utils.kString();
                                     System.out.println("Espacio reservado: ");
                                     String EspacioReservado = Utils.kString();
                                     Reserva.modificarReservaBBDD(IdNominaModificar, FechaHoraReserva, EspacioReservado);
@@ -212,7 +238,7 @@ public class AppMain {
                         } while (!volver);
                         break;
                     case 4:// CONCESIONARIO
-                                                volver = false;
+                        volver = false;
                         do {
                             System.out.println(hr);
                             System.out.println("1 Crear objeto de concesionario y insertar en BBDD");
@@ -233,25 +259,31 @@ public class AppMain {
                                     System.out.println("Indica ID concesionario para comprobar si existe BBDD");
                                     int buscarConcesionario = Utils.kInt();
                                     int posicionConcesionario = Concesionario.buscarConcesionarioBBDD(buscarConcesionario);
-                                    if(posicionConcesionario !=-1){
+                                    if (posicionConcesionario != -1) {
                                         System.out.println("Existe");
-                                    }
-                                    else{
+                                    } else {
                                         System.out.println("No existe");
                                     }
                                     break;
                                 case 3:
                                     System.out.println("Indica ID del concesionario que desea modificar");
-
+                                    int IDConcesionarioModificar = Utils.kInt();
+                                    System.out.println("Ubicacion: ");
+                                    String ubicacionConcesionario = Utils.kString();
+                                    System.out.println("Nombre: ");
+                                    String nombreConcesionario = Utils.kString();
+                                    System.out.println("Telefono: ");
+                                    int telefonoConcesionario = Utils.kInt();
+                                    Concesionario.modificarConcesionarioBBDD(IDConcesionarioModificar, ubicacionConcesionario, nombreConcesionario, telefonoConcesionario);
                                     break;
                                 case 4:
                                     System.out.println("Indica ID del concesionario que desea borrar");
                                     int borrarReserva = Utils.kInt();
-                                    
+
                                     break;
                                 case 5:
                                     System.out.println("mostrar todos concesionarios");
-                                    
+
                                     break;
                                 case 0:
                                     volver = true;

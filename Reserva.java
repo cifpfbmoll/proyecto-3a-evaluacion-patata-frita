@@ -75,12 +75,12 @@ public class Reserva {
      * @param reserva
      */
     public static void insertarDatosReservaBBDD(Reserva reserva) {
-        String consulta = "INSERT INTO RESERVA (FECHA_HORA_RESERVA, ESPACIO_RESERVADO) VALUES(?,?)";
+        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA_HORA_RESERVA) VALUES(?,?)";
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setString(1, reserva.getFechaHoraReserva());
-            Utils.prst.setString(2, reserva.getEspacioReservado());
+            Utils.prst.setString(1, reserva.getEspacioReservado());
+            Utils.prst.setString(2, reserva.getFechaHoraReserva());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctomente señor!");
         } catch (SQLException e) {
@@ -146,13 +146,13 @@ public class Reserva {
      * @param espacioReservado
      */
     public static void modificarReservaBBDD(int id, String fechaHoraReserva, String espacioReservado) {
-        String consulta = "UPDATE RESERVA SET FECHA_HORA_RESERVA=?, ESPACIO_RESERVADO=? WHERE ID=?";
+        String consulta = "UPDATE RESERVA SET ESPACIO_RESERVADO=? FECHA_HORA_RESERVA=?,  WHERE ID=?";
 
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setString(1, fechaHoraReserva);
-            Utils.prst.setString(2, espacioReservado);
+            Utils.prst.setString(2, fechaHoraReserva);
+            Utils.prst.setString(1, espacioReservado);
             Utils.prst.setInt(3, id);
             Utils.prst.executeUpdate();
             System.out.println("Datos modificados correctamente señor!");
@@ -230,6 +230,5 @@ public class Reserva {
                 System.out.println("Error al cerrar conexiones");
             }
         }
-
     }
 }

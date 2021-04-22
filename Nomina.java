@@ -1,5 +1,9 @@
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,17 +17,17 @@ public class Nomina {
 
     //atributos
     private int horasTrabajadas;
-    private double sueldoTotal;
-    private double sueldoSinImpuestos;
+    private float sueldoTotal;
+    private float sueldoSinImpuestos;
     private String fechaNomina;
-    private double precioPorHora;
+    private float precioPorHora;
 
     // constructor vacio
     public Nomina() {
     }
 
     // constructor con todos atributos
-    public Nomina(int horasTrabajadas, double sueldoTotal, double sueldoSinImpuestos, String fechaNomina, double precioPorHora) {
+    public Nomina(int horasTrabajadas, float sueldoTotal, float sueldoSinImpuestos, String fechaNomina, float precioPorHora) {
         this.horasTrabajadas = horasTrabajadas;
         this.sueldoTotal = sueldoTotal;
         this.sueldoSinImpuestos = sueldoSinImpuestos;
@@ -52,11 +56,11 @@ public class Nomina {
         }
     }
 
-    public double getSueldoTotal() {
+    public float getSueldoTotal() {
         return sueldoTotal;
     }
 
-    public void setSueldoTotal(double sueldoTotal) throws IllegalArgumentException {
+    public void setSueldoTotal(float sueldoTotal) throws IllegalArgumentException {
 
         this.sueldoTotal = sueldoTotal;
         if (sueldoTotal < 0) {
@@ -64,11 +68,11 @@ public class Nomina {
         }
     }
 
-    public double getSueldoSinImpuestos() {
+    public float getSueldoSinImpuestos() {
         return sueldoSinImpuestos;
     }
 
-    public void setSueldoSinImpuestos(double sueldoSinImpuestos) throws IllegalArgumentException {
+    public void setSueldoSinImpuestos(float sueldoSinImpuestos) throws IllegalArgumentException {
 
         this.sueldoSinImpuestos = sueldoSinImpuestos;
         if (sueldoSinImpuestos < 0) {
@@ -84,11 +88,11 @@ public class Nomina {
         this.fechaNomina = fechaNomina;
     }
 
-    public double getPrecioPorHora() {
+    public float getPrecioPorHora() {
         return precioPorHora;
     }
 
-    public void setPrecioPorHora(double precioPorHora) {
+    public void setPrecioPorHora(float precioPorHora) {
         this.precioPorHora = precioPorHora;
         if (precioPorHora < 0) {
             throw new IllegalArgumentException("Valor precio por hora no valido");
@@ -118,11 +122,11 @@ public class Nomina {
             nomina.setHorasTrabajadas(Utils.kInt());
 
             System.out.println("Precio por hora: ");
-            nomina.setPrecioPorHora(Utils.kDouble());
+            nomina.setPrecioPorHora(Utils.kFloat());
 
             nomina.setSueldoSinImpuestos(nomina.getHorasTrabajadas() * nomina.precioPorHora);
 
-            double impuestoSobreNomina = nomina.getSueldoSinImpuestos() * Utils.IMPUESTO;
+            float impuestoSobreNomina = nomina.getSueldoSinImpuestos() * Utils.IMPUESTO;
             nomina.setSueldoTotal(nomina.getSueldoSinImpuestos() - impuestoSobreNomina);
 
         } catch (IllegalArgumentException ex) {
@@ -140,15 +144,26 @@ public class Nomina {
     public static void insertarDatosNominaBBDD(Nomina nomina) {
         String consulta = "INSERT INTO NOMINA (HORAS_TRABAJO, PRECIO_POR_HORA, SUELDO_TOTAL, SUELDO_SIN_IMPUESTO, FECHA_NOMINA) VALUES (?,?,?,?,?)";
 
+        // adaptamos fecha de factura a la fecha de mysql
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date myDate = null;
+        try {
+            myDate = formatter.parse(nomina.getFechaNomina());
+        } catch (ParseException ex) {
+            System.out.println("Error aplicar formato fecha");
+        }
+        // casting a mysql formato
+        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
 
-            Utils.prst.setDouble(1, nomina.getHorasTrabajadas());
-            Utils.prst.setDouble(2, nomina.getPrecioPorHora());
-            Utils.prst.setDouble(3, nomina.getSueldoTotal());
-            Utils.prst.setDouble(4, nomina.getSueldoSinImpuestos());
-            Utils.prst.setString(5, nomina.getFechaNomina());
+            Utils.prst.setInt(1, nomina.getHorasTrabajadas());
+            Utils.prst.setFloat(2, nomina.getPrecioPorHora());
+            Utils.prst.setFloat(3, nomina.getSueldoTotal());
+            Utils.prst.setFloat(4, nomina.getSueldoSinImpuestos());
+            Utils.prst.setDate(5, sqlDate);
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente señor");
 
@@ -182,9 +197,9 @@ public class Nomina {
                 System.out.println(
                         "ID:" + Utils.rs.getInt(1) + ", "
                         + "HORAS DE TRABAJO:" + Utils.rs.getInt(2) + ", "
-                        + "PRECIO POR HORA:" + Utils.rs.getDouble(3) + ", "
-                        + "SUELDO TOTAL:" + Utils.rs.getDouble(4) + ", "
-                        + "SUELDO SIN IMPUESTO:" + Utils.rs.getDouble(5) + ", "
+                        + "PRECIO POR HORA:" + Utils.rs.getFloat(3) + ", "
+                        + "SUELDO TOTAL:" + Utils.rs.getFloat(4) + ", "
+                        + "SUELDO SIN IMPUESTO:" + Utils.rs.getFloat(5) + ", "
                         + "FECHA DE NOMINA:" + Utils.rs.getString(6)
                 );
             }
@@ -238,8 +253,9 @@ public class Nomina {
 
     /**
      * comprobamos si una nomina esta en BBDD devuelve su ID o -1 si no esta
+     *
      * @param idNomina
-     * @return 
+     * @return
      */
     public static int buscarNominaBBDD(int idNomina) {
         String buscar = "SELECT * FROM NOMINA WHERE ID=?";
@@ -273,23 +289,23 @@ public class Nomina {
         }
         return posicion;
     }
-    
-    public static void modificarNominaBBDD(int IDNomina, int HorasTrabajo,double PrecioPorHora,double SueldoTotal, double SueldoSinImpuesto, String fecha){
-        String consulta="UPDATE NOMINA SET HORAS_TRABAJO=?, PRECIO_POR_HORA=?, SUELDO_TOTAL=?, SUELDO_SIN_IMPUESO=?, FECHA_NOMINA=?  WHERE ID=?";
-        
+
+    public static void modificarNominaBBDD(int IDNomina, int HorasTrabajo, float PrecioPorHora, float SueldoTotal, float SueldoSinImpuesto, String fecha) {
+        String consulta = "UPDATE NOMINA SET HORAS_TRABAJO=?, PRECIO_POR_HORA=?, SUELDO_TOTAL=?, SUELDO_SIN_IMPUESO=?, FECHA_NOMINA=?  WHERE ID=?";
+
         try {
-            Utils.connection=Utils.conectarBBDD();
-            Utils.prst=Utils.connection.prepareStatement(consulta);
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, HorasTrabajo);
-            Utils.prst.setDouble(2, PrecioPorHora);
-            Utils.prst.setDouble(3, SueldoTotal);
-            Utils.prst.setDouble(4, SueldoSinImpuesto);
-            Utils.prst.setDouble(5, SueldoSinImpuesto);
+            Utils.prst.setFloat(2, PrecioPorHora);
+            Utils.prst.setFloat(3, SueldoTotal);
+            Utils.prst.setFloat(4, SueldoSinImpuesto);
+            Utils.prst.setFloat(5, SueldoSinImpuesto);
             Utils.prst.setString(6, fecha);
-            
+
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados señor!");
-            
+
         } catch (SQLException ex) {
             System.out.println("Error modificar nomina");
         } finally {
@@ -305,6 +321,5 @@ public class Nomina {
             }
         }
     }
-    
-    
+
 }
