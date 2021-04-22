@@ -165,7 +165,7 @@ public class Factura {
     }
 
     /**
-     * Metodo para mostrar toda informacion de la tabla insert
+     * Metodo para mostrar toda informacion de la tabla factura
      */
     public static void mostrarTablaFacturaCompleta() {
         String consulta = "SELECT * FROM FACTURA ORDER BY ID";
