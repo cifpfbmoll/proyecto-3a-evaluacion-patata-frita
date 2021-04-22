@@ -82,7 +82,7 @@ public class AppMain {
                                 case 3:
                                     System.out.println("Indica ID de la factura que desea modificar");
                                     int IDFacturaModificar = Utils.kInteger();
-                                    System.out.println("nueva fecha, formato dd-MM-yyyy HH:mm:ss");
+                                    System.out.println("nueva fecha, formato dd-MM-yyyy");
                                     String fechaModificar = Utils.kString();
                                     System.out.println("nuevo coste");
                                     float costeModificar = Utils.kFloat();
@@ -102,29 +102,32 @@ public class AppMain {
                                 case 6:
                                     System.out.println("Relacionamos una FACTURA con una RESERVA ");
                                     System.out.println("ID de la FACTURA");
-                                    int idFacturaReserva = Utils.kInt();
+                                    int facturaReserva = Utils.kInt();
                                     System.out.println("ID de la RESERVA");
-                                    int idReserva = Utils.kInt();
-                                    Factura.relacionarFacturaConReserva(idFacturaReserva, idReserva);
+                                    int ReservaID = Utils.kInt();
+                                    Factura.relacionarFacturaConReserva(facturaReserva, ReservaID);
                                     break;
+
+
                                 case 7:
                                     System.out.println("Relacionamos una FACTURA con una VENTA");
                                     System.out.println("ID de la FACTURA");
-                                    int idFacturaVenta = Utils.kInt();
+                                    int facturaVenta = Utils.kInt();
                                     System.out.println("ID de la VENTA");
-                                    int idVenta = Utils.kInt();
-                                    Factura.relacionarFacturaConVenta(idFacturaVenta, idVenta);
+                                    int VentaID = Utils.kInt();
+                                    Factura.relacionarFacturaConVenta(facturaVenta, VentaID);
                                     break;
                                 case 8:
                                     System.out.println("Relacionamos una FACTURA con un VEHICULO ");
                                     System.out.println("ID de la FACTURA");
-                                    int idFacturaVehiculo = Utils.kInt();
+                                    int facturaVehiculo = Utils.kInt();
                                     System.out.println("ID de la RESERVA");
-                                    int idVehiculo = Utils.kInt();
-                                    Factura.relacionarFacturaConVenta(idFacturaVehiculo, idVehiculo);
+                                    int vehiculoID = Utils.kInt();
+                                    Factura.relacionarFacturaConVenta(facturaVehiculo, vehiculoID);
                                     break;
                                 case 0:
                                     volver = true;
+                                    break;
                             }
                         } while (!volver);
                         break;
@@ -164,11 +167,11 @@ public class AppMain {
                                     System.out.println("Horas de trabajo: ");
                                     int horasTrabajo = Utils.kInt();
                                     System.out.println("Sueldo total , bruto: ");
-                                    float sueldoTotal = Utils.kFloat();                                  
-                                    float sueldoSinImpuesto = sueldoTotal-(sueldoTotal*Utils.IMPUESTO);
-                                    System.out.println("Fecha: con formato formato DD-MM-YYYY HH:MM:SS");
+                                    float sueldoTotal = Utils.kFloat();
+                                    float sueldoSinImpuesto = sueldoTotal - (sueldoTotal * Utils.IMPUESTO);
+                                    System.out.println("Fecha con formato DD-MM-YYYY");
                                     String fecha = Utils.kString();
-                                    Nomina.modificarNominaBBDD(IdNominaModificar,horasTrabajo , sueldoTotal, sueldoSinImpuesto, fecha);
+                                    Nomina.modificarNominaBBDD(IdNominaModificar, horasTrabajo, sueldoTotal, sueldoSinImpuesto, fecha);
                                     break;
                                 case 4:
                                     System.out.println("Indica ID de la nomina que desea borrar");
@@ -181,12 +184,14 @@ public class AppMain {
                                     break;
                                 case 6:
                                     System.out.println("ID DE LA NOMINA que desea añadir al empleado");
-                                    int NominaIDRelacionar=Utils.kInt();
+                                    int nominaEmpleado = Utils.kInt();
                                     System.out.println("NIF  del empleado ");
-                                    String NifEmpledoRelacionar=Utils.kString();
-                                    Nomina.relacionarNominaConEmpleado(NominaIDRelacionar, NifEmpledoRelacionar);
+                                    String empleadoNIF = Utils.kString();
+                                    Nomina.relacionarNominaConEmpleado(nominaEmpleado, empleadoNIF);
+                                    break;
                                 case 0:
                                     volver = true;
+                                    break;
                             }
                         } while (!volver);
                         break;
@@ -199,6 +204,8 @@ public class AppMain {
                             System.out.println("3 Modificar reserva en BBDD");
                             System.out.println("4 Borrar reserva en BBDD");
                             System.out.println("5 Mostrar todos reservas en BBDD");
+                            System.out.println("6 Relacionar Reserva con Taller");
+                            System.out.println("7 Relacionar Reserva con Cliente");
                             System.out.println("0 Volver Menu Principal");
                             System.out.println(hr);
                             opcion = Utils.kInt();
@@ -211,8 +218,8 @@ public class AppMain {
                                 case 2:
                                     System.out.println("Indica ID reseva para comprobar si existe BBDD");
                                     int buscarReserva = Utils.kInt();
-                                    int posicionReserva = Reserva.buscarReservaBBDD(buscarReserva);
-                                    if (posicionReserva != -1) {
+                                    boolean posicionReserva = Reserva.buscarReservaBBDD(buscarReserva);
+                                    if (posicionReserva) {
                                         System.out.println("Existe");
                                     } else {
                                         System.out.println("No existe");
@@ -221,10 +228,10 @@ public class AppMain {
                                 case 3:
                                     System.out.println("Indica ID de la reserva que desea modificar");
                                     int IdNominaModificar = Utils.kInt();
-                                    System.out.println("Fecha y hora: ");
+                                    System.out.println("Fecha con formato DD-MM-YYYY HH:MM:SS");
                                     String FechaHoraReserva = Utils.kString();
                                     System.out.println("Espacio reservado: ");
-                                    String EspacioReservado = Utils.kString();
+                                    int EspacioReservado = Utils.kInt();
                                     Reserva.modificarReservaBBDD(IdNominaModificar, FechaHoraReserva, EspacioReservado);
                                     break;
                                 case 4:
@@ -236,8 +243,25 @@ public class AppMain {
                                     System.out.println("mostrar todos reservas");
                                     Reserva.mostrarTodasReservas();
                                     break;
+                                case 6:
+                                    System.out.println("Relacionamos una Reserva con un Taller ");
+                                    System.out.println("ID de la RESERVA: ");
+                                    int reservaTaller = Utils.kInt();
+                                    System.out.println("ID del TALLER: ");
+                                    int TallerId = Utils.kInt();
+                                    Reserva.relacionarReservaConTaller(reservaTaller, TallerId);
+                                    break;
+                                case 7:
+                                    System.out.println("Relacionamos una Reserva con un Taller ");
+                                    System.out.println("ID de la RESERVA: ");
+                                    int reservaCliente = Utils.kInt();
+                                    System.out.println("NIF del Cliente: ");
+                                    String ClienteNIF = Utils.kString();
+                                    Reserva.relacionarReservaConCliente(reservaCliente, ClienteNIF);
+                                    break;
                                 case 0:
                                     volver = true;
+                                    break;
                             }
                         } while (!volver);
                         break;

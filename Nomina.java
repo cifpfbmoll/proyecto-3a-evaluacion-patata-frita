@@ -129,16 +129,7 @@ public class Nomina {
     public static void insertarDatosNominaBBDD(Nomina nomina) {
         String consulta = "INSERT INTO NOMINA (HORAS, SUELDO_BRUTO, SUELDO_NETO, FECHA) VALUES (?,?,?,?)";
 
-        // adaptamos fecha de factura a la fecha de mysql
-        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Date myDate = null;
-        try {
-            myDate = formatter.parse(nomina.getFechaNomina());
-        } catch (ParseException ex) {
-            System.out.println("Error aplicar formato fecha");
-        }
-        // casting a mysql formato
-        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+        java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(nomina.getFechaNomina());
 
         try {
             Utils.connection = Utils.conectarBBDD();
@@ -285,16 +276,7 @@ public class Nomina {
     public static void modificarNominaBBDD(int IDNomina, int HorasTrabajo, float SueldoBruto, float SueldoNeto, String fecha) {
         String consulta = "UPDATE NOMINA SET HORAS=?, SUELDO_BRUTO=?, SUELDO_NETO=?, FECHA=?  WHERE ID=?";
 
-        // adaptamos fecha de factura a la fecha de mysql
-        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Date myDate = null;
-        try {
-            myDate = formatter.parse(fecha);
-        } catch (ParseException ex) {
-            System.out.println("Error aplicar formato fecha");
-        }
-        // casting a mysql formato
-        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+        java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(fecha);
 
         try {
             Utils.connection = Utils.conectarBBDD();

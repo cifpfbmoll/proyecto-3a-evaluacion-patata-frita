@@ -5,8 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  * Clase Factura
@@ -129,16 +128,8 @@ public class Factura {
     public static void insertarObjetoFacturaBBDD(Factura factura) {
         String insert = "INSERT INTO FACTURA (TRABAJO, COSTE, FECHA )  VALUES (?,?,?)";
         try {
-            // adaptamos fecha de factura a la fecha de mysql
-            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-            Date myDate = null;
-            try {
-                myDate = formatter.parse(factura.getFechaFactura());
-            } catch (ParseException ex) {
-                System.out.println("Error aplicar formato fecha");
-            }
-            // casting a mysql formato
-            java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+            
+            java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(factura.getFechaFactura());
 
             Connection con = Utils.conectarBBDD();
             Utils.prst = con.prepareStatement(insert);
@@ -353,17 +344,9 @@ public class Factura {
      */
     public static void modificarFacturaBBDD(int id, String trabajos, float costeFactura, String fechaFactura) {
         String consulta = "UPDATE FACTURA SET TRABAJO=?, COSTE=? , FECHA=?  WHERE ID=?";
-        // adaptamos fecha de factura a la fecha de mysql
-        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Date myDate = null;
-        try {
-            myDate = formatter.parse(fechaFactura);
-        } catch (ParseException ex) {
-            System.out.println("Error aplicar formato fecha");
-        }
-        // casting a mysql formato
-        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
+            java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(fechaFactura);
+            
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);

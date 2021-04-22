@@ -5,6 +5,9 @@
  */
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -233,10 +236,11 @@ public class Utils {
     public static ResultSet getResults() {
         return rs;
     }
-        public static void deleteGeneral(String tabla, int id) {
+
+    public static void deleteGeneral(String tabla, int id) {
         PreparedStatement prst;
         try {
-            String consulta = "DELETE FROM "+tabla+" WHERE ID=?";
+            String consulta = "DELETE FROM " + tabla + " WHERE ID=?";
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id);
@@ -245,5 +249,28 @@ public class Utils {
         } catch (SQLException ex) {
             System.out.println("¡ERROR!, no se ha podido borrar");
         }
+    }
+
+    public static java.sql.Date convertToSqlDate(Date utilDate) {
+        return new java.sql.Date(utilDate.getTime());
+    }
+
+    /**
+     * metodo para adaptar String a la fecha aceptable por MySQL
+     * @param fecha
+     * @return 
+     */
+    public static Date adaptarFechaMYSQL(String fecha) {
+        // adaptamos fecha a la fecha de mysql
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        java.util.Date myDate = null;
+        try {
+            myDate = formatter.parse(fecha);
+        } catch (ParseException ex) {
+            System.out.println("Error aplicar formato fecha");
+        }
+        // casting a mysql formato
+        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+        return sqlDate;
     }
 }

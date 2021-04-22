@@ -5,6 +5,9 @@
  * @author Marat Rafael
  */
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Reserva {
 
@@ -75,12 +78,15 @@ public class Reserva {
      * @param reserva
      */
     public static void insertarDatosReservaBBDD(Reserva reserva) {
-        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA_HORA_RESERVA) VALUES(?,?)";
+        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA) VALUES(?,?)";
+
+        java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(reserva.getFechaHoraReserva());
+
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, reserva.getEspacioReservado());
-            Utils.prst.setString(2, reserva.getFechaHoraReserva());
+            Utils.prst.setDate(2, sqlDate);
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctomente señor!");
         } catch (SQLException e) {
@@ -100,23 +106,22 @@ public class Reserva {
     }
 
     /**
-     * buscar reserva por su ID (Primary key - unico) devuelve numero de id si
-     * encuentra si no encuentra develve -1
+     * buscar reserva por su ID, devuelve true o false
      *
      * @param id
      * @return
      */
-    public static int buscarReservaBBDD(int id) {
+    public static boolean buscarReservaBBDD(int id) {
         String consulta = "SELECT * FROM RESERVA WHERE ID=? ORDER BY ID";
-        int posicion = -1;
+        boolean encontrado = false;
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id);
             Utils.rs = Utils.prst.executeQuery();
 
-            while (Utils.rs.next()) {
-                posicion = Utils.rs.getInt(1);
+            if (Utils.rs.next()) {
+                encontrado = true;
             }
         } catch (SQLException e) {
             System.out.println("Error buscar reseva");
@@ -135,7 +140,7 @@ public class Reserva {
                 System.out.println("Error al cerrar conexiones");
             }
         }
-        return posicion;
+        return encontrado;
     }
 
     /**
@@ -145,15 +150,19 @@ public class Reserva {
      * @param fechaHoraReserva
      * @param espacioReservado
      */
-    public static void modificarReservaBBDD(int id, String fechaHoraReserva, String espacioReservado) {
-        String consulta = "UPDATE RESERVA SET ESPACIO_RESERVADO=? FECHA_HORA_RESERVA=?,  WHERE ID=?";
+    public static void modificarReservaBBDD(int id, String fechaHoraReserva, int espacioReservado) {
+        String consulta = "UPDATE RESERVA SET ESPACIO_RESERVADO=? FECHA=?,  WHERE ID=?";
 
+        java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(fechaHoraReserva);
+       
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setString(2, fechaHoraReserva);
-            Utils.prst.setString(1, espacioReservado);
+            Utils.prst.setInt(1, espacioReservado);
+            Utils.prst.setDate(2, sqlDate);
             Utils.prst.setInt(3, id);
+            System.out.println(Utils.prst.toString());
+
             Utils.prst.executeUpdate();
             System.out.println("Datos modificados correctamente señor!");
         } catch (SQLException e) {
@@ -172,6 +181,9 @@ public class Reserva {
         }
     }
 
+    /**
+     * mostrar todos Reservas de la BBDD
+     */
     public static void mostrarTodasReservas() {
         String consulta = "SELECT * FROM RESERVA ORDER BY ID";
         try {
@@ -182,8 +194,10 @@ public class Reserva {
             while (Utils.rs.next()) {
                 System.out.println(
                         "ID: " + Utils.rs.getInt(1) + ", "
-                        + "FECHA HORA DE RESERVA: " + Utils.rs.getString(2) + ", "
-                        + "ESPACIO RESERVADO: " + Utils.rs.getString(3)
+                        + "ESPACIO RESERVADO: " + Utils.rs.getString(2) + ", "
+                        + "FECHA: " + Utils.rs.getString(3) + ", "
+                        + "TALLER: " + Utils.rs.getInt(4) + ", "
+                        + "NIF CLIENTE: " + Utils.rs.getString(5)
                 );
             }
         } catch (SQLException e) {
@@ -205,6 +219,11 @@ public class Reserva {
         }
     }
 
+    /**
+     * Borrar una reserva pasando ID de la reserva
+     *
+     * @param id
+     */
     public static void borrarReserva(int id) {
         String consulta = "DELETE FROM RESERVA WHERE ID=?";
         try {
@@ -228,6 +247,70 @@ public class Reserva {
                 }
             } catch (SQLException e) {
                 System.out.println("Error al cerrar conexiones");
+            }
+        }
+    }
+
+    /**
+     * relacionar una Reserva con un ID del Taller
+     *
+     * @param ReservaID
+     * @param TallerID
+     */
+    public static void relacionarReservaConTaller(int ReservaID, int TallerID) {
+        String consulta = "UPDATE RESERVA SET TALLERID=? WHERE ID=?";
+
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, TallerID);
+            Utils.prst.setInt(2, ReservaID);
+            Utils.prst.executeUpdate();
+            System.out.println("Reserva " + ReservaID + " esta relacionado con Taller " + TallerID + " con exito");
+        } catch (SQLException e) {
+            System.out.println("Error al relacionar Reserva " + ReservaID + " con Taller " + TallerID);
+        } finally {
+            try {
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar conexion");
+            }
+        }
+    }
+
+    /**
+     * relacionar una Reserva con Cliente NIF
+     *
+     * @param ReservaID
+     * @param ClienteNIF
+     */
+    public static void relacionarReservaConCliente(int ReservaID, String ClienteNIF) {
+        String consulta = "UPDATE RESERVA SET TALLERID=? WHERE ID=?";
+
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, ClienteNIF);
+            Utils.prst.setInt(2, ReservaID);
+            Utils.prst.executeUpdate();
+            System.out.println("Reserva " + ReservaID + " esta relacionado con Cliente " + ClienteNIF + " con exito");
+        } catch (SQLException e) {
+            System.out.println("Error al relacionar Reserva " + ReservaID + " con Cliente " + ClienteNIF);
+        } finally {
+            try {
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar conexion");
             }
         }
     }
