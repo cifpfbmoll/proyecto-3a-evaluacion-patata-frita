@@ -1,5 +1,7 @@
 package patatafrita;
 
+import java.sql.SQLException;
+
 /**
  * CONCESIONARIOS
  * Esta clase  guarda la información sobre los diferentes concesionarios del proyecto.
@@ -77,5 +79,52 @@ public class Concesionario {
                 ", nombre='" + nombre + '\'' +
                 ", telefono=" + telefono +
                 '}';
+    }
+
+    /**
+     *
+     * @return Datos del concesionario introducidos por el usuario.
+     */
+    public static Concesionario objConcesionario() {
+        Concesionario concesionario = new Concesionario();
+        try {
+            System.out.println("Escribe el nombre : ");
+            concesionario.setNombre(Utils.kString());
+            System.out.println("Escribe la ubicacion : ");
+            concesionario.setUbicacion(Utils.kString());
+            System.out.println("Escribe el telefono : ");
+            concesionario.setTelefono(Utils.kInt());
+        } catch (Exception ex) {
+            System.out.println("¡ERROR! el objeto no se pudo crear.");
+        }
+        return concesionario;
+    }
+
+    /**
+     *
+     * @param concesionario
+     */
+    public static void guardarDatosConcesionario(Concesionario concesionario) {
+        String consulta = "INSERT INTO TALLER (ESPACIOS, HORARIO) VALUES (?,?)";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, concesionario.getNombre());
+            Utils.prst.setString(2, concesionario.getUbicacion());
+            Utils.prst.setInt(3,concesionario.getTelefono());
+            Utils.prst.executeUpdate();
+            System.out.println("Datos guardados con éxito.");
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! no se pudieron guardar los datos del concesionario en la BBDD.");
+        } finally {
+            if (Utils.prst != null) {
+                try {
+                    Utils.prst.close();//cierra el objeto Statement llamado prst
+                    Utils.connection.close(); //cierra el objeto Connection llamado con
+                } catch (SQLException throwables) {
+                    System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+                }
+            }
+        }
     }
 }

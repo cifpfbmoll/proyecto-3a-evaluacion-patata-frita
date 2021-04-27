@@ -66,6 +66,21 @@ public class Venta {
 
     /**
      *
+     * @return Datos de la venta introducidos por el usuario.
+     */
+    public static Venta objVenta() {
+        Venta venta = new Venta();
+        try {
+            System.out.println("Escribe el horario en formato hh:mm-hh:mm : ");
+            venta.setHorario(Utils.kString());
+        } catch (Exception ex) {
+            System.out.println("¡ERROR! el objeto no se pudo crear.");
+        }
+        return venta;
+    }
+
+    /**
+     *
      * @param venta
      */
     public static void guardarDatosTaller(Venta venta) {
