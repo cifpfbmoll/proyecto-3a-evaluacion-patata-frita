@@ -11,6 +11,7 @@ public class Motor {
         Diesel,
         Electrico
     }
+    private int id = -1; //ID que empezará siempre en -1, se usa para guardar el id que recibe en la base de datos
     private float potencia;
     private float par;
     private float cilindrada;  //Únicamente usado en motores no eléctricos
@@ -47,6 +48,8 @@ public class Motor {
         this.cilindrada = motor.getCilindrada();
         this.num_motores = motor.getNum_motores();
     }
+
+    public int getId() { return id; }
 
     public float getPotencia() {
         return potencia;
