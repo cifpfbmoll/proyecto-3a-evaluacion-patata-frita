@@ -83,7 +83,7 @@ public class Concesionario {
 
     /**
      *
-     * @return Datos del concesionario introducidos por el usuario.
+     * @return Objeto concesionario con sus datos.
      */
     public static Concesionario objConcesionario() {
         Concesionario concesionario = new Concesionario();

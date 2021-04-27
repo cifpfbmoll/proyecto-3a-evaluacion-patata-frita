@@ -66,7 +66,7 @@ public class Venta {
 
     /**
      *
-     * @return Datos de la venta introducidos por el usuario.
+     * @return Objeto venta con sus datos.
      */
     public static Venta objVenta() {
         Venta venta = new Venta();

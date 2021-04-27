@@ -81,7 +81,7 @@ public class Taller {
     }
 
     /**
-     * @return Datos del taller introducidos por el usuario.
+     * @return Objeto taller con sus datos.
      */
     public static Taller objTaller() {
         Taller taller = new Taller();
