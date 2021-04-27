@@ -14,7 +14,7 @@ public class Motor {
     private float potencia;
     private float par;
     private float cilindrada;  //Únicamente usado en motores no eléctricos
-    private float num_motores; //Únicamente usado en motores eléctricos
+    private int num_motores; //Únicamente usado en motores eléctricos
 
     /**
      * Constructor vacío
@@ -30,7 +30,7 @@ public class Motor {
      * @param cilindrada
      * @param num_motores
      */
-    public Motor(float potencia, float par, float cilindrada, float num_motores) {
+    public Motor(float potencia, float par, float cilindrada, int num_motores) {
         this.potencia = potencia;
         this.par = par;
         this.cilindrada = cilindrada;
@@ -84,11 +84,11 @@ public class Motor {
         }
     }
 
-    public float getNum_motores() {
+    public int getNum_motores() {
         return num_motores;
     }
 
-    public void setNum_motores(float num_motores) throws IllegalArgumentException{
+    public void setNum_motores(int num_motores) throws IllegalArgumentException{
         if(num_motores<1 || num_motores>8){
             throw new IllegalArgumentException("Debe haber entre 1 y 8 motores");
         }else {
