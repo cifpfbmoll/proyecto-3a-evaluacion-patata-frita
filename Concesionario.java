@@ -105,7 +105,7 @@ public class Concesionario {
      * @param concesionario
      */
     public static void guardarDatosConcesionario(Concesionario concesionario) {
-        String consulta = "INSERT INTO TALLER (ESPACIOS, HORARIO) VALUES (?,?)";
+        String consulta = "INSERT INTO CONCESIONARIO (NOMBRE, UBICACION, TELEFONO) VALUES (?,?,?)";
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
