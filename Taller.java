@@ -1,3 +1,7 @@
+package patatafrita;
+
+import java.sql.SQLException;
+
 /**
  * TALLERES
  * Esta clase almacena la información de los diversos talleres de cada concesionario
@@ -32,10 +36,10 @@ public class Taller {
         return espacios;
     }
 
-    public void setEspacios(int espacios) throws IllegalArgumentException{
-        if (espacios<=0){
+    public void setEspacios(int espacios) throws IllegalArgumentException {
+        if (espacios <= 0) {
             throw new IllegalArgumentException("Número de espacio inválido.");
-        }else {
+        } else {
             this.espacios = espacios;
         }
     }
@@ -44,24 +48,24 @@ public class Taller {
         return horario;
     }
 
-    public void setHorario(String horario) throws IllegalArgumentException{
+    public void setHorario(String horario) throws IllegalArgumentException {
         //ENTENDER BIEN ESTO
-        String[] listaHorarios=horario.split("-");
-        String[] lista2Horarios=listaHorarios[0].split(":");
-        String[] lista3Horarios=listaHorarios[1].split(":");
-        if (lista2Horarios.length + lista3Horarios.length != 4){
+        String[] listaHorarios = horario.split("-");
+        String[] lista2Horarios = listaHorarios[0].split(":");
+        String[] lista3Horarios = listaHorarios[1].split(":");
+        if (lista2Horarios.length + lista3Horarios.length != 4) {
             throw new IllegalArgumentException("Demasiados numeros.");
-        }else{
-            try{
+        } else {
+            try {
                 int[] numHorarios = new int[3];
                 int pointer = 0;
-                for (int i=0;i<numHorarios.length/2;i++){
-                    numHorarios[pointer]=Integer.parseInt(lista2Horarios[i]);
+                for (int i = 0; i < numHorarios.length / 2; i++) {
+                    numHorarios[pointer] = Integer.parseInt(lista2Horarios[i]);
                     pointer++;
-                    numHorarios[pointer]=Integer.parseInt(lista3Horarios[i]);
+                    numHorarios[pointer] = Integer.parseInt(lista3Horarios[i]);
                     pointer++;
                 }
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 throw new IllegalArgumentException("Caracter/es inválido/s.");
             }
         }
@@ -75,4 +79,48 @@ public class Taller {
                 ", horario='" + horario + '\'' +
                 '}';
     }
+
+    /**
+     * @return Datos del taller introducidos por el usuario.
+     */
+    public static Taller objTaller() {
+        Taller taller = new Taller();
+        try {
+            System.out.println("Escribe los espacios : ");
+            taller.setEspacios(Utils.kInt());
+            System.out.println("Escribe el horario en formato hh:mm-hh:mm : ");
+            taller.setHorario(Utils.kString());
+        } catch (Exception ex) {
+            System.out.println("¡ERROR! el objeto no se pudo crear.");
+        }
+        return taller;
+    }
+
+    /**
+     *
+     * @param taller
+     */
+    public static void guardarDatosTaller(Taller taller) {
+        String consulta = "INSERT INTO TALLER (ESPACIOS, HORARIO) VALUES (?,?)";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, taller.getEspacios());
+            Utils.prst.setString(2, taller.getHorario());
+            Utils.prst.executeUpdate();
+            System.out.println("Datos guardados con éxito.");
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! no se pudieron guardar los datos del taller en la BBDD.");
+        } finally {
+            if (Utils.prst != null) {
+                try {
+                    Utils.prst.close();//cierra el objeto Statement llamado prst
+                    Utils.connection.close(); //cierra el objeto Connection llamado con
+                } catch (SQLException throwables) {
+                    System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+                }
+            }
+        }
+    }
 }
+

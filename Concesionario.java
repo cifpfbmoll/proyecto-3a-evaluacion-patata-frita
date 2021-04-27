@@ -1,3 +1,5 @@
+package patatafrita;
+
 /**
  * CONCESIONARIOS
  * Esta clase  guarda la información sobre los diferentes concesionarios del proyecto.

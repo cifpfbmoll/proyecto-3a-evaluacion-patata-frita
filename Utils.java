@@ -1,4 +1,4 @@
-/*
+package patatafrita;/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -18,8 +18,9 @@ public class Utils {
 
     public static Scanner lector = new Scanner(System.in); // Establecer el objeto scanner
     public static final float IMPUESTO = (float) 0.21;
-    private static Connection connection;
-    private static ResultSet rs;
+    public static Connection connection;
+    public static PreparedStatement prst;
+    public static ResultSet rs;
 
     /**
      * metodo estatico para sacar fecha y hora del sistema
@@ -34,7 +35,6 @@ public class Utils {
     }
 
     /**
-     *
      * @param texto Texto para imprimir y solicitar la informacion a escanear
      * @return Devuelve el valor que se ha solicitado escanear
      */
@@ -55,7 +55,6 @@ public class Utils {
     }
 
     /**
-     *
      * @param texto Texto para imprimir y solicitar la informacion a escanear
      * @return Devuelve el valor que se ha solicitado escanear
      */
@@ -73,7 +72,6 @@ public class Utils {
     }
 
     /**
-     *
      * @param texto Texto para imprimir y solicitar la informacion a escanear
      * @return Devuelve el valor que se ha solicitado escanear
      */
@@ -89,9 +87,8 @@ public class Utils {
         lector.nextLine(); // Limpiar buffer dentro del input
         return valor;
     }
-    
+
     /**
-     *
      * @param texto Texto para imprimir y solicitar la informacion a escanear
      * @return Devuelve el valor que se ha solicitado escanear
      */
@@ -109,7 +106,6 @@ public class Utils {
     }
 
     /**
-     *
      * @param texto Texto para imprimir y solicitar la informacion a escanear
      * @return Devuelve el valor que se ha solicitado escanear
      */
@@ -126,7 +122,10 @@ public class Utils {
         return valor;
     }
 
-    public static void conectarBBDD() {
+    /**
+     * metodo conexion NO DEVUELVE NADA
+     */
+    public static void conectarBBDD2() {
         String url = "jdbc:mysql://51.178.152.221:3306/concesionario";
         String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
         String password = "ContraseñaDeLaOstia69";
@@ -136,13 +135,27 @@ public class Utils {
         } catch (SQLException ex) {
             System.out.println("No hay conexion a la BBDD");
             ex.printStackTrace();
-        }  
+        }
+    }
+
+    public static Connection conectarBBDD() {
+        String url = "jdbc:mysql://51.178.152.221:3306/concesionario";
+        String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
+        String password = "ContraseñaDeLaOstia69";
+        try {
+            //Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (SQLException ex) {
+            System.out.println("No hay conexion a la BBDD");
+            ex.printStackTrace();
+        }
+        return connection;
     }
 
     /**
      * Un select general para todas las clases. Acrodarse de cerrar el ResultSet después de leerlo.
      *
-     * @param tabla la tabla que selecionamos
+     * @param tabla    la tabla que selecionamos
      * @param busqueda el where de SQL
      * @param selector datos de la tabla a devolver
      * @return
@@ -153,17 +166,17 @@ public class Utils {
         try {
             //Volver a probar con prepared statement
             prs = connection.prepareStatement(consulta);
-            prs.setString(1,busqueda);
+            prs.setString(1, busqueda);
             rs = prs.executeQuery();
         } catch (SQLException ex) {
-           ex.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
     /**
      * Un select general para todas las clases. Acrodarse de cerrar el ResultSet después de leerlo.
      *
-     * @param tabla la tabla que selecionamos
+     * @param tabla    la tabla que selecionamos
      * @param selector datos de la tabla a devolver
      * @return
      */
@@ -183,29 +196,32 @@ public class Utils {
         } catch (SQLException ex) {
             ex.printStackTrace();
 
+        }
     }
 
-    public static ResultSet getResults(){
-        return rs;
-    }
     /**
      * @author José Luis
      */
     public static void deleteGeneral(String tabla, int id) {
         PreparedStatement prst;
         try {
-            String consulta = "DELETE FROM "+tabla+" WHERE ID=? ";
+            String delete = "DELETE FROM " + tabla + " WHERE ID=? ";
             Utils.connection = Utils.conectarBBDD();
-            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst = Utils.connection.prepareStatement(delete);
             Utils.prst.setInt(1, id);
             Utils.prst.executeUpdate();
             System.out.println("Se ha borrado correctamente");
         } catch (SQLException ex) {
             System.out.println("¡ERROR!, no se ha podido borrar");
-        }finally {
-            if (Utils.prst! = null) Utils.prst.close ();//cierra el objeto Statement llamado st
-            if (Utils.connection! = null) Utils.connection.close (); //cierra el objeto Connection llamado con
-        }
+        } finally {
+            if (Utils.prst != null) {
+                try {
+                    Utils.prst.close();//cierra el objeto Statement llamado st
+                    Utils.connection.close(); //cierra el objeto Connection llamado con
+                } catch (SQLException throwables) {
+                    System.out.println("¡ERROR! no se ha podido cerrar la conexion");
+                }
+            }
         }
     }
 }

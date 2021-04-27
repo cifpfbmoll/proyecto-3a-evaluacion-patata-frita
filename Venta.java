@@ -1,3 +1,7 @@
+package patatafrita;
+
+import java.sql.SQLException;
+
 /**
  * VENTAS
  * Esta clase contiene las ventas de cada uno de los concesionarios.
@@ -58,5 +62,31 @@ public class Venta {
                 "id=" + id +
                 ", horario='" + horario + '\'' +
                 '}';
+    }
+
+    /**
+     *
+     * @param venta
+     */
+    public static void guardarDatosTaller(Venta venta) {
+        String consulta = "INSERT INTO VENTA (HORARIO) VALUES (?)";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, venta.getHorario());
+            Utils.prst.executeUpdate();
+            System.out.println("Datos guardados con éxito.");
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! no se pudieron guardar los datos de la venta en la BBDD.");
+        } finally {
+            if (Utils.prst != null) {
+                try {
+                    Utils.prst.close();//cierra el objeto Statement llamado prst
+                    Utils.connection.close(); //cierra el objeto Connection llamado con
+                } catch (SQLException throwables) {
+                    System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+                }
+            }
+        }
     }
 }
