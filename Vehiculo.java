@@ -1,3 +1,4 @@
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -350,7 +351,7 @@ public class Vehiculo {
      * Se modifica el concesionario actual en la base de datos con los datos actuales de la clase
      * @return Devuelve 0 si correcto, -1 si error
      */
-    public int modificarConcesionarioBBDD() {
+    public int modificarVehiculoBBDD() {
         int ret = 0;
         String consulta = "UPDATE VEHICULO SET TIPO=?, ESTADO=?, KILOMETRAJE=?, AUTONOMIA=?, PUERTAS=?, ASIENTOS=?, COLOR=?, MARCA=?, MODELO=?, PRECIO=?, EXTRAS=? WHERE BASTIDOR=?";
         try {
@@ -397,15 +398,15 @@ public class Vehiculo {
     /**
      * Se muestran todos los vehiculos en la base de datos
      */
-    public static void mostrarTodosConcesionariosBBDD() {
+    public static void mostrarTodosVehiculosBBDD() {
         String consulta = "SELECT * FROM VEHICULO ORDER BY BASTIDOR";
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.st = Utils.connection.createStatement();
             Utils.rs = Utils.st.executeQuery(consulta);
-
+            ResultSet rs; //ResultSet para guardar las querys de los motores
             while (Utils.rs.next()) {
-                System.out.println("BASTIDOR: " + Utils.rs.getString(1) + "," +
+                System.out.print("BASTIDOR: " + Utils.rs.getString(1) + "," +
                             "TIPO: " + Utils.rs.getString(2) + "," +
                             "ESTADO: " + Utils.rs.getString(3) + "," +
                             "KILOMETRAJE: " + Utils.rs.getInt(4) + "," +
@@ -417,7 +418,19 @@ public class Vehiculo {
                             "MODELO: " + Utils.rs.getString(10) + "," +
                             "PRECIO: " + Utils.rs.getInt(11) + "," +
                             "EXTRAS: " + Utils.rs.getString(12));
-                //Insertar datos del motor, select con el valor 13 del select actual
+                //Con el valor del id del motor buscamos los datos del motor del vehiculo
+                //Es posible que realice demasiadas query, otra opcion para solucionarlo
+                //Seria coger todos los motores ya que por lo general se comparten un motor
+                //Con varios vehiculos y imprimir los datos del motor que toca
+                consulta = "SELECT * FROM MOTOR WHERE ID=?";
+                Utils.prst = Utils.connection.prepareStatement(consulta);
+                Utils.prst.setInt(1,Utils.rs.getInt(13));
+                rs = Utils.prst.executeQuery();
+                System.out.println("ID MOTOR: " + rs.getInt(1) + "," +
+                        "TIPO: " + rs.getString(2) + "," +
+                        "POTENCIA: " + rs.getFloat(3) + "," +
+                        "CILINDRADA: " + rs.getFloat(4) + "," +
+                        "NUM_MOTORES: " + rs.getInt(5));
             }
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los vehiculos");
@@ -440,7 +453,7 @@ public class Vehiculo {
                 ret = false;
             }
         } catch (SQLException e) {
-            System.out.println("Error mostrando todos los vehiculos");
+            System.out.println("No existe el vehiculo en la base de datos");
             ret = false;
         }
         return ret;
@@ -462,7 +475,7 @@ public class Vehiculo {
                 ret = false;
             }
         } catch (SQLException e) {
-            System.out.println("Error mostrando todos los vehiculos");
+            System.out.println("No existe el vehiculo en la base de datos");
             ret = false;
         }
         return ret;
