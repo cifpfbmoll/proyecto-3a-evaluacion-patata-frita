@@ -82,12 +82,11 @@ public class Concesionario {
     }
 
     //TODO: Definir bien javadocs (de aqui a abajo faltan cosas)
-    //TODO: renombrar a crearConcesionario
     /**
      *
      * @return Objeto concesionario con sus datos.
      */
-    public static Concesionario objConcesionario() {
+    public static Concesionario crearConcesionario() {
         Concesionario concesionario = new Concesionario();
         try {
             System.out.println("Escribe el nombre : ");

@@ -65,12 +65,11 @@ public class Venta {
     }
 
     //TODO: Arreglar javadocs
-    //TODO: renombrar a crearVenta
     /**
      *
      * @return Objeto venta con sus datos.
      */
-    public static Venta objVenta() {
+    public static Venta crearVenta() {
         Venta venta = new Venta();
         try {
             System.out.println("Escribe el horario en formato hh:mm-hh:mm : ");

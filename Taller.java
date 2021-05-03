@@ -81,11 +81,10 @@ public class Taller {
     }
 
     //TODO: Arreglar javadocs
-    //TODO: cambiar a crearTaller
     /**
      * @return Objeto taller con sus datos.
      */
-    public static Taller objTaller() {
+    public static Taller crearTaller() {
         Taller taller = new Taller();
         try {
             System.out.println("Escribe los espacios : ");
