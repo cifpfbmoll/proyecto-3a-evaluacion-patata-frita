@@ -237,7 +237,7 @@ public class Utils {
     }
 
     /**
-     * Cerrar la conexión a la base de datos
+     * Cerrar las variables a la base de datos manteniendo la conexión
      * @throws SQLException 
      */
     public static void cerrarVariables() throws SQLException {
