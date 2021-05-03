@@ -80,6 +80,8 @@ public class Taller {
                 '}';
     }
 
+    //TODO: Arreglar javadocs
+    //TODO: cambiar a crearTaller
     /**
      * @return Objeto taller con sus datos.
      */
@@ -115,12 +117,13 @@ public class Taller {
             if (Utils.prst != null) {
                 try {
                     Utils.prst.close();//cierra el objeto Statement llamado prst
-                    Utils.connection.close(); //cierra el objeto Connection llamado con
                 } catch (SQLException throwables) {
                     System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
                 }
             }
         }
     }
+    //TODO: Te faltan funciones, buscar, modificar, borrar, mostrar y los dos exists
+    //No cierres la conexion cuando termines, la conexion se mantiene hasta que el usuario se va
 }
 

@@ -64,6 +64,8 @@ public class Venta {
                 '}';
     }
 
+    //TODO: Arreglar javadocs
+    //TODO: renombrar a crearVenta
     /**
      *
      * @return Objeto venta con sus datos.
@@ -97,7 +99,6 @@ public class Venta {
             if (Utils.prst != null) {
                 try {
                     Utils.prst.close();//cierra el objeto Statement llamado prst
-                    Utils.connection.close(); //cierra el objeto Connection llamado con
                 } catch (SQLException throwables) {
                     System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
                 }
