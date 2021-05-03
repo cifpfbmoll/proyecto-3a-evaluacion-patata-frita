@@ -85,7 +85,7 @@ public class Venta {
      *
      * @param venta
      */
-    public static void guardarDatosTaller(Venta venta) {
+    public static void guardarDatosVenta(Venta venta) {
         String consulta = "INSERT INTO VENTA (HORARIO) VALUES (?)";
         try {
             Utils.connection = Utils.conectarBBDD();
