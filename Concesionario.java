@@ -80,7 +80,7 @@ public class Concesionario {
                 ", telefono=" + telefono +
                 '}';
     }
-    
+
     /**
      * Método para crear concesionarios junto a sus datos.
      * @return Objeto concesionario.
