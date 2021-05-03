@@ -80,11 +80,10 @@ public class Concesionario {
                 ", telefono=" + telefono +
                 '}';
     }
-
-    //TODO: Definir bien javadocs (de aqui a abajo faltan cosas)
+    
     /**
-     *
-     * @return Objeto concesionario con sus datos.
+     * Método para crear concesionarios junto a sus datos.
+     * @return Objeto concesionario.
      */
     public static Concesionario crearConcesionario() {
         Concesionario concesionario = new Concesionario();
@@ -102,7 +101,7 @@ public class Concesionario {
     }
 
     /**
-     *
+     * Método para guardar los datos de los concesionarios dentro de la base de datos.
      * @param concesionario
      */
     public static void guardarDatosConcesionario(Concesionario concesionario) {

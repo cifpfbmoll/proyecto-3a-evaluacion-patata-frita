@@ -80,9 +80,9 @@ public class Taller {
                 '}';
     }
 
-    //TODO: Arreglar javadocs
     /**
-     * @return Objeto taller con sus datos.
+     * Método para crear talleres junto a sus datos.
+     * @return Objeto taller.
      */
     public static Taller crearTaller() {
         Taller taller = new Taller();
@@ -98,7 +98,7 @@ public class Taller {
     }
 
     /**
-     *
+     * Método para guardar los datos de los talleres dentro de la base de datos.
      * @param taller
      */
     public static void guardarDatosTaller(Taller taller) {

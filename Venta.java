@@ -64,10 +64,9 @@ public class Venta {
                 '}';
     }
 
-    //TODO: Arreglar javadocs
     /**
-     *
-     * @return Objeto venta con sus datos.
+     * Método para crear ventas junto a sus datos.
+     * @return Objeto venta.
      */
     public static Venta crearVenta() {
         Venta venta = new Venta();
@@ -81,7 +80,7 @@ public class Venta {
     }
 
     /**
-     *
+     * Método para guardar los datos de las ventas dentro de la base de datos.
      * @param venta
      */
     public static void guardarDatosVenta(Venta venta) {
