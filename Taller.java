@@ -122,6 +122,43 @@ public class Taller {
             }
         }
     }
+    /**
+     * Método para buscar un taller dentro de la BBDD.
+     * @param id
+     * @return posicion.
+     */
+    public static int buscarTaller(int id) {
+        String consulta = "SELECT * FROM TALLER WHERE ID=?";
+        int posicion = -1;
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, id);
+            Utils.rs = Utils.prst.executeQuery();
+
+            while (Utils.rs.next()) {
+                posicion = Utils.rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("¡ERROR! Busqueda fallida.");
+        } finally {
+            try {
+                if (Utils.rs != null) {
+                    Utils.rs.close();
+                }
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+            }
+        }
+
+        return posicion;
+    }
     //TODO: Te faltan funciones, buscar, modificar, borrar, mostrar y los dos exists
     //No cierres la conexion cuando termines, la conexion se mantiene hasta que el usuario se va
 }
