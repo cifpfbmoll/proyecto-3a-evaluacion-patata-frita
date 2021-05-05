@@ -5,6 +5,9 @@
  */
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -91,7 +94,7 @@ public class Utils {
         lector.nextLine(); // Limpiar buffer dentro del input
         return valor;
     }
-    
+
     /**
      *
      * @param texto Texto para imprimir y solicitar la informacion a escanear
@@ -128,10 +131,19 @@ public class Utils {
         return valor;
     }
 
+    /**
+     * motodo de conectar a la BBDD y devolver un objeto de conexion
+     *
+     * @return
+     */
     public static Connection conectarBBDD() {
-        String url = "jdbc:mysql://51.178.152.221:3306/concesionario";
+        String url = "jdbc:mysql://51.178.152.221:3306/test";
         String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
         String password = "ContraseñaDeLaOstia69";
+//        String url = "jdbc:oracle:thin:@//localhost:1521/ORCLCDB.localdomain";
+//        String user = "dummy";
+//        String password = "dummy";
+
         try {
             //Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url, user, password);
@@ -191,7 +203,6 @@ public class Utils {
             } catch (SQLException e) {
                 System.out.println("Error cerrar conexion");
             }
-
         }
     }
 
@@ -209,14 +220,53 @@ public class Utils {
         try {
             //Volver a probar con prepared statement
             prs = connection.prepareStatement(consulta);
-            prs.setString(1,busqueda);
             rs = prs.executeQuery();
+
+            //Probar databasemetadata?
+            /*
+            DatabaseMetaData md = connection.getMetaData();
+            md.getTables(null,null,null,null);
+             */
         } catch (SQLException ex) {
-           ex.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
-    public static ResultSet getResults(){
+    public static ResultSet getResults() {
         return rs;
+    }
+
+    public static void deleteGeneral(String tabla, int id) {
+        PreparedStatement prst;
+        try {
+            String consulta = "DELETE FROM " + tabla + " WHERE ID=?";
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, id);
+            Utils.prst.executeUpdate();
+            System.out.println("Se ha borrado correctamente");
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR!, no se ha podido borrar");
+        }
+    }
+    /**
+     * metodo para adaptar String a la fecha aceptable por MySQL
+     * hay que crear objeto 'java.sql.Date sqlDate'   para  recibirlo
+     * 
+     * @param fecha
+     * @return  objeto java.sql.Date sqlDate
+     */
+    public static Date adaptarFechaMYSQL(String fecha) {
+        // adaptamos fecha a la fecha de mysql
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        java.util.Date myDate = null;
+        try {
+            myDate = formatter.parse(fecha);
+        } catch (ParseException ex) {
+            System.out.println("Error aplicar formato fecha");
+        }
+        // casting a mysql formato
+        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+        return sqlDate;
     }
 }
