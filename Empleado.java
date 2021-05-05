@@ -104,7 +104,7 @@ public class Empleado extends Persona {
      * Insertar un empleado en la base de datos
      */
     public void insertarDatosEmpleadoBBDD() {
-        String consulta = "INSERT INTO VEHICULO (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICILIO, PUESTO, TALLERID, VENTAID) VALUES (?,?,?,?,?,?,?,?)";
+        String consulta = "INSERT INTO EMPLEADO (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICILIO, PUESTO, TALLERID, VENTAID) VALUES (?,?,?,?,?,?,?,?)";
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -146,7 +146,7 @@ public class Empleado extends Persona {
             empleado.setTallerId(Utils.rs.getInt(7));
             empleado.setVentaId(Utils.rs.getInt(8));
         } catch (SQLException e) {
-            System.out.println("Error al buscar vehiculo");
+            System.out.println("Error al buscar cliente");
             empleado = null;
         }
         return empleado;
@@ -156,9 +156,9 @@ public class Empleado extends Persona {
      * Modificar un empleado en la base de datos
      * @return
      */
-    public int modificarVehiculoBBDD() {
+    public int modificarEmpleadoBBDD() {
         int ret = 0;
-        String consulta = "UPDATE EMPLEADOS SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PUESTO=?, TALLERID=?, VENTAID=? WHERE NIF=?";
+        String consulta = "UPDATE EMPLEADO SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PUESTO=?, TALLERID=?, VENTAID=? WHERE NIF=?";
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -183,7 +183,7 @@ public class Empleado extends Persona {
      * Borrar un empleado de la base de datos
      */
     public void borrarEmpleadoBBDD() {
-        String consulta = " DELETE FROM EMPLEADOS WHERE NIF LIKE ?";
+        String consulta = " DELETE FROM EMPLEADO WHERE NIF LIKE ?";
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -199,8 +199,8 @@ public class Empleado extends Persona {
     /**
      * Mostrar todos los empleados
      */
-    public static void mostrarTodoseEmpleadosBBDD() {
-        String consulta = "SELECT * FROM EMPLEADOS ORDER BY NIF";
+    public static void mostrarTodosEmpleadosBBDD() {
+        String consulta = "SELECT * FROM EMPLEADO ORDER BY NIF";
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.st = Utils.connection.createStatement();
@@ -229,7 +229,7 @@ public class Empleado extends Persona {
      */
     public boolean existsInDB(){
         boolean ret = false;
-        String consulta = "SELECT * FROM EMPLEADOS WHERE NIF LIKE ?";
+        String consulta = "SELECT * FROM EMPLEADO WHERE NIF LIKE ?";
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -253,7 +253,7 @@ public class Empleado extends Persona {
      */
     public static boolean existsInDB(String nif){
         boolean ret = false;
-        String consulta = "SELECT * FROM EMPLEADOS WHERE NIF LIKE ?";
+        String consulta = "SELECT * FROM EMPLEADO WHERE NIF LIKE ?";
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
