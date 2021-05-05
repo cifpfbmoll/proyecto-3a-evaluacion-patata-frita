@@ -5,7 +5,7 @@ import java.sql.SQLException;
 /**
  * VENTAS
  * Esta clase contiene las ventas de cada uno de los concesionarios.
- * @author José Luis Cardona
+ * @author Jose Luis Cardona
  * @version 1 - 29/03/2021
  */
 public class Venta {
@@ -65,8 +65,8 @@ public class Venta {
     }
 
     /**
-     * Método para crear ventas junto a sus datos.
-     * @return Objeto venta.
+     * Metodo para crear ventas junto a sus datos.
+     * @return Objeto "venta" una vez creado con sus datos introducidos.
      */
     public static Venta crearVenta() {
         Venta venta = new Venta();
@@ -80,7 +80,7 @@ public class Venta {
     }
 
     /**
-     * Método para guardar los datos de las ventas dentro de la base de datos.
+     * Metodo para guardar los datos de las ventas dentro de la base de datos.
      * @param venta
      */
     public static void guardarDatosVenta(Venta venta) {
@@ -90,7 +90,7 @@ public class Venta {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, venta.getHorario());
             Utils.prst.executeUpdate();
-            System.out.println("Datos guardados con éxito.");
+            System.out.println("Datos guardados con exito.");
         } catch (SQLException ex) {
             System.out.println("¡ERROR! no se pudieron guardar los datos de la venta en la BBDD.");
         } finally {
@@ -103,5 +103,217 @@ public class Venta {
             }
         }
     }
-//TODO FUNCIONES COMO EN CONCESIONARIO Y TALLER
+    /**
+     * Metodo para buscar ventas mediante la id.
+     * @param id
+     * @return Objeto "venta" con sus datos guardados.
+     */
+    public static Venta buscarVenta(int id) {
+        String consulta = "SELECT HORARIO FROM VENTA WHERE ID=?";
+        if (!existVenta(id)) {
+            return null;
+        } else {
+            Venta venta = new Venta();
+            Utils.connection = Utils.conectarBBDD();
+            try {
+                Utils.prst = Utils.connection.prepareStatement(consulta);
+                Utils.prst.setInt(1, id);
+                Utils.rs = Utils.prst.executeQuery();
+                Utils.rs.next();
+                venta.setHorario(Utils.rs.getString(1));
+                System.out.println("La venta ha sido encontrada y creada " + venta.toString());
+
+            } catch (SQLException ex) {
+                System.out.println("¡ERROR! No se ha encontrado la venta.");
+            } finally {
+                try {
+                    if (Utils.rs != null) {
+                        Utils.rs.close();
+                    }
+                    if (Utils.prst != null) {
+                        Utils.prst.close();
+                    }
+                    if (Utils.connection != null) {
+                        Utils.connection.close();
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+                }
+
+            }
+            return venta;
+        }
+    }
+
+    /**
+     * Metodo para ver los datos de las ventas de la BBDD.
+     */
+    public static void mostrarVenta() {
+        String consulta = "SELECT * FROM VENTA ORDER BY ID";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery(consulta);
+
+            while (Utils.rs.next()) {
+                System.out.println(
+                        "ID: "+Utils.rs.getInt(1) + ", " +
+                                "HORARIO : "+Utils.rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! No se han podido mostrar los datos");
+        } finally {
+            try {
+                if (Utils.rs != null) {
+                    Utils.rs.close();
+                }
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+            }
+        }
+    }
+
+    /**
+     * Metodo para borrar ventas de la BBDD.
+     * @param id
+     */
+    public static void borrarVenta(int id) {
+        try {
+            String consulta = "DELETE FROM VENTA WHERE ID=?";
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, id);
+            Utils.prst.executeUpdate();
+            System.out.println("La venta " + id + " se ha borrado.");
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! No se han podido borrar los datos.");
+        } finally {
+            try {
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+            }
+        }
+    }
+
+    /**
+     * Metodo para modificar los datos de las ventas de la BBDD.
+     * @param id
+     * @param espacios
+     * @param horario
+     */
+    public static void modificarTaller(int id, int espacios, String horario) {
+        String consulta = "UPDATE VENTA SET HORARIO=?  WHERE ID=?";
+
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, horario);
+            Utils.prst.setInt(2, id);
+
+            Utils.prst.executeUpdate();
+            System.out.println("Los datos han sido modificados con exito.");
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! No se han podido modificar los datos.");
+        } finally {
+            try {
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+            }
+        }
+    }
+    /**
+     * 1º metodo exist que sirve para buscar ventas mediante la id.
+     * @param id
+     * @return Booleano llamado "encontrado" el cual si sale true es que la venta ha sido
+     * hallada, si sale false significa que no se ha localizado.
+     */
+    public static boolean existVenta(int id) {
+        boolean encontrado = false;
+        String consulta = "SELECT * FROM VENTA WHERE ID=?";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, id);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            if (Utils.rs != null) {
+                encontrado = true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! No se ha encontrado la venta.");
+        } finally {
+            try {
+                if (Utils.rs != null) {
+                    Utils.rs.close();
+                }
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+            }
+        }
+        return encontrado;
+    }
+
+    /**
+     * 2º método exist que sirve para buscar ventas mediante la id.
+     * @return Booleano llamado "encontrado" el cual si sale true es que el taller ha sido
+     * hallado, si sale false significa que no se ha localizado.
+     */
+    public boolean existTaller() {
+        boolean encontrado = false;
+        String consulta = "SELECT * FROM VENTA WHERE ID=?";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, this.id);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            if (Utils.rs != null) {
+                encontrado = true;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! No se ha encontrado la venta.");
+        } finally {
+            try {
+                if (Utils.rs != null) {
+                    Utils.rs.close();
+                }
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+            }
+        }
+        return encontrado;
+    }
+    //No cierres la conexion cuando termines, la conexion se mantiene hasta que el usuario se va
 }

@@ -4,8 +4,8 @@ import java.sql.SQLException;
 
 /**
  * TALLERES
- * Esta clase almacena la información de los diversos talleres de cada concesionario
- * @author José Luis Cardona
+ * Esta clase almacena la informacion de los diversos talleres de cada concesionario
+ * @author Jose Luis Cardona
  * @version 1 - 29/03/2021
  */
 public class Taller {
@@ -81,7 +81,7 @@ public class Taller {
     }
 
     /**
-     * Método para crear talleres junto a sus datos.
+     * Metodo para crear talleres junto a sus datos.
      * @return Objeto "taller" una vez creado con sus datos introducidos.
      */
     public static Taller crearTaller() {
@@ -98,7 +98,7 @@ public class Taller {
     }
 
     /**
-     * Método para guardar los datos de los talleres dentro de la base de datos.
+     * Metodo para guardar los datos de los talleres dentro de la base de datos.
      * @param taller
      */
     public static void guardarDatosTaller(Taller taller) {
@@ -109,7 +109,7 @@ public class Taller {
             Utils.prst.setInt(1, taller.getEspacios());
             Utils.prst.setString(2, taller.getHorario());
             Utils.prst.executeUpdate();
-            System.out.println("Datos guardados con éxito.");
+            System.out.println("Datos guardados con exito.");
         } catch (SQLException ex) {
             System.out.println("¡ERROR! no se pudieron guardar los datos del taller en la BBDD.");
         } finally {
@@ -124,7 +124,7 @@ public class Taller {
     }
 
     /**
-     * Método para buscar talleres mediante la id.
+     * Metodo para buscar talleres mediante la id.
      * @param id
      * @return Objeto "taller" con sus datos guardados.
      */
@@ -167,7 +167,7 @@ public class Taller {
     }
 
     /**
-     * Método para ver los datos de los talleres de la BBDD.
+     * Metodo para ver los datos de los talleres de la BBDD.
      */
     public static void mostrarTaller() {
         String consulta = "SELECT * FROM TALLER ORDER BY ID";
@@ -202,7 +202,7 @@ public class Taller {
     }
 
     /**
-     * Método para borrar talleres de la BBDD.
+     * Metodo para borrar talleres de la BBDD.
      * @param id
      */
     public static void borrarTaller(int id) {
@@ -230,7 +230,7 @@ public class Taller {
     }
 
     /**
-     * Método para modificar los datos de los talleres de la BBDD.
+     * Metodo para modificar los datos de los talleres de la BBDD.
      * @param id
      * @param espacios
      * @param horario
@@ -246,7 +246,7 @@ public class Taller {
             Utils.prst.setInt(3, id);
 
             Utils.prst.executeUpdate();
-            System.out.println("Los datos han sido modificados con éxito.");
+            System.out.println("Los datos han sido modificados con exito.");
         } catch (SQLException ex) {
             System.out.println("¡ERROR! No se han podido modificar los datos.");
         } finally {
@@ -263,7 +263,7 @@ public class Taller {
         }
     }
     /**
-     * 1º método exist que sirve para buscar talleres mediante la id.
+     * 1º metodo exist que sirve para buscar talleres mediante la id.
      * @param id
      * @return Booleano llamado "encontrado" el cual si sale true es que el taller ha sido
      * hallado, si sale false significa que no se ha localizado.

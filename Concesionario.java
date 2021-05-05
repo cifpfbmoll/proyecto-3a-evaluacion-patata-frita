@@ -4,8 +4,8 @@ import java.sql.SQLException;
 
 /**
  * CONCESIONARIOS
- * Esta clase  guarda la información sobre los diferentes concesionarios del proyecto.
- * @author José Luis Cardona
+ * Esta clase  guarda la informacion sobre los diferentes concesionarios del proyecto.
+ * @author Jose Luis Cardona
  * @version 1 - 29/03/2021
  */
 public class Concesionario {
@@ -82,7 +82,7 @@ public class Concesionario {
     }
 
     /**
-     * Método para crear concesionarios junto a sus datos.
+     * Metodo para crear concesionarios junto a sus datos.
      * @return Objeto "concesionario" una vez creado con sus datos introducidos.
      */
     public static Concesionario crearConcesionario() {
@@ -101,7 +101,7 @@ public class Concesionario {
     }
 
     /**
-     * Método para guardar los datos de los concesionarios dentro de la base de datos.
+     * Metodo para guardar los datos de los concesionarios dentro de la base de datos.
      * @param concesionario
      */
     public static void guardarDatosConcesionario(Concesionario concesionario) {
@@ -113,7 +113,7 @@ public class Concesionario {
             Utils.prst.setString(2, concesionario.getUbicacion());
             Utils.prst.setInt(3,concesionario.getTelefono());
             Utils.prst.executeUpdate();
-            System.out.println("Datos guardados con éxito.");
+            System.out.println("Datos guardados con exito.");
         } catch (SQLException ex) {
             System.out.println("¡ERROR! no se pudieron guardar los datos del concesionario en la BBDD.");
         } finally {
@@ -128,7 +128,7 @@ public class Concesionario {
     }
 
     /**
-     * Método para buscar concesionarios mediante la id.
+     * Metodo para buscar concesionarios mediante la id.
      * @param id
      * @return Objeto "concesionario" con sus datos guardados.
      */
@@ -172,7 +172,7 @@ public class Concesionario {
     }
 
     /**
-     * Método para ver los datos de los concesionarios de la BBDD.
+     * Metodo para ver los datos de los concesionarios de la BBDD.
      */
     public static void mostrarConcesionario() {
         String consulta = "SELECT * FROM CONCESIONARIO ORDER BY ID";
@@ -208,7 +208,7 @@ public class Concesionario {
     }
 
     /**
-     * Método para borrar concesionarios de la BBDD.
+     * Metodo para borrar concesionarios de la BBDD.
      * @param id
      */
     public static void borrarConcesionario(int id) {
@@ -236,7 +236,7 @@ public class Concesionario {
     }
 
     /**
-     * Método para modificar los datos de los concesionarios de la BBDD.
+     * Metodo para modificar los datos de los concesionarios de la BBDD.
      * @param id
      * @param nombre
      * @param ubicacion
@@ -254,7 +254,7 @@ public class Concesionario {
             Utils.prst.setInt(4, id);
 
             Utils.prst.executeUpdate();
-            System.out.println("Los datos han sido modificados con éxito.");
+            System.out.println("Los datos han sido modificados con exito.");
         } catch (SQLException ex) {
             System.out.println("¡ERROR! No se han podido modificar los datos.");
         } finally {
@@ -272,7 +272,7 @@ public class Concesionario {
     }
 
     /**
-     * 1º método exist que sirve para buscar concesionarios mediante la id.
+     * 1º metodo exist que sirve para buscar concesionarios mediante la id.
      * @param id
      * @return Booleano llamado "encontrado" el cual si sale true es que el concesionario ha sido
      * hallado, si sale false significa que no se ha localizado.
@@ -311,7 +311,7 @@ public class Concesionario {
     }
 
     /**
-     * 2º método exist que sirve para buscar concesionarios mediante la id.
+     * 2º metodo exist que sirve para buscar concesionarios mediante la id.
      * @return Booleano llamado "encontrado" el cual si sale true es que el concesionario ha sido
      * hallado, si sale false significa que no se ha localizado.
      */
