@@ -27,6 +27,9 @@ public class Vehiculo {
         Alquilado
     }
     private Motor motor;
+    //Venta y cliente empiezan en null, se debe actualizar la venta al crear el vehiculo y cliente al venderse el vehiculo
+    private Venta venta = null;
+    private Cliente cliente = null;
 
     private Date fecha_fabricacion;
     private String bastidor;
@@ -63,7 +66,7 @@ public class Vehiculo {
      * @param marca
      * @param modelo
      */
-    public Vehiculo(Motor motor, Date fecha_fabricacion, String bastidor, int kilometraje, int autonomia, int puertas, int asientos, int precio, String extras, String color, String marca, String modelo, claseVehiculo tipo, estadoVehiculo estado) {
+    public Vehiculo(Motor motor, Date fecha_fabricacion, String bastidor, int kilometraje, int autonomia, int puertas, int asientos, int precio, String extras, String color, String marca, String modelo, claseVehiculo tipo, estadoVehiculo estado, Venta venta) {
         //Estos dos llaman al set para comprobar errores
         try {
             this.setPuertas(puertas);
@@ -83,6 +86,7 @@ public class Vehiculo {
         this.modelo = modelo;
         this.tipo = tipo;
         this.estado = estado;
+        this.venta = venta;
     }
 
     /**
@@ -104,6 +108,24 @@ public class Vehiculo {
         this.modelo = vec.getModelo();
         this.tipo = vec.getTipo();
         this.estado = vec.getEstado();
+        this.venta = vec.getVenta();
+        this.cliente = vec.getCliente();
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public float getPrecio() {
@@ -279,13 +301,13 @@ public class Vehiculo {
     }
 
     /**
-     * Insertar datos de la clase actual a la base de datos
+     * Insertar datos de la clase actual a la base de datos. Se inserta un cliente vacío si el vehiculo aun no se ha vendido
      *
      */
     public void insertarDatosVehiculoBBDD() {
-        //INSERT de todos los datos excepto ventaid y clientenif, ya que se supone que el vehiculo aun no se ha vendido, para ello habra otro metodo
+        //INSERT de todos los datos, cliente puede ser null si aun no se ha vendido el vehiculo
         if(motor.getId() != -1) {
-            String consulta = "INSERT INTO VEHICULO (BASTIDOR, TIPO, ESTADO, KILOMETRAJE, AUTONOMIA, PUERTAS, ASIENTOS, COLOR, MARCA, MODELO, PRECIO, EXTRAS, MOTORID ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String consulta = "INSERT INTO VEHICULO (BASTIDOR, TIPO, ESTADO, KILOMETRAJE, AUTONOMIA, PUERTAS, ASIENTOS, COLOR, MARCA, MODELO, PRECIO, EXTRAS, MOTORID, VENTAID, CLIENTEID ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             try {
                 Utils.connection = Utils.conectarBBDD();
                 Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -302,6 +324,8 @@ public class Vehiculo {
                 Utils.prst.setFloat(11, this.getPrecio());
                 Utils.prst.setString(12, this.getExtras());
                 Utils.prst.setInt(13, motor.getId());
+                Utils.prst.setInt(14, venta.getId());
+                Utils.prst.setString(15, cliente.getNif());
                 Utils.prst.executeUpdate();
                 System.out.println("Datos insertados correctomnte!");
             } catch (SQLException e) {
@@ -340,6 +364,14 @@ public class Vehiculo {
             vehiculo.setModelo(Utils.rs.getString(10));
             vehiculo.setPrecio(Utils.rs.getInt(11));
             vehiculo.setExtras(Utils.rs.getString(12));
+            vehiculo.setMotor(Motor.buscarMotorBBDD(Utils.rs.getInt(13)));
+            /*
+            vehiculo.setVenta(Venta.buscarVentaBBDD(Utils.rs.getInt(14))); //TODO
+            //TODO: Comprobar que pasa si se sube un null a la base de datos
+            if(Utils.rs.getString(15).length() > 1){
+                vehiculo.setCliente(Cliente.buscarClienteBBDD(Utils.rs.getString(15))); //TODO
+            }
+            */
         } catch (SQLException e) {
             System.out.println("Error al buscar vehiculo");
             vehiculo = null;
@@ -348,12 +380,12 @@ public class Vehiculo {
     }
 
     /**
-     * Se modifica el concesionario actual en la base de datos con los datos actuales de la clase
+     * Se modifica el vehiculo actual en la base de datos con los datos actuales de la clase
      * @return Devuelve 0 si correcto, -1 si error
      */
     public int modificarVehiculoBBDD() {
         int ret = 0;
-        String consulta = "UPDATE VEHICULO SET TIPO=?, ESTADO=?, KILOMETRAJE=?, AUTONOMIA=?, PUERTAS=?, ASIENTOS=?, COLOR=?, MARCA=?, MODELO=?, PRECIO=?, EXTRAS=? WHERE BASTIDOR=?";
+        String consulta = "UPDATE VEHICULO SET TIPO=?, ESTADO=?, KILOMETRAJE=?, AUTONOMIA=?, PUERTAS=?, ASIENTOS=?, COLOR=?, MARCA=?, MODELO=?, PRECIO=?, EXTRAS=?, MOTORID=?, VENTAID=?, CLIENTEID=? WHERE BASTIDOR=?";
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -369,6 +401,9 @@ public class Vehiculo {
             Utils.prst.setFloat(10, this.getPrecio());
             Utils.prst.setString(11, this.getExtras());
             Utils.prst.setString(12, this.getBastidor());
+            Utils.prst.setInt(13, this.getMotor().getId());
+            Utils.prst.setInt(14, this.getVenta().getId());
+            Utils.prst.setString(15, this.getCliente().getNif());
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados correctamente!");
         } catch (SQLException e) {
@@ -391,7 +426,7 @@ public class Vehiculo {
             System.out.println("Vehiculo borrado correctamente");
 
         } catch (SQLException e) {
-            System.out.println("Error borrar datos");
+            System.out.println("Error al borrar datos, es posible que cuelguen otras tablas de esta");
         }
     }
 
@@ -400,11 +435,11 @@ public class Vehiculo {
      */
     public static void mostrarTodosVehiculosBBDD() {
         String consulta = "SELECT * FROM VEHICULO ORDER BY BASTIDOR";
+        ResultSet rs = null; //ResultSet para guardar las querys de los motores
         try {
             Utils.connection = Utils.conectarBBDD();
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery(consulta);
-            ResultSet rs; //ResultSet para guardar las querys de los motores
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 System.out.print("BASTIDOR: " + Utils.rs.getString(1) + "," +
                             "TIPO: " + Utils.rs.getString(2) + "," +
@@ -434,6 +469,14 @@ public class Vehiculo {
             }
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los vehiculos");
+        }finally {
+            try{
+                if(rs != null) {
+                    rs.close();
+                }
+            }catch(SQLException e){
+                System.out.println("Problema al cerrar un resultset");
+            }
         }
     }
 
