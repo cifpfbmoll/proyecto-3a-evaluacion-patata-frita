@@ -1,4 +1,4 @@
-package patatafrita;/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -196,32 +196,6 @@ public class Utils {
         } catch (SQLException ex) {
             ex.printStackTrace();
 
-        }
-    }
-
-    /**
-     * @author José Luis
-     */
-    public static void deleteGeneral(String tabla, int id) {
-        PreparedStatement prst;
-        try {
-            String delete = "DELETE FROM " + tabla + " WHERE ID=? ";
-            Utils.connection = Utils.conectarBBDD();
-            Utils.prst = Utils.connection.prepareStatement(delete);
-            Utils.prst.setInt(1, id);
-            Utils.prst.executeUpdate();
-            System.out.println("Se ha borrado correctamente");
-        } catch (SQLException ex) {
-            System.out.println("¡ERROR!, no se ha podido borrar");
-        } finally {
-            if (Utils.prst != null) {
-                try {
-                    Utils.prst.close();//cierra el objeto Statement llamado prst
-                    Utils.connection.close(); //cierra el objeto Connection llamado con
-                } catch (SQLException throwables) {
-                    System.out.println("¡ERROR! no se ha podido cerrar la conexion");
-                }
-            }
         }
     }
 }//TODO METODOS ARCHIVOS (ABRIR,CERRAR,BUFFER STREAM...)

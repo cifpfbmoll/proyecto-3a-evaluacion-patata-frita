@@ -1,5 +1,3 @@
-package patatafrita;
-
 import java.sql.SQLException;
 
 /**
