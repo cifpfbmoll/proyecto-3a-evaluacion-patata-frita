@@ -5,6 +5,9 @@
  */
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -191,32 +194,31 @@ public class Utils {
             } catch (SQLException e) {
                 System.out.println("Error cerrar conexion");
             }
-
-        }
-    }
-
-    /**
-     * Un select general para todas las clases. Acrodarse de cerrar el ResultSet
-     * después de leerlo.
-     *
-     * @param tabla la tabla que selecionamos
-     * @param selector datos de la tabla a devolver
-     * @return
-     */
-    public static void selectGeneral(String selector, String tabla) {
-        String consulta = "select " + selector + " from " + tabla;
-        PreparedStatement prs;
-        try {
-            //Volver a probar con prepared statement
-            prs = connection.prepareStatement(consulta);
-            prs.setString(1,busqueda);
-            rs = prs.executeQuery();
-        } catch (SQLException ex) {
-           ex.printStackTrace();
         }
     }
 
     public static ResultSet getResults(){
         return rs;
+    }
+    
+    /**
+     * metodo para adaptar String a la fecha aceptable por MySQL
+     * hay que crear objeto 'java.sql.Date sqlDate'   para  recibirlo
+     * 
+     * @param fecha
+     * @return  objeto java.sql.Date sqlDate
+     */
+    public static Date adaptarFechaMYSQL(String fecha) {
+        // adaptamos fecha a la fecha de mysql
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        java.util.Date myDate = null;
+        try {
+            myDate = formatter.parse(fecha);
+        } catch (ParseException ex) {
+            System.out.println("Error aplicar formato fecha");
+        }
+        // casting a mysql formato
+        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+        return sqlDate;
     }
 }
