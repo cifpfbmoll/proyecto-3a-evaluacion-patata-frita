@@ -54,6 +54,7 @@ public class AppMain {
                         manageConcesionario();
                         break;
                     case 5:
+                        
                         break;
                     case 6:
                         break;
@@ -289,7 +290,9 @@ public class AppMain {
                     float sueldoSinImpuesto = sueldoTotal - (sueldoTotal * Utils.IMPUESTO);
                     System.out.println("Fecha con formato DD-MM-YYYY");
                     String fecha = Utils.kString();
-                    Nomina.modificarNominaBBDD(IdNominaModificar, horasTrabajo, sueldoTotal, sueldoSinImpuesto, fecha);
+                    System.out.println("Nif del empleado : ");
+                    String EmpleadoNif=Utils.kString();
+                    Nomina.modificarNominaBBDD(IdNominaModificar, horasTrabajo, sueldoTotal, sueldoSinImpuesto, fecha, EmpleadoNif);
                     break;
                 case 4:
                     System.out.println("Indica ID de la nomina que desea borrar");
