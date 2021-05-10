@@ -134,8 +134,10 @@ public class Motor {
         Motor motor = new Motor();
         try {
             motor.setTipo(tipoMotor.valueOf(Utils.kString("Que tipo de motor es? (Gas95, Gas98, Diesel o Electrico)")));
+            //si el vehiculo es electrico comprobar la cantidad de los mismos
             if (motor.getTipo().toString().equals("Electrico")){
                 motor.setNum_motores(Utils.kInt("Cantidad de motores"));
+            //sino solo habra un motor
             }else{
                 motor.setNum_motores(1);
             }
@@ -175,14 +177,14 @@ public class Motor {
      * @param id
      * @return Null of error, else motor
      */
-    public static Motor buscarMotorBBDD(String id) {
+    public static Motor buscarMotorBBDD(int id) {
         //Testeando con LIKE, es posible que tenga que ser =
         String consulta = "SELECT * FROM MOTOR WHERE id LIKE ?";
         Motor motor = new Motor();
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setString(1, id);
+            Utils.prst.setInt(1, id);
             Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
             motor.setId(Utils.rs.getInt(1));
