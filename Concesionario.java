@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import java.sql.SQLException;
+=======
+package eu.fp.concesionario;
+>>>>>>> Karina
 
 /**
  * CONCESIONARIOS
