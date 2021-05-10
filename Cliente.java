@@ -1,4 +1,3 @@
-package eu.fp.concesionario;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,6 +5,8 @@ package eu.fp.concesionario;
  */
 
 import com.mysql.fabric.xmlrpc.Client;
+
+import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,9 +16,6 @@ import java.sql.SQLException;
  * @author Karina
  */
 public class Cliente extends Persona {
-    private Integer reserva;
-    private Integer factura;
-
     /**
      * Constructor vacio
      */
@@ -26,18 +24,14 @@ public class Cliente extends Persona {
     
     /**
      * Constructor con todos los parametros
-     * @param reserva   Reserva del cliente
-     * @param factura   Factura del cliente
      * @param nombre    Nombre del cliente
      * @param apellidos Apellidos del cliente
      * @param nif       NIF del ciente
      * @param telefono  Telefono del cliente
      * @param domicilio Domicilio del cliente
      */
-    public Cliente(Integer reserva, Integer factura, String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
+    public Cliente(String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
         super(nombre, apellidos, nif, telefono, domicilio);
-        this.reserva = reserva;
-        this.factura = factura;
     }
     
     /**
@@ -46,30 +40,29 @@ public class Cliente extends Persona {
      */
     public Cliente(Cliente copia) {
         super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio());
-        this.setReserva(copia.getReserva());
-        this.setFactura(copia.getFactura());
-    }
-    
-    // GETTERS Y SETTERS
-    public Integer getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Integer reserva) {
-        this.reserva = reserva;
-    }
-
-    public Integer getFactura() {
-        return factura;
-    }
-
-    public void setFactura(Integer factura) {
-        this.factura = factura;
     }
         
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    /**
+     * Pide por consola los datos del cliente y devuelve una clase
+     * @return Cliente con los datos recibidos por consola
+     */
+    public static Cliente crearCliente(){
+        Cliente cliente = new Cliente();
+        try{
+            cliente.setNombre(Utils.kString("Nombre del cliente"));
+            cliente.setApellidos(Utils.kString("Apellidos del cliente"));
+            cliente.setNif(Utils.kString("NIF del cliente"));
+            cliente.setTelefono(Utils.kInteger("Telefono del cliente"));
+            cliente.setDomicilio(Utils.kString("Direccion de cliente"));
+        }catch(Exception e){
+            System.out.println("Error al insertar los datos, intentelo otra vez");
+        }
+        return cliente;
     }
 
     /**

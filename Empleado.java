@@ -9,7 +9,6 @@ import java.sql.SQLException;
  */
 public class Empleado extends Persona {
 
-    private Nomina nomina;
     private String puestoTrabajo;
     private Integer tallerId;
     private Integer ventaId;
@@ -34,7 +33,6 @@ public class Empleado extends Persona {
      */
     public Empleado(Nomina nomina, String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
         super(nombre, apellidos, nif, telefono, domicilio);
-        this.nomina = nomina;
         this.puestoTrabajo = puestoTrabajo;
     }
 
@@ -45,19 +43,10 @@ public class Empleado extends Persona {
      */
     public Empleado(Empleado copia) {
         super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio());
-        this.setNomina(copia.getNomina());
         this.setPuestoTrabajo(copia.getPuestoTrabajo());
     }
 
     // GETTERS Y SETTERS
-    public Nomina getNomina() {
-        return nomina;
-    }
-
-    public void setNomina(Nomina nomina) {
-        this.nomina = nomina;
-    }
-
     public String getPuestoTrabajo() {
         return puestoTrabajo;
     }
@@ -82,22 +71,28 @@ public class Empleado extends Persona {
         this.ventaId = ventaId;
     }
     
-    
-
     @Override
     public String toString() {
         return super.toString() + " puesto de trabajo: " + puestoTrabajo; //Sin el conjunto de nominas, eso vendra con la base de datos y serà una simple llamada
     }
 
-    // TODO: Crear una funcion para crear una nueva nomina directamente (pide los datos al usuario y las pasa a la nomina, controlar errores!)
-    public void crearNomina() {
-        Nomina nom = new Nomina();
-        nom.setFechaNomina(Utils.kString("Inserta la fecha"));
-        nom.setHorasTrabajadas(Utils.kInt("Inserta las horas trabajadas"));
-        nom.setPrecioPorHora(Utils.kInt("Inserta el precio por hora"));
-        nom.setSueldoSinImpuestos(Utils.kInt("Inserta el sueldo sin impuestos"));
-        nom.setSueldoTotal(Utils.kInt("Inserta el sueldo total"));
-        setNomina(nom);
+    /**
+     * Crea una variavle empleado con los datos recibidos por consola
+     * @return Empleado con los datos recibidos por consola
+     */
+    public static Empleado crearEmpleado(){
+        Empleado empleado = new Empleado();
+        try{
+            empleado.setNombre(Utils.kString("Nombre del empleado"));
+            empleado.setApellidos(Utils.kString("Apellidos del empleado"));
+            empleado.setNif(Utils.kString("NIF del empleado"));
+            empleado.setTelefono(Utils.kInteger("Telefono del empleado"));
+            empleado.setDomicilio(Utils.kString("Direccion de empleado"));
+            empleado.setPuestoTrabajo(Utils.kString("Puesto del empleado"));
+        }catch(Exception e){
+            System.out.println("Error al insertar los datos, intentelo otra vez");
+        }
+        return cliente;
     }
 
     /**
