@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import java.sql.SQLException;
-=======
-package eu.fp.concesionario;
->>>>>>> Karina
 
 /**
  * CONCESIONARIOS
@@ -87,7 +83,7 @@ public class Concesionario {
     }
     
     /**
-     * insertamos datos del concesionario a BBDD a partid de un objeto
+     * insertamos datos del concesionario a BBDD a partir de un objeto
      *
      * @param concesionario
      */
@@ -118,29 +114,22 @@ public class Concesionario {
     }
 
     /**
-     * buscamos un concesionario segun id, si nolo ecuentra devuelve -1
-     * @param id
-     * @return 
+     * Método para insertar los datos del concesionario actual a la base de datos
      */
-    public static int buscarConcesionarioBBDD(int id) {
-        String consulta = "SELECT * FROM CONCESIONARIO WHERE ID=?";
-        int posicion = -1;
+    public void insertarDatosConcesionarioBBDD() {
+        String consulta = "INSERT INTO CONCESIONARIO (UBICACION, NOMBRE, TELEFONO ) VALUES (?,?,?)";
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setInt(1, id);
-            Utils.rs = Utils.prst.executeQuery();
-
-            while (Utils.rs.next()) {
-                posicion = Utils.rs.getInt(1);
-            }
+            Utils.prst.setString(1, this.getUbicacion());
+            Utils.prst.setString(2, this.getNombre());
+            Utils.prst.setInt(3, this.getTelefono());
+            Utils.prst.executeUpdate();
+            System.out.println("Datos insertados correctomnte señor!");
         } catch (SQLException e) {
-            System.out.println("Error buscar concesionario");
+            System.out.println("Error al insertar datos a la BBDD");
         } finally {
             try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
                 if (Utils.prst != null) {
                     Utils.prst.close();
                 }
@@ -148,11 +137,9 @@ public class Concesionario {
                     Utils.connection.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Error cerrar connexion");
+                System.out.println("Error cerrar conexion");
             }
         }
-
-        return posicion;
     }
 
     /**
@@ -172,33 +159,6 @@ public class Concesionario {
             System.out.println("¡ERROR! el objeto no se pudo crear.");
         }
         return concesionario;
-    }
-
-    /**
-     * Metodo para guardar los datos de los concesionarios dentro de la base de datos.
-     * @param concesionario
-     */
-    public static void guardarDatosConcesionario(Concesionario concesionario) {
-        String consulta = "INSERT INTO CONCESIONARIO (UBICACION, NOMBRE, TELEFONO) VALUES (?,?,?)";
-        try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setString(1, concesionario.getNombre());
-            Utils.prst.setString(2, concesionario.getUbicacion());
-            Utils.prst.setInt(3,concesionario.getTelefono());
-            Utils.prst.executeUpdate();
-            System.out.println("Datos guardados con exito.");
-        } catch (SQLException ex) {
-            System.out.println("¡ERROR! no se pudieron guardar los datos del concesionario en la BBDD.");
-        } finally {
-            if (Utils.prst != null) {
-                try {
-                    Utils.prst.close();//cierra el objeto Statement llamado prst
-                } catch (SQLException throwables) {
-                    System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
-                }
-            }
-        }
     }
 
     /**
@@ -248,7 +208,7 @@ public class Concesionario {
     /**
      * Metodo para ver los datos de los concesionarios de la BBDD.
      */
-    public static void mostrarConcesionario() {
+    public static void mostrarConcesionarios() {
         String consulta = "SELECT * FROM CONCESIONARIO ORDER BY ID";
         try {
             Utils.connection = Utils.conectarBBDD();
@@ -421,5 +381,72 @@ public class Concesionario {
         }
         return encontrado;
     }
-    //No cierres la conexion cuando termines, la conexion se mantiene hasta que el usuario se va
+
+    /**
+     * Método para relacionar en la base de datos un concesionario con su taller
+     * @param id_concesionario
+     * @param id_taller
+     */
+    public static void relacionarConcesionarioConTaller(int id_concesionario, int id_taller){
+        String consulta = "UPDATE concesionario SET tallerid = ? WHERE id=?";
+        try {
+            //La conexión se irà cuando el main este completo
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, id_taller);
+            Utils.prst.setInt(2, id_concesionario);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! No se ha encontrado el concesionario.");
+        } finally {
+            try {
+                if (Utils.rs != null) {
+                    Utils.rs.close();
+                }
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+            }
+        }
+    }
+
+    /**
+     * Método para relacionar en la base de datos un concesionario con su venta
+     * @param id_concesionario
+     * @param id_venta
+     */
+    public static void relacionarConcesionarioConVenta(int id_concesionario, int id_venta){
+        String consulta = "UPDATE concesionario SET ventaid = ? WHERE id=?";
+        try {
+            //La conexión se irà cuando el main este completo
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, id_venta);
+            Utils.prst.setInt(2, id_concesionario);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! No se ha encontrado el concesionario.");
+        } finally {
+            try {
+                if (Utils.rs != null) {
+                    Utils.rs.close();
+                }
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+            }
+        }
+    }
 }

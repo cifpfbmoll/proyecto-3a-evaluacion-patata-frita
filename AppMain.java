@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 /*
 Crear un main, un menú simple por consola que permita:
 1- Crear nuevos objetos (nuevas instancias de las clases)
@@ -106,7 +104,7 @@ public class AppMain {
                 case 2:
                     System.out.println("Indica ID concesionario para comprobar si existe BBDD");
                     int existConcesionario = Utils.kInt();
-                    boolean confirmarConcesionario = Concesionario.existConcesionarioBBDD(existConcesionario);
+                    boolean confirmarConcesionario = Concesionario.existConcesionario(existConcesionario);
                     if (confirmarConcesionario) {
                         System.out.println("Existe");
                     } else {
@@ -122,16 +120,16 @@ public class AppMain {
                     String nombreConcesionario = Utils.kString();
                     System.out.println("Telefono: ");
                     int telefonoConcesionario = Utils.kInt();
-                    Concesionario.modificarConcesionarioBBDD(IDConcesionarioModificar, ubicacionConcesionario, nombreConcesionario, telefonoConcesionario);
+                    Concesionario.modificarConcesionario(IDConcesionarioModificar, ubicacionConcesionario, nombreConcesionario, telefonoConcesionario);
                     break;
                 case 4:
                     System.out.println("Indica ID del concesionario que desea borrar");
                     int borrarConcesionario = Utils.kInt();
-                    Concesionario.borrarConcesionarioBBDD(borrarConcesionario);
+                    Concesionario.borrarConcesionario(borrarConcesionario);
                     break;
                 case 5:
                     System.out.println("mostrar todos concesionarios");
-                    Concesionario.mostrarTodosConcesionariosBBDD();
+                    Concesionario.mostrarConcesionarios();
                     break;
                 case 6:
                     System.out.println("Id del concesionario: ");
@@ -150,7 +148,7 @@ public class AppMain {
                 case 8:
                     System.out.println("Id  concsionario: ");
                     int buscarConcesionario = Utils.kInt();
-                    Concesionario.buscarConcesionarioBBDD(buscarConcesionario);
+                    Concesionario.buscarConcesionario(buscarConcesionario);
                     break;
                 case 0:
                     volver = true;

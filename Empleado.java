@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -92,7 +90,7 @@ public class Empleado extends Persona {
         }catch(Exception e){
             System.out.println("Error al insertar los datos, intentelo otra vez");
         }
-        return cliente;
+        return empleado;
     }
 
     /**

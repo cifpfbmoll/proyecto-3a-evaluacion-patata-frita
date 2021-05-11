@@ -4,10 +4,6 @@
  * and open the template in the editor.
  */
 
-import com.mysql.fabric.xmlrpc.Client;
-
-import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

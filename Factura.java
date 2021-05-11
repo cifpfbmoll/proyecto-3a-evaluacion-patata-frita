@@ -1,6 +1,3 @@
-package eu.fp.concesionario;
-
-
 import java.sql.*;
 
 
