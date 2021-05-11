@@ -347,5 +347,5 @@ public class Concesionario {
         }
         return encontrado;
     }
-    //No cierres la conexion cuando termines, la conexion se mantiene hasta que el usuario se va
+    //No cerrar la conexion cuando se termine, la conexion se mantiene hasta que el usuario se va
 }
