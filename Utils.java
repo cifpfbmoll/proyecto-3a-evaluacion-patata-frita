@@ -1,9 +1,10 @@
+package eu.fp.concesionario;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -206,34 +207,37 @@ public class Utils {
         }
     }
 
-    /**
-     * Un select general para todas las clases. Acrodarse de cerrar el ResultSet
-     * después de leerlo.
-     *
-     * @param tabla la tabla que selecionamos
-     * @param selector datos de la tabla a devolver
-     * @return
-     */
-    public static void selectGeneral(String selector, String tabla) {
-        String consulta = "select " + selector + " from " + tabla;
-        PreparedStatement prs;
-        try {
-            //Volver a probar con prepared statement
-            prs = connection.prepareStatement(consulta);
-            rs = prs.executeQuery();
+    public static ResultSet getResults(){
+        return rs;
+    }
 
-            //Probar databasemetadata?
-            /*
-            DatabaseMetaData md = connection.getMetaData();
-            md.getTables(null,null,null,null);
-             */
+    /**
+     * Cerrar la conexión a la base de datos
+     * @throws SQLException 
+     */
+    public static void cerrarGeneral() throws SQLException {
+        try {
+            if (rs != null) rs.close();
+            if (prst != null) prst.close();
+            if (st != null) st.close();
+            if (connection != null) connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-    public static ResultSet getResults() {
-        return rs;
+    /**
+     * Cerrar las variables a la base de datos manteniendo la conexión
+     * @throws SQLException 
+     */
+    public static void cerrarVariables() throws SQLException {
+        try {
+            if (rs != null) rs.close();
+            if (prst != null) prst.close();
+            if (st != null) st.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static void deleteGeneral(String tabla, int id) {
