@@ -1,6 +1,5 @@
 import java.sql.*;
 
-
 /**
  * Clase Factura
  *
