@@ -2,6 +2,7 @@ package eu.fp.concesionario;
 
 
 import java.sql.SQLException;
+import java.util.logging.*;
 
 /**
  * Clase Nomina
