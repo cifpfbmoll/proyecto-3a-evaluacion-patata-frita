@@ -1,3 +1,5 @@
+package patatafrita;
+
 /**
  * Clase Reserva
  * @author Marat Rafael

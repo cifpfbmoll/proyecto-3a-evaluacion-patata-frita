@@ -1,3 +1,5 @@
+package patatafrita;
+
 /**
  *
  * @author Karina
