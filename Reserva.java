@@ -10,8 +10,9 @@ import java.util.Date;
 public class Reserva {
 
     //atributos
-    String fechaHoraReserva;
-    int espacioReservado;
+    private int id = -1;
+    private String fechaHoraReserva;
+    private int espacioReservado;
 
     // constructor vacio
     public Reserva() {

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 public class Nomina {
 
     //atributos
+    private int id=-1; //Se carga únicamente al leer de la base de datos
     private int horasTrabajadas;
     private float sueldoBruto;
     private float sueldoNeto;
@@ -66,6 +67,10 @@ public class Nomina {
             throw new IllegalArgumentException("Valor del sueldo no es valido");
         }
     }
+
+    public void setId(int id){this.id = id;}
+
+    public int getId(){return this.id;}
 
     public String getFechaNomina() {
         return fechaNomina;
@@ -365,6 +370,7 @@ public class Nomina {
                 Utils.prst.setInt(1, idNomina);
                 Utils.rs = Utils.prst.executeQuery();
                 Utils.rs.next();
+                n.setId(idNomina);
                 n.setHorasTrabajadas(Utils.rs.getInt(1));
                 n.setSueldoBruto(Utils.rs.getFloat(2));
                 n.setSueldoNeto(Utils.rs.getFloat(3));

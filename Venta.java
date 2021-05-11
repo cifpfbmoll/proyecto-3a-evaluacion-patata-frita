@@ -7,7 +7,7 @@ import java.sql.SQLException;
  * @version 1 - 29/03/2021
  */
 public class Venta {
-    private int id;
+    private int id=-1;
     private String horario;
 
     public Venta() {
@@ -21,6 +21,10 @@ public class Venta {
     public Venta(Venta copia) {
         this.id = copia.getId();
         this.horario = copia.getHorario();
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -118,6 +122,7 @@ public class Venta {
                 Utils.prst.setInt(1, id);
                 Utils.rs = Utils.prst.executeQuery();
                 Utils.rs.next();
+                venta.setId(id);
                 venta.setHorario(Utils.rs.getString(1));
                 System.out.println("La venta ha sido encontrada y creada " + venta.toString());
 
