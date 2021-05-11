@@ -1,3 +1,5 @@
+package patatafrita;
+
 import java.sql.SQLException;
 
 /**
@@ -504,7 +506,7 @@ public class Concesionario {
         }
         return encontrado;
     }
-
+  
     /**
      * Método para relacionar en la base de datos un concesionario con su taller
      * @param id_concesionario

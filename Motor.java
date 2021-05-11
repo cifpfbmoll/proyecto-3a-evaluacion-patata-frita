@@ -1,6 +1,8 @@
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+package patatafrita;
+
 
 /**
  * Clase motor donde se guardan los datos de los distintos motores

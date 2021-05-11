@@ -1,3 +1,5 @@
+package patatafrita;
+
 import java.sql.SQLException;
 
 /**
@@ -113,7 +115,7 @@ public class Taller {
         } finally {
             if (Utils.prst != null) {
                 try {
-                    Utils.prst.close();//cierra el objeto Statement llamado prst
+                    Utils.prst.close();//cierra el objeto prepareStatement llamado prst
                 } catch (SQLException throwables) {
                     System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
                 }
@@ -336,6 +338,6 @@ public class Taller {
         }
         return encontrado;
     }
-    //No cierres la conexion cuando termines, la conexion se mantiene hasta que el usuario se va
+    //No cerrar la conexion cuando se termine, la conexion se mantiene hasta que el usuario se va
 }
 
