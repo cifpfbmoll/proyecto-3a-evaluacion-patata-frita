@@ -1,3 +1,5 @@
+package patatafrita;
+
 import java.util.Date;
 
 /**

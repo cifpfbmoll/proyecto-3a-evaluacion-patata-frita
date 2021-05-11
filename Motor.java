@@ -1,3 +1,5 @@
+package patatafrita;
+
 /**
  * Clase motor donde se guardan los datos de los distintos motores
  * Contiene el conuunto de variables necesarias y un enum.

@@ -1,3 +1,5 @@
+package patatafrita;
+
 /**
  * Clase Nomina
  *

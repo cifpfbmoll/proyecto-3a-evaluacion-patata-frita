@@ -96,7 +96,7 @@ public class Venta {
         } finally {
             if (Utils.prst != null) {
                 try {
-                    Utils.prst.close();//cierra el objeto Statement llamado prst
+                    Utils.prst.close();//cierra el objeto prepareStatement llamado prst
                 } catch (SQLException throwables) {
                     System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
                 }
