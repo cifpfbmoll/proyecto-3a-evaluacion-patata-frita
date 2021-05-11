@@ -1,4 +1,4 @@
-/*
+package patatafrita;/*
 Crear un main, un menú simple por consola que permita:
 1- Crear nuevos objetos (nuevas instancias de las clases)
 2- Llamar a las funciones de las clases (especialmente la posibilidad de hacer selects o guardar los datos)

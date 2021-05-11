@@ -1,6 +1,5 @@
-import java.sql.*;
 package patatafrita;
-
+import java.sql.*;
 
 /**
  * Clase Factura

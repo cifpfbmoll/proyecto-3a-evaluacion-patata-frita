@@ -229,64 +229,6 @@ public class Concesionario {
     }
 
     /**
-     * relacionamos un concesionario con un taller
-     *
-     * @param idConcesionario
-     * @param idTaller
-     */
-    public static void relacionarConcesionarioConTaller(int idConcesionario, int idTaller) {
-        String consulta = "UPDATE CONCESIONARIO SET TALLERID=? WHERE ID=?";
-        try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setInt(1, idTaller);
-            Utils.prst.setInt(2, idConcesionario);
-            Utils.prst.executeUpdate();
-            System.out.println("Relacion concesionario " + idConcesionario + " con taller " + idTaller + " establecida correctamente");
-        } catch (SQLException ex) {
-            System.out.println("Error relacionar concesionario con taller");
-        } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error cerrar connexion");
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void relacionarConcesionarioConVenta(int idConcesionario, int idVenta) {
-        String consulta = "UPDATE CONCESIONARIO SET VENTAID=? WHERE ID=?";
-        try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setInt(1, idVenta);
-            Utils.prst.setInt(2, idConcesionario);
-            Utils.prst.executeUpdate();
-            System.out.println("Relacion concesionario " + idConcesionario + " con venta " + idVenta + " establecida correctamente");
-        } catch (SQLException ex) {
-            System.out.println("Error relacionar concesionario  con venta");
-        } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error cerrar connexion");
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
      * Metodo para buscar concesionarios mediante la id.
      * @param id
      * @return Objeto "concesionario" con sus datos guardados.
@@ -508,14 +450,14 @@ public class Concesionario {
     }
   
     /**
-     * Método para relacionar en la base de datos un concesionario con su taller
+     * Metodo para relacionar en la base de datos un concesionario con su taller.
      * @param id_concesionario
      * @param id_taller
      */
     public static void relacionarConcesionarioConTaller(int id_concesionario, int id_taller){
         String consulta = "UPDATE concesionario SET tallerid = ? WHERE id=?";
         try {
-            //La conexión se irà cuando el main este completo
+            //La conexión se irá cuando el main este completo
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id_taller);
@@ -542,14 +484,14 @@ public class Concesionario {
     }
 
     /**
-     * Método para relacionar en la base de datos un concesionario con su venta
+     * Metodo para relacionar en la base de datos un concesionario con su venta.
      * @param id_concesionario
      * @param id_venta
      */
     public static void relacionarConcesionarioConVenta(int id_concesionario, int id_venta){
         String consulta = "UPDATE concesionario SET ventaid = ? WHERE id=?";
         try {
-            //La conexión se irà cuando el main este completo
+            //La conexión se irá cuando el main este completo
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id_venta);
