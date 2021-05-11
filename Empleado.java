@@ -1,3 +1,5 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
 package patatafrita;
 
 /**
@@ -5,17 +7,21 @@ package patatafrita;
  * @author Karina
  */
 public class Empleado extends Persona {
-    private Nomina nomina;
+
     private String puestoTrabajo;
+    private Integer tallerId;
+    private Integer ventaId;
 
     /**
      * Constructor vacio
      */
-    public Empleado() {    
+    public Empleado() {
+        super();
     }
-    
+
     /**
      * Constructor con todos los parametros
+     *
      * @param nomina Lista de las nominas
      * @param puestoTrabajo Puesto de trabajo
      * @param nombre Nombre del trabajador
@@ -26,29 +32,20 @@ public class Empleado extends Persona {
      */
     public Empleado(Nomina nomina, String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
         super(nombre, apellidos, nif, telefono, domicilio);
-        this.nomina = nomina;
         this.puestoTrabajo = puestoTrabajo;
     }
-    
+
     /**
      * Constructor copia de empleado
+     *
      * @param copia Empleado a copiar
      */
     public Empleado(Empleado copia) {
         super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio());
-        this.setNomina(copia.getNomina());
         this.setPuestoTrabajo(copia.getPuestoTrabajo());
     }
 
     // GETTERS Y SETTERS
-    public Nomina getNomina() {
-        return nomina;
-    }
-
-    public void setNomina(Nomina nomina) {
-        this.nomina = nomina;
-    }
-
     public String getPuestoTrabajo() {
         return puestoTrabajo;
     }
@@ -57,19 +54,213 @@ public class Empleado extends Persona {
         this.puestoTrabajo = puestoTrabajo;
     }
 
+    public Integer getTallerId() {
+        return tallerId;
+    }
+
+    public void setTallerId(Integer tallerId) {
+        this.tallerId = tallerId;
+    }
+
+    public Integer getVentaId() {
+        return ventaId;
+    }
+
+    public void setVentaId(Integer ventaId) {
+        this.ventaId = ventaId;
+    }
+    
     @Override
-    public String toString(){
+    public String toString() {
         return super.toString() + " puesto de trabajo: " + puestoTrabajo; //Sin el conjunto de nominas, eso vendra con la base de datos y serà una simple llamada
     }
 
-    // TODO: Crear una funcion para crear una nueva nomina directamente (pide los datos al usuario y las pasa a la nomina, controlar errores!)
-    public void crearNomina() {
-        Nomina nom = new Nomina();
-        nom.setFechaNomina(Utils.kString("Inserta la fecha"));
-        nom.setHorasTrabajadas(Utils.kInt("Inserta las horas trabajadas"));
-        nom.setPrecioPorHora(Utils.kInt("Inserta el precio por hora"));
-        nom.setSueldoSinImpuestos(Utils.kInt("Inserta el sueldo sin impuestos"));
-        nom.setSueldoTotal(Utils.kInt("Inserta el sueldo total"));
-        setNomina(nom);
+    /**
+     * Crea una variavle empleado con los datos recibidos por consola
+     * @return Empleado con los datos recibidos por consola
+     */
+    public static Empleado crearEmpleado(){
+        Empleado empleado = new Empleado();
+        try{
+            empleado.setNombre(Utils.kString("Nombre del empleado"));
+            empleado.setApellidos(Utils.kString("Apellidos del empleado"));
+            empleado.setNif(Utils.kString("NIF del empleado"));
+            empleado.setTelefono(Utils.kInteger("Telefono del empleado"));
+            empleado.setDomicilio(Utils.kString("Direccion de empleado"));
+            empleado.setPuestoTrabajo(Utils.kString("Puesto del empleado"));
+        }catch(Exception e){
+            System.out.println("Error al insertar los datos, intentelo otra vez");
+        }
+        return empleado;
+    }
+
+    /**
+     * Insertar un empleado en la base de datos
+     */
+    public void insertarDatosEmpleadoBBDD() {
+        String consulta = "INSERT INTO EMPLEADO (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICILIO, PUESTO, TALLERID, VENTAID) VALUES (?,?,?,?,?,?,?,?)";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, this.getNif());
+            Utils.prst.setString(2, this.getNombre());
+            Utils.prst.setString(3, this.getApellidos());
+            Utils.prst.setInt(4, this.getTelefono());
+            Utils.prst.setString(5, this.getDomicilio());
+            Utils.prst.setString(6, this.getPuestoTrabajo());
+            Utils.prst.setInt(7, this.getTallerId());
+            Utils.prst.setInt(8, this.getVentaId());
+            Utils.prst.executeUpdate();
+            System.out.println("Datos insertados correctomnte!");
+        } catch (SQLException e) {
+            System.out.println("Error al insertar datos del empleado a la BBDD");
+        }
+    }
+
+    /**
+     * Buscar un empleado en la base de datos
+     * @param nif Nif del empleado a buscar
+     * @return
+     */
+    public static Empleado buscarEmpleadoBBDD(String nif) {
+        String consulta = "SELECT * FROM EMPLEADO WHERE nif LIKE ?";
+        Empleado empleado = new Empleado();
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, nif);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            empleado.setNif(Utils.rs.getString(1));
+            empleado.setNombre(Utils.rs.getString(2));
+            empleado.setApellidos(Utils.rs.getString(3));
+            empleado.setTelefono(Utils.rs.getInt(4));
+            empleado.setDomicilio(Utils.rs.getString(5));
+            empleado.setPuestoTrabajo(Utils.rs.getString(6));
+            empleado.setTallerId(Utils.rs.getInt(7));
+            empleado.setVentaId(Utils.rs.getInt(8));
+        } catch (SQLException e) {
+            System.out.println("Error al buscar cliente");
+            empleado = null;
+        }
+        return empleado;
+    }
+
+    /**
+     * Modificar un empleado en la base de datos
+     * @return
+     */
+    public int modificarEmpleadoBBDD() {
+        int ret = 0;
+        String consulta = "UPDATE EMPLEADO SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PUESTO=?, TALLERID=?, VENTAID=? WHERE NIF=?";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, this.getNombre());
+            Utils.prst.setString(2, this.getApellidos());
+            Utils.prst.setInt(3, this.getTelefono());
+            Utils.prst.setString(4, this.getDomicilio());
+            Utils.prst.setString(5, this.getPuestoTrabajo());
+            Utils.prst.setInt(6, this.getTallerId());
+            Utils.prst.setInt(7, this.getVentaId());
+            Utils.prst.setString(8, this.getNif());
+            Utils.prst.executeUpdate();
+            System.out.println("Datos actualizados correctamente!");
+        } catch (SQLException e) {
+            System.out.println("Error actualizar datos");
+            ret = -1;
+        }
+        return ret;
+    }
+
+    /**
+     * Borrar un empleado de la base de datos
+     */
+    public void borrarEmpleadoBBDD() {
+        String consulta = " DELETE FROM EMPLEADO WHERE NIF LIKE ?";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, this.getNif());
+            Utils.prst.executeUpdate();
+            System.out.println("Empleado borrado correctamente");
+
+        } catch (SQLException e) {
+            System.out.println("Error borrar datos");
+        }
+    }
+
+    /**
+     * Mostrar todos los empleados
+     */
+    public static void mostrarTodosEmpleadosBBDD() {
+        String consulta = "SELECT * FROM EMPLEADO ORDER BY NIF";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.st = Utils.connection.createStatement();
+            Utils.rs = Utils.st.executeQuery(consulta);
+            ResultSet rs;
+            while (Utils.rs.next()) {
+                System.out.print(
+                    "NIF: " + Utils.rs.getString(1) + "," +
+                    "NOMBRE: " + Utils.rs.getString(2) + "," +
+                    "APELLIDOS: " + Utils.rs.getString(3) + "," +
+                    "TELEFONO: " + Utils.rs.getInt(4) + "," +
+                    "DOMICILIO: " + Utils.rs.getString(5) + "," +
+                    "PUESTO: " + Utils.rs.getString(6) + "," +
+                    "TALLERID: " + Utils.rs.getInt(7) + "," +
+                    "VENTAID: " + Utils.rs.getInt(8)
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los empleados");
+        }
+    }
+
+    /**
+     * Comprueba si existe el empleado actual en la base de datos
+     * @return
+     */
+    public boolean existsInDB(){
+        boolean ret = false;
+        String consulta = "SELECT * FROM EMPLEADO WHERE NIF LIKE ?";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1,getNif());
+            if (Utils.rs != null){
+                ret = true;
+            }else{
+                ret = false;
+            }
+        } catch (SQLException e) {
+            System.out.println("No existe el empleado en la base de datos");
+            ret = false;
+        }
+        return ret;
+    }
+
+    /**
+     * Busca si existe un empleado en concreto y devuelve el resultado
+     * @param nif NIF del empleado a comprobar
+     * @return
+     */
+    public static boolean existsInDB(String nif){
+        boolean ret = false;
+        String consulta = "SELECT * FROM EMPLEADO WHERE NIF LIKE ?";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1,nif);
+            if (Utils.rs != null){
+                ret = true;
+            }else{
+                ret = false;
+            }
+        } catch (SQLException e) {
+            System.out.println("No existe el empleado en la base de datos");
+            ret = false;
+        }
+        return ret;
     }
 }
