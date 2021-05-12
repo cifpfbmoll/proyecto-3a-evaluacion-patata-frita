@@ -6,8 +6,6 @@ package eu.fp.concesionario;
  * and open the template in the editor.
  */
 
-import com.mysql.fabric.xmlrpc.Client;
-
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
