@@ -118,8 +118,15 @@ public class Reserva {
             System.out.println("Espacio reservado: ");
             reserva.setEspacioReservado(Utils.kInt());
             
-            // TODO setCliente nomina.setCliente(buscarClienteBBDD(nifCliente));
-            // TODO setTaller  nomina.setTaller(buscarTallerBBDD(idTaller));
+            // TODO setCliente 
+            System.out.println("Nif Cliente: ");
+            String nifCliente = Utils.kString();
+            reserva.setCliente(Cliente.buscarClienteBBDD(nifCliente));
+            
+            // TODO setTaller  
+            System.out.println("Id del Taller: ");
+            int idTaller = Utils.kInt();
+            reserva.setTaller(Taller.buscarTaller(idTaller));
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
@@ -128,12 +135,12 @@ public class Reserva {
     }
 
     /**
-     * insertar datos de una reserva en BBDD, apartir de un objeto reserva
+     * metodo estatico insertar datos de una reserva en BBDD, apartir de un objeto reserva
      *
      * @param reserva
      */
     public static void insertarDatosReservaBBDD(Reserva reserva) {
-        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA, TALLERID, CLIENTENIF) VALUES(?,?)";
+        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA, TALLERID, CLIENTENIF) VALUES(?,?,?,?)";
 
         // convertir string fechaHoraReserva a date
         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -175,7 +182,7 @@ public class Reserva {
      * metodo de la INSTANCIA para insertar datos
      */
     public void insertarDatosReservaBBDD() {
-        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA) VALUES(?,?)";
+        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA, TALLERID, CLIENTENIF ) VALUES(?,?,?,?)";
 
         // convertir string fechaHoraReserva a date
         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -440,7 +447,7 @@ public class Reserva {
      * @return reserva
      */
     public static Reserva buscarReservaBBDD(int idReserva) {
-        String consulta = "SELECT ESPACIO_RESERVADO, FECHA  FROM RESERVA WHERE ID=?";
+        String consulta = "SELECT ESPACIO_RESERVADO, FECHA, TALLERID, CLIENTENIF  FROM RESERVA WHERE ID=?";
         if (!Reserva.existReservaBBDD(idReserva)) {
             return null;
         } else {
@@ -453,6 +460,11 @@ public class Reserva {
                 Utils.rs.next();
                 r.setEspacioReservado(Utils.rs.getInt(1));
                 r.setFechaHoraReserva(Utils.rs.getString(2));
+                int idTaller = Utils.rs.getInt(3); // nos devuelve id del taller
+                r.setTaller(Taller.buscarTaller(idTaller)); //establecemos taller 
+                String nifCliente = Utils.rs.getString(4);// nos devuelve nifCliente
+                r.setCliente(Cliente.buscarClienteBBDD(nifCliente)); // setablecemos cliente
+
                 System.out.println("Reserva encontrada y creada " + r.toString());
 
             } catch (Exception e) {

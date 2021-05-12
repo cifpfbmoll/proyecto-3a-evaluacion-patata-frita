@@ -83,7 +83,7 @@ public abstract class Persona {
     }
 
     public void setNif(String nif) throws IllegalArgumentException {
-        if (nif.length() != 9) {
+        if (nif.length() == 9) {
             try {
                 Integer.parseInt(nif.substring(0, 7));
                 nif.substring(8).toString();

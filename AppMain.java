@@ -55,6 +55,7 @@ public class AppMain {
                         
                         break;
                     case 6:
+                        
                         break;
                     case 7:
                         break;
@@ -329,7 +330,8 @@ public class AppMain {
         String hr = "***********************************************************";
         do {
             System.out.println(hr);
-            System.out.println("1 Crear objeto de factura y insertar en BBDD");
+            System.out.println("1 Crear objeto de factura de reserva y insertar en BBDD");
+            System.out.println("11 Crear objeto de factura de venta - vehiculo y insertar en BBDD");
             System.out.println("2 Comprobar si existe factura en BBDD");
             System.out.println("3 Modificar factura en BBDD");
             System.out.println("4 Borrar factura en BBDD");
@@ -343,9 +345,14 @@ public class AppMain {
             opcion = Utils.kInt();
             switch (opcion) {
                 case 1:
-                    System.out.println("creamos objeto de factura y lo guardamos");
-                    Factura f = Factura.crearFactura();
+                    System.out.println("creamos objeto de factura de RESERVA ,y lo guardamos");
+                    Factura f = Factura.crearFacturaConReserva();
                     Factura.insertarObjetoFacturaBBDD(f);
+                    break;
+                case 11:
+                    System.out.println("creamos objeto de factura de VENTA-VEHICULO ,y lo guardamos");
+                    Factura ff = Factura.crearFacturaConVentaVehiculo();
+                    Factura.insertarObjetoFacturaBBDD(ff);
                     break;
                 case 2:
                     System.out.println("Indica ID factura para comprobar si existe BBDD");
