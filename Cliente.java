@@ -1,3 +1,5 @@
+package eu.fp.concesionario;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +8,6 @@
 
 import com.mysql.fabric.xmlrpc.Client;
 
-import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

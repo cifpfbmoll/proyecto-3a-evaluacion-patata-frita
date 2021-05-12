@@ -25,7 +25,7 @@ public class AppMain {
 
         try {
             do {
-
+                Gui.initGui();
                 System.out.println("MENU");
                 System.out.println("1 factura");
                 System.out.println("2 nomina");

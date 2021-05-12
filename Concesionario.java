@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-import java.sql.SQLException;
-=======
 package eu.fp.concesionario;
->>>>>>> Karina
 
+import java.sql.SQLException;
 /**
  * CONCESIONARIOS
  * Esta clase  guarda la informacion sobre los diferentes concesionarios del proyecto.
