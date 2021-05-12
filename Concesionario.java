@@ -1,4 +1,7 @@
+package eu.fp.concesionario;
+
 import java.sql.SQLException;
+
 
 /**
  * CONCESIONARIOS
