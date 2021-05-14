@@ -10,19 +10,22 @@ import java.sql.*;
 
 public class Concesionario {
 
-    private int id;
+    private int id = -1;
     private String ubicacion;
     private String nombre;
     private int telefono;
+    private Taller taller;
+    private Venta venta;
 
     public Concesionario() {
     }
 
-    public Concesionario(int id, String ubicacion, String nombre, int telefono) {
-        this.id = id;
+    public Concesionario(String ubicacion, String nombre, int telefono, Taller taller, Venta venta) {
         this.ubicacion = ubicacion;
         this.nombre = nombre;
         this.telefono = telefono;
+        this.taller = taller;
+        this.venta = venta;
     }
 
     public Concesionario(Concesionario copia) {
@@ -34,6 +37,22 @@ public class Concesionario {
 
     public int getId() {
         return id;
+    }
+
+    public Taller getTaller() {
+        return taller;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setTaller(Taller taller) {
+        this.taller = taller;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     public String getUbicacion() {
@@ -75,11 +94,33 @@ public class Concesionario {
     @Override
     public String toString() {
         return "Concesionario{"
-                + "id=" + id
                 + ", ubicacion='" + ubicacion + '\''
                 + ", nombre='" + nombre + '\''
                 + ", telefono=" + telefono
                 + '}';
+    }
+
+    /**
+     * crear objeto concesionario
+     *
+     * @return
+     */
+    public static Concesionario crearConcesionario() {
+        Concesionario concesionario = new Concesionario();
+        try {
+            System.out.println("Ubicacion: ");
+            concesionario.setUbicacion(Utils.kString());
+            System.out.println("Nombre: ");
+            concesionario.setNombre(Utils.kString());
+            System.out.println("Telefono: ");
+            concesionario.setTelefono(Utils.kInt());
+            System.out.println("Taller id: ");
+            int tallerId = Utils.kInt();
+            // TODO concesionario.setTaller(buscarTallerBBDD(tallerId));
+        } catch (Exception e) {
+            System.out.println("Error al crear concesionario");
+        }
+        return concesionario;
     }
     
     /**
@@ -128,6 +169,7 @@ public class Concesionario {
             System.out.println("Datos insertados correctomnte señor!");
         } catch (SQLException e) {
             System.out.println("Error al insertar datos a la BBDD");
+
         } finally {
             try {
                 if (Utils.prst != null) {
@@ -140,25 +182,48 @@ public class Concesionario {
                 System.out.println("Error cerrar conexion");
             }
         }
+
+
     }
 
     /**
-     * Metodo para crear concesionarios junto a sus datos.
-     * @return Objeto "concesionario" una vez creado con sus datos introducidos.
+     * metodo de instancia para comprobar si concesionario esta en BBDD
+     *
+     * @return
      */
-    public static Concesionario crearConcesionario() {
-        Concesionario concesionario = new Concesionario();
+    public boolean existBD() {
+        String consulta = "SELECT * FROM CONCESIONARIO WHERE ID=?";
+        boolean existe = false;
         try {
-            System.out.println("Escribe el nombre : ");
-            concesionario.setNombre(Utils.kString());
-            System.out.println("Escribe la ubicacion : ");
-            concesionario.setUbicacion(Utils.kString());
-            System.out.println("Escribe el telefono : ");
-            concesionario.setTelefono(Utils.kInt());
-        } catch (Exception ex) {
-            System.out.println("¡ERROR! el objeto no se pudo crear.");
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, this.getId());
+            Utils.rs = Utils.prst.executeQuery();
+            if (Utils.rs.next()) {
+                existe = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error consultar BBDD");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (Utils.rs != null) {
+                    Utils.rs.close();
+                }
+                if (Utils.prst != null) {
+                    Utils.prst.close();
+                }
+                if (Utils.connection != null) {
+                    Utils.connection.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error cerrar connexion");
+                e.printStackTrace();
+            }
         }
-        return concesionario;
+
+        return existe;
     }
 
     /**
@@ -381,7 +446,7 @@ public class Concesionario {
         }
         return encontrado;
     }
-
+  
     /**
      * Método para relacionar en la base de datos un concesionario con su taller
      * @param id_concesionario

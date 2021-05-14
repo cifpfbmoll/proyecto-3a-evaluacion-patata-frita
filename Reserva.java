@@ -10,25 +10,57 @@ import java.util.Date;
 public class Reserva {
 
     //atributos
-    String fechaHoraReserva;
-    int espacioReservado;
+    int id =-1;
+    private String fechaHoraReserva;
+    private int espacioReservado;
+    private Taller taller;
+    private Cliente cliente;
 
     // constructor vacio
     public Reserva() {
     }
 
     // constructor con todos atributos
-    public Reserva(String fechaHoraReserva, int espacioReservado) {
+
+    public Reserva(int id, String fechaHoraReserva, int espacioReservado, Taller taller, Cliente cliente) {
+        this.id = id;
         this.fechaHoraReserva = fechaHoraReserva;
         this.espacioReservado = espacioReservado;
+        this.taller = taller;
+        this.cliente = cliente;
     }
+
 
     // constructor copia
     public Reserva(Reserva reserva) {
+        this.id = reserva.getId();
         this.fechaHoraReserva = reserva.getFechaHoraReserva();
         this.espacioReservado = reserva.getEspacioReservado();
+        this.taller = reserva.getTaller();
+        this.cliente = reserva.getCliente();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public Taller getTaller() {
+        return taller;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setTaller(Taller taller) {
+        this.taller = taller;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+ 
+    
     // getter/setter
     public String getFechaHoraReserva() {
         return fechaHoraReserva;
@@ -52,9 +84,20 @@ public class Reserva {
     // toString
     @Override
     public String toString() {
-        return "Reserva {" + "fechaHoraReserva=" + fechaHoraReserva + ", espacioReservado=" + espacioReservado + '}';
+        return "Reserva { " + 
+                "id=" + id + 
+                ", fechaHoraReserva=" + fechaHoraReserva + 
+                ", espacioReservado=" + espacioReservado + 
+                ", taller=" + taller + 
+                ", cliente=" + cliente + '}';
     }
 
+
+    /**
+     * Metodo estatico para crear una reserva
+     * @return
+     * @throws IllegalArgumentException 
+     */
     public static Reserva crearReserva() throws IllegalArgumentException {
         Reserva reserva = new Reserva();
         try {
@@ -73,6 +116,9 @@ public class Reserva {
             reserva.setFechaHoraReserva(fechaReserva);
             System.out.println("Espacio reservado: ");
             reserva.setEspacioReservado(Utils.kInt());
+            
+            // TODO setCliente nomina.setCliente(buscarClienteBBDD(nifCliente));
+            // TODO setTaller  nomina.setTaller(buscarTallerBBDD(idTaller));
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
@@ -86,7 +132,7 @@ public class Reserva {
      * @param reserva
      */
     public static void insertarDatosReservaBBDD(Reserva reserva) {
-        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA) VALUES(?,?)";
+        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA, TALLERID, CLIENTENIF) VALUES(?,?)";
 
         // convertir string fechaHoraReserva a date
         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -104,6 +150,8 @@ public class Reserva {
             Utils.prst.setInt(1, reserva.getEspacioReservado());
             //ojo es objeto fechaSQL
             Utils.prst.setObject(2, fechaSQL);
+            Utils.prst.setInt(3, reserva.getTaller().getId());
+            Utils.prst.setString(4, reserva.getCliente().getNif());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctomente señor!");
         } catch (SQLException e) {
@@ -144,6 +192,8 @@ public class Reserva {
             Utils.prst.setInt(1, this.getEspacioReservado());
             //ojo es objeto fechaSQL
             Utils.prst.setObject(2, fechaSQL);
+            Utils.prst.setInt(3, this.getTaller().getId());
+            Utils.prst.setString(4, this.getCliente().getNif());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctomente señor!");
         } catch (SQLException e) {
