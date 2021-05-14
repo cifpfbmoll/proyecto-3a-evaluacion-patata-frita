@@ -3,6 +3,8 @@ package eu.fp.concesionario;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+package patatafrita;
+
 
 /**
  * Clase motor donde se guardan los datos de los distintos motores
@@ -32,7 +34,7 @@ public class Motor {
     }
 
     /**
-     * Constructor con todos los datos por parámetro
+     * Constructor borcon todos los datos por parámetro
      * @param potencia
      * @param par
      * @param cilindrada
@@ -245,7 +247,7 @@ public class Motor {
     /**
      * Se muestran todos los motores en la base de datos
      */
-    public static void mostrarTodosConcesionariosBBDD() {
+    public static void mostrarTodosMotoresBBDD() {
         String consulta = "SELECT * FROM MOTOR ORDER BY ID";
         try {
             Utils.connection = Utils.conectarBBDD();

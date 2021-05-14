@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * @version 1 - 29/03/2021
  */
 public class Taller {
-    private int id;
+    private int id=-1;
     private int espacios;
     private String horario;
 
@@ -26,6 +26,10 @@ public class Taller {
         this.id = copia.getId();
         this.espacios = copia.getEspacios();
         this.horario = copia.getHorario();
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -115,7 +119,7 @@ public class Taller {
         } finally {
             if (Utils.prst != null) {
                 try {
-                    Utils.prst.close();//cierra el objeto Statement llamado prst
+                    Utils.prst.close();//cierra el objeto prepareStatement llamado prst
                 } catch (SQLException throwables) {
                     System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
                 }
@@ -140,6 +144,7 @@ public class Taller {
                 Utils.prst.setInt(1, id);
                 Utils.rs = Utils.prst.executeQuery();
                 Utils.rs.next();
+                taller.setId(id);
                 taller.setEspacios(Utils.rs.getInt(1));
                 taller.setHorario(Utils.rs.getString(2));
                 System.out.println("El taller ha sido encontrado y creado " + taller.toString());
@@ -338,6 +343,6 @@ public class Taller {
         }
         return encontrado;
     }
-    //No cierres la conexion cuando termines, la conexion se mantiene hasta que el usuario se va
+    //No cerrar la conexion cuando se termine, la conexion se mantiene hasta que el usuario se va
 }
 
