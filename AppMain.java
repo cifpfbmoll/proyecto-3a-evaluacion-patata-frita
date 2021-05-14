@@ -22,11 +22,11 @@ public class AppMain {
         boolean salir = false;
         boolean volver = false;
         int opcion;
+        Dashboard.initGui();
+        Login.initGui();
 
         try {
             do {
-                Dashboard.initGui();
-                Login.initGui();
                 System.out.println("MENU");
                 System.out.println("1 factura");
                 System.out.println("2 nomina");
