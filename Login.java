@@ -28,26 +28,34 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelInicio = new javax.swing.JPanel();
+        TtitleInicio = new javax.swing.JLabel();
         PanelLogin = new javax.swing.JPanel();
         LabelNIF = new javax.swing.JLabel();
         TextNIF = new javax.swing.JTextField();
         ButtonLOGIN = new javax.swing.JButton();
-        TtitleInicio = new javax.swing.JLabel();
-        ButtonCERRAR = new javax.swing.JButton();
+        LabelPass = new javax.swing.JLabel();
+        TextPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setTitle("Login Concesionario");
+        setMinimumSize(new java.awt.Dimension(484, 391));
+        setPreferredSize(new java.awt.Dimension(484, 391));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PanelInicio.setBackground(new java.awt.Color(204, 255, 255));
         PanelInicio.setForeground(new java.awt.Color(60, 63, 65));
-        PanelInicio.setPreferredSize(new java.awt.Dimension(1280, 720));
-        PanelInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanelInicio.setMinimumSize(new java.awt.Dimension(417, 317));
+        PanelInicio.setPreferredSize(new java.awt.Dimension(417, 317));
+
+        TtitleInicio.setBackground(new java.awt.Color(0, 0, 0));
+        TtitleInicio.setFont(new java.awt.Font("SansSerif", 3, 36)); // NOI18N
+        TtitleInicio.setForeground(new java.awt.Color(0, 0, 0));
+        TtitleInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TtitleInicio.setText("Inicio de sesión");
 
         PanelLogin.setBackground(new java.awt.Color(255, 255, 255));
 
-        LabelNIF.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        LabelNIF.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         LabelNIF.setForeground(new java.awt.Color(0, 0, 0));
         LabelNIF.setText("NIF");
 
@@ -56,7 +64,7 @@ public class Login extends javax.swing.JFrame {
         TextNIF.setForeground(new java.awt.Color(51, 51, 51));
         TextNIF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextNIFActionPerformed(evt);
+                ButtonLOGINActionPerformed(evt);
             }
         });
 
@@ -71,67 +79,108 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        LabelPass.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        LabelPass.setForeground(new java.awt.Color(0, 0, 0));
+        LabelPass.setText("Contraseña");
+
+        TextPass.setBackground(new java.awt.Color(255, 255, 255));
+        TextPass.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        TextPass.setForeground(new java.awt.Color(51, 51, 51));
+        TextPass.setPreferredSize(new java.awt.Dimension(64, 36));
+        TextPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonLOGINActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelLoginLayout = new javax.swing.GroupLayout(PanelLogin);
         PanelLogin.setLayout(PanelLoginLayout);
         PanelLoginLayout.setHorizontalGroup(
             PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelLoginLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(LabelNIF))
-            .addGroup(PanelLoginLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(TextNIF, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(PanelLoginLayout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(ButtonLOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLoginLayout.createSequentialGroup()
+                .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLoginLayout.createSequentialGroup()
+                        .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelLoginLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(LabelNIF))
+                            .addGroup(PanelLoginLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(LabelPass)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(PanelLoginLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TextPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TextNIF))))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLoginLayout.createSequentialGroup()
+                .addGap(0, 125, Short.MAX_VALUE)
+                .addComponent(ButtonLOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125))
         );
         PanelLoginLayout.setVerticalGroup(
             PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLoginLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(LabelNIF)
-                .addGap(4, 4, 4)
+                .addContainerGap()
+                .addComponent(LabelNIF, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextNIF, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
-                .addComponent(ButtonLOGIN))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LabelPass)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TextPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ButtonLOGIN)
+                .addContainerGap())
         );
 
-        PanelInicio.add(PanelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 360, -1));
+        javax.swing.GroupLayout PanelInicioLayout = new javax.swing.GroupLayout(PanelInicio);
+        PanelInicio.setLayout(PanelInicioLayout);
+        PanelInicioLayout.setHorizontalGroup(
+            PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelInicioLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TtitleInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        PanelInicioLayout.setVerticalGroup(
+            PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelInicioLayout.createSequentialGroup()
+                .addComponent(TtitleInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
+        );
 
-        TtitleInicio.setBackground(new java.awt.Color(0, 0, 0));
-        TtitleInicio.setFont(new java.awt.Font("Calibri", 3, 36)); // NOI18N
-        TtitleInicio.setForeground(new java.awt.Color(0, 0, 0));
-        TtitleInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TtitleInicio.setText("Inicio de sesión");
-        PanelInicio.add(TtitleInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
-
-        ButtonCERRAR.setBackground(new java.awt.Color(255, 255, 255));
-        ButtonCERRAR.setForeground(new java.awt.Color(0, 0, 0));
-        ButtonCERRAR.setText("Cerrar");
-        ButtonCERRAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonCERRARActionPerformed(evt);
-            }
-        });
-        PanelInicio.add(ButtonCERRAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 660, -1, -1));
-
-        getContentPane().add(PanelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(PanelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(PanelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonLOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLOGINActionPerformed
-        // TODO add your handling code here:
+        String nif = TextNIF.getText();
+        String pass = String.valueOf(TextPass.getPassword());
+        System.out.println(nif);
+        System.out.println(pass);
+        Empleado user = Empleado.buscarEmpleadoBBDD(nif);
+        System.out.println(user.toString());
     }//GEN-LAST:event_ButtonLOGINActionPerformed
-
-    private void ButtonCERRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCERRARActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_ButtonCERRARActionPerformed
-
-    private void TextNIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNIFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextNIFActionPerformed
 
     public static void main(String[] args) {
         initGui();
@@ -173,12 +222,13 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonCERRAR;
     private javax.swing.JButton ButtonLOGIN;
     private javax.swing.JLabel LabelNIF;
+    private javax.swing.JLabel LabelPass;
     private javax.swing.JPanel PanelInicio;
     private javax.swing.JPanel PanelLogin;
     private javax.swing.JTextField TextNIF;
+    private javax.swing.JPasswordField TextPass;
     private javax.swing.JLabel TtitleInicio;
     // End of variables declaration//GEN-END:variables
 }

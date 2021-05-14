@@ -25,8 +25,8 @@ public class AppMain {
 
         try {
             do {
-                Login.initGui();
                 Dashboard.initGui();
+                Login.initGui();
                 System.out.println("MENU");
                 System.out.println("1 factura");
                 System.out.println("2 nomina");

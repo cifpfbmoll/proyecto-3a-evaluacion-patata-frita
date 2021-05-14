@@ -50,6 +50,7 @@ public class Dashboard extends javax.swing.JFrame {
         TallerClientes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Dashboard Concesionario");
 
         VentanaCompleta.setBackground(new java.awt.Color(255, 255, 255));
         VentanaCompleta.setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -74,7 +75,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderLayout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1_TitleMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                .addComponent(jLabel1_TitleMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
         );
         HeaderLayout.setVerticalGroup(
             HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,22 +90,27 @@ public class Dashboard extends javax.swing.JFrame {
         VentasInicio.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         VentasInicio.setForeground(new java.awt.Color(255, 255, 255));
         VentasInicio.setText("Inicio");
+        VentasInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         VentasFacturas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         VentasFacturas.setForeground(new java.awt.Color(255, 255, 255));
         VentasFacturas.setText("Facturas");
+        VentasFacturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         VentasMotores.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         VentasMotores.setForeground(new java.awt.Color(255, 255, 255));
         VentasMotores.setText("Motores");
+        VentasMotores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         VentasVehiculos.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         VentasVehiculos.setForeground(new java.awt.Color(255, 255, 255));
         VentasVehiculos.setText("Vehiculos");
+        VentasVehiculos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         VentasClientes.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         VentasClientes.setForeground(new java.awt.Color(255, 255, 255));
         VentasClientes.setText("Clientes");
+        VentasClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout MenuVENTASLayout = new javax.swing.GroupLayout(MenuVENTAS);
         MenuVENTAS.setLayout(MenuVENTASLayout);
@@ -141,18 +147,22 @@ public class Dashboard extends javax.swing.JFrame {
         ClienteInicio.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         ClienteInicio.setForeground(new java.awt.Color(255, 255, 255));
         ClienteInicio.setText("Inicio");
+        ClienteInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         ClienteAreaPersonal.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         ClienteAreaPersonal.setForeground(new java.awt.Color(255, 255, 255));
         ClienteAreaPersonal.setText("Área personal");
+        ClienteAreaPersonal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         ClienteReservas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         ClienteReservas.setForeground(new java.awt.Color(255, 255, 255));
         ClienteReservas.setText("Reservas");
+        ClienteReservas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         ClienteFacturas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         ClienteFacturas.setForeground(new java.awt.Color(255, 255, 255));
         ClienteFacturas.setText("Facturas");
+        ClienteFacturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout MenuClienteLayout = new javax.swing.GroupLayout(MenuCliente);
         MenuCliente.setLayout(MenuClienteLayout);
@@ -186,18 +196,22 @@ public class Dashboard extends javax.swing.JFrame {
         TallerInicio.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         TallerInicio.setForeground(new java.awt.Color(255, 255, 255));
         TallerInicio.setText("Inicio");
+        TallerInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         TallerFacturas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         TallerFacturas.setForeground(new java.awt.Color(255, 255, 255));
         TallerFacturas.setText("Facturas");
+        TallerFacturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         TallerReservas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         TallerReservas.setForeground(new java.awt.Color(255, 255, 255));
         TallerReservas.setText("Reservas");
+        TallerReservas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         TallerClientes.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         TallerClientes.setForeground(new java.awt.Color(255, 255, 255));
         TallerClientes.setText("Clientes");
+        TallerClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout MenuTALLERLayout = new javax.swing.GroupLayout(MenuTALLER);
         MenuTALLER.setLayout(MenuTALLERLayout);
@@ -263,7 +277,7 @@ public class Dashboard extends javax.swing.JFrame {
             VentanaCompletaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VentanaCompletaLayout.createSequentialGroup()
                 .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1009, Short.MAX_VALUE))
+                .addGap(0, 997, Short.MAX_VALUE))
         );
         VentanaCompletaLayout.setVerticalGroup(
             VentanaCompletaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
