@@ -3,7 +3,6 @@ package eu.fp.concesionario;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-package patatafrita;
 
 
 /**
