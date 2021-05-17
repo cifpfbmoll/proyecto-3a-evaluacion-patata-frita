@@ -15,11 +15,21 @@ public class Nomina {
     private String fechaNomina;
     private Empleado empleado;
 
-    // constructor vacio
+    /**
+     * Constructor vacio
+     */
     public Nomina() {
     }
 
-    // constructor con todos atributos
+    /**
+     * Constructor con todos los atributos
+     * @param id
+     * @param horasTrabajadas
+     * @param sueldoBruto
+     * @param sueldoNeto
+     * @param fechaNomina
+     * @param empleado 
+     */
     public Nomina(int id, int horasTrabajadas, float sueldoBruto, float sueldoNeto, String fechaNomina, Empleado empleado) {
         this.id = id;
         this.horasTrabajadas = horasTrabajadas;
@@ -29,7 +39,10 @@ public class Nomina {
         this.empleado = empleado;
     }
 
-    // constructor copia
+    /**
+     * Constructor copia
+     * @param nomina una nomina pasa como parametro
+     */
     public Nomina(Nomina nomina) {
         this.id = nomina.getId();
         this.horasTrabajadas = nomina.getHorasTrabajadas();

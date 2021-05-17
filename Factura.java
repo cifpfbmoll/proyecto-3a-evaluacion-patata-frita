@@ -17,7 +17,9 @@ public class Factura {
     private Venta venta;
     private Vehiculo vehiculo;
 
-    //constructor vacio
+    /**
+     * constructor vacio
+     */
     public Factura() {
     }
 
@@ -40,7 +42,10 @@ public class Factura {
         this.vehiculo = vehiculo;
     }
 
-    //constructor copia
+    /**
+     * Constructor copia
+     * @param factura 
+     */
     public Factura(Factura factura) {
         this.fechaFactura = factura.getFechaFactura();
         this.costeFactura = factura.getCosteFactura();
@@ -139,8 +144,10 @@ public class Factura {
         this.trabajoRealizado = trabajoRealizado;
     }
 
-    // toString
-
+    /**
+     * toString
+     * @return 
+     */
     @Override
     public String toString() {
         return "Factura{" + 

@@ -1,12 +1,15 @@
+
 import java.sql.SQLException;
 
 /**
- * TALLERES
- * Esta clase almacena la informacion de los diversos talleres de cada concesionario
+ * TALLERES Esta clase almacena la informacion de los diversos talleres de cada
+ * concesionario
+ *
  * @author Jose Luis Cardona
  * @version 1 - 29/03/2021
  */
 public class Taller {
+
     private int id;
     private int espacios;
     private String horario;
@@ -28,6 +31,10 @@ public class Taller {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getEspacios() {
@@ -71,15 +78,16 @@ public class Taller {
 
     @Override
     public String toString() {
-        return "Taller{" +
-                "id=" + id +
-                ", espacios=" + espacios +
-                ", horario='" + horario + '\'' +
-                '}';
+        return "Taller{"
+                + "id=" + id
+                + ", espacios=" + espacios
+                + ", horario='" + horario + '\''
+                + '}';
     }
 
     /**
      * Metodo para crear talleres junto a sus datos.
+     *
      * @return Objeto "taller" una vez creado con sus datos introducidos.
      */
     public static Taller crearTaller() {
@@ -97,12 +105,13 @@ public class Taller {
 
     /**
      * Metodo para guardar los datos de los talleres dentro de la base de datos.
+     *
      * @param taller
      */
     public static void guardarDatosTaller(Taller taller) {
         String consulta = "INSERT INTO TALLER (ESPACIOS, HORARIO) VALUES (?,?)";
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, taller.getEspacios());
             Utils.prst.setString(2, taller.getHorario());
@@ -111,18 +120,17 @@ public class Taller {
         } catch (SQLException ex) {
             System.out.println("¡ERROR! no se pudieron guardar los datos del taller en la BBDD.");
         } finally {
-            if (Utils.prst != null) {
-                try {
-                    Utils.prst.close();//cierra el objeto Statement llamado prst
-                } catch (SQLException throwables) {
-                    System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
-                }
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
 
     /**
      * Metodo para buscar talleres mediante la id.
+     *
      * @param id
      * @return Objeto "taller" con sus datos guardados.
      */
@@ -132,7 +140,7 @@ public class Taller {
             return null;
         } else {
             Taller taller = new Taller();
-            Utils.connection = Utils.conectarBBDD();
+
             try {
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setInt(1, id);
@@ -140,25 +148,17 @@ public class Taller {
                 Utils.rs.next();
                 taller.setEspacios(Utils.rs.getInt(1));
                 taller.setHorario(Utils.rs.getString(2));
+                taller.setId(id);
                 System.out.println("El taller ha sido encontrado y creado " + taller.toString());
 
             } catch (SQLException ex) {
                 System.out.println("¡ERROR! No se ha encontrado el taller.");
             } finally {
                 try {
-                    if (Utils.rs != null) {
-                        Utils.rs.close();
-                    }
-                    if (Utils.prst != null) {
-                        Utils.prst.close();
-                    }
-                    if (Utils.connection != null) {
-                        Utils.connection.close();
-                    }
-                } catch (SQLException ex) {
-                    System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+                    Utils.cerrarVariables();
+                } catch (Exception e) {
+                    System.out.println("Error al cerrar variables");
                 }
-
             }
             return taller;
         }
@@ -170,43 +170,36 @@ public class Taller {
     public static void mostrarTaller() {
         String consulta = "SELECT * FROM TALLER ORDER BY ID";
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.rs = Utils.prst.executeQuery(consulta);
 
             while (Utils.rs.next()) {
                 System.out.println(
-                        "ID: "+Utils.rs.getInt(1) + ", " +
-                                "ESPACIOS : "+Utils.rs.getInt(2) + ", " +
-                                "HORARIO : "+Utils.rs.getString(3));
+                        "ID: " + Utils.rs.getInt(1) + ", "
+                        + "ESPACIOS : " + Utils.rs.getInt(2) + ", "
+                        + "HORARIO : " + Utils.rs.getString(3));
             }
         } catch (SQLException ex) {
             System.out.println("¡ERROR! No se han podido mostrar los datos");
         } finally {
             try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
 
     /**
      * Metodo para borrar talleres de la BBDD.
+     *
      * @param id
      */
     public static void borrarTaller(int id) {
         try {
             String consulta = "DELETE FROM TALLER WHERE ID=?";
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id);
             Utils.prst.executeUpdate();
@@ -215,20 +208,16 @@ public class Taller {
             System.out.println("¡ERROR! No se han podido borrar los datos.");
         } finally {
             try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
 
     /**
      * Metodo para modificar los datos de los talleres de la BBDD.
+     *
      * @param id
      * @param espacios
      * @param horario
@@ -237,7 +226,7 @@ public class Taller {
         String consulta = "UPDATE TALLER SET ESPACIOS=?, HORARIO=?  WHERE ID=?";
 
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, espacios);
             Utils.prst.setString(2, horario);
@@ -249,28 +238,25 @@ public class Taller {
             System.out.println("¡ERROR! No se han podido modificar los datos.");
         } finally {
             try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
+
     /**
      * 1º metodo exist que sirve para buscar talleres mediante la id.
+     *
      * @param id
-     * @return Booleano llamado "encontrado" el cual si sale true es que el taller ha sido
-     * hallado, si sale false significa que no se ha localizado.
+     * @return Booleano llamado "encontrado" el cual si sale true es que el
+     * taller ha sido hallado, si sale false significa que no se ha localizado.
      */
     public static boolean existTaller(int id) {
         boolean encontrado = false;
         String consulta = "SELECT * FROM TALLER WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id);
             Utils.rs = Utils.prst.executeQuery();
@@ -283,17 +269,9 @@ public class Taller {
             System.out.println("¡ERROR! No se ha encontrado el taller.");
         } finally {
             try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
         return encontrado;
@@ -301,14 +279,15 @@ public class Taller {
 
     /**
      * 2º método exist que sirve para buscar talleres mediante la id.
-     * @return Booleano llamado "encontrado" el cual si sale true es que el taller ha sido
-     * hallado, si sale false significa que no se ha localizado.
+     *
+     * @return Booleano llamado "encontrado" el cual si sale true es que el
+     * taller ha sido hallado, si sale false significa que no se ha localizado.
      */
     public boolean existTaller() {
         boolean encontrado = false;
         String consulta = "SELECT * FROM TALLER WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, this.id);
             Utils.rs = Utils.prst.executeQuery();
@@ -321,21 +300,12 @@ public class Taller {
             System.out.println("¡ERROR! No se ha encontrado el taller.");
         } finally {
             try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
         return encontrado;
     }
     //No cierres la conexion cuando termines, la conexion se mantiene hasta que el usuario se va
 }
-
