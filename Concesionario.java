@@ -227,64 +227,6 @@ public class Concesionario {
     }
 
     /**
-     * relacionamos un concesionario con un taller
-     *
-     * @param idConcesionario
-     * @param idTaller
-     */
-    public static void relacionarConcesionarioConTaller(int idConcesionario, int idTaller) {
-        String consulta = "UPDATE CONCESIONARIO SET TALLERID=? WHERE ID=?";
-        try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setInt(1, idTaller);
-            Utils.prst.setInt(2, idConcesionario);
-            Utils.prst.executeUpdate();
-            System.out.println("Relacion concesionario " + idConcesionario + " con taller " + idTaller + " establecida correctamente");
-        } catch (SQLException ex) {
-            System.out.println("Error relacionar concesionario con taller");
-        } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error cerrar connexion");
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void relacionarConcesionarioConVenta(int idConcesionario, int idVenta) {
-        String consulta = "UPDATE CONCESIONARIO SET VENTAID=? WHERE ID=?";
-        try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setInt(1, idVenta);
-            Utils.prst.setInt(2, idConcesionario);
-            Utils.prst.executeUpdate();
-            System.out.println("Relacion concesionario " + idConcesionario + " con venta " + idVenta + " establecida correctamente");
-        } catch (SQLException ex) {
-            System.out.println("Error relacionar concesionario  con venta");
-        } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error cerrar connexion");
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
      * Metodo para buscar concesionarios mediante la id.
      * @param id
      * @return Objeto "concesionario" con sus datos guardados.
@@ -504,5 +446,4 @@ public class Concesionario {
         }
         return encontrado;
     }
-
 }

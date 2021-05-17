@@ -10,7 +10,7 @@ import java.sql.SQLException;
  */
 public class Taller {
 
-    private int id;
+    private int id = -1;
     private int espacios;
     private String horario;
 
@@ -29,12 +29,12 @@ public class Taller {
         this.horario = copia.getHorario();
     }
 
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getEspacios() {
@@ -146,6 +146,7 @@ public class Taller {
                 Utils.prst.setInt(1, id);
                 Utils.rs = Utils.prst.executeQuery();
                 Utils.rs.next();
+                taller.setId(id);
                 taller.setEspacios(Utils.rs.getInt(1));
                 taller.setHorario(Utils.rs.getString(2));
                 taller.setId(id);
@@ -307,5 +308,5 @@ public class Taller {
         }
         return encontrado;
     }
-    //No cierres la conexion cuando termines, la conexion se mantiene hasta que el usuario se va
+    //No cerrar la conexion cuando se termine, la conexion se mantiene hasta que el usuario se va
 }

@@ -1,4 +1,5 @@
 
+
 import java.sql.*;
 
 /**
@@ -9,7 +10,8 @@ import java.sql.*;
 public class Factura {
 
     //atributos
-    private int id = -1;
+
+    private int id = -1; //Se carga cuando se lee de la base de datos unicamente
     private String trabajoRealizado;
     private float costeFactura;
     private String fechaFactura;
@@ -135,6 +137,8 @@ public class Factura {
             throw new IllegalArgumentException("Valor coste factura no valido");
         }
     }
+
+    public void setId(int id){this.id = id;}
 
     public String getTrabajoRealizado() {
         return trabajoRealizado;
@@ -605,6 +609,7 @@ public class Factura {
                 Utils.prst.setInt(1, idFactura);
                 Utils.rs = Utils.prst.executeQuery();
                 Utils.rs.next();
+                f.setId(idFactura);
                 f.setTrabajoRealizado(Utils.rs.getString(1));
                 f.setCosteFactura(Utils.rs.getFloat(2));
                 f.setFechaFactura(Utils.rs.getString(3));
