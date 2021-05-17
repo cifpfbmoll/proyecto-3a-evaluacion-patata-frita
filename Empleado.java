@@ -1,6 +1,5 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
-package patatafrita;
 
 /**
  *
@@ -100,7 +99,6 @@ public class Empleado extends Persona {
     public void insertarDatosEmpleadoBBDD() {
         String consulta = "INSERT INTO EMPLEADO (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICILIO, PUESTO, TALLERID, VENTAID) VALUES (?,?,?,?,?,?,?,?)";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNif());
             Utils.prst.setString(2, this.getNombre());
@@ -114,6 +112,12 @@ public class Empleado extends Persona {
             System.out.println("Datos insertados correctomnte!");
         } catch (SQLException e) {
             System.out.println("Error al insertar datos del empleado a la BBDD");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
@@ -126,7 +130,6 @@ public class Empleado extends Persona {
         String consulta = "SELECT * FROM EMPLEADO WHERE nif LIKE ?";
         Empleado empleado = new Empleado();
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, nif);
             Utils.rs = Utils.prst.executeQuery();
@@ -142,6 +145,12 @@ public class Empleado extends Persona {
         } catch (SQLException e) {
             System.out.println("Error al buscar cliente");
             empleado = null;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return empleado;
     }
@@ -154,7 +163,6 @@ public class Empleado extends Persona {
         int ret = 0;
         String consulta = "UPDATE EMPLEADO SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PUESTO=?, TALLERID=?, VENTAID=? WHERE NIF=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNombre());
             Utils.prst.setString(2, this.getApellidos());
@@ -169,6 +177,12 @@ public class Empleado extends Persona {
         } catch (SQLException e) {
             System.out.println("Error actualizar datos");
             ret = -1;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
@@ -179,7 +193,6 @@ public class Empleado extends Persona {
     public void borrarEmpleadoBBDD() {
         String consulta = " DELETE FROM EMPLEADO WHERE NIF LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNif());
             Utils.prst.executeUpdate();
@@ -187,6 +200,12 @@ public class Empleado extends Persona {
 
         } catch (SQLException e) {
             System.out.println("Error borrar datos");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
@@ -196,10 +215,8 @@ public class Empleado extends Persona {
     public static void mostrarTodosEmpleadosBBDD() {
         String consulta = "SELECT * FROM EMPLEADO ORDER BY NIF";
         try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery(consulta);
-            ResultSet rs;
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 System.out.print(
                     "NIF: " + Utils.rs.getString(1) + "," +
@@ -214,6 +231,12 @@ public class Empleado extends Persona {
             }
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los empleados");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
@@ -225,7 +248,6 @@ public class Empleado extends Persona {
         boolean ret = false;
         String consulta = "SELECT * FROM EMPLEADO WHERE NIF LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1,getNif());
             if (Utils.rs != null){
@@ -236,6 +258,12 @@ public class Empleado extends Persona {
         } catch (SQLException e) {
             System.out.println("No existe el empleado en la base de datos");
             ret = false;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
@@ -249,7 +277,6 @@ public class Empleado extends Persona {
         boolean ret = false;
         String consulta = "SELECT * FROM EMPLEADO WHERE NIF LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1,nif);
             if (Utils.rs != null){
@@ -260,6 +287,12 @@ public class Empleado extends Persona {
         } catch (SQLException e) {
             System.out.println("No existe el empleado en la base de datos");
             ret = false;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }

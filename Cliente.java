@@ -1,4 +1,4 @@
-package patatafrita;/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -67,7 +67,6 @@ public class Cliente extends Persona {
     public void insertarClienteBBDD() {
         String consulta = "INSERT INTO CLIENTE (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICLIO) VALUES (?,?,?,?,?)";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1,this.getNif());
             Utils.prst.setString(2,this.getNombre());
@@ -79,6 +78,12 @@ public class Cliente extends Persona {
 
         } catch (SQLException e) {
             System.out.println("Error al insertar datos del cliente a la BBDD");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
@@ -91,7 +96,6 @@ public class Cliente extends Persona {
         String consulta = "SELECT * FROM CLIENTE WHERE nif LIKE ?";
         Cliente cliente = new Cliente();
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, nif);
             Utils.rs = Utils.prst.executeQuery();
@@ -104,6 +108,12 @@ public class Cliente extends Persona {
         } catch (SQLException e) {
             System.out.println("Error al buscar cliente");
             cliente = null;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return cliente;
     }
@@ -116,7 +126,6 @@ public class Cliente extends Persona {
         int ret = 0;
         String consulta = "UPDATE CLIENTE SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=? WHERE NIF=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNombre());
             Utils.prst.setString(2, this.getApellidos());
@@ -128,6 +137,12 @@ public class Cliente extends Persona {
         } catch (SQLException e) {
             System.out.println("Error actualizar datos");
             ret = -1;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
@@ -138,7 +153,6 @@ public class Cliente extends Persona {
     public void borrarClienteBBDD() {
         String consulta = " DELETE FROM CLIENTE WHERE NIF LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNif());
             Utils.prst.executeUpdate();
@@ -146,6 +160,12 @@ public class Cliente extends Persona {
 
         } catch (SQLException e) {
             System.out.println("Error borrar datos");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
@@ -155,10 +175,8 @@ public class Cliente extends Persona {
     public static void mostrarTodosClienteBBDD() {
         String consulta = "SELECT * FROM CLIENTE ORDER BY NIF";
         try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery(consulta);
-            ResultSet rs;
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 System.out.print(
                     "NIF: " + Utils.rs.getString(1) + "," +
@@ -170,6 +188,12 @@ public class Cliente extends Persona {
             }
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
@@ -181,7 +205,6 @@ public class Cliente extends Persona {
         boolean ret = false;
         String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1,getNif());
             if (Utils.rs != null){
@@ -192,6 +215,12 @@ public class Cliente extends Persona {
         } catch (SQLException e) {
             System.out.println("No existe el cliente en la base de datos");
             ret = false;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
@@ -205,7 +234,6 @@ public class Cliente extends Persona {
         boolean ret = false;
         String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1,nif);
             if (Utils.rs != null){
@@ -216,6 +244,12 @@ public class Cliente extends Persona {
         } catch (SQLException e) {
             System.out.println("No existe el cliente en la base de datos");
             ret = false;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }

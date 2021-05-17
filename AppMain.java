@@ -15,7 +15,7 @@ public class AppMain {
      */
     public static void main(String[] args) {
 
-        Utils.conectarBBDD();
+        Utils.conectarBBDD2();
 
         boolean salir = false;
         boolean volver = false;
