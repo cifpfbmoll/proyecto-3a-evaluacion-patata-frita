@@ -29,7 +29,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         VentanaCompleta = new javax.swing.JPanel();
         PanelMenu = new javax.swing.JPanel();
-        Header = new javax.swing.JPanel();
+        MenuHeader = new javax.swing.JPanel();
         jLabel1_TitleMenu = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         MenuVENTAS = new javax.swing.JPanel();
@@ -48,6 +48,7 @@ public class Dashboard extends javax.swing.JFrame {
         TallerFacturas = new javax.swing.JLabel();
         TallerReservas = new javax.swing.JLabel();
         TallerClientes = new javax.swing.JLabel();
+        PanelBoard = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Concesionario");
@@ -57,7 +58,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         PanelMenu.setBackground(new java.awt.Color(51, 51, 51));
 
-        Header.setBackground(new java.awt.Color(51, 51, 51));
+        MenuHeader.setBackground(new java.awt.Color(51, 51, 51));
 
         jLabel1_TitleMenu.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
         jLabel1_TitleMenu.setForeground(new java.awt.Color(255, 255, 0));
@@ -66,20 +67,21 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1_TitleMenu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("icono");
+        jLabel2.setIconTextGap(0);
 
-        javax.swing.GroupLayout HeaderLayout = new javax.swing.GroupLayout(Header);
-        Header.setLayout(HeaderLayout);
-        HeaderLayout.setHorizontalGroup(
-            HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderLayout.createSequentialGroup()
+        javax.swing.GroupLayout MenuHeaderLayout = new javax.swing.GroupLayout(MenuHeader);
+        MenuHeader.setLayout(MenuHeaderLayout);
+        MenuHeaderLayout.setHorizontalGroup(
+            MenuHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuHeaderLayout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1_TitleMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
         );
-        HeaderLayout.setVerticalGroup(
-            HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HeaderLayout.createSequentialGroup()
+        MenuHeaderLayout.setVerticalGroup(
+            MenuHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuHeaderLayout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jLabel1_TitleMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -244,7 +246,7 @@ public class Dashboard extends javax.swing.JFrame {
         PanelMenu.setLayout(PanelMenuLayout);
         PanelMenuLayout.setHorizontalGroup(
             PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MenuHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(MenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(MenuVENTAS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -257,7 +259,7 @@ public class Dashboard extends javax.swing.JFrame {
         PanelMenuLayout.setVerticalGroup(
             PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMenuLayout.createSequentialGroup()
-                .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MenuHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,17 +273,37 @@ public class Dashboard extends javax.swing.JFrame {
                     .addContainerGap(67, Short.MAX_VALUE)))
         );
 
+        PanelBoard.setBackground(new java.awt.Color(242, 242, 242));
+        PanelBoard.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout PanelBoardLayout = new javax.swing.GroupLayout(PanelBoard);
+        PanelBoard.setLayout(PanelBoardLayout);
+        PanelBoardLayout.setHorizontalGroup(
+            PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 985, Short.MAX_VALUE)
+        );
+        PanelBoardLayout.setVerticalGroup(
+            PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout VentanaCompletaLayout = new javax.swing.GroupLayout(VentanaCompleta);
         VentanaCompleta.setLayout(VentanaCompletaLayout);
         VentanaCompletaLayout.setHorizontalGroup(
             VentanaCompletaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VentanaCompletaLayout.createSequentialGroup()
                 .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 997, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         VentanaCompletaLayout.setVerticalGroup(
             VentanaCompletaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VentanaCompletaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -352,10 +374,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel ClienteFacturas;
     private javax.swing.JLabel ClienteInicio;
     private javax.swing.JLabel ClienteReservas;
-    private javax.swing.JPanel Header;
     private javax.swing.JPanel MenuCliente;
+    private javax.swing.JPanel MenuHeader;
     private javax.swing.JPanel MenuTALLER;
     private javax.swing.JPanel MenuVENTAS;
+    private javax.swing.JPanel PanelBoard;
     private javax.swing.JPanel PanelMenu;
     private javax.swing.JLabel TallerClientes;
     private javax.swing.JLabel TallerFacturas;
