@@ -3,6 +3,7 @@ package patatafrita;/*
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -24,6 +25,9 @@ public class Utils {
     public static ResultSet rs;
     public static PreparedStatement prst;
     public static Statement st;
+    public static File archivo = null;
+    public static BufferedReader lectorArchivo = null;
+    public static BufferedWriter escritorArchivo = null;
 
     /**
      * metodo estatico para sacar fecha y hora del sistema
@@ -271,4 +275,45 @@ public class Utils {
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
         return sqlDate;
     }
+    //TODO : CREAR METODOS : ABRIR, CERRAR, LEER Y ESCRIBIR ARCHIVO JUNTO A UN BUFFERED STREAM
+
+    /*
+    -BufferedInputStream y BufferedOutputStream por byte streams
+    -BufferedReader y BufferedWriter para streams de carácter.
+
+    Para crear un buffered stream, a su constructor le debemos pasar un flujo sin buffer:
+    -InputStream = new BufferedReader (new FileReader ( "entrada.txt"));
+    -OutputStream = new BufferedWriter (new FileWriter ( "salida.txt"));
+    */
+
+    /**
+     * Metodo que permite leer una linea entera de un fichero/archivo.
+     * Una vez finalice dejara de leer y mostrara un mensaje indicando
+     * que se ha llegado al final.
+     * @throws IOException
+     */
+    public static void leerArchivo() throws IOException{
+        if (lectorArchivo == null){
+            //crea un Buffer de lectura en caso de que no se haya creado antes
+            lectorArchivo = new BufferedReader(new FileReader(archivo));
+        }
+        String lineaLeida = "";
+        //Lee 1 linea entera
+        lineaLeida = lectorArchivo.readLine();
+        if (lineaLeida != null){
+            System.out.println(lineaLeida);
+        }else {
+            throw new EOFException();
+        }
+    }
+    public static void escribirArchivo(String linea) throws IOException{
+        if (escritorArchivo == null){
+            //crea un Buffer de escritura en caso de que no se haya creado antes
+            escritorArchivo = new BufferedWriter(new FileWriter(archivo));
+        }
+        escritorArchivo.write(linea);
+        //mediante un main ver si funciona asi o se necesita escribir newLine
+    }
+    //abrir archivo
+    //cerrar archivo y buffers leer y escribir (si es null no se cierra)
 }
