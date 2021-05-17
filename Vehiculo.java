@@ -1,12 +1,14 @@
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Clase vehiculo donde se guardan los datos de todos los vehiculos
- * Contiene el conjunto de variables necesarias, 2 enums para la clase y el estado
- * y un Motor @see #Motor.java
+ * Clase vehiculo donde se guardan los datos de todos los vehiculos Contiene el
+ * conjunto de variables necesarias, 2 enums para la clase y el estado y un
+ * Motor @see #Motor.java
+ *
  * @author Joan
  */
 public class Vehiculo {
@@ -21,6 +23,7 @@ public class Vehiculo {
         Minivan,
         Pickup
     }
+
     public enum estadoVehiculo {
         Vendido,
         Venta,
@@ -48,12 +51,13 @@ public class Vehiculo {
     /**
      * Constructor vacío
      */
-    public Vehiculo(){
+    public Vehiculo() {
 
     }
 
     /**
      * Constructor con todos los datos por parámetro
+     *
      * @param motor
      * @param fecha_fabricacion
      * @param bastidor
@@ -73,7 +77,7 @@ public class Vehiculo {
             this.setAsientos(asientos);
             this.setKilometraje(kilometraje);
             this.setAutonomia(autonomia);
-        }catch(Exception ex) {
+        } catch (Exception ex) {
             System.out.println("Error con los datos insertados, reviselos");
         }
         this.motor = motor;
@@ -91,9 +95,10 @@ public class Vehiculo {
 
     /**
      * Constructor copia
+     *
      * @param vec
      */
-    public Vehiculo(Vehiculo vec){
+    public Vehiculo(Vehiculo vec) {
         this.motor = vec.getMotor();
         this.fecha_fabricacion = vec.getFecha_fabricacion();
         this.bastidor = vec.getBastidor();
@@ -144,9 +149,13 @@ public class Vehiculo {
         this.estado = estado;
     }
 
-    public estadoVehiculo getEstado() { return this.estado; }
+    public estadoVehiculo getEstado() {
+        return this.estado;
+    }
 
-    public claseVehiculo getTipo() { return this.tipo; }
+    public claseVehiculo getTipo() {
+        return this.tipo;
+    }
 
     public Motor getMotor() {
         return motor;
@@ -177,9 +186,9 @@ public class Vehiculo {
     }
 
     public void setKilometraje(int kilometraje) throws IllegalArgumentException {
-        if(kilometraje<0){
+        if (kilometraje < 0) {
             throw new IllegalArgumentException("El kilometraje no puede ser inferior a 0");
-        }else{
+        } else {
             this.kilometraje = kilometraje;
         }
     }
@@ -188,10 +197,10 @@ public class Vehiculo {
         return autonomia;
     }
 
-    public void setAutonomia(int autonomia) throws IllegalArgumentException{
-        if(autonomia<0){
+    public void setAutonomia(int autonomia) throws IllegalArgumentException {
+        if (autonomia < 0) {
             throw new IllegalArgumentException("La autonomia no puede ser inferior a 0");
-        }else{
+        } else {
             this.autonomia = autonomia;
         }
     }
@@ -200,10 +209,10 @@ public class Vehiculo {
         return puertas;
     }
 
-    public void setPuertas(int puertas) throws IllegalArgumentException{
-        if(puertas<=0){
+    public void setPuertas(int puertas) throws IllegalArgumentException {
+        if (puertas <= 0) {
             throw new IllegalArgumentException("No puede haber menos de 1 puerta");
-        }else{
+        } else {
             this.puertas = puertas;
         }
     }
@@ -212,10 +221,10 @@ public class Vehiculo {
         return asientos;
     }
 
-    public void setAsientos(int asientos) throws IllegalArgumentException{
-        if(asientos<=0){
+    public void setAsientos(int asientos) throws IllegalArgumentException {
+        if (asientos <= 0) {
             throw new IllegalArgumentException("No puede haber menos de 1 asiento");
-        }else {
+        } else {
             this.asientos = asientos;
         }
     }
@@ -254,22 +263,24 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo{" +
-                "motor=" + motor +
-                ", fecha_fabricacion=" + fecha_fabricacion +
-                ", bastidor='" + bastidor + '\'' +
-                ", kilometraje=" + kilometraje +
-                ", autonomia=" + autonomia +
-                ", puertas=" + puertas +
-                ", asientos=" + asientos +
-                ", extras='" + extras + '\'' +
-                ", color='" + color + '\'' +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                '}';
+        return "Vehiculo{"
+                + "motor=" + motor
+                + ", fecha_fabricacion=" + fecha_fabricacion
+                + ", bastidor='" + bastidor + '\''
+                + ", kilometraje=" + kilometraje
+                + ", autonomia=" + autonomia
+                + ", puertas=" + puertas
+                + ", asientos=" + asientos
+                + ", extras='" + extras + '\''
+                + ", color='" + color + '\''
+                + ", marca='" + marca + '\''
+                + ", modelo='" + modelo + '\''
+                + '}';
     }
+
     /**
      * crear objeto vehiculo
+     *
      * @param motor
      * @return Vehiculo
      */
@@ -301,15 +312,15 @@ public class Vehiculo {
     }
 
     /**
-     * Insertar datos de la clase actual a la base de datos. Se inserta un cliente vacío si el vehiculo aun no se ha vendido
+     * Insertar datos de la clase actual a la base de datos. Se inserta un
+     * cliente vacío si el vehiculo aun no se ha vendido
      *
      */
     public void insertarDatosVehiculoBBDD() {
         //INSERT de todos los datos, cliente puede ser null si aun no se ha vendido el vehiculo
-        if(motor.getId() != -1) {
+        if (motor.getId() != -1) {
             String consulta = "INSERT INTO VEHICULO (BASTIDOR, TIPO, ESTADO, KILOMETRAJE, AUTONOMIA, PUERTAS, ASIENTOS, COLOR, MARCA, MODELO, PRECIO, EXTRAS, MOTORID, VENTAID, CLIENTEID ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             try {
-                Utils.connection = Utils.conectarBBDD();
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setString(1, this.getBastidor());
                 Utils.prst.setString(2, this.getTipo().toString());
@@ -330,14 +341,21 @@ public class Vehiculo {
                 System.out.println("Datos insertados correctomnte!");
             } catch (SQLException e) {
                 System.out.println("Error al insertar datos a la BBDD");
+            } finally {
+                try {
+                    Utils.cerrarVariables();
+                } catch (Exception e) {
+                    System.out.println("Error al cerrar variables");
+                }
             }
-        }else{
+        } else {
             System.out.println("Debe guardar primero el motor actual en la base de datos");
         }
     }
 
     /**
-     * buscamos un vehiculo segun id, si no lo ecuentra devuelve null, si lo encuentra devuelve una clase vehiculo con todos los datos
+     * buscamos un vehiculo segun id, si no lo ecuentra devuelve null, si lo
+     * encuentra devuelve una clase vehiculo con todos los datos
      *
      * @param bastidor
      * @return
@@ -347,7 +365,6 @@ public class Vehiculo {
         String consulta = "SELECT * FROM VEHICULO WHERE bastidor LIKE ?";
         Vehiculo vehiculo = new Vehiculo();
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, bastidor);
             Utils.rs = Utils.prst.executeQuery();
@@ -371,23 +388,30 @@ public class Vehiculo {
             if(Utils.rs.getString(15).length() > 1){
                 vehiculo.setCliente(Cliente.buscarClienteBBDD(Utils.rs.getString(15))); //TODO
             }
-            */
+             */
         } catch (SQLException e) {
             System.out.println("Error al buscar vehiculo");
             vehiculo = null;
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
         }
         return vehiculo;
     }
 
     /**
-     * Se modifica el vehiculo actual en la base de datos con los datos actuales de la clase
+     * Se modifica el vehiculo actual en la base de datos con los datos actuales
+     * de la clase
+     *
      * @return Devuelve 0 si correcto, -1 si error
      */
     public int modificarVehiculoBBDD() {
         int ret = 0;
         String consulta = "UPDATE VEHICULO SET TIPO=?, ESTADO=?, KILOMETRAJE=?, AUTONOMIA=?, PUERTAS=?, ASIENTOS=?, COLOR=?, MARCA=?, MODELO=?, PRECIO=?, EXTRAS=?, MOTORID=?, VENTAID=?, CLIENTEID=? WHERE BASTIDOR=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getTipo().toString());
             Utils.prst.setString(2, this.getEstado().toString());
@@ -409,6 +433,12 @@ public class Vehiculo {
         } catch (SQLException e) {
             System.out.println("Error actualizar datos");
             ret = -1;
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
@@ -419,7 +449,6 @@ public class Vehiculo {
     public void borrarVehiculoBBDD() {
         String consulta = " DELETE FROM VEHICULO WHERE BASTIDOR LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getBastidor());
             Utils.prst.executeUpdate();
@@ -427,6 +456,12 @@ public class Vehiculo {
 
         } catch (SQLException e) {
             System.out.println("Error al borrar datos, es posible que cuelguen otras tablas de esta");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
@@ -437,45 +472,42 @@ public class Vehiculo {
         String consulta = "SELECT * FROM VEHICULO ORDER BY BASTIDOR";
         ResultSet rs = null; //ResultSet para guardar las querys de los motores
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
-                System.out.print("BASTIDOR: " + Utils.rs.getString(1) + "," +
-                            "TIPO: " + Utils.rs.getString(2) + "," +
-                            "ESTADO: " + Utils.rs.getString(3) + "," +
-                            "KILOMETRAJE: " + Utils.rs.getInt(4) + "," +
-                            "AUTONOMIA: " + Utils.rs.getInt(5) + "," +
-                            "PUERTAS: " + Utils.rs.getInt(6) + "," +
-                            "ASIENTOS: " + Utils.rs.getInt(7) + "," +
-                            "COLOR: " + Utils.rs.getString(8) + "," +
-                            "MARCA: " + Utils.rs.getString(9) + "," +
-                            "MODELO: " + Utils.rs.getString(10) + "," +
-                            "PRECIO: " + Utils.rs.getInt(11) + "," +
-                            "EXTRAS: " + Utils.rs.getString(12));
+                System.out.print("BASTIDOR: " + Utils.rs.getString(1) + ","
+                        + "TIPO: " + Utils.rs.getString(2) + ","
+                        + "ESTADO: " + Utils.rs.getString(3) + ","
+                        + "KILOMETRAJE: " + Utils.rs.getInt(4) + ","
+                        + "AUTONOMIA: " + Utils.rs.getInt(5) + ","
+                        + "PUERTAS: " + Utils.rs.getInt(6) + ","
+                        + "ASIENTOS: " + Utils.rs.getInt(7) + ","
+                        + "COLOR: " + Utils.rs.getString(8) + ","
+                        + "MARCA: " + Utils.rs.getString(9) + ","
+                        + "MODELO: " + Utils.rs.getString(10) + ","
+                        + "PRECIO: " + Utils.rs.getInt(11) + ","
+                        + "EXTRAS: " + Utils.rs.getString(12));
                 //Con el valor del id del motor buscamos los datos del motor del vehiculo
                 //Es posible que realice demasiadas query, otra opcion para solucionarlo
                 //Seria coger todos los motores ya que por lo general se comparten un motor
                 //Con varios vehiculos y imprimir los datos del motor que toca
                 consulta = "SELECT * FROM MOTOR WHERE ID=?";
                 Utils.prst = Utils.connection.prepareStatement(consulta);
-                Utils.prst.setInt(1,Utils.rs.getInt(13));
+                Utils.prst.setInt(1, Utils.rs.getInt(13));
                 rs = Utils.prst.executeQuery();
-                System.out.println("ID MOTOR: " + rs.getInt(1) + "," +
-                        "TIPO: " + rs.getString(2) + "," +
-                        "POTENCIA: " + rs.getFloat(3) + "," +
-                        "CILINDRADA: " + rs.getFloat(4) + "," +
-                        "NUM_MOTORES: " + rs.getInt(5));
+                System.out.println("ID MOTOR: " + rs.getInt(1) + ","
+                        + "TIPO: " + rs.getString(2) + ","
+                        + "POTENCIA: " + rs.getFloat(3) + ","
+                        + "CILINDRADA: " + rs.getFloat(4) + ","
+                        + "NUM_MOTORES: " + rs.getInt(5));
             }
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los vehiculos");
-        }finally {
-            try{
-                if(rs != null) {
-                    rs.close();
-                }
-            }catch(SQLException e){
-                System.out.println("Problema al cerrar un resultset");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -483,21 +515,27 @@ public class Vehiculo {
     /**
      * Comprueba si el vehiculo actual ya existe en la base de datos
      */
-    public boolean existsInDB(){
+    public boolean existsInDB() {
         boolean ret = false;
         String consulta = "SELECT * FROM VEHICULO WHERE BASTIDOR LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setString(1,bastidor);
-            if (Utils.rs != null){
+            Utils.prst.setString(1, bastidor);
+            if (Utils.rs != null) {
                 ret = true;
-            }else{
+            } else {
                 ret = false;
             }
         } catch (SQLException e) {
             System.out.println("No existe el vehiculo en la base de datos");
             ret = false;
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
@@ -505,23 +543,28 @@ public class Vehiculo {
     /**
      * Comprueba si el vehiculo con ese bastidor existe en la base de datos
      */
-    public static boolean existsInDB(String bastidor){
+    public static boolean existsInDB(String bastidor) {
         boolean ret = false;
         String consulta = "SELECT * FROM VEHICULO WHERE BASTIDOR LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setString(1,bastidor);
-            if (Utils.rs != null){
+            Utils.prst.setString(1, bastidor);
+            if (Utils.rs != null) {
                 ret = true;
-            }else{
+            } else {
                 ret = false;
             }
         } catch (SQLException e) {
             System.out.println("No existe el vehiculo en la base de datos");
             ret = false;
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
 }
-

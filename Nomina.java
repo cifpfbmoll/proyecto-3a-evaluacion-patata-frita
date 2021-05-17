@@ -15,11 +15,21 @@ public class Nomina {
     private String fechaNomina;
     private Empleado empleado;
 
-    // constructor vacio
+    /**
+     * Constructor vacio
+     */
     public Nomina() {
     }
 
-    // constructor con todos atributos
+    /**
+     * Constructor con todos los atributos
+     * @param id
+     * @param horasTrabajadas
+     * @param sueldoBruto
+     * @param sueldoNeto
+     * @param fechaNomina
+     * @param empleado 
+     */
     public Nomina(int id, int horasTrabajadas, float sueldoBruto, float sueldoNeto, String fechaNomina, Empleado empleado) {
         this.id = id;
         this.horasTrabajadas = horasTrabajadas;
@@ -29,7 +39,10 @@ public class Nomina {
         this.empleado = empleado;
     }
 
-    // constructor copia
+    /**
+     * Constructor copia
+     * @param nomina una nomina pasa como parametro
+     */
     public Nomina(Nomina nomina) {
         this.id = nomina.getId();
         this.horasTrabajadas = nomina.getHorasTrabajadas();
@@ -128,7 +141,7 @@ public class Nomina {
             System.out.println("Elige NIF para nomina");
             String nifEmpleado = Utils.kString();
             
-            //TODO: nomina.setEmpleado(buscarEmpleadoBBDD(nifEmpleado));
+           nomina.setEmpleado(Empleado.buscarEmpleadoBBDD(nifEmpleado));
             
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getLocalizedMessage());
@@ -162,7 +175,7 @@ public class Nomina {
     }
 
     /**
-     * metodo para insertar datos de una nomina apartir de un objeto
+     * metodo estatico para insertar datos de una nomina apartir de un objeto
      *
      * @param nomina
      */
@@ -176,8 +189,6 @@ public class Nomina {
             Utils.prst.setFloat(2, nomina.getSueldoBruto());
             Utils.prst.setFloat(3, nomina.getSueldoNeto());
             Utils.prst.setDate(4, sqlDate);
-            //TODO: nomina.setEmpleado(buscarEmpleadoBBDD(nifEmpleado));
-            
             Utils.prst.setString(5, nomina.getEmpleado().getNif());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente señor");
@@ -205,8 +216,6 @@ public class Nomina {
             Utils.prst.setFloat(2, this.getSueldoBruto());
             Utils.prst.setFloat(3, this.getSueldoNeto());
             Utils.prst.setDate(4, sqlDate);
-
-            ////TODO: nomina.setEmpleado(buscarEmpleadoBBDD(nifEmpleado));
             Utils.prst.setString(5, this.getEmpleado().getNif());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente señor!");
@@ -310,9 +319,10 @@ public class Nomina {
      * @param SueldoBruto
      * @param SueldoNeto
      * @param fecha
+     * @param EmpleadoNif
      */
     public static void modificarNominaBBDD(int IDNomina, int HorasTrabajo, float SueldoBruto, float SueldoNeto, String fecha, String EmpleadoNif) {
-        String consulta = "UPDATE NOMINA SET HORAS=?, SUELDO_BRUTO=?, SUELDO_NETO=?, FECHA=?,  EMPLEADONIF=? WHERE ID=?";
+        String consulta = "UPDATE NOMINA SET HORAS=?, SUELDO_BRUTO=?, SUELDO_NETO=?, FECHA=?, EMPLEADONIF=? WHERE ID=?";
         java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(fecha);
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -366,7 +376,7 @@ public class Nomina {
      * metodo para buscar una nomina en BBDD, devuelve objeto nomina
      *
      * @param idNomina
-     * @return
+     * @return Objeto "nomina" con sus datos guardados.
      */
     public static Nomina buscarNominaBBDD(int idNomina) {
         String consulta = "SELECT HORAS, SUELDO_BRUTO, SUELDO_NETO, FECHA ,EMPLEADONIF FROM NOMINA WHERE ID=?";
@@ -385,8 +395,9 @@ public class Nomina {
                 n.setSueldoBruto(Utils.rs.getFloat(2));
                 n.setSueldoNeto(Utils.rs.getFloat(3));
                 n.setFechaNomina(Utils.rs.getString(4));
-                //TODO setEmpleado
-                //n.setEmpleado(buscarEmpleadoBBDD(empleadoNif));
+                String empleadoNif = Utils.rs.getString(5);//nos devuelve nifEmpleado             
+                n.setEmpleado(Empleado.buscarEmpleadoBBDD(empleadoNif));// establecemos empleado
+                
                 System.out.println("Nomina encontrada y creada " + n.toString());
             } catch (SQLException ex) {
                 System.out.println("Error buscar nomina");
