@@ -60,7 +60,7 @@ public abstract class Persona {
      */
     @Override
     public String toString() {
-        return "{ Nombre: " + nombre + " | Apellidos: " + apellidos + " | NIF: " + nif + " | Telefono: " + telefono + " | Domicilio: " + domicilio + "}";
+        return "Nombre: " + nombre + " | Apellidos: " + apellidos + " | NIF: " + nif + " | Telefono: " + telefono + " | Domicilio: " + domicilio;
     }
 
     // GETTERS Y SETTERS
@@ -85,16 +85,17 @@ public abstract class Persona {
     }
 
     public void setNif(String nif) throws IllegalArgumentException {
-        if (nif.length() != 9) {
+        System.out.println(nif.length() );
+        if (nif.length() == 9) {
             try {
                 Integer.parseInt(nif.substring(0, 7));
                 nif.substring(8).toString();
                 this.nif = nif;
             } catch (Exception ex) {
-                throw new IllegalArgumentException("Esto no es un NIF válido.");
+                throw new IllegalArgumentException("Esto no es un NIF válido. Ha de contener 8 numeros y una letra al final.");
             }
         } else {
-            throw new IllegalArgumentException("Esto no es un NIF válido.");
+            throw new IllegalArgumentException("Esto no es un NIF válido. Ha de contener 9 carácteres.");
         }
     }
 

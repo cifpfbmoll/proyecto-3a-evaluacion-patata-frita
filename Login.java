@@ -10,7 +10,7 @@ package eu.fp.concesionario;
  * @author Karina
  */
 public class Login extends javax.swing.JFrame {
-
+    Empleado user;
     /**
      * Creates new form Gui
      */
@@ -173,13 +173,17 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void ButtonLOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLOGINActionPerformed
         String nif = TextNIF.getText();
         String pass = String.valueOf(TextPass.getPassword());
         System.out.println(nif);
         System.out.println(pass);
-        Empleado user = Empleado.buscarEmpleadoBBDD(nif);
+        
+        //Empleado user = Empleado.buscarEmpleadoBBDD(nif); // Coger empleado de la base de datos, el metodo no funciona
+        user = new Empleado(new Nomina(), "Administrativo", "Patata", "Frita", nif, 123456789, "Calle de la piruleta", 1, 1);
         System.out.println(user.toString());
+        new Dashboard().initGui(user);
     }//GEN-LAST:event_ButtonLOGINActionPerformed
 
     public static void main(String[] args) {

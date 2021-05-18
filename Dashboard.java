@@ -5,6 +5,11 @@
  */
 package eu.fp.concesionario;
 
+import java.awt.Component;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.*;
+
 /**
  *
  * @author Karina
@@ -16,6 +21,7 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
+        addActionToMenuLabels();
     }
 
     /**
@@ -330,11 +336,46 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String[] args) {
-        initGui();
+    public void addActionToMenuLabels() {
+        Component[] menus = PanelMenu.getComponents();
+
+        for (Component menu : menus) {
+            JPanel contenedor = (JPanel) menu;
+            Component[] components = contenedor.getComponents();
+            for (Component component : components) {
+                JLabel label = (JLabel) component;
+
+                label.addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        label.setForeground(new java.awt.Color(255, 255, 102));
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        label.setForeground(new java.awt.Color(255, 255, 255));
+                    }
+                });
+            }
+        }
     }
-    
-    public static void initGui() {
+
+    public void initGui(Empleado user) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -365,8 +406,21 @@ public class Dashboard extends javax.swing.JFrame {
                 Dashboard gui = new Dashboard();
                 gui.setVisible(true);
                 gui.setLocationRelativeTo(null);
+                configurarPaneles(user);
             }
         });
+    }
+    
+    public void configurarPaneles(Empleado user) {
+        System.out.println(user.getPuestoTrabajo());
+        switch (user.getPuestoTrabajo()){
+                    case "Administrativo":
+                        System.out.println("Estoy entrando en Administrativo");
+                        MenuTALLER.setVisible(false);
+                        MenuVENTAS.setVisible(false);
+                        MenuCliente.setVisible(false);
+                    default:
+                }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

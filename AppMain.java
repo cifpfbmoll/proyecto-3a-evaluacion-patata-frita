@@ -22,7 +22,7 @@ public class AppMain {
         boolean salir = false;
         boolean volver = false;
         int opcion;
-        Dashboard.initGui();
+        
         Login.initGui();
 
         try {

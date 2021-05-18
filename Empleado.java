@@ -31,9 +31,11 @@ public class Empleado extends Persona {
      * @param telefono Telefono del trabajador
      * @param domicilio Domicilio del trabajador
      */
-    public Empleado(Nomina nomina, String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
+    public Empleado(Nomina nomina, String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio, Integer tallerId, Integer ventaId) {
         super(nombre, apellidos, nif, telefono, domicilio);
         this.puestoTrabajo = puestoTrabajo;
+        this.tallerId = tallerId;
+        this.ventaId = ventaId;
     }
 
     /**
@@ -73,7 +75,7 @@ public class Empleado extends Persona {
     
     @Override
     public String toString() {
-        return super.toString() + " puesto de trabajo: " + puestoTrabajo; //Sin el conjunto de nominas, eso vendra con la base de datos y serà una simple llamada
+        return super.toString() + " | Puesto de trabajo: " + puestoTrabajo + " | VentaID: " + ventaId + " | TallerID: " + tallerId; //Sin el conjunto de nominas, eso vendra con la base de datos y serà una simple llamada
     }
 
     /**
