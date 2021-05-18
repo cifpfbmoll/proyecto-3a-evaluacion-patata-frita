@@ -36,15 +36,15 @@ public class Dashboard extends javax.swing.JFrame {
         VentanaCompleta = new javax.swing.JPanel();
         PanelMenu = new javax.swing.JPanel();
         MenuHeader = new javax.swing.JPanel();
-        jLabel1_TitleMenu = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        Title = new javax.swing.JLabel();
+        icono = new javax.swing.JLabel();
         MenuVENTAS = new javax.swing.JPanel();
         VentasInicio = new javax.swing.JLabel();
         VentasFacturas = new javax.swing.JLabel();
         VentasMotores = new javax.swing.JLabel();
         VentasVehiculos = new javax.swing.JLabel();
         VentasClientes = new javax.swing.JLabel();
-        MenuCliente = new javax.swing.JPanel();
+        MenuCLIENTE = new javax.swing.JPanel();
         ClienteInicio = new javax.swing.JLabel();
         ClienteAreaPersonal = new javax.swing.JLabel();
         ClienteReservas = new javax.swing.JLabel();
@@ -54,6 +54,13 @@ public class Dashboard extends javax.swing.JFrame {
         TallerFacturas = new javax.swing.JLabel();
         TallerReservas = new javax.swing.JLabel();
         TallerClientes = new javax.swing.JLabel();
+        MenuADMIN = new javax.swing.JPanel();
+        AdminInicio = new javax.swing.JLabel();
+        AdminFacturas = new javax.swing.JLabel();
+        AdminEmpleados = new javax.swing.JLabel();
+        AdminNominas = new javax.swing.JLabel();
+        AdminVentas = new javax.swing.JLabel();
+        AdminTaller = new javax.swing.JLabel();
         PanelBoard = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,31 +73,31 @@ public class Dashboard extends javax.swing.JFrame {
 
         MenuHeader.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel1_TitleMenu.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
-        jLabel1_TitleMenu.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel1_TitleMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1_TitleMenu.setText("Concesionario");
-        jLabel1_TitleMenu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Title.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title.setForeground(new java.awt.Color(255, 255, 0));
+        Title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Title.setText("Concesionario");
+        Title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("icono");
-        jLabel2.setIconTextGap(0);
+        icono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icono.setText("icono");
+        icono.setIconTextGap(0);
 
         javax.swing.GroupLayout MenuHeaderLayout = new javax.swing.GroupLayout(MenuHeader);
         MenuHeader.setLayout(MenuHeaderLayout);
         MenuHeaderLayout.setHorizontalGroup(
             MenuHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuHeaderLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1_TitleMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
         );
         MenuHeaderLayout.setVerticalGroup(
             MenuHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuHeaderLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jLabel1_TitleMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         MenuVENTAS.setBackground(new java.awt.Color(51, 51, 51));
@@ -150,7 +157,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(363, Short.MAX_VALUE))
         );
 
-        MenuCliente.setBackground(new java.awt.Color(51, 51, 51));
+        MenuCLIENTE.setBackground(new java.awt.Color(51, 51, 51));
 
         ClienteInicio.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         ClienteInicio.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,22 +179,22 @@ public class Dashboard extends javax.swing.JFrame {
         ClienteFacturas.setText("Facturas");
         ClienteFacturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        javax.swing.GroupLayout MenuClienteLayout = new javax.swing.GroupLayout(MenuCliente);
-        MenuCliente.setLayout(MenuClienteLayout);
-        MenuClienteLayout.setHorizontalGroup(
-            MenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuClienteLayout.createSequentialGroup()
+        javax.swing.GroupLayout MenuCLIENTELayout = new javax.swing.GroupLayout(MenuCLIENTE);
+        MenuCLIENTE.setLayout(MenuCLIENTELayout);
+        MenuCLIENTELayout.setHorizontalGroup(
+            MenuCLIENTELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuCLIENTELayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(MenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(MenuCLIENTELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ClienteReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ClienteInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ClienteAreaPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                     .addComponent(ClienteFacturas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        MenuClienteLayout.setVerticalGroup(
-            MenuClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuClienteLayout.createSequentialGroup()
+        MenuCLIENTELayout.setVerticalGroup(
+            MenuCLIENTELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuCLIENTELayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ClienteInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -230,7 +237,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(MenuTALLERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TallerInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TallerFacturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TallerReservas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                    .addComponent(TallerReservas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                     .addComponent(TallerClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -245,7 +252,72 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(TallerReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TallerClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(419, Short.MAX_VALUE))
+                .addContainerGap(418, Short.MAX_VALUE))
+        );
+
+        MenuADMIN.setBackground(new java.awt.Color(51, 51, 51));
+
+        AdminInicio.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        AdminInicio.setForeground(new java.awt.Color(255, 255, 255));
+        AdminInicio.setText("Inicio");
+        AdminInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        AdminFacturas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        AdminFacturas.setForeground(new java.awt.Color(255, 255, 255));
+        AdminFacturas.setText("Facturas");
+        AdminFacturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        AdminEmpleados.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        AdminEmpleados.setForeground(new java.awt.Color(255, 255, 255));
+        AdminEmpleados.setText("Empleados");
+        AdminEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        AdminNominas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        AdminNominas.setForeground(new java.awt.Color(255, 255, 255));
+        AdminNominas.setText("Nominas");
+        AdminNominas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        AdminVentas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        AdminVentas.setForeground(new java.awt.Color(255, 255, 255));
+        AdminVentas.setText("Acceder a VENTAS");
+        AdminVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        AdminTaller.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        AdminTaller.setForeground(new java.awt.Color(255, 255, 255));
+        AdminTaller.setText("Acceder a TALLER");
+        AdminTaller.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout MenuADMINLayout = new javax.swing.GroupLayout(MenuADMIN);
+        MenuADMIN.setLayout(MenuADMINLayout);
+        MenuADMINLayout.setHorizontalGroup(
+            MenuADMINLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuADMINLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(MenuADMINLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AdminEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AdminInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AdminFacturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AdminNominas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AdminVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AdminTaller, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        MenuADMINLayout.setVerticalGroup(
+            MenuADMINLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuADMINLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AdminInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AdminFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AdminNominas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AdminEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AdminVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AdminTaller, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(306, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PanelMenuLayout = new javax.swing.GroupLayout(PanelMenu);
@@ -253,30 +325,32 @@ public class Dashboard extends javax.swing.JFrame {
         PanelMenuLayout.setHorizontalGroup(
             PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(MenuHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(MenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MenuCLIENTE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(MenuVENTAS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelMenuLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(MenuTALLER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(MenuTALLER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(MenuADMIN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelMenuLayout.setVerticalGroup(
             PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMenuLayout.createSequentialGroup()
                 .addComponent(MenuHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(MenuCLIENTE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMenuLayout.createSequentialGroup()
                     .addGap(0, 77, Short.MAX_VALUE)
                     .addComponent(MenuVENTAS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelMenuLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(MenuTALLER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(67, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMenuLayout.createSequentialGroup()
+                    .addGap(0, 78, Short.MAX_VALUE)
+                    .addComponent(MenuTALLER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMenuLayout.createSequentialGroup()
+                    .addGap(0, 78, Short.MAX_VALUE)
+                    .addComponent(MenuADMIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         PanelBoard.setBackground(new java.awt.Color(242, 242, 242));
@@ -402,33 +476,55 @@ public class Dashboard extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            Dashboard gui = new Dashboard();
             public void run() {
-                Dashboard gui = new Dashboard();
                 gui.setVisible(true);
                 gui.setLocationRelativeTo(null);
-                configurarPaneles(user);
+                configurePanles();
+            }
+
+            public void configurePanles() {
+                gui.MenuVENTAS.setVisible(false);
+                gui.MenuCLIENTE.setVisible(false);
+                gui.MenuTALLER.setVisible(false);
+                gui.MenuADMIN.setVisible(false);
+                switch (user.getPuestoTrabajo()) {
+                    case "Administrativo":
+                        gui.MenuADMIN.setVisible(true);
+                        System.out.println("Menus para: 'Administrativo'");
+                        break;
+                    case "Taller":
+                        gui.MenuTALLER.setVisible(true);
+                        System.out.println("Menus para: 'Administrativo'");
+                        break;
+                    case "Ventas":
+                        gui.MenuVENTAS.setVisible(true);
+                        System.out.println("Menus para: 'Administrativo'");
+                        break;
+                    case "Cliente":
+                        gui.MenuCLIENTE.setVisible(true);
+                        System.out.println("Menus para: 'Administrativo'");
+                        break;
+                    default:
+                        System.out.println("Puesto no detectado");
+                }
             }
         });
     }
-    
-    public void configurarPaneles(Empleado user) {
-        System.out.println(user.getPuestoTrabajo());
-        switch (user.getPuestoTrabajo()){
-                    case "Administrativo":
-                        System.out.println("Estoy entrando en Administrativo");
-                        MenuTALLER.setVisible(false);
-                        MenuVENTAS.setVisible(false);
-                        MenuCliente.setVisible(false);
-                    default:
-                }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AdminEmpleados;
+    private javax.swing.JLabel AdminFacturas;
+    private javax.swing.JLabel AdminInicio;
+    private javax.swing.JLabel AdminNominas;
+    private javax.swing.JLabel AdminTaller;
+    private javax.swing.JLabel AdminVentas;
     private javax.swing.JLabel ClienteAreaPersonal;
     private javax.swing.JLabel ClienteFacturas;
     private javax.swing.JLabel ClienteInicio;
     private javax.swing.JLabel ClienteReservas;
-    private javax.swing.JPanel MenuCliente;
+    private javax.swing.JPanel MenuADMIN;
+    private javax.swing.JPanel MenuCLIENTE;
     private javax.swing.JPanel MenuHeader;
     private javax.swing.JPanel MenuTALLER;
     private javax.swing.JPanel MenuVENTAS;
@@ -438,13 +534,13 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel TallerFacturas;
     private javax.swing.JLabel TallerInicio;
     private javax.swing.JLabel TallerReservas;
+    private javax.swing.JLabel Title;
     private javax.swing.JPanel VentanaCompleta;
     private javax.swing.JLabel VentasClientes;
     private javax.swing.JLabel VentasFacturas;
     private javax.swing.JLabel VentasInicio;
     private javax.swing.JLabel VentasMotores;
     private javax.swing.JLabel VentasVehiculos;
-    private javax.swing.JLabel jLabel1_TitleMenu;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel icono;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,7 +10,9 @@ package eu.fp.concesionario;
  * @author Karina
  */
 public class Login extends javax.swing.JFrame {
+
     Empleado user;
+
     /**
      * Creates new form Gui
      */
@@ -173,23 +175,26 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void ButtonLOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLOGINActionPerformed
         String nif = TextNIF.getText();
         String pass = String.valueOf(TextPass.getPassword());
         System.out.println(nif);
         System.out.println(pass);
-        
+
         //Empleado user = Empleado.buscarEmpleadoBBDD(nif); // Coger empleado de la base de datos, el metodo no funciona
         user = new Empleado(new Nomina(), "Administrativo", "Patata", "Frita", nif, 123456789, "Calle de la piruleta", 1, 1);
         System.out.println(user.toString());
         new Dashboard().initGui(user);
+        disable();
     }//GEN-LAST:event_ButtonLOGINActionPerformed
 
     public static void main(String[] args) {
         initGui();
     }
-    
+
+    static Login gui = new Login();
+
     public static void initGui() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -218,11 +223,14 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Login gui = new Login();
                 gui.setVisible(true);
                 gui.setLocationRelativeTo(null);
             }
         });
+    }
+
+    public void disable() {
+        gui.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

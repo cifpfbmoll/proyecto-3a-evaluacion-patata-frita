@@ -12,6 +12,7 @@ public class Empleado extends Persona {
     private String puestoTrabajo;
     private Integer tallerId;
     private Integer ventaId;
+    private Nomina nomina;
 
     /**
      * Constructor vacio
@@ -23,7 +24,7 @@ public class Empleado extends Persona {
     /**
      * Constructor con todos los parametros
      *
-     * @param nomina Lista de las nominas
+     * @param nomina Nominas
      * @param puestoTrabajo Puesto de trabajo
      * @param nombre Nombre del trabajador
      * @param apellidos Apellidos del trabajador
@@ -34,6 +35,7 @@ public class Empleado extends Persona {
     public Empleado(Nomina nomina, String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio, Integer tallerId, Integer ventaId) {
         super(nombre, apellidos, nif, telefono, domicilio);
         this.puestoTrabajo = puestoTrabajo;
+        this.nomina = nomina;
         this.tallerId = tallerId;
         this.ventaId = ventaId;
     }
