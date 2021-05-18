@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package eu.fp.concesionario;
 
 import java.awt.Component;
@@ -63,15 +58,24 @@ public class Dashboard extends javax.swing.JFrame {
         ClienteFacturas = new javax.swing.JLabel();
         PanelBoard = new javax.swing.JPanel();
         Board_Clientes = new javax.swing.JPanel();
+        LabelTitle_Clientes = new javax.swing.JLabel();
         Board_Facturas = new javax.swing.JPanel();
+        LabelTitle_Facturas = new javax.swing.JLabel();
         Board_Motores = new javax.swing.JPanel();
+        LabelTitle_Motores = new javax.swing.JLabel();
         Board_Vehiculos = new javax.swing.JPanel();
+        LabelTitle_Vehiculos = new javax.swing.JLabel();
         Board_Inicio = new javax.swing.JPanel();
         Label_SesionNIF = new javax.swing.JLabel();
+        LabelTitle_Inicio = new javax.swing.JLabel();
         Board_Reservas = new javax.swing.JPanel();
+        LabelTitle_Reservas = new javax.swing.JLabel();
         Board_Empleados = new javax.swing.JPanel();
+        LabelTitle_Empleados = new javax.swing.JLabel();
         Board_Nominas = new javax.swing.JPanel();
+        LabelTitle_Nominas = new javax.swing.JLabel();
         Board_AreaCliente = new javax.swing.JPanel();
+        LabelTitle_AreaCliente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Concesionario");
@@ -117,26 +121,31 @@ public class Dashboard extends javax.swing.JFrame {
         VentasInicio.setForeground(new java.awt.Color(255, 255, 255));
         VentasInicio.setText("Inicio");
         VentasInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VentasInicio.setName("inicio"); // NOI18N
 
         VentasFacturas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         VentasFacturas.setForeground(new java.awt.Color(255, 255, 255));
         VentasFacturas.setText("Facturas");
         VentasFacturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VentasFacturas.setName("facturas"); // NOI18N
 
         VentasMotores.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         VentasMotores.setForeground(new java.awt.Color(255, 255, 255));
         VentasMotores.setText("Motores");
         VentasMotores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VentasMotores.setName("motores"); // NOI18N
 
         VentasVehiculos.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         VentasVehiculos.setForeground(new java.awt.Color(255, 255, 255));
         VentasVehiculos.setText("Vehiculos");
         VentasVehiculos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VentasVehiculos.setName("vehiculos"); // NOI18N
 
         VentasClientes.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         VentasClientes.setForeground(new java.awt.Color(255, 255, 255));
         VentasClientes.setText("Clientes");
         VentasClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VentasClientes.setName("clientes"); // NOI18N
 
         javax.swing.GroupLayout MenuVENTASLayout = new javax.swing.GroupLayout(MenuVENTAS);
         MenuVENTAS.setLayout(MenuVENTASLayout);
@@ -174,21 +183,25 @@ public class Dashboard extends javax.swing.JFrame {
         TallerInicio.setForeground(new java.awt.Color(255, 255, 255));
         TallerInicio.setText("Inicio");
         TallerInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TallerInicio.setName("inicio"); // NOI18N
 
         TallerFacturas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         TallerFacturas.setForeground(new java.awt.Color(255, 255, 255));
         TallerFacturas.setText("Facturas");
         TallerFacturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TallerFacturas.setName("facturas"); // NOI18N
 
         TallerReservas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         TallerReservas.setForeground(new java.awt.Color(255, 255, 255));
         TallerReservas.setText("Reservas");
         TallerReservas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TallerReservas.setName("reservas"); // NOI18N
 
         TallerClientes.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         TallerClientes.setForeground(new java.awt.Color(255, 255, 255));
         TallerClientes.setText("Clientes");
         TallerClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TallerClientes.setName("clientes"); // NOI18N
 
         javax.swing.GroupLayout MenuTALLERLayout = new javax.swing.GroupLayout(MenuTALLER);
         MenuTALLER.setLayout(MenuTALLERLayout);
@@ -223,21 +236,25 @@ public class Dashboard extends javax.swing.JFrame {
         AdminInicio.setForeground(new java.awt.Color(255, 255, 255));
         AdminInicio.setText("Inicio");
         AdminInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AdminInicio.setName("inicio"); // NOI18N
 
         AdminFacturas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         AdminFacturas.setForeground(new java.awt.Color(255, 255, 255));
         AdminFacturas.setText("Facturas");
         AdminFacturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AdminFacturas.setName("facturas"); // NOI18N
 
         AdminEmpleados.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         AdminEmpleados.setForeground(new java.awt.Color(255, 255, 255));
         AdminEmpleados.setText("Empleados");
         AdminEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AdminEmpleados.setName("empleados"); // NOI18N
 
         AdminNominas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         AdminNominas.setForeground(new java.awt.Color(255, 255, 255));
         AdminNominas.setText("Nominas");
         AdminNominas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AdminNominas.setName("nominas"); // NOI18N
 
         AdminVentas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         AdminVentas.setForeground(new java.awt.Color(255, 255, 255));
@@ -288,11 +305,13 @@ public class Dashboard extends javax.swing.JFrame {
         ClienteInicio.setForeground(new java.awt.Color(255, 255, 255));
         ClienteInicio.setText("Inicio");
         ClienteInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ClienteInicio.setName("inicio"); // NOI18N
 
         ClienteAreaPersonal.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         ClienteAreaPersonal.setForeground(new java.awt.Color(255, 255, 255));
         ClienteAreaPersonal.setText("Área personal");
         ClienteAreaPersonal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ClienteAreaPersonal.setName("areacliente"); // NOI18N
 
         ClienteReservas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         ClienteReservas.setForeground(new java.awt.Color(255, 255, 255));
@@ -374,125 +393,98 @@ public class Dashboard extends javax.swing.JFrame {
 
         Board_Clientes.setBackground(new java.awt.Color(242, 242, 242));
         Board_Clientes.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Clientes.setName("clientes"); // NOI18N
+        Board_Clientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout Board_ClientesLayout = new javax.swing.GroupLayout(Board_Clientes);
-        Board_Clientes.setLayout(Board_ClientesLayout);
-        Board_ClientesLayout.setHorizontalGroup(
-            Board_ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 985, Short.MAX_VALUE)
-        );
-        Board_ClientesLayout.setVerticalGroup(
-            Board_ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
-        );
+        LabelTitle_Clientes.setFont(LabelTitle_Inicio.getFont());
+        LabelTitle_Clientes.setForeground(new java.awt.Color(0, 0, 0));
+        LabelTitle_Clientes.setText("Clientes");
+        Board_Clientes.add(LabelTitle_Clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Board_Facturas.setBackground(new java.awt.Color(242, 242, 242));
         Board_Facturas.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Facturas.setName("facturas"); // NOI18N
+        Board_Facturas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout Board_FacturasLayout = new javax.swing.GroupLayout(Board_Facturas);
-        Board_Facturas.setLayout(Board_FacturasLayout);
-        Board_FacturasLayout.setHorizontalGroup(
-            Board_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 985, Short.MAX_VALUE)
-        );
-        Board_FacturasLayout.setVerticalGroup(
-            Board_FacturasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
-        );
+        LabelTitle_Facturas.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        LabelTitle_Facturas.setForeground(new java.awt.Color(0, 0, 0));
+        LabelTitle_Facturas.setText("Facturas");
+        Board_Facturas.add(LabelTitle_Facturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Board_Motores.setBackground(new java.awt.Color(242, 242, 242));
         Board_Motores.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Motores.setName("motores"); // NOI18N
+        Board_Motores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout Board_MotoresLayout = new javax.swing.GroupLayout(Board_Motores);
-        Board_Motores.setLayout(Board_MotoresLayout);
-        Board_MotoresLayout.setHorizontalGroup(
-            Board_MotoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 985, Short.MAX_VALUE)
-        );
-        Board_MotoresLayout.setVerticalGroup(
-            Board_MotoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
-        );
+        LabelTitle_Motores.setFont(LabelTitle_Inicio.getFont());
+        LabelTitle_Motores.setForeground(new java.awt.Color(0, 0, 0));
+        LabelTitle_Motores.setText("Motores");
+        Board_Motores.add(LabelTitle_Motores, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Board_Vehiculos.setBackground(new java.awt.Color(242, 242, 242));
         Board_Vehiculos.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Vehiculos.setName("vehiculos"); // NOI18N
+        Board_Vehiculos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout Board_VehiculosLayout = new javax.swing.GroupLayout(Board_Vehiculos);
-        Board_Vehiculos.setLayout(Board_VehiculosLayout);
-        Board_VehiculosLayout.setHorizontalGroup(
-            Board_VehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 985, Short.MAX_VALUE)
-        );
-        Board_VehiculosLayout.setVerticalGroup(
-            Board_VehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
-        );
+        LabelTitle_Vehiculos.setFont(LabelTitle_Inicio.getFont());
+        LabelTitle_Vehiculos.setForeground(new java.awt.Color(0, 0, 0));
+        LabelTitle_Vehiculos.setText("Vehiculos");
+        Board_Vehiculos.add(LabelTitle_Vehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Board_Inicio.setBackground(new java.awt.Color(242, 242, 242));
         Board_Inicio.setForeground(new java.awt.Color(0, 0, 0));
-        Board_Inicio.setLayout(new java.awt.GridLayout());
+        Board_Inicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Label_SesionNIF.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
         Label_SesionNIF.setForeground(new java.awt.Color(0, 0, 0));
         Label_SesionNIF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Label_SesionNIF.setText("Sesión iniciada con: <NIF>");
-        Board_Inicio.add(Label_SesionNIF);
+        Board_Inicio.add(Label_SesionNIF, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 985, 60));
+
+        LabelTitle_Inicio.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        LabelTitle_Inicio.setForeground(new java.awt.Color(0, 0, 0));
+        LabelTitle_Inicio.setText("Inicio");
+        Board_Inicio.add(LabelTitle_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Board_Reservas.setBackground(new java.awt.Color(242, 242, 242));
         Board_Reservas.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Reservas.setName("reservas"); // NOI18N
+        Board_Reservas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout Board_ReservasLayout = new javax.swing.GroupLayout(Board_Reservas);
-        Board_Reservas.setLayout(Board_ReservasLayout);
-        Board_ReservasLayout.setHorizontalGroup(
-            Board_ReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 969, Short.MAX_VALUE)
-        );
-        Board_ReservasLayout.setVerticalGroup(
-            Board_ReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
-        );
+        LabelTitle_Reservas.setFont(LabelTitle_Inicio.getFont());
+        LabelTitle_Reservas.setForeground(new java.awt.Color(0, 0, 0));
+        LabelTitle_Reservas.setText("Reservas");
+        Board_Reservas.add(LabelTitle_Reservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Board_Empleados.setBackground(new java.awt.Color(242, 242, 242));
         Board_Empleados.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Empleados.setName("empleados"); // NOI18N
+        Board_Empleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout Board_EmpleadosLayout = new javax.swing.GroupLayout(Board_Empleados);
-        Board_Empleados.setLayout(Board_EmpleadosLayout);
-        Board_EmpleadosLayout.setHorizontalGroup(
-            Board_EmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 985, Short.MAX_VALUE)
-        );
-        Board_EmpleadosLayout.setVerticalGroup(
-            Board_EmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
-        );
+        LabelTitle_Empleados.setFont(LabelTitle_Inicio.getFont());
+        LabelTitle_Empleados.setForeground(new java.awt.Color(0, 0, 0));
+        LabelTitle_Empleados.setText("Empleados");
+        Board_Empleados.add(LabelTitle_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Board_Nominas.setBackground(new java.awt.Color(242, 242, 242));
         Board_Nominas.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Nominas.setName("nominas"); // NOI18N
+        Board_Nominas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout Board_NominasLayout = new javax.swing.GroupLayout(Board_Nominas);
-        Board_Nominas.setLayout(Board_NominasLayout);
-        Board_NominasLayout.setHorizontalGroup(
-            Board_NominasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 969, Short.MAX_VALUE)
-        );
-        Board_NominasLayout.setVerticalGroup(
-            Board_NominasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
-        );
+        LabelTitle_Nominas.setFont(LabelTitle_Inicio.getFont());
+        LabelTitle_Nominas.setForeground(new java.awt.Color(0, 0, 0));
+        LabelTitle_Nominas.setText("Nominas");
+        Board_Nominas.add(LabelTitle_Nominas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Board_AreaCliente.setBackground(new java.awt.Color(242, 242, 242));
         Board_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
+        Board_AreaCliente.setName("areacliente"); // NOI18N
+        Board_AreaCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout Board_AreaClienteLayout = new javax.swing.GroupLayout(Board_AreaCliente);
-        Board_AreaCliente.setLayout(Board_AreaClienteLayout);
-        Board_AreaClienteLayout.setHorizontalGroup(
-            Board_AreaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 969, Short.MAX_VALUE)
-        );
-        Board_AreaClienteLayout.setVerticalGroup(
-            Board_AreaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
-        );
+        LabelTitle_AreaCliente.setFont(LabelTitle_Inicio.getFont());
+        LabelTitle_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
+        LabelTitle_AreaCliente.setText("Área personal");
+        Board_AreaCliente.add(LabelTitle_AreaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         javax.swing.GroupLayout PanelBoardLayout = new javax.swing.GroupLayout(PanelBoard);
         PanelBoard.setLayout(PanelBoardLayout);
@@ -584,7 +576,10 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void addActionToMenuLabels() {
+    /**
+     * Hace reaccionar las labels de los menús
+     */
+    private void addActionToMenuLabels() {
         Component[] menus = PanelMenu.getComponents();
         for (Component menu : menus) {
             System.out.println();
@@ -597,17 +592,48 @@ public class Dashboard extends javax.swing.JFrame {
                     label.addMouseListener(new MouseListener() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                            switch (label.getName()) {
+                                case "inicio":
+                                    showPanel(Board_Inicio);
+                                    break;
+                                case "clientes":
+                                    showPanel(Board_Clientes);
+                                    break;
+                                case "facturas":
+                                    showPanel(Board_Facturas);
+                                    break;
+                                case "motores":
+                                    showPanel(Board_Motores);
+                                    break;
+                                case "vehiculos":
+                                    showPanel(Board_Vehiculos);
+                                    break;
+                                case "reservas":
+                                    showPanel(Board_Reservas);
+                                    break;
+                                case "empleados":
+                                    showPanel(Board_Empleados);
+                                    break;
+                                case "nominas":
+                                    showPanel(Board_Nominas);
+                                    break;
+                                case "areacliente":
+                                    showPanel(Board_AreaCliente);
+                                    break;
+                                default:
+                                    showPanel(Board_Inicio);
+                            }
+
                         }
 
                         @Override
                         public void mousePressed(MouseEvent e) {
-                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                            label.setForeground(new java.awt.Color(171, 171, 27));
                         }
 
                         @Override
                         public void mouseReleased(MouseEvent e) {
-                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                            label.setForeground(new java.awt.Color(255, 255, 102));
                         }
 
                         @Override
@@ -625,6 +651,19 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }
 
+    private void showPanel(JPanel panel) {
+        for (Component pnl : PanelBoard.getComponents() ) {
+            JPanel pnl_f = (JPanel) pnl;
+            pnl_f.setVisible(false);
+        }
+        panel.setVisible(true);
+    }
+
+    /**
+     * Iniciar dashboard
+     *
+     * @param user Uusario con el que se iniciará la interfaz
+     */
     public void initGui(Empleado user) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -661,7 +700,7 @@ public class Dashboard extends javax.swing.JFrame {
                 gui.Label_SesionNIF.setText("Sesión iniciada con: " + user.getNif());
             }
 
-            public void configurePanles() {
+            private void configurePanles() {
                 gui.MenuVENTAS.setVisible(false);
                 gui.MenuCLIENTE.setVisible(false);
                 gui.MenuTALLER.setVisible(false);
@@ -721,6 +760,15 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel ClienteFacturas;
     private javax.swing.JLabel ClienteInicio;
     private javax.swing.JLabel ClienteReservas;
+    private javax.swing.JLabel LabelTitle_AreaCliente;
+    private javax.swing.JLabel LabelTitle_Clientes;
+    private javax.swing.JLabel LabelTitle_Empleados;
+    private javax.swing.JLabel LabelTitle_Facturas;
+    private javax.swing.JLabel LabelTitle_Inicio;
+    private javax.swing.JLabel LabelTitle_Motores;
+    private javax.swing.JLabel LabelTitle_Nominas;
+    private javax.swing.JLabel LabelTitle_Reservas;
+    private javax.swing.JLabel LabelTitle_Vehiculos;
     private javax.swing.JLabel Label_SesionNIF;
     private javax.swing.JPanel MenuADMIN;
     private javax.swing.JPanel MenuCLIENTE;
