@@ -67,7 +67,6 @@ public class Dashboard extends javax.swing.JFrame {
         Board_Motores = new javax.swing.JPanel();
         Board_Vehiculos = new javax.swing.JPanel();
         Board_Inicio = new javax.swing.JPanel();
-        Label_Sesion = new javax.swing.JLabel();
         Label_SesionNIF = new javax.swing.JLabel();
         Board_Reservas = new javax.swing.JPanel();
         Board_Empleados = new javax.swing.JPanel();
@@ -433,16 +432,10 @@ public class Dashboard extends javax.swing.JFrame {
         Board_Inicio.setForeground(new java.awt.Color(0, 0, 0));
         Board_Inicio.setLayout(new java.awt.GridLayout());
 
-        Label_Sesion.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
-        Label_Sesion.setForeground(new java.awt.Color(0, 0, 0));
-        Label_Sesion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        Label_Sesion.setText("Sesión: ");
-        Label_Sesion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Board_Inicio.add(Label_Sesion);
-
         Label_SesionNIF.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
         Label_SesionNIF.setForeground(new java.awt.Color(0, 0, 0));
-        Label_SesionNIF.setText("<NIF>");
+        Label_SesionNIF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Label_SesionNIF.setText("Sesión iniciada con: <NIF>");
         Board_Inicio.add(Label_SesionNIF);
 
         Board_Reservas.setBackground(new java.awt.Color(242, 242, 242));
@@ -665,7 +658,7 @@ public class Dashboard extends javax.swing.JFrame {
                 gui.setVisible(true);
                 gui.setLocationRelativeTo(null);
                 configurePanles();
-                gui.Label_SesionNIF.setText(user.getNif());
+                gui.Label_SesionNIF.setText("Sesión iniciada con: " + user.getNif());
             }
 
             public void configurePanles() {
@@ -728,7 +721,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel ClienteFacturas;
     private javax.swing.JLabel ClienteInicio;
     private javax.swing.JLabel ClienteReservas;
-    private javax.swing.JLabel Label_Sesion;
     private javax.swing.JLabel Label_SesionNIF;
     private javax.swing.JPanel MenuADMIN;
     private javax.swing.JPanel MenuCLIENTE;
