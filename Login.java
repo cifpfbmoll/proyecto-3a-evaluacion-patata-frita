@@ -41,17 +41,16 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login Concesionario");
         setMinimumSize(new java.awt.Dimension(484, 391));
-        setPreferredSize(new java.awt.Dimension(484, 391));
         setResizable(false);
 
-        PanelInicio.setBackground(new java.awt.Color(204, 255, 255));
+        PanelInicio.setBackground(new java.awt.Color(51, 51, 51));
         PanelInicio.setForeground(new java.awt.Color(60, 63, 65));
         PanelInicio.setMinimumSize(new java.awt.Dimension(417, 317));
         PanelInicio.setPreferredSize(new java.awt.Dimension(417, 317));
 
         TtitleInicio.setBackground(new java.awt.Color(0, 0, 0));
         TtitleInicio.setFont(new java.awt.Font("SansSerif", 3, 36)); // NOI18N
-        TtitleInicio.setForeground(new java.awt.Color(0, 0, 0));
+        TtitleInicio.setForeground(new java.awt.Color(255, 255, 0));
         TtitleInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TtitleInicio.setText("Inicio de sesión");
 
@@ -154,7 +153,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(TtitleInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

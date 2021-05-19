@@ -200,8 +200,9 @@
                               <Component id="VentasMotores" alignment="0" max="32767" attributes="0"/>
                               <Component id="VentasInicio" alignment="0" max="32767" attributes="0"/>
                               <Component id="VentasFacturas" alignment="0" max="32767" attributes="0"/>
-                              <Component id="VentasVehiculos" alignment="1" pref="259" max="32767" attributes="0"/>
+                              <Component id="VentasVehiculos" alignment="1" pref="271" max="32767" attributes="0"/>
                               <Component id="VentasClientes" alignment="0" max="32767" attributes="0"/>
+                              <Component id="VentasADMIN" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -220,7 +221,9 @@
                           <Component id="VentasMotores" min="-2" pref="50" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="VentasClientes" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace pref="363" max="32767" attributes="0"/>
+                          <EmptySpace pref="307" max="32767" attributes="0"/>
+                          <Component id="VentasADMIN" min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -301,6 +304,21 @@
                     <Property name="name" type="java.lang.String" value="clientes" noResource="true"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JLabel" name="VentasADMIN">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="18" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Regresar a ADMINISTRACI&#xd3;N"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="admin" noResource="true"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="MenuTALLER">
@@ -313,13 +331,14 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="TallerInicio" alignment="0" max="32767" attributes="0"/>
                               <Component id="TallerFacturas" alignment="0" max="32767" attributes="0"/>
                               <Component id="TallerReservas" alignment="1" pref="271" max="32767" attributes="0"/>
                               <Component id="TallerClientes" alignment="0" max="32767" attributes="0"/>
+                              <Component id="TallerADMIN" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -336,7 +355,9 @@
                           <Component id="TallerReservas" min="-2" pref="50" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="TallerClientes" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace pref="418" max="32767" attributes="0"/>
+                          <EmptySpace pref="363" max="32767" attributes="0"/>
+                          <Component id="TallerADMIN" min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -400,6 +421,21 @@
                       <Color id="Hand Cursor"/>
                     </Property>
                     <Property name="name" type="java.lang.String" value="clientes" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="TallerADMIN">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="18" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Regresar a ADMINISTRACI&#xd3;N"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="admin" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -521,6 +557,7 @@
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>
                     </Property>
+                    <Property name="name" type="java.lang.String" value="ventas" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="AdminTaller">
@@ -535,6 +572,7 @@
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>
                     </Property>
+                    <Property name="name" type="java.lang.String" value="taller" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>

@@ -39,11 +39,13 @@ public class Dashboard extends javax.swing.JFrame {
         VentasMotores = new javax.swing.JLabel();
         VentasVehiculos = new javax.swing.JLabel();
         VentasClientes = new javax.swing.JLabel();
+        VentasADMIN = new javax.swing.JLabel();
         MenuTALLER = new javax.swing.JPanel();
         TallerInicio = new javax.swing.JLabel();
         TallerFacturas = new javax.swing.JLabel();
         TallerReservas = new javax.swing.JLabel();
         TallerClientes = new javax.swing.JLabel();
+        TallerADMIN = new javax.swing.JLabel();
         MenuADMIN = new javax.swing.JPanel();
         AdminInicio = new javax.swing.JLabel();
         AdminFacturas = new javax.swing.JLabel();
@@ -147,6 +149,12 @@ public class Dashboard extends javax.swing.JFrame {
         VentasClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         VentasClientes.setName("clientes"); // NOI18N
 
+        VentasADMIN.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        VentasADMIN.setForeground(new java.awt.Color(255, 255, 255));
+        VentasADMIN.setText("Regresar a ADMINISTRACIÓN");
+        VentasADMIN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VentasADMIN.setName("admin"); // NOI18N
+
         javax.swing.GroupLayout MenuVENTASLayout = new javax.swing.GroupLayout(MenuVENTAS);
         MenuVENTAS.setLayout(MenuVENTASLayout);
         MenuVENTASLayout.setHorizontalGroup(
@@ -157,8 +165,9 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(VentasMotores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(VentasInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(VentasFacturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(VentasVehiculos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                    .addComponent(VentasClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(VentasVehiculos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                    .addComponent(VentasClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(VentasADMIN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         MenuVENTASLayout.setVerticalGroup(
@@ -174,7 +183,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(VentasMotores, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(VentasClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(363, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
+                .addComponent(VentasADMIN, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         MenuTALLER.setBackground(new java.awt.Color(51, 51, 51));
@@ -203,6 +214,12 @@ public class Dashboard extends javax.swing.JFrame {
         TallerClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TallerClientes.setName("clientes"); // NOI18N
 
+        TallerADMIN.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        TallerADMIN.setForeground(new java.awt.Color(255, 255, 255));
+        TallerADMIN.setText("Regresar a ADMINISTRACIÓN");
+        TallerADMIN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TallerADMIN.setName("admin"); // NOI18N
+
         javax.swing.GroupLayout MenuTALLERLayout = new javax.swing.GroupLayout(MenuTALLER);
         MenuTALLER.setLayout(MenuTALLERLayout);
         MenuTALLERLayout.setHorizontalGroup(
@@ -213,7 +230,8 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(TallerInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TallerFacturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TallerReservas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                    .addComponent(TallerClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(TallerClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TallerADMIN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         MenuTALLERLayout.setVerticalGroup(
@@ -227,7 +245,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(TallerReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TallerClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
+                .addComponent(TallerADMIN, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         MenuADMIN.setBackground(new java.awt.Color(51, 51, 51));
@@ -260,11 +280,13 @@ public class Dashboard extends javax.swing.JFrame {
         AdminVentas.setForeground(new java.awt.Color(255, 255, 255));
         AdminVentas.setText("Acceder a VENTAS");
         AdminVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AdminVentas.setName("ventas"); // NOI18N
 
         AdminTaller.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         AdminTaller.setForeground(new java.awt.Color(255, 255, 255));
         AdminTaller.setText("Acceder a TALLER");
         AdminTaller.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AdminTaller.setName("taller"); // NOI18N
 
         javax.swing.GroupLayout MenuADMINLayout = new javax.swing.GroupLayout(MenuADMIN);
         MenuADMIN.setLayout(MenuADMINLayout);
@@ -620,10 +642,18 @@ public class Dashboard extends javax.swing.JFrame {
                                 case "areacliente":
                                     showPanel(Board_AreaCliente);
                                     break;
+                                case "admin":
+                                    showMenu(MenuADMIN);
+                                    break;
+                                case "ventas":
+                                    showMenu(MenuVENTAS);
+                                    break;
+                                case "taller":
+                                    showMenu(MenuTALLER);
+                                    break;
                                 default:
                                     showPanel(Board_Inicio);
                             }
-
                         }
 
                         @Override
@@ -652,9 +682,19 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     private void showPanel(JPanel panel) {
-        for (Component pnl : PanelBoard.getComponents() ) {
+        for (Component pnl : PanelBoard.getComponents()) {
             JPanel pnl_f = (JPanel) pnl;
             pnl_f.setVisible(false);
+        }
+        panel.setVisible(true);
+    }
+
+    private void showMenu(JPanel panel) {
+        for (Component menu : PanelMenu.getComponents()) {
+            if (menu.getName() != "Header") {
+                JPanel menu_f = (JPanel) menu;
+                menu_f.setVisible(false);
+            }
         }
         panel.setVisible(true);
     }
@@ -705,22 +745,22 @@ public class Dashboard extends javax.swing.JFrame {
                 gui.MenuCLIENTE.setVisible(false);
                 gui.MenuTALLER.setVisible(false);
                 gui.MenuADMIN.setVisible(false);
+                gui.TallerADMIN.setVisible(false);
+                gui.VentasADMIN.setVisible(false);
                 switch (user.getPuestoTrabajo()) {
                     case "Administrativo":
                         gui.MenuADMIN.setVisible(true);
-                        System.out.println("Menus para: 'Administrativo'");
+                        gui.TallerADMIN.setVisible(true);
+                        gui.VentasADMIN.setVisible(true);
                         break;
                     case "Taller":
                         gui.MenuTALLER.setVisible(true);
-                        System.out.println("Menus para: 'Administrativo'");
                         break;
                     case "Ventas":
                         gui.MenuVENTAS.setVisible(true);
-                        System.out.println("Menus para: 'Administrativo'");
                         break;
                     case "Cliente":
                         gui.MenuCLIENTE.setVisible(true);
-                        System.out.println("Menus para: 'Administrativo'");
                         break;
                     default:
                         System.out.println("Puesto no detectado");
@@ -745,8 +785,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel AdminNominas;
     private javax.swing.JLabel AdminTaller;
     private javax.swing.JLabel AdminVentas;
-    private javax.swing.JPanel BoardVENTAS2;
-    private javax.swing.JPanel BoardVENTAS3;
     private javax.swing.JPanel Board_AreaCliente;
     private javax.swing.JPanel Board_Clientes;
     private javax.swing.JPanel Board_Empleados;
@@ -777,12 +815,14 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel MenuVENTAS;
     private javax.swing.JPanel PanelBoard;
     private javax.swing.JPanel PanelMenu;
+    private javax.swing.JLabel TallerADMIN;
     private javax.swing.JLabel TallerClientes;
     private javax.swing.JLabel TallerFacturas;
     private javax.swing.JLabel TallerInicio;
     private javax.swing.JLabel TallerReservas;
     private javax.swing.JLabel Title;
     private javax.swing.JPanel VentanaCompleta;
+    private javax.swing.JLabel VentasADMIN;
     private javax.swing.JLabel VentasClientes;
     private javax.swing.JLabel VentasFacturas;
     private javax.swing.JLabel VentasInicio;
