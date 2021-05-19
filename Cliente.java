@@ -29,8 +29,8 @@ public class Cliente extends Persona {
      * @param telefono Telefono del cliente
      * @param domicilio Domicilio del cliente
      */
-    public Cliente(String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
-        super(nombre, apellidos, nif, telefono, domicilio);
+    public Cliente(String nombre, String apellidos, String nif, Integer telefono, String domicilio, String password) {
+        super(nombre, apellidos, nif, telefono, domicilio, password);
     }
 
     /**
@@ -39,7 +39,7 @@ public class Cliente extends Persona {
      * @param copia Cliente a copiar
      */
     public Cliente(Cliente copia) {
-        super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio());
+        super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio(), copia.getDomicilio());
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Cliente extends Persona {
             cliente.setNif(Utils.kString("NIF del cliente"));
             cliente.setTelefono(Utils.kInteger("Telefono del cliente"));
             cliente.setDomicilio(Utils.kString("Direccion de cliente"));
-        } catch (Exception e) {
+        }catch(Exception e){
             System.out.println("Error al insertar los datos, intentelo otra vez");
         }
         return cliente;
@@ -70,20 +70,24 @@ public class Cliente extends Persona {
      * Insertar un cliente en la base de datos
      */
     public void insertarClienteBBDD() {
-        String consulta = "INSERT INTO CLIENTE (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICLIO) VALUES (?,?,?,?,?)";
+        String consulta = "INSERT INTO CLIENTE (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICLIO, PASSWORD) VALUES (?,?,?,?,?,?)";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setString(1, this.getNif());
-            Utils.prst.setString(2, this.getNombre());
-            Utils.prst.setString(3, this.getApellidos());
-            Utils.prst.setInt(4, this.getTelefono());
-            Utils.prst.setString(5, this.getDomicilio());
+            Utils.prst.setString(1,this.getNif());
+            Utils.prst.setString(2,this.getNombre());
+            Utils.prst.setString(3,this.getApellidos());
+            Utils.prst.setInt(4,this.getTelefono());
+            Utils.prst.setString(5,this.getDomicilio());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente!");
-
         } catch (SQLException e) {
             System.out.println("Error al insertar datos del cliente a la BBDD");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
@@ -97,7 +101,6 @@ public class Cliente extends Persona {
         String consulta = "SELECT * FROM CLIENTE WHERE nif LIKE ?";
         Cliente cliente = new Cliente();
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, nif);
             Utils.rs = Utils.prst.executeQuery();
@@ -107,9 +110,16 @@ public class Cliente extends Persona {
             cliente.setApellidos(Utils.rs.getString(3));
             cliente.setTelefono(Utils.rs.getInt(4));
             cliente.setDomicilio(Utils.rs.getString(5));
+            cliente.setPassword(Utils.rs.getString(6));
         } catch (SQLException e) {
             System.out.println("Error al buscar cliente");
             cliente = null;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return cliente;
     }
@@ -121,20 +131,26 @@ public class Cliente extends Persona {
      */
     public int modificarClienteBBDD() {
         int ret = 0;
-        String consulta = "UPDATE CLIENTE SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=? WHERE NIF=?";
+        String consulta = "UPDATE CLIENTE SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PASSWORD=? WHERE NIF=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNombre());
             Utils.prst.setString(2, this.getApellidos());
             Utils.prst.setInt(3, this.getTelefono());
             Utils.prst.setString(4, this.getDomicilio());
             Utils.prst.setString(5, this.getNif());
+            Utils.prst.setString(6, this.getPassword());
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados correctamente!");
         } catch (SQLException e) {
             System.out.println("Error actualizar datos");
             ret = -1;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
@@ -145,7 +161,6 @@ public class Cliente extends Persona {
     public void borrarClienteBBDD() {
         String consulta = " DELETE FROM CLIENTE WHERE NIF LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNif());
             Utils.prst.executeUpdate();
@@ -153,6 +168,12 @@ public class Cliente extends Persona {
 
         } catch (SQLException e) {
             System.out.println("Error borrar datos");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
@@ -162,11 +183,10 @@ public class Cliente extends Persona {
     public static void mostrarTodosClienteBBDD() {
         String consulta = "SELECT * FROM CLIENTE ORDER BY NIF";
         try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery(consulta);
-            ResultSet rs;
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
+                //No se mostraran las contraseñas por razones obvias de seguridad
                 System.out.print(
                         "NIF: " + Utils.rs.getString(1) + ","
                         + "NOMBRE: " + Utils.rs.getString(2) + ","
@@ -177,6 +197,12 @@ public class Cliente extends Persona {
             }
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
@@ -221,7 +247,6 @@ public class Cliente extends Persona {
         boolean ret = false;
         String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, getNif());
             if (Utils.rs != null) {
@@ -232,6 +257,12 @@ public class Cliente extends Persona {
         } catch (SQLException e) {
             System.out.println("No existe el cliente en la base de datos");
             ret = false;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
@@ -246,7 +277,6 @@ public class Cliente extends Persona {
         boolean ret = false;
         String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, nif);
             if (Utils.rs != null) {
@@ -257,6 +287,12 @@ public class Cliente extends Persona {
         } catch (SQLException e) {
             System.out.println("No existe el cliente en la base de datos");
             ret = false;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
