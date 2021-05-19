@@ -275,7 +275,7 @@ public class Concesionario {
     /**
      * Metodo para ver los datos de los concesionarios de la BBDD.
      */
-    public static void mostrarConcesionarios() {
+    public static void mostrarConcesionario() {
         String consulta = "SELECT * FROM CONCESIONARIO ORDER BY ID";
         try {
             Utils.connection = Utils.conectarBBDD();
