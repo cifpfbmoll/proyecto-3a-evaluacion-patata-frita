@@ -187,13 +187,13 @@ public class Concesionario {
 
 
     }
-
+    //TODO : Esto sobra ya que abajo estan los 2 exist de Concesionario
     /**
      * metodo de instancia para comprobar si concesionario esta en BBDD
      *
      * @return
      */
-    public boolean existBD() {
+   /* public boolean existBD() {
         String consulta = "SELECT * FROM CONCESIONARIO WHERE ID=?";
         boolean existe = false;
         try {
@@ -226,8 +226,7 @@ public class Concesionario {
         }
 
         return existe;
-    }
-
+    }*/
     /**
      * Metodo para buscar concesionarios mediante la id.
      * @param id
