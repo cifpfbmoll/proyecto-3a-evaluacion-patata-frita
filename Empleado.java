@@ -1,3 +1,5 @@
+import jdk.jshell.execution.Util;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -29,8 +31,8 @@ public class Empleado extends Persona {
      * @param telefono Telefono del trabajador
      * @param domicilio Domicilio del trabajador
      */
-    public Empleado(Nomina nomina, String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
-        super(nombre, apellidos, nif, telefono, domicilio);
+    public Empleado(Nomina nomina, String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio, String password) {
+        super(nombre, apellidos, nif, telefono, domicilio, password);
         this.puestoTrabajo = puestoTrabajo;
     }
 
@@ -40,7 +42,7 @@ public class Empleado extends Persona {
      * @param copia Empleado a copiar
      */
     public Empleado(Empleado copia) {
-        super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio());
+        super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio(), copia.getPassword());
         this.setPuestoTrabajo(copia.getPuestoTrabajo());
     }
 
@@ -87,6 +89,7 @@ public class Empleado extends Persona {
             empleado.setTelefono(Utils.kInteger("Telefono del empleado"));
             empleado.setDomicilio(Utils.kString("Direccion de empleado"));
             empleado.setPuestoTrabajo(Utils.kString("Puesto del empleado"));
+            empleado.setPassword("Contraseña del empleado");
         }catch(Exception e){
             System.out.println("Error al insertar los datos, intentelo otra vez");
         }
@@ -97,7 +100,7 @@ public class Empleado extends Persona {
      * Insertar un empleado en la base de datos
      */
     public void insertarDatosEmpleadoBBDD() {
-        String consulta = "INSERT INTO EMPLEADO (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICILIO, PUESTO, TALLERID, VENTAID) VALUES (?,?,?,?,?,?,?,?)";
+        String consulta = "INSERT INTO EMPLEADO (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICILIO, PUESTO, TALLERID, VENTAID, PASSWORD) VALUES (?,?,?,?,?,?,?,?,?)";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNif());
@@ -108,6 +111,7 @@ public class Empleado extends Persona {
             Utils.prst.setString(6, this.getPuestoTrabajo());
             Utils.prst.setInt(7, this.getTallerId());
             Utils.prst.setInt(8, this.getVentaId());
+            Utils.prst.setString(9,this.getPassword());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctomnte!");
         } catch (SQLException e) {
@@ -142,6 +146,7 @@ public class Empleado extends Persona {
             empleado.setPuestoTrabajo(Utils.rs.getString(6));
             empleado.setTallerId(Utils.rs.getInt(7));
             empleado.setVentaId(Utils.rs.getInt(8));
+            empleado.setPassword(Utils.rs.getString(9));
         } catch (SQLException e) {
             System.out.println("Error al buscar cliente");
             empleado = null;
@@ -161,7 +166,7 @@ public class Empleado extends Persona {
      */
     public int modificarEmpleadoBBDD() {
         int ret = 0;
-        String consulta = "UPDATE EMPLEADO SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PUESTO=?, TALLERID=?, VENTAID=? WHERE NIF=?";
+        String consulta = "UPDATE EMPLEADO SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PUESTO=?, TALLERID=?, VENTAID=?, PASSWORD=? WHERE NIF=?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNombre());
@@ -172,6 +177,7 @@ public class Empleado extends Persona {
             Utils.prst.setInt(6, this.getTallerId());
             Utils.prst.setInt(7, this.getVentaId());
             Utils.prst.setString(8, this.getNif());
+            Utils.prst.setString(9, this.getPassword());
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados correctamente!");
         } catch (SQLException e) {
@@ -199,7 +205,7 @@ public class Empleado extends Persona {
             System.out.println("Empleado borrado correctamente");
 
         } catch (SQLException e) {
-            System.out.println("Error borrar datos");
+            System.out.println("Error borrando datos, es posible que cuelguen tablas de esta tabla");
         } finally {
             try{
                 Utils.cerrarVariables();
@@ -218,6 +224,7 @@ public class Empleado extends Persona {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
+                //No se mostraran las contraseñas por razones obvias de seguridad
                 System.out.print(
                     "NIF: " + Utils.rs.getString(1) + "," +
                     "NOMBRE: " + Utils.rs.getString(2) + "," +
