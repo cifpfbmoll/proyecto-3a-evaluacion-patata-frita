@@ -10,7 +10,9 @@ import java.sql.SQLException;
 public class Venta {
 
 
+
     private int id = -1;
+
 
     private String horario;
 
@@ -100,9 +102,8 @@ public class Venta {
             System.out.println("Datos guardados con exito.");
         } catch (SQLException ex) {
             System.out.println("¡ERROR! no se pudieron guardar los datos de la venta en la BBDD.");
-        } finally {
 
-            try {
+        } finally { try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");

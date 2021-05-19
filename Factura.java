@@ -1,6 +1,8 @@
 
 
+
 import java.sql.*;
+
 
 
 /**
@@ -448,7 +450,7 @@ public class Factura {
      * relacionamos una factura con un vehiculo que ya esta en la base de datos
      *
      * @param idFactura
-     * @param idVehiculo
+     * @param VehiculoBastidor
      */
     public static void relacionarFacturaConVehiculo(int idFactura, String VehiculoBastidor) {
         String consulta = "UPDATE FACTURA SET VEHICULOID=? WHERE ID=?";
