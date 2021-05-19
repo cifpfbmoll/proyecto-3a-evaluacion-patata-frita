@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -95,7 +96,7 @@ public abstract class Persona {
     }
 
     public void setNif(String nif) throws IllegalArgumentException {
-        if (nif.length() != 9) {
+        if (nif.length() == 9) {
             try {
                 Integer.parseInt(nif.substring(0, 7));
                 nif.substring(8).toString();
@@ -123,4 +124,6 @@ public abstract class Persona {
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
+
 }
+
