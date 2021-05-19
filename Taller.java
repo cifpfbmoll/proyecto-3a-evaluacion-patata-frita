@@ -10,7 +10,9 @@ import java.sql.SQLException;
  */
 public class Taller {
 
+
     private int id = -1;
+
     private int espacios;
     private String horario;
 

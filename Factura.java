@@ -2,6 +2,7 @@
 
 import java.sql.*;
 
+
 /**
  * Clase Factura
  *
@@ -92,10 +93,6 @@ public class Factura {
     //setter/getter
     public Vehiculo getVehiculo() {
         return vehiculo;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public Reserva getReserva() {
@@ -239,8 +236,6 @@ public class Factura {
         String consultaPreparada = "SELECT * FROM FACTURA WHERE ID=?";
 
         try {
-            // crear conexion
-            Utils.connection = Utils.conectarBBDD();
             // creamos consulta
             Utils.prst = Utils.connection.prepareStatement(consultaPreparada);
             // establecer parametros
@@ -249,6 +244,12 @@ public class Factura {
             Utils.rs = Utils.prst.executeQuery();
         } catch (SQLException ex) {
             System.out.println("Error consulta");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return Utils.rs;
     }
@@ -264,8 +265,7 @@ public class Factura {
 
             java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(factura.getFechaFactura());
 
-            Connection con = Utils.conectarBBDD();
-            Utils.prst = con.prepareStatement(insert);
+            Utils.prst = Utils.connection.prepareStatement(insert);
             Utils.prst.setString(1, factura.getTrabajoRealizado());
             Utils.prst.setFloat(2, factura.getCosteFactura());
             Utils.prst.setDate(3, sqlDate);
@@ -278,15 +278,10 @@ public class Factura {
         } catch (SQLException e) {
             System.out.println("Error al insertar datos");
         } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -301,8 +296,7 @@ public class Factura {
 
             java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(this.getFechaFactura());
 
-            Connection con = Utils.conectarBBDD();
-            Utils.prst = con.prepareStatement(insert);
+            Utils.prst = Utils.connection.prepareStatement(insert);
             Utils.prst.setString(1, this.getTrabajoRealizado());
             Utils.prst.setFloat(2, this.getCosteFactura());
             Utils.prst.setDate(3, sqlDate);
@@ -315,15 +309,10 @@ public class Factura {
         } catch (SQLException e) {
             System.out.println("Error al insertar datos");
         } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -334,9 +323,8 @@ public class Factura {
     public static void mostrarTablaFacturaCompleta() {
         String consulta = "SELECT * FROM FACTURA ORDER BY ID";
         try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
 
             while (Utils.rs.next()) {
                 System.out.println(
@@ -352,18 +340,10 @@ public class Factura {
         } catch (SQLException ex) {
             System.out.println("Error al mostrar datos de la tabla");
         } finally {
-            try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.st != null) {
-                    Utils.st.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -399,7 +379,6 @@ public class Factura {
     public static void borrarFacturaBBDD(int id) {
         try {
             String consulta = "DELETE FROM FACTURA WHERE ID=?";
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id);
             Utils.prst.executeUpdate();
@@ -407,15 +386,10 @@ public class Factura {
         } catch (SQLException ex) {
             System.out.println("Error borrar datos");
         } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -429,7 +403,6 @@ public class Factura {
     public static void relacionarFacturaConReserva(int idFactura, int idReserva) {
         String consulta = "UPDATE FACTURA SET RESERVAID=? WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, idReserva);
             Utils.prst.setInt(2, idFactura);
@@ -438,15 +411,10 @@ public class Factura {
         } catch (SQLException e) {
             System.out.println("Error relacionar Factura con Reserva");
         } finally {
-            try {
-                if (Utils.st != null) {
-                    Utils.st.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -460,7 +428,6 @@ public class Factura {
     public static void relacionarFacturaConVenta(int idFactura, int idVenta) {
         String consulta = "UPDATE FACTURA SET VENTAID=? WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, idVenta);
             Utils.prst.setInt(2, idFactura);
@@ -469,15 +436,10 @@ public class Factura {
         } catch (SQLException e) {
             System.out.println("Error relacionar Factura con Venta");
         } finally {
-            try {
-                if (Utils.st != null) {
-                    Utils.st.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -491,7 +453,6 @@ public class Factura {
     public static void relacionarFacturaConVehiculo(int idFactura, String VehiculoBastidor) {
         String consulta = "UPDATE FACTURA SET VEHICULOID=? WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, VehiculoBastidor);
             Utils.prst.setInt(2, idFactura);
@@ -500,15 +461,10 @@ public class Factura {
         } catch (SQLException e) {
             System.out.println("Error relacionar Factura con Vehiculo");
         } finally {
-            try {
-                if (Utils.st != null) {
-                    Utils.st.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -527,7 +483,6 @@ public class Factura {
         java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(fechaFactura);
 
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, trabajos);
             Utils.prst.setFloat(2, costeFactura);
@@ -539,15 +494,10 @@ public class Factura {
         } catch (SQLException ex) {
             System.out.println("Error actualizar datos");
         } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -562,7 +512,6 @@ public class Factura {
         boolean encontrado = false;
         String consulta = "SELECT * FROM FACTURA WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, IDFactura);
             Utils.rs = Utils.prst.executeQuery();
@@ -574,18 +523,10 @@ public class Factura {
         } catch (SQLException ex) {
             System.out.println("error buscar factura");
         } finally {
-            try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexiones");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
         return encontrado;
@@ -603,7 +544,6 @@ public class Factura {
             return null;
         } else {
             Factura f = new Factura();
-            Utils.connection = Utils.conectarBBDD();
             try {
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setInt(1, idFactura);
@@ -624,20 +564,11 @@ public class Factura {
             } catch (SQLException ex) {
                 System.out.println("Error buscar factura");
             } finally {
-                try {
-                    if (Utils.rs != null) {
-                        Utils.rs.close();
-                    }
-                    if (Utils.prst != null) {
-                        Utils.prst.close();
-                    }
-                    if (Utils.connection != null) {
-                        Utils.connection.close();
-                    }
-                } catch (SQLException ex) {
-                    System.out.println("Error cerrar conexion");
+                try{
+                    Utils.cerrarVariables();
+                }catch (Exception e){
+                    System.out.println("Error al cerrar variables");
                 }
-
             }
             return f;
         }

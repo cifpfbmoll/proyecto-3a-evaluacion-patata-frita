@@ -12,6 +12,7 @@ public abstract class Persona {
 
     private String nombre;
     private String apellidos;
+    private String password;
     private String nif;
     private Integer telefono;
     private String domicilio;
@@ -31,9 +32,10 @@ public abstract class Persona {
      * @param telefono Telefono de la persona
      * @param domicilio Domicilio de la persona
      */
-    public Persona(String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
+    public Persona(String nombre, String apellidos, String nif, Integer telefono, String domicilio, String password) {
         this.nombre = nombre;
         this.apellidos = apellidos;
+        this.password = password;
         this.setNif(nif);
         this.telefono = telefono;
         this.domicilio = domicilio;
@@ -48,6 +50,7 @@ public abstract class Persona {
         this.setNombre(copia.getNombre());
         this.setApellidos(copia.getApellidos());
         this.setNif(copia.getNif());
+        this.setPassword(copia.getPassword());
         this.setTelefono(copia.getTelefono());
         this.setDomicilio(copia.getDomicilio());
     }
@@ -70,6 +73,15 @@ public abstract class Persona {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String pass) {
+        this.password = pass;
+    }
+
 
     public String getApellidos() {
         return apellidos;
@@ -112,4 +124,6 @@ public abstract class Persona {
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
+
 }
+
