@@ -513,6 +513,39 @@ public class Vehiculo {
     }
 
     /**
+     * Devolver todos los Vehiculos de la base de datos, útil para
+     * la gui
+     * @return Vehiculo[][]
+     */
+    public static Object[][] devolverTodosVehiculoBBDD() {
+        String consulta = "SELECT * FROM Vehiculo ORDER BY bastidor";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Vehiculo"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            String[][] objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                list[0] = Integer.toString(Utils.rs.getInt(1));
+                list[1] = (Utils.rs.getString(2));
+                list[2] = (Utils.rs.getString(3));
+                list[3] = Integer.toString(Utils.rs.getInt(4));
+                list[4] = Integer.toString(Utils.rs.getInt(5));
+                list[5] = Integer.toString(Utils.rs.getInt(6));
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los clientes");
+        }
+        return null;
+    }
+
+    /**
      * Comprueba si el vehiculo actual ya existe en la base de datos
      */
     public boolean existsInDB() {
