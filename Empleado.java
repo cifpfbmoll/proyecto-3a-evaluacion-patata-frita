@@ -233,20 +233,23 @@ public class Empleado extends Persona {
             Utils.st = Utils.connection.createStatement();
             Utils.rs = Utils.st.executeQuery("SELECT count(*) FROM EMPLEADO");
             Utils.rs.next();
-            String[][] listaClientes = new String[Utils.rs.getInt(1)][];
+            String[][] objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
-                String[] cl = new String[5];
-                cl[0] = (Utils.rs.getString(1));
-                cl[1] = (Utils.rs.getString(2));
-                cl[2] = (Utils.rs.getString(3));
-                cl[3] = Integer.toString(Utils.rs.getInt(4));
-                cl[4] = (Utils.rs.getString(5));
-                listaClientes[i] = cl;
+                String[] list = new String[8];
+                list[0] = (Utils.rs.getString(1));
+                list[1] = (Utils.rs.getString(2));
+                list[2] = (Utils.rs.getString(3));
+                list[3] = Integer.toString(Utils.rs.getInt(4));
+                list[4] = (Utils.rs.getString(5));
+                list[5] = (Utils.rs.getString(6));
+                list[6] = Integer.toString(Utils.rs.getInt(7));
+                list[7] = Integer.toString(Utils.rs.getInt(8));
+                objectList[i] = list;
                 i++;
             }
-            return listaClientes;
+            return objectList;
 
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los clientes");

@@ -78,8 +78,6 @@ public class Dashboard extends javax.swing.JFrame {
         LabelTitle_Inicio = new javax.swing.JLabel();
         Board_Reservas = new javax.swing.JPanel();
         LabelTitle_Reservas = new javax.swing.JLabel();
-        Board_Empleados = new javax.swing.JPanel();
-        LabelTitle_Empleados = new javax.swing.JLabel();
         Board_Nominas = new javax.swing.JPanel();
         LabelTitle_Nominas = new javax.swing.JLabel();
         Board_AreaCliente = new javax.swing.JPanel();
@@ -92,6 +90,14 @@ public class Dashboard extends javax.swing.JFrame {
         Clientes_Anadir = new javax.swing.JButton();
         Clientes_Modificar = new javax.swing.JButton();
         Clientes_Eliminar = new javax.swing.JButton();
+        Board_Empleados = new javax.swing.JPanel();
+        Title_Empleados = new javax.swing.JLabel();
+        Empleados_Scroll = new javax.swing.JScrollPane();
+        Empleados_Tabla = new javax.swing.JTable();
+        Empleados_Buscar = new javax.swing.JButton();
+        Empleados_Anadir = new javax.swing.JButton();
+        Empleados_Modificar = new javax.swing.JButton();
+        Empleados_Eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Concesionario");
@@ -620,16 +626,6 @@ public class Dashboard extends javax.swing.JFrame {
         LabelTitle_Reservas.setText("Reservas");
         Board_Reservas.add(LabelTitle_Reservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        Board_Empleados.setBackground(new java.awt.Color(242, 242, 242));
-        Board_Empleados.setForeground(new java.awt.Color(0, 0, 0));
-        Board_Empleados.setName("empleados"); // NOI18N
-        Board_Empleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        LabelTitle_Empleados.setFont(LabelTitle_Inicio.getFont());
-        LabelTitle_Empleados.setForeground(new java.awt.Color(0, 0, 0));
-        LabelTitle_Empleados.setText("Empleados");
-        Board_Empleados.add(LabelTitle_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
         Board_Nominas.setBackground(new java.awt.Color(242, 242, 242));
         Board_Nominas.setForeground(new java.awt.Color(0, 0, 0));
         Board_Nominas.setName("nominas"); // NOI18N
@@ -710,6 +706,66 @@ public class Dashboard extends javax.swing.JFrame {
         });
         Board_Clientes.add(Clientes_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
 
+        Board_Empleados.setBackground(new java.awt.Color(242, 242, 242));
+        Board_Empleados.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Empleados.setName("facturas"); // NOI18N
+        Board_Empleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title_Empleados.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title_Empleados.setForeground(new java.awt.Color(0, 0, 0));
+        Title_Empleados.setText("Empleados");
+        Board_Empleados.add(Title_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        Empleados_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            Empleado.devolverTodosEmpleadosBBDD(),
+            new String [] {
+                "NIF", "Nombre", "Apellidos", "Telefono", "Domicilio", "Puesto", "TallerID", "VentaID"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        Empleados_Scroll.setViewportView(Empleados_Tabla);
+
+        Board_Empleados.add(Empleados_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
+
+        Empleados_Buscar.setText("Buscar");
+        Empleados_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Empleados_BuscarActionPerformed(evt);
+            }
+        });
+        Board_Empleados.add(Empleados_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 200, -1));
+
+        Empleados_Anadir.setText("Añadir");
+        Empleados_Anadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Empleados_AnadirActionPerformed(evt);
+            }
+        });
+        Board_Empleados.add(Empleados_Anadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
+
+        Empleados_Modificar.setText("Modificar");
+        Empleados_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Empleados_ModificarActionPerformed(evt);
+            }
+        });
+        Board_Empleados.add(Empleados_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
+
+        Empleados_Eliminar.setText("Eliminar");
+        Empleados_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Empleados_EliminarActionPerformed(evt);
+            }
+        });
+        Board_Empleados.add(Empleados_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
+
         javax.swing.GroupLayout PanelBoardLayout = new javax.swing.GroupLayout(PanelBoard);
         PanelBoard.setLayout(PanelBoardLayout);
         PanelBoardLayout.setHorizontalGroup(
@@ -726,13 +782,16 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Board_Reservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Empleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Board_Nominas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Board_AreaCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Board_Clientes, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Board_Empleados, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         PanelBoardLayout.setVerticalGroup(
             PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -748,13 +807,16 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Board_Reservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Empleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Board_Nominas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Board_AreaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Board_Clientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Board_Empleados, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout VentanaCompletaLayout = new javax.swing.GroupLayout(VentanaCompleta);
@@ -831,6 +893,22 @@ public class Dashboard extends javax.swing.JFrame {
     private void Clientes_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clientes_EliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Clientes_EliminarActionPerformed
+
+    private void Empleados_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Empleados_BuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Empleados_BuscarActionPerformed
+
+    private void Empleados_AnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Empleados_AnadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Empleados_AnadirActionPerformed
+
+    private void Empleados_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Empleados_ModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Empleados_ModificarActionPerformed
+
+    private void Empleados_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Empleados_EliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Empleados_EliminarActionPerformed
 
     /**
      * Hace reaccionar las labels de los menús
@@ -1056,6 +1134,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Clientes_Eliminar;
     private javax.swing.JButton Clientes_Modificar;
     private javax.swing.JScrollPane Clientes_Scroll;
+    private javax.swing.JButton Empleados_Anadir;
+    private javax.swing.JButton Empleados_Buscar;
+    private javax.swing.JButton Empleados_Eliminar;
+    private javax.swing.JButton Empleados_Modificar;
+    private javax.swing.JScrollPane Empleados_Scroll;
+    private javax.swing.JTable Empleados_Tabla;
     private javax.swing.JButton Facturas_Anadir;
     private javax.swing.JButton Facturas_Buscar;
     private javax.swing.JButton Facturas_Eliminar;
@@ -1063,7 +1147,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane Facturas_Scroll;
     private javax.swing.JTable Facturas_Tabla;
     private javax.swing.JLabel LabelTitle_AreaCliente;
-    private javax.swing.JLabel LabelTitle_Empleados;
     private javax.swing.JLabel LabelTitle_Inicio;
     private javax.swing.JLabel LabelTitle_Motores;
     private javax.swing.JLabel LabelTitle_Nominas;
@@ -1085,6 +1168,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel TallerVENTAS;
     private javax.swing.JLabel Title;
     private javax.swing.JLabel Title_Clientes;
+    private javax.swing.JLabel Title_Empleados;
     private javax.swing.JLabel Title_Facturas;
     private javax.swing.JPanel VentanaCompleta;
     private javax.swing.JLabel VentasADMIN;
