@@ -181,8 +181,8 @@ public class Login extends javax.swing.JFrame {
         System.out.println(nif);
         System.out.println(pass);
 
-        //Empleado user = Empleado.buscarEmpleadoBBDD(nif); // Coger empleado de la base de datos, el metodo no funciona
-        user = new Empleado(new Nomina(), "Administrativo", "Patata", "Frita", nif, 123456789, "Calle de la piruleta", 1, 1);
+        //TODO: Reemplazar empleado por persona para utilizar cleintes y contraseñas
+        Empleado user = Empleado.buscarEmpleadoBBDD(nif);
         System.out.println(user.toString());
         new Dashboard().initGui(user);
         disable();

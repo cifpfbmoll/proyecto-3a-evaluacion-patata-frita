@@ -221,6 +221,38 @@ public class Empleado extends Persona {
             System.out.println("Error mostrando todos los empleados");
         }
     }
+    
+    /**
+     * Devolver todos los clientes de la base de datos
+     * @return 
+     */
+    public static Object[][] devolverTodosEmpleadosBBDD() {
+        String consulta = "SELECT * FROM EMPLEADO ORDER BY NIF";
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.st = Utils.connection.createStatement();
+            Utils.rs = Utils.st.executeQuery("SELECT count(*) FROM EMPLEADO");
+            Utils.rs.next();
+            String[][] listaClientes = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                String[] cl = new String[5];
+                cl[0] = (Utils.rs.getString(1));
+                cl[1] = (Utils.rs.getString(2));
+                cl[2] = (Utils.rs.getString(3));
+                cl[3] = Integer.toString(Utils.rs.getInt(4));
+                cl[4] = (Utils.rs.getString(5));
+                listaClientes[i] = cl;
+                i++;
+            }
+            return listaClientes;
+
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los clientes");
+        }
+        return null;
+    }
 
     /**
      * Comprueba si existe el empleado actual en la base de datos
