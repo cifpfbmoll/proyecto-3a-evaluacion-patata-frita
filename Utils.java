@@ -345,6 +345,6 @@ public class Utils {
             escritorArchivo = new BufferedWriter(new FileWriter(archivo));
         }
         escritorArchivo.write(linea);
-        //TODO : mediante un main ver si funciona asi o se necesita escribir newLine
+        escritorArchivo.newLine();
     }
 }
