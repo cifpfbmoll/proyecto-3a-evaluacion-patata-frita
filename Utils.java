@@ -346,6 +346,10 @@ public class Utils {
         }
         escritorArchivo.write(linea);
         escritorArchivo.newLine();
-        //Puede ser util para el examen crear un metodo para mover rides
+        //Puede ser util para el examen crear un metodo para mover punteros
+        //esto es util por si en el examen pide escribir varias veces y con ese metodo
+        //puedo hacer que lo anterior(lo que he escrito primero) no se sobreescriba con lo siguiente.
+        //EJEMPLO : escribo hasta tener 20 lineas, con este metodo podre leer esas 20 y saltara a la 21
+        // y empezare a escribir por la 21, haciendo que no se sobreescriba las 20 lineas anteriores.
     }
 }
