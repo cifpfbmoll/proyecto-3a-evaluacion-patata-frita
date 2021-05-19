@@ -286,12 +286,39 @@ public class Utils {
     -OutputStream = new BufferedWriter (new FileWriter ( "salida.txt"));
     */
 
+    public static void abrirArchivo(){
+        if (archivo == null){
+            //crea el archivo en caso de que no exista
+            archivo = new File("archivo.txt");
+            //else con throw exception
+        }
+    }
+
+    public static void cerrarArchivo() throws IOException{
+        if (lectorArchivo != null){
+            //si el buffer de lectura ya no es nulo se cerrará una vez se acabe de leer
+            lectorArchivo.close();
+            lectorArchivo = null;
+        }
+        if (escritorArchivo != null){
+            //si el buffer de escritura ya no es nulo se cerrará una vez se acabe de escribir
+            escritorArchivo.close();
+            escritorArchivo = null;
+        }
+        if(archivo != null){
+            //si el archivo ya no es nulo se cerrará una vez acabado
+            archivo = null;
+        }
+    }
+
     /**
      * Metodo que permite leer una linea entera de un fichero/archivo.
      * Una vez finalice dejara de leer y mostrara un mensaje indicando
      * que se ha llegado al final.
+     * ¡OJO! Debes cerrar el archivo despues de escribir para que se guarde los datos introducidos.
      * @throws IOException
      */
+
     public static void leerArchivo() throws IOException{
         if (lectorArchivo == null){
             //crea un Buffer de lectura en caso de que no se haya creado antes
@@ -303,17 +330,21 @@ public class Utils {
         if (lineaLeida != null){
             System.out.println(lineaLeida);
         }else {
-            throw new EOFException();
+            throw new EOFException("¡ERROR! Es posible que el archivo no se haya cerrado despues de escribir.");
         }
     }
+
+    /**
+     * Metodo que permite escribir dentro de un archivo/fichero.
+     * @param linea
+     * @throws IOException
+     */
     public static void escribirArchivo(String linea) throws IOException{
         if (escritorArchivo == null){
             //crea un Buffer de escritura en caso de que no se haya creado antes
             escritorArchivo = new BufferedWriter(new FileWriter(archivo));
         }
         escritorArchivo.write(linea);
-        //mediante un main ver si funciona asi o se necesita escribir newLine
+        //TODO : mediante un main ver si funciona asi o se necesita escribir newLine
     }
-    //abrir archivo
-    //cerrar archivo y buffers leer y escribir (si es null no se cierra)
 }
