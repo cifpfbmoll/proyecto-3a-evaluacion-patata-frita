@@ -346,5 +346,6 @@ public class Utils {
         }
         escritorArchivo.write(linea);
         escritorArchivo.newLine();
+        //Puede ser util para el examen crear un metodo para mover rides
     }
 }
