@@ -375,4 +375,54 @@ public class Concesionario {
         }
         return encontrado;
     }
+    //Los dos metodos siguientes son redundantes, usados para tests, pueden ser borrados en un futuro
+    /**
+     * Método para relacionar en la base de datos un concesionario con su taller
+     * @param id_concesionario
+     * @param id_taller
+     */
+    public static void relacionarConcesionarioConTaller(int id_concesionario, int id_taller){
+        String consulta = "UPDATE concesionario SET tallerid = ? WHERE id=?";
+        try {
+            //La conexión se irà cuando el main este completo
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, id_taller);
+            Utils.prst.setInt(2, id_concesionario);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! No se ha encontrado el concesionario.");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+
+    /**
+     * Método para relacionar en la base de datos un concesionario con su venta
+     * @param id_concesionario
+     * @param id_venta
+     */
+    public static void relacionarConcesionarioConVenta(int id_concesionario, int id_venta){
+        String consulta = "UPDATE concesionario SET ventaid = ? WHERE id=?";
+        try {
+            //La conexión se irà cuando el main este completo
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, id_venta);
+            Utils.prst.setInt(2, id_concesionario);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! No se ha encontrado el concesionario.");
+        }  finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
 }
