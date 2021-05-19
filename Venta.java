@@ -212,7 +212,7 @@ public class Venta {
      * @param espacios
      * @param horario
      */
-    public static void modificarTaller(int id, int espacios, String horario) {
+    public static void modificarVenta(int id, int espacios, String horario) {
         String consulta = "UPDATE VENTA SET HORARIO=?  WHERE ID=?";
 
         try {
@@ -282,7 +282,7 @@ public class Venta {
      * @return Booleano llamado "encontrado" el cual si sale true es que el taller ha sido
      * hallado, si sale false significa que no se ha localizado.
      */
-    public boolean existTaller() {
+    public boolean existVenta() {
         boolean encontrado = false;
         String consulta = "SELECT * FROM VENTA WHERE ID=?";
         try {
