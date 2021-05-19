@@ -26,8 +26,8 @@ public class Cliente extends Persona {
      * @param telefono  Telefono del cliente
      * @param domicilio Domicilio del cliente
      */
-    public Cliente(String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
-        super(nombre, apellidos, nif, telefono, domicilio);
+    public Cliente(String nombre, String apellidos, String nif, Integer telefono, String domicilio, String password) {
+        super(nombre, apellidos, nif, telefono, domicilio, password);
     }
     
     /**
@@ -35,7 +35,7 @@ public class Cliente extends Persona {
      * @param copia Cliente a copiar
      */
     public Cliente(Cliente copia) {
-        super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio());
+        super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio(), copia.getDomicilio());
     }
         
     @Override
@@ -55,6 +55,7 @@ public class Cliente extends Persona {
             cliente.setNif(Utils.kString("NIF del cliente"));
             cliente.setTelefono(Utils.kInteger("Telefono del cliente"));
             cliente.setDomicilio(Utils.kString("Direccion de cliente"));
+            cliente.setPassword(Utils.kString("Contraseña del cliente"));
         }catch(Exception e){
             System.out.println("Error al insertar los datos, intentelo otra vez");
         }
@@ -65,7 +66,7 @@ public class Cliente extends Persona {
      * Insertar un cliente en la base de datos
      */
     public void insertarClienteBBDD() {
-        String consulta = "INSERT INTO CLIENTE (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICLIO) VALUES (?,?,?,?,?)";
+        String consulta = "INSERT INTO CLIENTE (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICLIO, PASSWORD) VALUES (?,?,?,?,?,?)";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1,this.getNif());
@@ -73,9 +74,9 @@ public class Cliente extends Persona {
             Utils.prst.setString(3,this.getApellidos());
             Utils.prst.setInt(4,this.getTelefono());
             Utils.prst.setString(5,this.getDomicilio());
+            Utils.prst.setString(6,this.getPassword());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente!");
-
         } catch (SQLException e) {
             System.out.println("Error al insertar datos del cliente a la BBDD");
         } finally {
@@ -105,6 +106,7 @@ public class Cliente extends Persona {
             cliente.setApellidos(Utils.rs.getString(3));
             cliente.setTelefono(Utils.rs.getInt(4));
             cliente.setDomicilio(Utils.rs.getString(5));
+            cliente.setPassword(Utils.rs.getString(6));
         } catch (SQLException e) {
             System.out.println("Error al buscar cliente");
             cliente = null;
@@ -124,7 +126,7 @@ public class Cliente extends Persona {
      */
     public int modificarClienteBBDD() {
         int ret = 0;
-        String consulta = "UPDATE CLIENTE SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=? WHERE NIF=?";
+        String consulta = "UPDATE CLIENTE SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PASSWORD=? WHERE NIF=?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNombre());
@@ -132,6 +134,7 @@ public class Cliente extends Persona {
             Utils.prst.setInt(3, this.getTelefono());
             Utils.prst.setString(4, this.getDomicilio());
             Utils.prst.setString(5, this.getNif());
+            Utils.prst.setString(6, this.getPassword());
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados correctamente!");
         } catch (SQLException e) {
@@ -178,6 +181,7 @@ public class Cliente extends Persona {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
+                //No se mostraran las contraseñas por razones obvias de seguridad
                 System.out.print(
                     "NIF: " + Utils.rs.getString(1) + "," +
                     "NOMBRE: " + Utils.rs.getString(2) + "," +
