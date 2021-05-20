@@ -166,19 +166,24 @@ public class Login extends javax.swing.JFrame {
         //TODO: Reemplazar empleado por persona para utilizar cleintes y contraseñas
         try {
             String nif = TextNIF.getText();
+            System.out.println(nif);
             String pass = String.valueOf(TextPass.getPassword());
+            System.out.println(pass);
             Persona user = Persona.verificarPersona(nif, pass);
+            System.out.println("persona");
             if (user == null) {
+                System.out.println("Lo del error");
                 throw new Exception("El usuario es nulo");
             }
             new Dashboard().initGui(user);
+            System.out.println("Dashboard");
             disable();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (e.getMessage() == "El usuario es nulo") {
-                PopUp.create("error", "<html>Ha habido un error al verificar la cuenta.<br/>Contacta con un administrador.<html>");
-            } else {
                 PopUp.create("error", "<html>La cuenta no ha sido encontrada o la contraseña no es correcta.<br/>Revisa la información introducida.<html>");
+            } else {
+                PopUp.create("error", "<html>Ha habido un error al verificar la cuenta.<br/>Contacta con un administrador.<html>");
             }
         }
     }//GEN-LAST:event_ButtonLOGINActionPerformed
