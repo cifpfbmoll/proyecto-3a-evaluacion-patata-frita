@@ -213,13 +213,14 @@ public class Cliente extends Persona {
     public static Object[][] devolverTodosClienteBBDD() {
         String consulta = "SELECT * FROM CLIENTE ORDER BY NIF";
         try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery("SELECT count(*) FROM CLIENTE"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM CLIENTE"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
             String[][] objectList = new String[Utils.rs.getInt(1)][];
+            
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
                 String[] list = new String[5]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
                 list[0] = (Utils.rs.getString(1));

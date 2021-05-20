@@ -32,8 +32,8 @@ public class Empleado extends Persona {
      * @param telefono Telefono del trabajador
      * @param domicilio Domicilio del trabajador
      */
-    public Empleado(Nomina nomina, String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
-        super(nombre, apellidos, nif, telefono, domicilio);
+    public Empleado(Nomina nomina, String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio, String password) {
+        super(nombre, apellidos, nif, telefono, domicilio, password);
         this.puestoTrabajo = puestoTrabajo;
         this.nomina = nomina;
         this.tallerId = tallerId;
