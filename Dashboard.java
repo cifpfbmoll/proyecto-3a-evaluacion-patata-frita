@@ -69,17 +69,9 @@ public class Dashboard extends javax.swing.JFrame {
         Facturas_Anadir = new javax.swing.JButton();
         Facturas_Modificar = new javax.swing.JButton();
         Facturas_Eliminar = new javax.swing.JButton();
-        Board_Motores = new javax.swing.JPanel();
-        LabelTitle_Motores = new javax.swing.JLabel();
-        Board_Vehiculos = new javax.swing.JPanel();
-        LabelTitle_Vehiculos = new javax.swing.JLabel();
         Board_Inicio = new javax.swing.JPanel();
         Label_SesionNIF = new javax.swing.JLabel();
         LabelTitle_Inicio = new javax.swing.JLabel();
-        Board_Reservas = new javax.swing.JPanel();
-        LabelTitle_Reservas = new javax.swing.JLabel();
-        Board_Nominas = new javax.swing.JPanel();
-        LabelTitle_Nominas = new javax.swing.JLabel();
         Board_AreaCliente = new javax.swing.JPanel();
         LabelTitle_AreaCliente = new javax.swing.JLabel();
         Board_Clientes = new javax.swing.JPanel();
@@ -98,6 +90,38 @@ public class Dashboard extends javax.swing.JFrame {
         Empleados_Anadir = new javax.swing.JButton();
         Empleados_Modificar = new javax.swing.JButton();
         Empleados_Eliminar = new javax.swing.JButton();
+        Board_Motores = new javax.swing.JPanel();
+        Title_Motores = new javax.swing.JLabel();
+        Motores_Scroll = new javax.swing.JScrollPane();
+        Motores_Tabla = new javax.swing.JTable();
+        Motores_Buscar = new javax.swing.JButton();
+        Motores_Anadir = new javax.swing.JButton();
+        Motores_Modificar = new javax.swing.JButton();
+        Facturas_Eliminar1 = new javax.swing.JButton();
+        Board_Vehiculos = new javax.swing.JPanel();
+        Title_Vehiculos = new javax.swing.JLabel();
+        Vehiculos_Scroll = new javax.swing.JScrollPane();
+        Vehiculos_Tabla1 = new javax.swing.JTable();
+        Vehiculos_Buscar = new javax.swing.JButton();
+        Vehiculos_Anadir = new javax.swing.JButton();
+        Vehiculos_Modificar = new javax.swing.JButton();
+        Vehiculos_Eliminar = new javax.swing.JButton();
+        Board_Reservas = new javax.swing.JPanel();
+        Title_Reservas = new javax.swing.JLabel();
+        Reservas_Scroll = new javax.swing.JScrollPane();
+        Reservas_Tabla = new javax.swing.JTable();
+        Reservas_Buscar = new javax.swing.JButton();
+        Reservas_Anadir = new javax.swing.JButton();
+        Reservas_Modificar = new javax.swing.JButton();
+        Reservas_Eliminar = new javax.swing.JButton();
+        Board_Nominas = new javax.swing.JPanel();
+        Title_Nominas = new javax.swing.JLabel();
+        Nominas_Scroll = new javax.swing.JScrollPane();
+        Nominas_Tabla = new javax.swing.JTable();
+        Nominas_Buscar = new javax.swing.JButton();
+        Nominas_Anadir = new javax.swing.JButton();
+        Nominas_Modificar = new javax.swing.JButton();
+        Nominas_Eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Concesionario");
@@ -461,84 +485,17 @@ public class Dashboard extends javax.swing.JFrame {
         Title_Facturas.setText("Facturas");
         Board_Facturas.add(Title_Facturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        Facturas_Tabla.setAutoCreateRowSorter(true);
         Facturas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Concepto", "Coste", "Fecha"
+                "ID", "Concepto", "Local ID", "Vehículo", "Fecha", "Coste"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -581,26 +538,6 @@ public class Dashboard extends javax.swing.JFrame {
         });
         Board_Facturas.add(Facturas_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
 
-        Board_Motores.setBackground(new java.awt.Color(242, 242, 242));
-        Board_Motores.setForeground(new java.awt.Color(0, 0, 0));
-        Board_Motores.setName("motores"); // NOI18N
-        Board_Motores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        LabelTitle_Motores.setFont(LabelTitle_Inicio.getFont());
-        LabelTitle_Motores.setForeground(new java.awt.Color(0, 0, 0));
-        LabelTitle_Motores.setText("Motores");
-        Board_Motores.add(LabelTitle_Motores, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        Board_Vehiculos.setBackground(new java.awt.Color(242, 242, 242));
-        Board_Vehiculos.setForeground(new java.awt.Color(0, 0, 0));
-        Board_Vehiculos.setName("vehiculos"); // NOI18N
-        Board_Vehiculos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        LabelTitle_Vehiculos.setFont(LabelTitle_Inicio.getFont());
-        LabelTitle_Vehiculos.setForeground(new java.awt.Color(0, 0, 0));
-        LabelTitle_Vehiculos.setText("Vehiculos");
-        Board_Vehiculos.add(LabelTitle_Vehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
         Board_Inicio.setBackground(new java.awt.Color(242, 242, 242));
         Board_Inicio.setForeground(new java.awt.Color(0, 0, 0));
         Board_Inicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -615,26 +552,6 @@ public class Dashboard extends javax.swing.JFrame {
         LabelTitle_Inicio.setForeground(new java.awt.Color(0, 0, 0));
         LabelTitle_Inicio.setText("Inicio");
         Board_Inicio.add(LabelTitle_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        Board_Reservas.setBackground(new java.awt.Color(242, 242, 242));
-        Board_Reservas.setForeground(new java.awt.Color(0, 0, 0));
-        Board_Reservas.setName("reservas"); // NOI18N
-        Board_Reservas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        LabelTitle_Reservas.setFont(LabelTitle_Inicio.getFont());
-        LabelTitle_Reservas.setForeground(new java.awt.Color(0, 0, 0));
-        LabelTitle_Reservas.setText("Reservas");
-        Board_Reservas.add(LabelTitle_Reservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        Board_Nominas.setBackground(new java.awt.Color(242, 242, 242));
-        Board_Nominas.setForeground(new java.awt.Color(0, 0, 0));
-        Board_Nominas.setName("nominas"); // NOI18N
-        Board_Nominas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        LabelTitle_Nominas.setFont(LabelTitle_Inicio.getFont());
-        LabelTitle_Nominas.setForeground(new java.awt.Color(0, 0, 0));
-        LabelTitle_Nominas.setText("Nominas");
-        Board_Nominas.add(LabelTitle_Nominas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Board_AreaCliente.setBackground(new java.awt.Color(242, 242, 242));
         Board_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
@@ -656,6 +573,7 @@ public class Dashboard extends javax.swing.JFrame {
         Title_Clientes.setText("Clientes");
         Board_Clientes.add(Title_Clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        Cliente_Tabla.setAutoCreateRowSorter(true);
         Cliente_Tabla.setModel(new javax.swing.table.DefaultTableModel(
             Cliente.devolverTodosClienteBBDD(),
             new String [] {
@@ -716,6 +634,7 @@ public class Dashboard extends javax.swing.JFrame {
         Title_Empleados.setText("Empleados");
         Board_Empleados.add(Title_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        Empleados_Tabla.setAutoCreateRowSorter(true);
         Empleados_Tabla.setModel(new javax.swing.table.DefaultTableModel(
             Empleado.devolverTodosEmpleadosBBDD(),
             new String [] {
@@ -766,58 +685,422 @@ public class Dashboard extends javax.swing.JFrame {
         });
         Board_Empleados.add(Empleados_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
 
+        Board_Motores.setBackground(new java.awt.Color(242, 242, 242));
+        Board_Motores.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Motores.setName("facturas"); // NOI18N
+        Board_Motores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title_Motores.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title_Motores.setForeground(new java.awt.Color(0, 0, 0));
+        Title_Motores.setText("Motores");
+        Board_Motores.add(Title_Motores, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        Motores_Tabla.setAutoCreateRowSorter(true);
+        Motores_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Tipo", "Potencia", "Cilindrada"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        Motores_Scroll.setViewportView(Motores_Tabla);
+
+        Board_Motores.add(Motores_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
+
+        Motores_Buscar.setText("Buscar");
+        Motores_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Motores_BuscarActionPerformed(evt);
+            }
+        });
+        Board_Motores.add(Motores_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 200, -1));
+
+        Motores_Anadir.setText("Añadir");
+        Motores_Anadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Motores_AnadirActionPerformed(evt);
+            }
+        });
+        Board_Motores.add(Motores_Anadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
+
+        Motores_Modificar.setText("Modificar");
+        Motores_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Motores_ModificarActionPerformed(evt);
+            }
+        });
+        Board_Motores.add(Motores_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
+
+        Facturas_Eliminar1.setText("Eliminar");
+        Facturas_Eliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Facturas_Eliminar1ActionPerformed(evt);
+            }
+        });
+        Board_Motores.add(Facturas_Eliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
+
+        Board_Vehiculos.setBackground(new java.awt.Color(242, 242, 242));
+        Board_Vehiculos.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Vehiculos.setName("facturas"); // NOI18N
+        Board_Vehiculos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title_Vehiculos.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title_Vehiculos.setForeground(new java.awt.Color(0, 0, 0));
+        Title_Vehiculos.setText("Vehiculos");
+        Board_Vehiculos.add(Title_Vehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        Vehiculos_Tabla1.setAutoCreateRowSorter(true);
+        Vehiculos_Tabla1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Bastidor", "Tipo", "Clase", "Kilometraje", "Autonomia", "Puertas", "Asientos", "Color", "Marca", "Modelo", "Precio", "Extras", "Motor", "ventaid", "Cliente"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Vehiculos_Tabla1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        Vehiculos_Tabla1.setMinimumSize(new java.awt.Dimension(1125, 20));
+        Vehiculos_Scroll.setViewportView(Vehiculos_Tabla1);
+
+        Board_Vehiculos.add(Vehiculos_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
+
+        Vehiculos_Buscar.setText("Buscar");
+        Vehiculos_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Vehiculos_BuscarActionPerformed(evt);
+            }
+        });
+        Board_Vehiculos.add(Vehiculos_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 200, -1));
+
+        Vehiculos_Anadir.setText("Añadir");
+        Vehiculos_Anadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Vehiculos_AnadirActionPerformed(evt);
+            }
+        });
+        Board_Vehiculos.add(Vehiculos_Anadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
+
+        Vehiculos_Modificar.setText("Modificar");
+        Vehiculos_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Vehiculos_ModificarActionPerformed(evt);
+            }
+        });
+        Board_Vehiculos.add(Vehiculos_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
+
+        Vehiculos_Eliminar.setText("Eliminar");
+        Vehiculos_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Vehiculos_EliminarActionPerformed(evt);
+            }
+        });
+        Board_Vehiculos.add(Vehiculos_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
+
+        Board_Reservas.setBackground(new java.awt.Color(242, 242, 242));
+        Board_Reservas.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Reservas.setName("facturas"); // NOI18N
+        Board_Reservas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title_Reservas.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title_Reservas.setForeground(new java.awt.Color(0, 0, 0));
+        Title_Reservas.setText("Reservas");
+        Board_Reservas.add(Title_Reservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        Reservas_Tabla.setAutoCreateRowSorter(true);
+        Reservas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Espacio", "Fecha", "Taller", "NIF Cliente", "Nombre Cliente"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        Reservas_Scroll.setViewportView(Reservas_Tabla);
+
+        Board_Reservas.add(Reservas_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
+
+        Reservas_Buscar.setText("Buscar");
+        Reservas_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Reservas_BuscarActionPerformed(evt);
+            }
+        });
+        Board_Reservas.add(Reservas_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 200, -1));
+
+        Reservas_Anadir.setText("Añadir");
+        Reservas_Anadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Reservas_AnadirActionPerformed(evt);
+            }
+        });
+        Board_Reservas.add(Reservas_Anadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
+
+        Reservas_Modificar.setText("Modificar");
+        Reservas_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Reservas_ModificarActionPerformed(evt);
+            }
+        });
+        Board_Reservas.add(Reservas_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
+
+        Reservas_Eliminar.setText("Eliminar");
+        Reservas_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Reservas_EliminarActionPerformed(evt);
+            }
+        });
+        Board_Reservas.add(Reservas_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
+
+        Board_Nominas.setBackground(new java.awt.Color(242, 242, 242));
+        Board_Nominas.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Nominas.setName("facturas"); // NOI18N
+        Board_Nominas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title_Nominas.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title_Nominas.setForeground(new java.awt.Color(0, 0, 0));
+        Title_Nominas.setText("Nominas");
+        Board_Nominas.add(Title_Nominas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        Nominas_Tabla.setAutoCreateRowSorter(true);
+        Nominas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        Nominas_Scroll.setViewportView(Nominas_Tabla);
+
+        Board_Nominas.add(Nominas_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
+
+        Nominas_Buscar.setText("Buscar");
+        Nominas_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nominas_BuscarActionPerformed(evt);
+            }
+        });
+        Board_Nominas.add(Nominas_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 200, -1));
+
+        Nominas_Anadir.setText("Añadir");
+        Nominas_Anadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nominas_AnadirActionPerformed(evt);
+            }
+        });
+        Board_Nominas.add(Nominas_Anadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
+
+        Nominas_Modificar.setText("Modificar");
+        Nominas_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nominas_ModificarActionPerformed(evt);
+            }
+        });
+        Board_Nominas.add(Nominas_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
+
+        Nominas_Eliminar.setText("Eliminar");
+        Nominas_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nominas_EliminarActionPerformed(evt);
+            }
+        });
+        Board_Nominas.add(Nominas_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
+
         javax.swing.GroupLayout PanelBoardLayout = new javax.swing.GroupLayout(PanelBoard);
         PanelBoard.setLayout(PanelBoardLayout);
         PanelBoardLayout.setHorizontalGroup(
             PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 985, Short.MAX_VALUE)
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Facturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Motores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Vehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Inicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Reservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Nominas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_AreaCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Clientes, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(Board_Empleados, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(Board_Facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 22, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_AreaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 22, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Motores, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Vehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Reservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 22, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Nominas, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 22, Short.MAX_VALUE)))
         );
+
+        PanelBoardLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Board_AreaCliente, Board_Clientes, Board_Empleados, Board_Facturas, Board_Inicio, Board_Motores, Board_Nominas, Board_Reservas, Board_Vehiculos});
+
         PanelBoardLayout.setVerticalGroup(
             PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Facturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Motores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Vehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Reservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Nominas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_AreaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Clientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(Board_Empleados, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                    .addComponent(Board_Facturas, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_AreaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 8, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 8, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Motores, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Vehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Reservas, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Nominas, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 8, Short.MAX_VALUE)))
         );
+
+        PanelBoardLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Board_AreaCliente, Board_Clientes, Board_Empleados, Board_Inicio, Board_Motores, Board_Nominas, Board_Reservas, Board_Vehiculos});
 
         javax.swing.GroupLayout VentanaCompletaLayout = new javax.swing.GroupLayout(VentanaCompleta);
         VentanaCompleta.setLayout(VentanaCompletaLayout);
@@ -826,15 +1109,15 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(VentanaCompletaLayout.createSequentialGroup()
                 .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE)
                 .addContainerGap())
         );
         VentanaCompletaLayout.setVerticalGroup(
             VentanaCompletaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VentanaCompletaLayout.createSequentialGroup()
+            .addGroup(VentanaCompletaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -909,6 +1192,70 @@ public class Dashboard extends javax.swing.JFrame {
     private void Empleados_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Empleados_EliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Empleados_EliminarActionPerformed
+
+    private void Motores_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motores_BuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Motores_BuscarActionPerformed
+
+    private void Motores_AnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motores_AnadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Motores_AnadirActionPerformed
+
+    private void Motores_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motores_ModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Motores_ModificarActionPerformed
+
+    private void Facturas_Eliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Facturas_Eliminar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Facturas_Eliminar1ActionPerformed
+
+    private void Vehiculos_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Vehiculos_BuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Vehiculos_BuscarActionPerformed
+
+    private void Vehiculos_AnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Vehiculos_AnadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Vehiculos_AnadirActionPerformed
+
+    private void Vehiculos_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Vehiculos_ModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Vehiculos_ModificarActionPerformed
+
+    private void Vehiculos_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Vehiculos_EliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Vehiculos_EliminarActionPerformed
+
+    private void Reservas_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservas_BuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Reservas_BuscarActionPerformed
+
+    private void Reservas_AnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservas_AnadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Reservas_AnadirActionPerformed
+
+    private void Reservas_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservas_ModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Reservas_ModificarActionPerformed
+
+    private void Reservas_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservas_EliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Reservas_EliminarActionPerformed
+
+    private void Nominas_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nominas_BuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Nominas_BuscarActionPerformed
+
+    private void Nominas_AnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nominas_AnadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Nominas_AnadirActionPerformed
+
+    private void Nominas_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nominas_ModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Nominas_ModificarActionPerformed
+
+    private void Nominas_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nominas_EliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Nominas_EliminarActionPerformed
 
     /**
      * Hace reaccionar las labels de los menús
@@ -1143,23 +1490,37 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Facturas_Anadir;
     private javax.swing.JButton Facturas_Buscar;
     private javax.swing.JButton Facturas_Eliminar;
+    private javax.swing.JButton Facturas_Eliminar1;
     private javax.swing.JButton Facturas_Modificar;
     private javax.swing.JScrollPane Facturas_Scroll;
     private javax.swing.JTable Facturas_Tabla;
     private javax.swing.JLabel LabelTitle_AreaCliente;
     private javax.swing.JLabel LabelTitle_Inicio;
-    private javax.swing.JLabel LabelTitle_Motores;
-    private javax.swing.JLabel LabelTitle_Nominas;
-    private javax.swing.JLabel LabelTitle_Reservas;
-    private javax.swing.JLabel LabelTitle_Vehiculos;
     private javax.swing.JLabel Label_SesionNIF;
     private javax.swing.JPanel MenuADMIN;
     private javax.swing.JPanel MenuCLIENTE;
     private javax.swing.JPanel MenuHeader;
     private javax.swing.JPanel MenuTALLER;
     private javax.swing.JPanel MenuVENTAS;
+    private javax.swing.JButton Motores_Anadir;
+    private javax.swing.JButton Motores_Buscar;
+    private javax.swing.JButton Motores_Modificar;
+    private javax.swing.JScrollPane Motores_Scroll;
+    private javax.swing.JTable Motores_Tabla;
+    private javax.swing.JButton Nominas_Anadir;
+    private javax.swing.JButton Nominas_Buscar;
+    private javax.swing.JButton Nominas_Eliminar;
+    private javax.swing.JButton Nominas_Modificar;
+    private javax.swing.JScrollPane Nominas_Scroll;
+    private javax.swing.JTable Nominas_Tabla;
     private javax.swing.JPanel PanelBoard;
     private javax.swing.JPanel PanelMenu;
+    private javax.swing.JButton Reservas_Anadir;
+    private javax.swing.JButton Reservas_Buscar;
+    private javax.swing.JButton Reservas_Eliminar;
+    private javax.swing.JButton Reservas_Modificar;
+    private javax.swing.JScrollPane Reservas_Scroll;
+    private javax.swing.JTable Reservas_Tabla;
     private javax.swing.JLabel TallerADMIN;
     private javax.swing.JLabel TallerClientes;
     private javax.swing.JLabel TallerFacturas;
@@ -1170,6 +1531,16 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel Title_Clientes;
     private javax.swing.JLabel Title_Empleados;
     private javax.swing.JLabel Title_Facturas;
+    private javax.swing.JLabel Title_Motores;
+    private javax.swing.JLabel Title_Nominas;
+    private javax.swing.JLabel Title_Reservas;
+    private javax.swing.JLabel Title_Vehiculos;
+    private javax.swing.JButton Vehiculos_Anadir;
+    private javax.swing.JButton Vehiculos_Buscar;
+    private javax.swing.JButton Vehiculos_Eliminar;
+    private javax.swing.JButton Vehiculos_Modificar;
+    private javax.swing.JScrollPane Vehiculos_Scroll;
+    private javax.swing.JTable Vehiculos_Tabla1;
     private javax.swing.JPanel VentanaCompleta;
     private javax.swing.JLabel VentasADMIN;
     private javax.swing.JLabel VentasClientes;
