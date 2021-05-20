@@ -42,6 +42,7 @@ public class Login extends javax.swing.JFrame {
         setTitle("Login Concesionario");
         setMinimumSize(new java.awt.Dimension(484, 391));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PanelInicio.setBackground(new java.awt.Color(51, 51, 51));
         PanelInicio.setForeground(new java.awt.Color(60, 63, 65));
@@ -100,25 +101,25 @@ public class Login extends javax.swing.JFrame {
             PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLoginLayout.createSequentialGroup()
                 .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLoginLayout.createSequentialGroup()
-                        .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelLoginLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(LabelNIF))
-                            .addGroup(PanelLoginLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(LabelPass)))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(PanelLoginLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(TextPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TextNIF))))
+                            .addComponent(TextNIF)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLoginLayout.createSequentialGroup()
+                        .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLoginLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(LabelNIF))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLoginLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(LabelPass)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLoginLayout.createSequentialGroup()
-                .addGap(0, 125, Short.MAX_VALUE)
+            .addGroup(PanelLoginLayout.createSequentialGroup()
+                .addGap(148, 148, 148)
                 .addComponent(ButtonLOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         PanelLoginLayout.setVerticalGroup(
             PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,49 +144,38 @@ public class Login extends javax.swing.JFrame {
             .addGroup(PanelInicioLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TtitleInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TtitleInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         PanelInicioLayout.setVerticalGroup(
             PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInicioLayout.createSequentialGroup()
                 .addComponent(TtitleInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(PanelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(PanelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(PanelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 484, 391));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     private void ButtonLOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLOGINActionPerformed
-        String nif = TextNIF.getText();
-        String pass = String.valueOf(TextPass.getPassword());
-        System.out.println(nif);
-        System.out.println(pass);
-
         //TODO: Reemplazar empleado por persona para utilizar cleintes y contraseñas
-        Empleado user = Empleado.buscarEmpleadoBBDD(nif);
-        System.out.println(user.toString());
-        new Dashboard().initGui(user);
-        disable();
+        try {
+            String nif = TextNIF.getText();
+            String pass = String.valueOf(TextPass.getPassword());
+            Empleado user = Empleado.buscarEmpleadoBBDD(nif);
+            if (user == null) {
+                throw new Exception("El usuario es nulo");
+            }
+            new Dashboard().initGui(user);
+            disable();
+        } catch (Exception e) {
+            PopUp.create("error","<html>La cuenta no ha sido encontrada o la contraseña no es correcta.<br/>Revisa la información introducida.<html>");
+        }
     }//GEN-LAST:event_ButtonLOGINActionPerformed
 
     public static void main(String[] args) {
