@@ -1,6 +1,9 @@
 package eu.fp.concesionario;
 
 import java.sql.*;
+
+
+
 /**
  * Clase Factura
  *
@@ -9,6 +12,7 @@ import java.sql.*;
 public class Factura {
 
     //atributos
+
     private int id = -1; //Se carga cuando se lee de la base de datos unicamente
     private String trabajoRealizado;
     private float costeFactura;
@@ -133,8 +137,6 @@ public class Factura {
     }
 
     public void setId(int id){this.id = id;}
-
-    public int getId() {return this.id;}
 
     public String getTrabajoRealizado() {
         return trabajoRealizado;

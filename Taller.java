@@ -10,7 +10,10 @@ import java.sql.SQLException;
  * @version 1 - 29/03/2021
  */
 public class Taller {
-    private int id=-1;
+
+
+    private int id = -1;
+
     private int espacios;
     private String horario;
 

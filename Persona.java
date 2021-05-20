@@ -97,7 +97,6 @@ public abstract class Persona {
     }
 
     public void setNif(String nif) throws IllegalArgumentException {
-        System.out.println(nif.length() );
         if (nif.length() == 9) {
             try {
                 Integer.parseInt(nif.substring(0, 7));
@@ -126,4 +125,5 @@ public abstract class Persona {
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
+
 }
