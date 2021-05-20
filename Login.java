@@ -152,6 +152,7 @@ public class Login extends javax.swing.JFrame {
             PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInicioLayout.createSequentialGroup()
                 .addComponent(TtitleInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(80, Short.MAX_VALUE))
         );
@@ -161,20 +162,24 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void ButtonLOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLOGINActionPerformed
         //TODO: Reemplazar empleado por persona para utilizar cleintes y contraseñas
         try {
             String nif = TextNIF.getText();
             String pass = String.valueOf(TextPass.getPassword());
-            Empleado user = Empleado.buscarEmpleadoBBDD(nif);
+            Persona user = Persona.verificarPersona(nif, pass);
             if (user == null) {
                 throw new Exception("El usuario es nulo");
             }
             new Dashboard().initGui(user);
             disable();
         } catch (Exception e) {
-            PopUp.create("error","<html>La cuenta no ha sido encontrada o la contraseña no es correcta.<br/>Revisa la información introducida.<html>");
+            System.out.println(e.getMessage());
+            if (e.getMessage() == "El usuario es nulo") {
+                PopUp.create("error", "<html>Ha habido un error al verificar la cuenta.<br/>Contacta con un administrador.<html>");
+            } else {
+                PopUp.create("error", "<html>La cuenta no ha sido encontrada o la contraseña no es correcta.<br/>Revisa la información introducida.<html>");
+            }
         }
     }//GEN-LAST:event_ButtonLOGINActionPerformed
 

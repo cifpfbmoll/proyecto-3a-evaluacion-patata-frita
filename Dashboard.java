@@ -1305,7 +1305,6 @@ public class Dashboard extends javax.swing.JFrame {
     private void addActionToMenuLabels() {
         Component[] menus = PanelMenu.getComponents();
         for (Component menu : menus) {
-            System.out.println();
             JPanel contenedor = (JPanel) menu;
             Component[] components = contenedor.getComponents();
             if (menu.getName() != "Header") {
@@ -1384,6 +1383,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     /**
      * Cambiar panel de trabajo
+     *
      * @param panel Panel a mostrar
      */
     private void showPanel(JPanel panel) {
@@ -1396,6 +1396,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     /**
      * Cambiar menu lateral
+     *
      * @param panel Menu a modificar
      */
     private void showMenu(JPanel panel) {
@@ -1413,7 +1414,7 @@ public class Dashboard extends javax.swing.JFrame {
      *
      * @param user Uusario con el que se iniciará la interfaz
      */
-    public void initGui(Empleado user) {
+    public void initGui(Persona user) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1441,10 +1442,6 @@ public class Dashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             Dashboard gui = new Dashboard();
-
-            /**
-             * Iniciar dashboard
-             */
             public void run() {
                 gui.setVisible(true);
                 gui.setLocationRelativeTo(null);
@@ -1464,7 +1461,7 @@ public class Dashboard extends javax.swing.JFrame {
                 gui.TallerADMIN.setVisible(false);
                 gui.VentasTALLER.setVisible(false);
                 gui.VentasADMIN.setVisible(false);
-                switch (user.getPuestoTrabajo()) {
+                switch (((Empleado) user).getPuestoTrabajo()) {
                     case "Administrativo":
                         gui.MenuADMIN.setVisible(true);
                         gui.TallerVENTAS.setVisible(true);

@@ -58,11 +58,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="Popup_Description" max="32767" attributes="0"/>
-                      <Component id="Popup_Title" pref="388" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="Popup_Description" alignment="1" max="32767" attributes="0"/>
+                      <Component id="Popup_Title" alignment="1" pref="388" max="32767" attributes="0"/>
+                      <Component id="Popup_Subtext" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -74,7 +75,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="Popup_Title" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Popup_Description" pref="108" max="32767" attributes="0"/>
+                  <Component id="Popup_Description" min="-2" pref="92" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="Popup_Subtext" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -101,6 +104,14 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Default description"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Popup_Subtext">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="99" red="99" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Default Subtext"/>
           </Properties>
         </Component>
       </SubComponents>
