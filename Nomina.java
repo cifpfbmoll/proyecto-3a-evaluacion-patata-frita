@@ -15,11 +15,21 @@ public class Nomina {
     private String fechaNomina;
     private Empleado empleado;
 
-    // constructor vacio
+    /**
+     * Constructor vacio
+     */
     public Nomina() {
     }
 
-    // constructor con todos atributos
+    /**
+     * Constructor con todos los atributos
+     * @param id
+     * @param horasTrabajadas
+     * @param sueldoBruto
+     * @param sueldoNeto
+     * @param fechaNomina
+     * @param empleado 
+     */
     public Nomina(int id, int horasTrabajadas, float sueldoBruto, float sueldoNeto, String fechaNomina, Empleado empleado) {
         this.id = id;
         this.horasTrabajadas = horasTrabajadas;
@@ -29,7 +39,10 @@ public class Nomina {
         this.empleado = empleado;
     }
 
-    // constructor copia
+    /**
+     * Constructor copia
+     * @param nomina una nomina pasa como parametro
+     */
     public Nomina(Nomina nomina) {
         this.id = nomina.getId();
         this.horasTrabajadas = nomina.getHorasTrabajadas();
@@ -128,7 +141,7 @@ public class Nomina {
             System.out.println("Elige NIF para nomina");
             String nifEmpleado = Utils.kString();
             
-            //TODO: nomina.setEmpleado(buscarEmpleadoBBDD(nifEmpleado));
+           nomina.setEmpleado(Empleado.buscarEmpleadoBBDD(nifEmpleado));
             
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getLocalizedMessage());
@@ -143,9 +156,8 @@ public class Nomina {
     public static void mostrarNifNombreApelidoEmpleados() {
         String consulta = "SELECT NIF,NOMBRE,APELLIDOS FROM EMPLEADO";
         try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 System.out.println(" NIF: " + Utils.rs.getString(1)
                         + " , NOMBRE: " + Utils.rs.getString(2)
@@ -153,11 +165,17 @@ public class Nomina {
             }
         } catch (SQLException e) {
             System.out.println("Error !!!");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
     /**
-     * metodo para insertar datos de una nomina apartir de un objeto
+     * metodo estatico para insertar datos de una nomina apartir de un objeto
      *
      * @param nomina
      */
@@ -166,14 +184,11 @@ public class Nomina {
         String consulta = "INSERT INTO NOMINA (HORAS, SUELDO_BRUTO, SUELDO_NETO, FECHA, EMPLEADONIF) VALUES (?,?,?,?,?)";
         java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(nomina.getFechaNomina());
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, nomina.getHorasTrabajadas());
             Utils.prst.setFloat(2, nomina.getSueldoBruto());
             Utils.prst.setFloat(3, nomina.getSueldoNeto());
             Utils.prst.setDate(4, sqlDate);
-            //TODO: nomina.setEmpleado(buscarEmpleadoBBDD(nifEmpleado));
-            
             Utils.prst.setString(5, nomina.getEmpleado().getNif());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente señor");
@@ -181,15 +196,10 @@ public class Nomina {
         } catch (SQLException ex) {
             System.out.println("Error insertas datos");
         } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -201,14 +211,11 @@ public class Nomina {
         String consulta = "INSERT INTO NOMINA (HORAS, SUELDO_BRUTO, SUELDO_NETO, FECHA, EMPLEADONIF) VALUES (?,?,?,?,?)";
         java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(this.getFechaNomina());
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, this.getHorasTrabajadas());
             Utils.prst.setFloat(2, this.getSueldoBruto());
             Utils.prst.setFloat(3, this.getSueldoNeto());
             Utils.prst.setDate(4, sqlDate);
-
-            ////TODO: nomina.setEmpleado(buscarEmpleadoBBDD(nifEmpleado));
             Utils.prst.setString(5, this.getEmpleado().getNif());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente señor!");
@@ -216,15 +223,10 @@ public class Nomina {
         } catch (SQLException ex) {
             System.out.println("Error insertas datos");
         } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -235,9 +237,8 @@ public class Nomina {
     public static void mostrarTodasNominas() {
         String consulta = "SELECT * FROM NOMINA ORDER BY ID";
         try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 System.out.println(
                         "ID:" + Utils.rs.getInt(1) + ", "
@@ -251,18 +252,10 @@ public class Nomina {
         } catch (SQLException ex) {
             System.out.println("Error mostrar todas nominas");
         } finally {
-            try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.st != null) {
-                    Utils.st.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -275,7 +268,6 @@ public class Nomina {
     public static void borrarNomina(int idNomina) {
         String borrar = "DELETE FROM NOMINA WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(borrar);
             Utils.prst.setInt(1, idNomina);
             Utils.prst.executeUpdate();
@@ -283,15 +275,10 @@ public class Nomina {
         } catch (SQLException e) {
             System.out.println("Error al borar datos");
         } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -306,7 +293,6 @@ public class Nomina {
         String buscar = "SELECT * FROM NOMINA WHERE ID=?";
         boolean encontrado = false;
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(buscar);
             Utils.prst.setInt(1, idNomina);
             Utils.rs = Utils.prst.executeQuery();         
@@ -316,18 +302,10 @@ public class Nomina {
         } catch (SQLException e) {
             System.out.println("Error a buscar nomina");
         } finally {
-            try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
         return encontrado;
@@ -341,12 +319,12 @@ public class Nomina {
      * @param SueldoBruto
      * @param SueldoNeto
      * @param fecha
+     * @param EmpleadoNif
      */
     public static void modificarNominaBBDD(int IDNomina, int HorasTrabajo, float SueldoBruto, float SueldoNeto, String fecha, String EmpleadoNif) {
-        String consulta = "UPDATE NOMINA SET HORAS=?, SUELDO_BRUTO=?, SUELDO_NETO=?, FECHA=?,  EMPLEADONIF=? WHERE ID=?";
+        String consulta = "UPDATE NOMINA SET HORAS=?, SUELDO_BRUTO=?, SUELDO_NETO=?, FECHA=?, EMPLEADONIF=? WHERE ID=?";
         java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(fecha);
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, HorasTrabajo);
             Utils.prst.setFloat(2, SueldoBruto);
@@ -359,15 +337,10 @@ public class Nomina {
         } catch (SQLException ex) {
             System.out.println("Error modificar nomina");
         } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -383,7 +356,6 @@ public class Nomina {
         String consulta = "UPDATE NOMINA SET EMPLEADONIF=? WHERE ID=?";
 
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, NifEmpleado);
             Utils.prst.setInt(2, NominaID);
@@ -392,15 +364,10 @@ public class Nomina {
         } catch (SQLException e) {
             System.out.println("Error relacionar Nomina " + NominaID + " con Empleado " + NifEmpleado);
         } finally {
-            try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -409,7 +376,7 @@ public class Nomina {
      * metodo para buscar una nomina en BBDD, devuelve objeto nomina
      *
      * @param idNomina
-     * @return
+     * @return Objeto "nomina" con sus datos guardados.
      */
     public static Nomina buscarNominaBBDD(int idNomina) {
         String consulta = "SELECT HORAS, SUELDO_BRUTO, SUELDO_NETO, FECHA ,EMPLEADONIF FROM NOMINA WHERE ID=?";
@@ -418,7 +385,6 @@ public class Nomina {
         } else {
 
             Nomina n = new Nomina();
-            Utils.connection = Utils.conectarBBDD();
             try {
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setInt(1, idNomina);
@@ -429,24 +395,17 @@ public class Nomina {
                 n.setSueldoBruto(Utils.rs.getFloat(2));
                 n.setSueldoNeto(Utils.rs.getFloat(3));
                 n.setFechaNomina(Utils.rs.getString(4));
-                //TODO setEmpleado
-                //n.setEmpleado(buscarEmpleadoBBDD(empleadoNif));
+                String empleadoNif = Utils.rs.getString(5);//nos devuelve nifEmpleado             
+                n.setEmpleado(Empleado.buscarEmpleadoBBDD(empleadoNif));// establecemos empleado
+                
                 System.out.println("Nomina encontrada y creada " + n.toString());
             } catch (SQLException ex) {
                 System.out.println("Error buscar nomina");
             } finally {
-                try {
-                    if (Utils.rs != null) {
-                        Utils.rs.close();
-                    }
-                    if (Utils.prst != null) {
-                        Utils.prst.close();
-                    }
-                    if (Utils.connection != null) {
-                        Utils.connection.close();
-                    }
-                } catch (SQLException ex) {
-                    System.out.println("Error cerrar conexion");
+                try{
+                    Utils.cerrarVariables();
+                }catch (Exception e){
+                    System.out.println("Error al cerrar variables");
                 }
             }
             return n;
@@ -464,7 +423,6 @@ public class Nomina {
         boolean existe = false;
         String consulta = "SELECT * FROM NOMINA WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, this.getId());
             Utils.rs = Utils.prst.executeQuery();   
@@ -476,18 +434,10 @@ public class Nomina {
         } catch (SQLException e) {
             System.out.println("Error consultar BBDD");
         } finally {
-            try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println("Error cerrar conexion");
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
             }
         }
         return existe;

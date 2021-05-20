@@ -1,3 +1,4 @@
+
 /**
  * Clase Reserva
  *
@@ -10,18 +11,27 @@ import java.util.Date;
 public class Reserva {
 
     //atributos
-    int id =-1;
+    int id = -1;
     private String fechaHoraReserva;
     private int espacioReservado;
     private Taller taller;
     private Cliente cliente;
 
-    // constructor vacio
+    /**
+     * constructor vacio
+     */
     public Reserva() {
     }
 
-    // constructor con todos atributos
-
+    /**
+     * Constructor con todos los atributos
+     *
+     * @param id
+     * @param fechaHoraReserva
+     * @param espacioReservado
+     * @param taller
+     * @param cliente
+     */
     public Reserva(int id, String fechaHoraReserva, int espacioReservado, Taller taller, Cliente cliente) {
         this.id = id;
         this.fechaHoraReserva = fechaHoraReserva;
@@ -30,8 +40,11 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-
-    // constructor copia
+    /**
+     * Constructor copia
+     *
+     * @param reserva
+     */
     public Reserva(Reserva reserva) {
         this.id = reserva.getId();
         this.fechaHoraReserva = reserva.getFechaHoraReserva();
@@ -59,8 +72,7 @@ public class Reserva {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
- 
-    
+
     // getter/setter
     public String getFechaHoraReserva() {
         return fechaHoraReserva;
@@ -81,29 +93,33 @@ public class Reserva {
         }
     }
 
-    // toString
+    /**
+     * toString
+     *
+     * @return
+     */
     @Override
     public String toString() {
-        return "Reserva { " + 
-                "id=" + id + 
-                ", fechaHoraReserva=" + fechaHoraReserva + 
-                ", espacioReservado=" + espacioReservado + 
-                ", taller=" + taller + 
-                ", cliente=" + cliente + '}';
+        return "Reserva { "
+                + "id=" + id
+                + ", fechaHoraReserva=" + fechaHoraReserva
+                + ", espacioReservado=" + espacioReservado
+                + ", taller=" + taller
+                + ", cliente=" + cliente + '}';
     }
-
 
     /**
      * Metodo estatico para crear una reserva
+     *
      * @return
-     * @throws IllegalArgumentException 
+     * @throws IllegalArgumentException
      */
     public static Reserva crearReserva() throws IllegalArgumentException {
         Reserva reserva = new Reserva();
         try {
 //            String fechaReserva = Utils.establecerFechaActual();
 //            reserva.setFechaHoraReserva(fechaReserva);
-            System.out.println("Fecha de reserva ( formato dd-MM-yyyy HH:mm )");
+            System.out.println("Fecha de reserva ( formato DD-MM-YYYY HH:MM )");
             String fechaReserva = Utils.kString();
 
             DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -116,9 +132,16 @@ public class Reserva {
             reserva.setFechaHoraReserva(fechaReserva);
             System.out.println("Espacio reservado: ");
             reserva.setEspacioReservado(Utils.kInt());
-            
-            // TODO setCliente nomina.setCliente(buscarClienteBBDD(nifCliente));
-            // TODO setTaller  nomina.setTaller(buscarTallerBBDD(idTaller));
+
+            // TODO setCliente 
+            System.out.println("Nif Cliente: ");
+            String nifCliente = Utils.kString();
+            reserva.setCliente(Cliente.buscarClienteBBDD(nifCliente));
+
+            // TODO setTaller  
+            System.out.println("Id del Taller: ");
+            int idTaller = Utils.kInt();
+            reserva.setTaller(Taller.buscarTaller(idTaller));
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getLocalizedMessage());
@@ -127,12 +150,13 @@ public class Reserva {
     }
 
     /**
-     * insertar datos de una reserva en BBDD, apartir de un objeto reserva
+     * metodo estatico insertar datos de una reserva en BBDD, apartir de un
+     * objeto reserva
      *
      * @param reserva
      */
     public static void insertarDatosReservaBBDD(Reserva reserva) {
-        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA, TALLERID, CLIENTENIF) VALUES(?,?)";
+        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA, TALLERID, CLIENTENIF) VALUES(?,?,?,?)";
 
         // convertir string fechaHoraReserva a date
         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -145,7 +169,7 @@ public class Reserva {
         // creamos objeto sql date y le pasamos date anteriormente creada
         Object fechaSQL = new java.sql.Timestamp(myDate.getTime());
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, reserva.getEspacioReservado());
             //ojo es objeto fechaSQL
@@ -158,23 +182,18 @@ public class Reserva {
             System.out.println("Error insertar datos");
         } finally {
             try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.prst.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error cerrar conexion");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
 
     /**
-     * metodo de la INSTANCIA para insertar datos
+     * metodo de la INSTANCIA para insertar datos de la reserva
      */
     public void insertarDatosReservaBBDD() {
-        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA) VALUES(?,?)";
+        String consulta = "INSERT INTO RESERVA (ESPACIO_RESERVADO, FECHA, TALLERID, CLIENTENIF ) VALUES(?,?,?,?)";
 
         // convertir string fechaHoraReserva a date
         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -187,7 +206,7 @@ public class Reserva {
         // creamos objeto sql date y le pasamos date anteriormente creada
         Object fechaSQL = new java.sql.Timestamp(myDate.getTime());
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, this.getEspacioReservado());
             //ojo es objeto fechaSQL
@@ -200,14 +219,9 @@ public class Reserva {
             System.out.println("Error insertar datos");
         } finally {
             try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.prst.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error cerrar conexion");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -222,7 +236,7 @@ public class Reserva {
         String consulta = "SELECT * FROM RESERVA WHERE ID=? ORDER BY ID";
         boolean encontrado = false;
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id);
             Utils.rs = Utils.prst.executeQuery();
@@ -234,17 +248,9 @@ public class Reserva {
             System.out.println("Error buscar reseva");
         } finally {
             try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexiones");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
         return encontrado;
@@ -272,7 +278,6 @@ public class Reserva {
             // creamos objeto sql date y le pasamos date anteriormente creada
             Object fechaSQL = new java.sql.Timestamp(myDate.getTime());
 
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, espacioReservado);
             //Utils.prst.setDate(2, sqlDate);
@@ -286,14 +291,9 @@ public class Reserva {
             System.out.println("Error modificar datos");
         } finally {
             try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexiones");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -304,9 +304,9 @@ public class Reserva {
     public static void mostrarTodasReservas() {
         String consulta = "SELECT * FROM RESERVA ORDER BY ID";
         try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery(consulta);
+
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
 
             while (Utils.rs.next()) {
                 System.out.println(
@@ -321,17 +321,9 @@ public class Reserva {
             System.out.println("Error al modificar datos");
         } finally {
             try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexiones");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -344,7 +336,7 @@ public class Reserva {
     public static void borrarReserva(int id) {
         String consulta = "DELETE FROM RESERVA WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id);
             Utils.prst.executeUpdate();
@@ -353,17 +345,9 @@ public class Reserva {
             System.out.println("Error al borrar reserva");
         } finally {
             try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexiones");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -378,7 +362,7 @@ public class Reserva {
         String consulta = "UPDATE RESERVA SET TALLERID=? WHERE ID=?";
 
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, TallerID);
             Utils.prst.setInt(2, ReservaID);
@@ -388,14 +372,9 @@ public class Reserva {
             System.out.println("Error al relacionar Reserva " + ReservaID + " con Taller " + TallerID);
         } finally {
             try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -410,7 +389,7 @@ public class Reserva {
         String consulta = "UPDATE RESERVA SET CLIENTENIF=? WHERE ID=?";
 
         try {
-            Utils.connection = Utils.conectarBBDD();
+
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, ClienteNIF);
             Utils.prst.setInt(2, ReservaID);
@@ -420,14 +399,9 @@ public class Reserva {
             System.out.println("Error al relacionar Reserva " + ReservaID + " con Cliente " + ClienteNIF);
         } finally {
             try {
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error al cerrar conexion");
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
             }
         }
     }
@@ -439,36 +413,32 @@ public class Reserva {
      * @return reserva
      */
     public static Reserva buscarReservaBBDD(int idReserva) {
-        String consulta = "SELECT ESPACIO_RESERVADO, FECHA  FROM RESERVA WHERE ID=?";
+        String consulta = "SELECT ESPACIO_RESERVADO, FECHA, TALLERID, CLIENTENIF  FROM RESERVA WHERE ID=?";
         if (!Reserva.existReservaBBDD(idReserva)) {
             return null;
         } else {
             Reserva r = new Reserva();
             try {
-                Utils.connection = Utils.conectarBBDD();
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setInt(1, idReserva);
                 Utils.rs = Utils.prst.executeQuery();
                 Utils.rs.next();
                 r.setEspacioReservado(Utils.rs.getInt(1));
                 r.setFechaHoraReserva(Utils.rs.getString(2));
+                int idTaller = Utils.rs.getInt(3); // nos devuelve id del taller
+                r.setTaller(Taller.buscarTaller(idTaller)); //establecemos taller 
+                String nifCliente = Utils.rs.getString(4);// nos devuelve nifCliente
+                r.setCliente(Cliente.buscarClienteBBDD(nifCliente)); // setablecemos cliente
+
                 System.out.println("Reserva encontrada y creada " + r.toString());
 
             } catch (Exception e) {
                 System.out.println("Error buscar reserva");
             } finally {
                 try {
-                    if (Utils.rs != null) {
-                        Utils.rs.close();
-                    }
-                    if (Utils.prst != null) {
-                        Utils.prst.close();
-                    }
-                    if (Utils.connection != null) {
-                        Utils.connection.close();
-                    }
-                } catch (SQLException ex) {
-                    System.out.println("Error cerrar conexion");
+                    Utils.cerrarVariables();
+                } catch (Exception e) {
+                    System.out.println("Error al cerrar variables");
                 }
             }
             return r;
