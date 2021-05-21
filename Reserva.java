@@ -455,11 +455,12 @@ public class Reserva {
      */
     public static Object[][] devolverTodasReservasBBDD() {
         String consulta = "SELECT `RESERVA`.*,`CLIENTE`.`NOMBRE`,`CLIENTE`.`APELLIDOS` FROM RESERVA,CLIENTE WHERE `RESERVA`.`CLIENTENIF` like CLIENTE.`NIF` ORDER BY ID";
+        String[][] objectList = null;
         try {
             Utils.st = Utils.connection.createStatement();
             Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
-            String[][] objectList = new String[Utils.rs.getInt(1)][];
+            objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
@@ -479,8 +480,14 @@ public class Reserva {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
         }
-        return null;
+        return objectList;
     }
 
 }

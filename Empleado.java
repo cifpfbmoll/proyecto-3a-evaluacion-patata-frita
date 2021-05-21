@@ -257,12 +257,13 @@ public class Empleado extends Persona {
      */
     public static Object[][] devolverTodosEmpleadosBBDD() {
         String consulta = "SELECT * FROM EMPLEADO ORDER BY NIF";
+        String[][] objectList = null;
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.st = Utils.connection.createStatement();
             Utils.rs = Utils.st.executeQuery("SELECT count(*) FROM EMPLEADO");
             Utils.rs.next();
-            String[][] objectList = new String[Utils.rs.getInt(1)][];
+            objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
@@ -278,12 +279,16 @@ public class Empleado extends Persona {
                 objectList[i] = list;
                 i++;
             }
-            return objectList;
-
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
         }
-        return null;
+        return objectList;
     }
 
     /**
