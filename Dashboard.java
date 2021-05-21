@@ -31,6 +31,7 @@ public class Dashboard extends javax.swing.JFrame {
         VentanaCompleta = new javax.swing.JPanel();
         PanelMenu = new javax.swing.JPanel();
         MenuHeader = new javax.swing.JPanel();
+        NIF_Menu = new javax.swing.JLabel();
         Title = new javax.swing.JLabel();
         icono = new javax.swing.JLabel();
         MenuVENTAS = new javax.swing.JPanel();
@@ -116,9 +117,9 @@ public class Dashboard extends javax.swing.JFrame {
         Nominas_Modificar = new javax.swing.JButton();
         Nominas_Eliminar = new javax.swing.JButton();
         Board_AreaEmpleados = new javax.swing.JPanel();
-        Title_Empleados1 = new javax.swing.JLabel();
-        Empleados_Scroll1 = new javax.swing.JScrollPane();
-        Empleados_Tabla1 = new javax.swing.JTable();
+        Title_AreaEmpleados = new javax.swing.JLabel();
+        AreaEmpleado_Scroll = new javax.swing.JScrollPane();
+        AreaEmpleado_Table = new javax.swing.JTable();
         Sb_Empleado = new javax.swing.JLabel();
         Label_Venta = new javax.swing.JLabel();
         Label_Apellidos = new javax.swing.JLabel();
@@ -148,33 +149,26 @@ public class Dashboard extends javax.swing.JFrame {
 
         MenuHeader.setBackground(new java.awt.Color(51, 51, 51));
         MenuHeader.setName("Header"); // NOI18N
+        MenuHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        NIF_Menu.setFont(new java.awt.Font("Consolas", 3, 10)); // NOI18N
+        NIF_Menu.setForeground(new java.awt.Color(255, 255, 204));
+        NIF_Menu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        NIF_Menu.setText("<NIF>");
+        NIF_Menu.setName("Header"); // NOI18N
+        MenuHeader.add(NIF_Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 49, 200, 20));
 
         Title.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
         Title.setForeground(new java.awt.Color(255, 255, 0));
         Title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Title.setText("Concesionario");
         Title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        MenuHeader.add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 0, 210, 70));
 
         icono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icono.setText("icono");
         icono.setIconTextGap(0);
-
-        javax.swing.GroupLayout MenuHeaderLayout = new javax.swing.GroupLayout(MenuHeader);
-        MenuHeader.setLayout(MenuHeaderLayout);
-        MenuHeaderLayout.setHorizontalGroup(
-            MenuHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuHeaderLayout.createSequentialGroup()
-                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        MenuHeaderLayout.setVerticalGroup(
-            MenuHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuHeaderLayout.createSequentialGroup()
-                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        MenuHeader.add(icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 71, 71));
 
         MenuVENTAS.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -226,7 +220,9 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(VentasFacturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(VentasVehiculos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                     .addComponent(VentasClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(VentasArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuVENTASLayout.createSequentialGroup()
+                        .addComponent(VentasArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(147, 147, 147)))
                 .addContainerGap())
         );
         MenuVENTASLayout.setVerticalGroup(
@@ -288,9 +284,11 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(MenuTALLERLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TallerInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TallerFacturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TallerReservas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                    .addComponent(TallerReservas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TallerClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TallerArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(MenuTALLERLayout.createSequentialGroup()
+                        .addComponent(TallerArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(189, 189, 189)))
                 .addContainerGap())
         );
         MenuTALLERLayout.setVerticalGroup(
@@ -376,7 +374,9 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(AdminInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AdminFacturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AdminNominas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AdminArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(MenuADMINLayout.createSequentialGroup()
+                        .addComponent(AdminArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(143, 143, 143))
                     .addComponent(AdminMotores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AdminVehiculos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                     .addComponent(AdminClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -467,7 +467,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(MenuVENTAS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(MenuTALLER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(MenuTALLER, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(MenuADMIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -482,15 +482,15 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(MenuCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMenuLayout.createSequentialGroup()
-                    .addGap(0, 77, Short.MAX_VALUE)
+                    .addGap(0, 82, Short.MAX_VALUE)
                     .addComponent(MenuVENTAS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMenuLayout.createSequentialGroup()
-                    .addGap(0, 78, Short.MAX_VALUE)
+                    .addGap(0, 82, Short.MAX_VALUE)
                     .addComponent(MenuTALLER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMenuLayout.createSequentialGroup()
-                    .addGap(0, 78, Short.MAX_VALUE)
+                    .addGap(0, 82, Short.MAX_VALUE)
                     .addComponent(MenuADMIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -512,7 +512,7 @@ public class Dashboard extends javax.swing.JFrame {
         Facturas_Tabla.setAutoCreateRowSorter(true);
         Facturas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+                {"--", "--", "--", "--", "--", "--"}
             },
             new String [] {
                 "ID", "Concepto", "Local ID", "Vehículo", "Fecha", "Coste"
@@ -606,7 +606,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         Cliente_Tabla.setAutoCreateRowSorter(true);
         Cliente_Tabla.setModel(new javax.swing.table.DefaultTableModel(
-            Cliente.devolverTodosClienteBBDD(),
+            new Object [][] {
+                {"--", "--", "--", "--", "--"}
+            },
             new String [] {
                 "NIF", "Nombre", "Apellidos", "Telefono", "Domicilio"
             }
@@ -817,7 +819,7 @@ public class Dashboard extends javax.swing.JFrame {
         Reservas_Tabla.setAutoCreateRowSorter(true);
         Reservas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+                {"--", "--", "--", "--", "--", "--"}
             },
             new String [] {
                 "ID", "Espacio", "Fecha", "Taller", "NIF Cliente", "Nombre Cliente"
@@ -881,88 +883,20 @@ public class Dashboard extends javax.swing.JFrame {
 
         Title_Nominas.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
         Title_Nominas.setForeground(new java.awt.Color(0, 0, 0));
-        Title_Nominas.setText("Empleados");
+        Title_Nominas.setText("Nominas");
         Board_Nominas.add(Title_Nominas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Nominas_Tabla.setAutoCreateRowSorter(true);
         Nominas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {"--", "--", "--", "--", "--", "--", "--"}
             },
             new String [] {
                 "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -1017,23 +951,23 @@ public class Dashboard extends javax.swing.JFrame {
         Board_AreaEmpleados.setName("areaempleado"); // NOI18N
         Board_AreaEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Title_Empleados1.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
-        Title_Empleados1.setForeground(new java.awt.Color(0, 0, 0));
-        Title_Empleados1.setText("Área personal");
-        Board_AreaEmpleados.add(Title_Empleados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        Title_AreaEmpleados.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title_AreaEmpleados.setForeground(new java.awt.Color(0, 0, 0));
+        Title_AreaEmpleados.setText("Área personal");
+        Board_AreaEmpleados.add(Title_AreaEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        Empleados_Tabla1.setAutoCreateRowSorter(true);
-        Empleados_Tabla1.setModel(new javax.swing.table.DefaultTableModel(
-            Empleado.devolverTodosEmpleadosBBDD(),
+        AreaEmpleado_Table.setAutoCreateRowSorter(true);
+        AreaEmpleado_Table.setModel(new javax.swing.table.DefaultTableModel(
+            Nomina.devolverTodasNominasBBDD("12345678x"),
             new String [] {
-                "NIF", "Nombre", "Apellidos", "Telefono", "Domicilio", "Puesto", "TallerID", "VentaID"
+                "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1044,9 +978,9 @@ public class Dashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        Empleados_Scroll1.setViewportView(Empleados_Tabla1);
+        AreaEmpleado_Scroll.setViewportView(AreaEmpleado_Table);
 
-        Board_AreaEmpleados.add(Empleados_Scroll1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 740, 520));
+        Board_AreaEmpleados.add(AreaEmpleado_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 740, 520));
 
         Sb_Empleado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Sb_Empleado.setForeground(new java.awt.Color(0, 0, 0));
@@ -1101,12 +1035,14 @@ public class Dashboard extends javax.swing.JFrame {
 
         Title_Empleados.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
         Title_Empleados.setForeground(new java.awt.Color(0, 0, 0));
-        Title_Empleados.setText("Clientes");
+        Title_Empleados.setText("Empleados");
         Board_Empleados.add(Title_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Empleados_Tabla.setAutoCreateRowSorter(true);
         Empleados_Tabla.setModel(new javax.swing.table.DefaultTableModel(
-            Empleado.devolverTodosEmpleadosBBDD(),
+            new Object [][] {
+                {"--", "--", "--", "--", "--", "--", "--", "--"}
+            },
             new String [] {
                 "NIF", "Nombre", "Apellidos", "Telefono", "Domicilio", "Puesto", "TallerID", "VentaID"
             }
@@ -1260,7 +1196,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(VentanaCompletaLayout.createSequentialGroup()
                 .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE)
+                .addComponent(PanelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 991, Short.MAX_VALUE)
                 .addContainerGap())
         );
         VentanaCompletaLayout.setVerticalGroup(
@@ -1268,7 +1204,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(PanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(VentanaCompletaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1414,71 +1350,79 @@ public class Dashboard extends javax.swing.JFrame {
     private void addActionToMenuLabels() {
         Component[] menus = PanelMenu.getComponents();
         for (Component menu : menus) {
-            JPanel contenedor = (JPanel) menu;
-            Component[] components = contenedor.getComponents();
-            if (menu.getName() != "Header") {
-                for (Component component : components) {
-                    JLabel label = (JLabel) component;
+            if (menu instanceof JPanel) {
+                JPanel contenedor = (JPanel) menu;
+                Component[] components = contenedor.getComponents();
+                if (menu.getName() != "Header") {
+                    for (Component component : components) {
+                        JLabel label = (JLabel) component;
 
-                    label.addMouseListener(new MouseListener() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            switch (label.getName()) {
-                                case "inicio":
-                                    showPanel(Board_Inicio);
-                                    break;
-                                case "clientes":
-                                    showPanel(Board_Clientes);
-                                    break;
-                                case "facturas":
-                                    showPanel(Board_Facturas);
-                                    break;
-                                case "motores":
-                                    showPanel(Board_Motores);
-                                    break;
-                                case "vehiculos":
-                                    showPanel(Board_Vehiculos);
-                                    break;
-                                case "reservas":
-                                    showPanel(Board_Reservas);
-                                    break;
-                                case "empleados":
-                                    showPanel(Board_Empleados);
-                                    break;
-                                case "nominas":
-                                    showPanel(Board_Nominas);
-                                    break;
-                                case "areacliente":
-                                    showPanel(Board_AreaCliente);
-                                    break;
-                                case "areaempleado":
-                                    showPanel(Board_AreaEmpleados);
-                                    break;
-                                default:
-                                    showPanel(Board_Inicio);
+                        label.addMouseListener(new MouseListener() {
+                            @Override
+                            public void mouseClicked(MouseEvent e) {
+                                switch (label.getName()) {
+                                    case "inicio":
+                                        showPanel(Board_Inicio);
+                                        break;
+                                    case "clientes":
+                                        refreshTableCliente();
+                                        showPanel(Board_Clientes);
+                                        break;
+                                    case "facturas":
+                                        refreshTableFactura();
+                                        showPanel(Board_Facturas);
+                                        break;
+                                    case "motores":
+                                        showPanel(Board_Motores);
+                                        break;
+                                    case "vehiculos":
+                                        showPanel(Board_Vehiculos);
+                                        break;
+                                    case "reservas":
+                                        refreshTableReserva();
+                                        showPanel(Board_Reservas);
+                                        break;
+                                    case "empleados":
+                                        refreshTableEmpleado();
+                                        showPanel(Board_Empleados);
+                                        break;
+                                    case "nominas":
+                                        refreshTableNomina();
+                                        showPanel(Board_Nominas);
+                                        break;
+                                    case "areacliente":
+                                        showPanel(Board_AreaCliente);
+                                        break;
+                                    case "areaempleado":
+                                        refreshTableAreaEmpleado();
+                                        showPanel(Board_AreaEmpleados);
+                                        break;
+                                    default:
+                                        showPanel(Board_Inicio);
+                                }
                             }
-                        }
 
-                        @Override
-                        public void mousePressed(MouseEvent e) {
-                            label.setForeground(new java.awt.Color(171, 171, 27));
-                        }
+                            @Override
+                            public void mousePressed(MouseEvent e) {
+                                label.setForeground(new java.awt.Color(171, 171, 27));
+                            }
 
-                        @Override
-                        public void mouseReleased(MouseEvent e) {
-                            label.setForeground(new java.awt.Color(255, 255, 102));
-                        }
+                            @Override
+                            public void mouseReleased(MouseEvent e) {
+                                label.setForeground(new java.awt.Color(255, 255, 102));
+                            }
 
-                        @Override
-                        public void mouseEntered(MouseEvent e) {
-                            label.setForeground(new java.awt.Color(255, 255, 102));
-                        }
+                            @Override
+                            public void mouseEntered(MouseEvent e) {
+                                label.setForeground(new java.awt.Color(255, 255, 102));
+                            }
 
-                        @Override
-                        public void mouseExited(MouseEvent e) {
-                            label.setForeground(new java.awt.Color(255, 255, 255));
-                        }
-                    });
+                            @Override
+                            public void mouseExited(MouseEvent e) {
+                                label.setForeground(new java.awt.Color(255, 255, 255));
+                            }
+                        });
+                    }
                 }
             }
         }
@@ -1495,6 +1439,168 @@ public class Dashboard extends javax.swing.JFrame {
             pnl_f.setVisible(false);
         }
         panel.setVisible(true);
+    }
+
+    /**
+     * Refrescar la tabla de clientes
+     */
+    private void refreshTableCliente() {
+        Cliente_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                Cliente.devolverTodosClienteBBDD(),
+                new String[]{
+                    "NIF", "Nombre", "Apellidos", "Telefono", "Domicilio"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }
+
+    /**
+     * Refrescar la tabla de facturas
+     */
+    private void refreshTableFactura() {
+        Facturas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                Factura.devolverTodasFacturasBBDD(),
+                new String[]{
+                    "ID", "Concepto", "Local ID", "Vehículo", "Fecha", "Coste"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }
+
+    /**
+     * Refrescar la tabla de reservas
+     */
+    private void refreshTableReserva() {
+        Reservas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                Reserva.devolverTodasReservasBBDD(),
+                new String[]{
+                    "ID", "Espacio", "Fecha", "Taller", "NIF Cliente", "Nombre Cliente"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }
+
+    /**
+     * Refrescar la tabla de empleados
+     */
+    private void refreshTableEmpleado() {
+        Empleados_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                Empleado.devolverTodosEmpleadosBBDD(),
+                new String[]{
+                    "NIF", "Nombre", "Apellidos", "Telefono", "Domicilio", "Puesto", "TallerID", "VentaID"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }
+
+    /**
+     * Refrescar la tabla de nominas
+     */
+    private void refreshTableNomina() {
+        Nominas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                Nomina.devolverTodasNominasBBDD(),
+                new String[]{
+                    "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }
+
+    /**
+     * Refrescar la tabla de area personal
+     */
+    private void refreshTableAreaEmpleado() {
+        AreaEmpleado_Table.setModel(new javax.swing.table.DefaultTableModel(
+                Nomina.devolverTodasNominasBBDD(NIF_Menu.getText()),
+                new String[]{
+                    "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
     }
 
     /**
@@ -1543,14 +1649,15 @@ public class Dashboard extends javax.swing.JFrame {
              * Configuración inicial de los paneles
              */
             private void configureLabels() {
+                gui.NIF_Menu.setText(user.getNif());
                 gui.Label_SesionNIF.setText("Sesión iniciada con:   " + user.getNif());
                 gui.Label_NIF.setText("NIF:   " + user.getNif());
                 gui.Label_Nombre.setText("Nombre:   " + user.getNombre());
                 gui.Label_Apellidos.setText("Apellidos:   " + user.getApellidos());
                 gui.Label_Telefono.setText("Telefono:   " + user.getTelefono());
                 gui.Label_Domicilio.setText("Domicilio:   " + user.getDomicilio());
-                gui.Label_Venta.setText("Venta ID:   " + ((Empleado)user).getVentaId());
-                gui.Label_Taller.setText("Taller ID:   " + ((Empleado)user).getTallerId());
+                gui.Label_Venta.setText("Venta ID:   " + ((Empleado) user).getVentaId());
+                gui.Label_Taller.setText("Taller ID:   " + ((Empleado) user).getTallerId());
             }
 
             private void configurePanels() {
@@ -1599,6 +1706,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel AdminVehiculos;
     private javax.swing.JButton AreaBuscar;
     private javax.swing.JButton AreaDescargar;
+    private javax.swing.JScrollPane AreaEmpleado_Scroll;
+    private javax.swing.JTable AreaEmpleado_Table;
     private javax.swing.JPanel Board_AreaCliente;
     private javax.swing.JPanel Board_AreaEmpleados;
     private javax.swing.JPanel Board_Clientes;
@@ -1624,9 +1733,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Empleados_Eliminar;
     private javax.swing.JButton Empleados_Modificar;
     private javax.swing.JScrollPane Empleados_Scroll;
-    private javax.swing.JScrollPane Empleados_Scroll1;
     private javax.swing.JTable Empleados_Tabla;
-    private javax.swing.JTable Empleados_Tabla1;
     private javax.swing.JButton Facturas_Anadir;
     private javax.swing.JButton Facturas_Buscar;
     private javax.swing.JButton Facturas_Eliminar;
@@ -1654,6 +1761,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Motores_Modificar;
     private javax.swing.JScrollPane Motores_Scroll;
     private javax.swing.JTable Motores_Tabla;
+    private javax.swing.JLabel NIF_Menu;
     private javax.swing.JButton Nominas_Anadir;
     private javax.swing.JButton Nominas_Buscar;
     private javax.swing.JButton Nominas_Eliminar;
@@ -1675,9 +1783,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel TallerInicio;
     private javax.swing.JLabel TallerReservas;
     private javax.swing.JLabel Title;
+    private javax.swing.JLabel Title_AreaEmpleados;
     private javax.swing.JLabel Title_Clientes;
     private javax.swing.JLabel Title_Empleados;
-    private javax.swing.JLabel Title_Empleados1;
     private javax.swing.JLabel Title_Facturas;
     private javax.swing.JLabel Title_Motores;
     private javax.swing.JLabel Title_Nominas;

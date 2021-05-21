@@ -246,15 +246,15 @@ public class Cliente extends Persona {
      * @return
      */
     public boolean existsInDB() {
-        boolean ret = false;
+        boolean existe = false;
         String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, getNif());
             if (Utils.rs != null) {
-                ret = true;
+                existe = true;
             } else {
-                ret = false;
+                existe = false;
             }
         } catch (SQLException e) {
             System.out.println("No existe el cliente en la base de datos");
@@ -276,15 +276,15 @@ public class Cliente extends Persona {
      * @return
      */
     public static boolean existsInDB(String nif) {
-        boolean ret = false;
+        boolean existe = false;
         String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, nif);
             if (Utils.rs != null) {
-                ret = true;
+                existe = true;
             } else {
-                ret = false;
+                existe = false;
             }
         } catch (SQLException e) {
             System.out.println("No existe el cliente en la base de datos");

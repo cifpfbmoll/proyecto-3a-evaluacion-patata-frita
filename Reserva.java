@@ -454,7 +454,7 @@ public class Reserva {
      * @return 
      */
     public static Object[][] devolverTodasReservasBBDD() {
-        String consulta = "SELECT * FROM RESERVA ORDER BY ID";
+        String consulta = "SELECT `RESERVA`.*,`CLIENTE`.`NOMBRE`,`CLIENTE`.`APELLIDOS` FROM RESERVA,CLIENTE WHERE `RESERVA`.`CLIENTENIF` like CLIENTE.`NIF` ORDER BY ID";
         try {
             Utils.st = Utils.connection.createStatement();
             Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
@@ -463,12 +463,13 @@ public class Reserva {
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
-                String[] list = new String[5]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
                 list[0] = (Utils.rs.getString(1));
                 list[1] = (Utils.rs.getString(2));
                 list[2] = (Utils.rs.getString(3));
                 list[3] = (Utils.rs.getString(4));
                 list[4] = (Utils.rs.getString(5));
+                list[5] = (Utils.rs.getString(6) + " " + Utils.rs.getString(7));
                 
                 objectList[i] = list;
                 i++;

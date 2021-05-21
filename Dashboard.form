@@ -64,7 +64,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="PanelMenu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="PanelBoard" pref="985" max="32767" attributes="0"/>
+                  <Component id="PanelBoard" pref="991" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -74,7 +74,7 @@
               <Component id="PanelMenu" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="PanelBoard" pref="708" max="32767" attributes="0"/>
+                  <Component id="PanelBoard" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -97,7 +97,7 @@
                       <Component id="MenuVENTAS" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
-                      <Component id="MenuTALLER" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="MenuTALLER" linkSize="1" alignment="0" min="-2" pref="283" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="3" groupAlignment="0" attributes="0">
                       <Component id="MenuADMIN" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -113,19 +113,19 @@
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="77" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="82" max="32767" attributes="0"/>
                           <Component id="MenuVENTAS" linkSize="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="78" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="82" max="32767" attributes="0"/>
                           <Component id="MenuTALLER" linkSize="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="3" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="78" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="82" max="32767" attributes="0"/>
                           <Component id="MenuADMIN" linkSize="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -141,27 +141,28 @@
                 <Property name="name" type="java.lang.String" value="Header" noResource="true"/>
               </Properties>
 
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="icono" min="-2" pref="71" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Title" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="icono" min="-2" pref="71" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="Title" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                <Property name="useNullLayout" type="boolean" value="false"/>
               </Layout>
               <SubComponents>
+                <Component class="javax.swing.JLabel" name="NIF_Menu">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Consolas" size="10" style="3"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
+                    <Property name="text" type="java.lang.String" value="&lt;NIF&gt;"/>
+                    <Property name="name" type="java.lang.String" value="Header" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="73" y="49" width="200" height="20"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
                 <Component class="javax.swing.JLabel" name="Title">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -174,6 +175,11 @@
                     <Property name="text" type="java.lang.String" value="Concesionario"/>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="77" y="0" width="210" height="70"/>
+                    </Constraint>
+                  </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="icono">
                   <Properties>
@@ -181,6 +187,11 @@
                     <Property name="text" type="java.lang.String" value="icono"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                   </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="0" y="0" width="71" height="71"/>
+                    </Constraint>
+                  </Constraints>
                 </Component>
               </SubComponents>
             </Container>
@@ -202,7 +213,10 @@
                               <Component id="VentasFacturas" alignment="0" max="32767" attributes="0"/>
                               <Component id="VentasVehiculos" alignment="1" pref="271" max="32767" attributes="0"/>
                               <Component id="VentasClientes" alignment="0" max="32767" attributes="0"/>
-                              <Component id="VentasArea" alignment="1" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="VentasArea" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -336,9 +350,12 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="TallerInicio" alignment="0" max="32767" attributes="0"/>
                               <Component id="TallerFacturas" alignment="0" max="32767" attributes="0"/>
-                              <Component id="TallerReservas" alignment="1" pref="271" max="32767" attributes="0"/>
+                              <Component id="TallerReservas" alignment="1" max="32767" attributes="0"/>
                               <Component id="TallerClientes" alignment="0" max="32767" attributes="0"/>
-                              <Component id="TallerArea" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="TallerArea" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -457,7 +474,10 @@
                               <Component id="AdminInicio" alignment="0" max="32767" attributes="0"/>
                               <Component id="AdminFacturas" alignment="0" max="32767" attributes="0"/>
                               <Component id="AdminNominas" alignment="1" max="32767" attributes="0"/>
-                              <Component id="AdminArea" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="AdminArea" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="AdminMotores" alignment="1" max="32767" attributes="0"/>
                               <Component id="AdminVehiculos" alignment="1" pref="271" max="32767" attributes="0"/>
                               <Component id="AdminClientes" alignment="0" max="32767" attributes="0"/>
@@ -918,15 +938,8 @@
                     <Component class="javax.swing.JTable" name="Facturas_Tabla">
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="6" rowCount="1">
-                            <Column editable="false" title="ID" type="java.lang.String"/>
-                            <Column editable="false" title="Concepto" type="java.lang.String"/>
-                            <Column editable="false" title="Local ID" type="java.lang.String"/>
-                            <Column editable="false" title="Veh&#xed;culo" type="java.lang.String"/>
-                            <Column editable="false" title="Fecha" type="java.lang.String"/>
-                            <Column editable="false" title="Coste" type="java.lang.String"/>
-                          </Table>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {&quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;ID&quot;, &quot;Concepto&quot;, &quot;Local ID&quot;, &quot;Veh&#xed;culo&quot;, &quot;Fecha&quot;, &quot;Coste&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1112,7 +1125,7 @@
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    Cliente.devolverTodosClienteBBDD(),&#xa;    new String [] {&#xa;        &quot;NIF&quot;, &quot;Nombre&quot;, &quot;Apellidos&quot;, &quot;Telefono&quot;, &quot;Domicilio&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {&quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;NIF&quot;, &quot;Nombre&quot;, &quot;Apellidos&quot;, &quot;Telefono&quot;, &quot;Domicilio&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1448,15 +1461,8 @@
                     <Component class="javax.swing.JTable" name="Reservas_Tabla">
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="6" rowCount="1">
-                            <Column editable="false" title="ID" type="java.lang.String"/>
-                            <Column editable="false" title="Espacio" type="java.lang.String"/>
-                            <Column editable="false" title="Fecha" type="java.lang.String"/>
-                            <Column editable="false" title="Taller" type="java.lang.String"/>
-                            <Column editable="false" title="NIF Cliente" type="java.lang.String"/>
-                            <Column editable="false" title="Nombre Cliente" type="java.lang.String"/>
-                          </Table>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {&quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;ID&quot;, &quot;Espacio&quot;, &quot;Fecha&quot;, &quot;Taller&quot;, &quot;NIF Cliente&quot;, &quot;Nombre Cliente&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1539,7 +1545,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Empleados"/>
+                    <Property name="text" type="java.lang.String" value="Nominas"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1559,16 +1565,8 @@
                     <Component class="javax.swing.JTable" name="Nominas_Tabla">
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="7" rowCount="69">
-                            <Column editable="false" title="ID" type="java.lang.Integer"/>
-                            <Column editable="false" title="Horas" type="java.lang.String"/>
-                            <Column editable="false" title="Sueldo Bruto" type="java.lang.Float"/>
-                            <Column editable="false" title="Sueldo Neto" type="java.lang.String"/>
-                            <Column editable="false" title="Fecha" type="java.lang.Object"/>
-                            <Column editable="false" title="NIF Empleado" type="java.lang.Object"/>
-                            <Column editable="false" title="Nombre Empleado" type="java.lang.Object"/>
-                          </Table>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {&quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;ID&quot;, &quot;Horas&quot;, &quot;Sueldo Bruto&quot;, &quot;Sueldo Neto&quot;, &quot;Fecha&quot;, &quot;NIF Empleado&quot;, &quot;Nombre Empleado&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1643,7 +1641,7 @@
                 <Property name="useNullLayout" type="boolean" value="false"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="Title_Empleados1">
+                <Component class="javax.swing.JLabel" name="Title_AreaEmpleados">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="SansSerif" size="24" style="3"/>
@@ -1659,7 +1657,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="Empleados_Scroll1">
+                <Container class="javax.swing.JScrollPane" name="AreaEmpleado_Scroll">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="20" y="170" width="740" height="520"/>
@@ -1668,11 +1666,11 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="Empleados_Tabla1">
+                    <Component class="javax.swing.JTable" name="AreaEmpleado_Table">
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    Empleado.devolverTodosEmpleadosBBDD(),&#xa;    new String [] {&#xa;        &quot;NIF&quot;, &quot;Nombre&quot;, &quot;Apellidos&quot;, &quot;Telefono&quot;, &quot;Domicilio&quot;, &quot;Puesto&quot;, &quot;TallerID&quot;, &quot;VentaID&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    Nomina.devolverTodasNominasBBDD(&quot;12345678x&quot;),&#xa;    new String [] {&#xa;        &quot;ID&quot;, &quot;Horas&quot;, &quot;Sueldo Bruto&quot;, &quot;Sueldo Neto&quot;, &quot;Fecha&quot;, &quot;NIF Empleado&quot;, &quot;Nombre Empleado&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1851,7 +1849,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Clientes"/>
+                    <Property name="text" type="java.lang.String" value="Empleados"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1872,7 +1870,7 @@
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    Empleado.devolverTodosEmpleadosBBDD(),&#xa;    new String [] {&#xa;        &quot;NIF&quot;, &quot;Nombre&quot;, &quot;Apellidos&quot;, &quot;Telefono&quot;, &quot;Domicilio&quot;, &quot;Puesto&quot;, &quot;TallerID&quot;, &quot;VentaID&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {&quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;NIF&quot;, &quot;Nombre&quot;, &quot;Apellidos&quot;, &quot;Telefono&quot;, &quot;Domicilio&quot;, &quot;Puesto&quot;, &quot;TallerID&quot;, &quot;VentaID&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
                       </Properties>
                     </Component>

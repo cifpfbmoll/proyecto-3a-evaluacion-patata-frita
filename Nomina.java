@@ -449,7 +449,7 @@ public class Nomina {
      * @return objectList
      */
     public static Object[][] devolverTodasNominasBBDD() {
-        String consulta = "SELECT * FROM NOMINA ORDER BY ID";
+        String consulta = "SELECT `NOMINA`.*,`EMPLEADO`.`NOMBRE`,`EMPLEADO`.`APELLIDOS` FROM NOMINA,EMPLEADO WHERE `NOMINA`.`EMPLEADONIF` like `EMPLEADO`.`NIF` ORDER BY ID";
         try {
             
             Utils.st = Utils.connection.createStatement();
@@ -459,7 +459,7 @@ public class Nomina {
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
-                String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                String[] list = new String[7]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
                 
                 list[0] = (Utils.rs.getString(1));
                 list[1] = (Utils.rs.getString(2));
@@ -467,6 +467,46 @@ public class Nomina {
                 list[3] = (Utils.rs.getString(4));
                 list[4] = (Utils.rs.getString(5));
                 list[5] = (Utils.rs.getString(6));
+                list[6] = (Utils.rs.getString(7) + " " + Utils.rs.getString(8));
+                
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        }
+        return null;
+    }
+    
+    /**
+     * Devolver todas las nominas de un empleado en concreto
+     * @param nif NIF del empleado
+     * @return 
+     */
+    public static Object[][] devolverTodasNominasBBDD(String nif) {
+        String consulta = "SELECT `NOMINA`.*,`EMPLEADO`.`NOMBRE`,`EMPLEADO`.`APELLIDOS` FROM NOMINA,EMPLEADO "
+                + "WHERE `NOMINA`.`EMPLEADONIF` like `EMPLEADO`.`NIF` AND `NOMINA`.`EMPLEADONIF` like \"" + nif + "\" ORDER BY ID";
+        try {
+            
+            Utils.st = Utils.connection.createStatement();
+            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM NOMINA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs.next();
+            String[][] objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                String[] list = new String[7]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                
+                list[0] = (Utils.rs.getString(1));
+                list[1] = (Utils.rs.getString(2));
+                list[2] = (Utils.rs.getString(3));
+                list[3] = (Utils.rs.getString(4));
+                list[4] = (Utils.rs.getString(5));
+                list[5] = (Utils.rs.getString(6));
+                list[6] = (Utils.rs.getString(7) + " " + Utils.rs.getString(8));
                 
                 objectList[i] = list;
                 i++;

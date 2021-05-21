@@ -166,17 +166,13 @@ public class Login extends javax.swing.JFrame {
         //TODO: Reemplazar empleado por persona para utilizar cleintes y contraseñas
         try {
             String nif = TextNIF.getText();
-            System.out.println(nif);
             String pass = String.valueOf(TextPass.getPassword());
-            System.out.println(pass);
             Persona user = Persona.verificarPersona(nif, pass);
-            System.out.println("persona");
             if (user == null) {
                 System.out.println("Lo del error");
                 throw new Exception("El usuario es nulo");
             }
             new Dashboard().initGui(user);
-            System.out.println("Dashboard");
             disable();
         } catch (Exception e) {
             System.out.println(e.getMessage());
