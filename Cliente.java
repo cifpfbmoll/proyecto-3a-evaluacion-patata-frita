@@ -8,6 +8,7 @@ package eu.fp.concesionario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 /**
  *
  * @author Karina
@@ -257,7 +258,7 @@ public class Cliente extends Persona {
             }
         } catch (SQLException e) {
             System.out.println("No existe el cliente en la base de datos");
-            ret = false;
+            existe = false;
         } finally {
             try{
                 Utils.cerrarVariables();
@@ -265,7 +266,7 @@ public class Cliente extends Persona {
                 System.out.println("Error al cerrar variables");
             }
         }
-        return ret;
+        return existe;
     }
 
     /**
@@ -287,7 +288,7 @@ public class Cliente extends Persona {
             }
         } catch (SQLException e) {
             System.out.println("No existe el cliente en la base de datos");
-            ret = false;
+            existe = false;
         } finally {
             try{
                 Utils.cerrarVariables();
@@ -295,6 +296,6 @@ public class Cliente extends Persona {
                 System.out.println("Error al cerrar variables");
             }
         }
-        return ret;
+        return existe;
     }
 }

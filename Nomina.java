@@ -430,10 +430,8 @@ public class Nomina {
             Utils.prst.setInt(1, this.getId());
             Utils.rs = Utils.prst.executeQuery();   
             if (Utils.rs.next()) {
-                existe = false;
-            } else {
                 existe = true;
-            }
+            } 
         } catch (SQLException e) {
             System.out.println("Error consultar BBDD");
         } finally {
@@ -445,4 +443,43 @@ public class Nomina {
         }
         return existe;
     }
+    
+     /**
+     * Devolver todos las nominas de la base de datos
+     * @return objectList
+     */
+    public static Object[][] devolverTodasNominasBBDD() {
+        String consulta = "SELECT * FROM NOMINA ORDER BY ID";
+        try {
+            
+            Utils.st = Utils.connection.createStatement();
+            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM NOMINA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs.next();
+            String[][] objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                
+                list[0] = (Utils.rs.getString(1));
+                list[1] = (Utils.rs.getString(2));
+                list[2] = (Utils.rs.getString(3));
+                list[3] = (Utils.rs.getString(4));
+                list[4] = (Utils.rs.getString(5));
+                list[5] = (Utils.rs.getString(6));
+                
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        }
+        return null;
+    }
+
+    
+    
 }

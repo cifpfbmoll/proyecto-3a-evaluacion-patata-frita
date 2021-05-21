@@ -215,6 +215,7 @@ public class Utils {
      * Cerrar la conexión a la base de datos
      * @throws SQLException 
      */
+    
     public static void cerrarGeneral() throws SQLException {
         try {
             if (rs != null) rs.close();
