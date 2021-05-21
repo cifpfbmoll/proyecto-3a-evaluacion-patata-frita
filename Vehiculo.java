@@ -520,12 +520,13 @@ public class Vehiculo {
     //Si hay algun fallo en esta clase puede ser por el finally, no se como reorganizarlo...
     public static Object[][] devolverTodosVehiculoBBDD() {
         String consulta = "SELECT * FROM Vehiculo ORDER BY bastidor";
+        String[][] objectList = null;
         try {
             Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Vehiculo"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
-            String[][] objectList = new String[Utils.rs.getInt(1)][];
+            objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
@@ -552,7 +553,6 @@ public class Vehiculo {
                 objectList[i] = list;
                 i++;
             }
-            return objectList;
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los clientes");
         } finally {
@@ -562,7 +562,7 @@ public class Vehiculo {
                 System.out.println("Error al cerrar variables");
             }
         }
-        return null;
+        return objectList;
     }
 
     /**

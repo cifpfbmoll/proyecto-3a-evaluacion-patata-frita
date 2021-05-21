@@ -294,11 +294,12 @@ public class Motor {
      */
     public static Object[][] devolverTodosMotoresBBDD() {
         String consulta = "SELECT * FROM Motor ORDER BY id";
+        String[][] objectList = null;
         try {
             Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Motor"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
-            String[][] objectList = new String[Utils.rs.getInt(1)][];
+            objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
@@ -311,7 +312,6 @@ public class Motor {
                 objectList[i] = list;
                 i++;
             }
-            return objectList;
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los clientes");
         } finally {
@@ -321,7 +321,7 @@ public class Motor {
                 System.out.println("Error al cerrar variables");
             }
         }
-        return null;
+        return objectList;
     }
 
     /**
