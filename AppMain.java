@@ -138,14 +138,14 @@ public class AppMain {
                     int relacionConcesionarioTaller = Utils.kInt();
                     System.out.println("Id del Taller: ");
                     int TallerId = Utils.kInt();
-                    //Concesionario.relacionarConcesionarioConTaller(relacionConcesionarioTaller, TallerId);
+                    Concesionario.relacionarConcesionarioConTaller(relacionConcesionarioTaller, TallerId);
                     break;
                 case 7:
                     System.out.println("Id del concesionario: ");
                     int relacionConcesionarioVenta = Utils.kInt();
                     System.out.println("Id del Venta: ");
                     int VentaId = Utils.kInt();
-                    //Concesionario.relacionarConcesionarioConVenta(relacionConcesionarioVenta, VentaId);
+                    Concesionario.relacionarConcesionarioConVenta(relacionConcesionarioVenta, VentaId);
                     break;
                 case 8:
                     System.out.println("Id  concsionario: ");
