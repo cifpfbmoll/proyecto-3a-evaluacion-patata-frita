@@ -273,7 +273,6 @@ public class Concesionario {
     public static Object[][] devolverTodosConcesionarioBBDD() {
         String consulta = "SELECT * FROM Concesionario ORDER BY id";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Concesionario"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
@@ -294,6 +293,12 @@ public class Concesionario {
             return objectList;
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
         }
         return null;
     }

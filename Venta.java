@@ -8,12 +8,7 @@ import java.sql.SQLException;
  * @version 1 - 29/03/2021
  */
 public class Venta {
-<<<<<<< HEAD
     private int id=-1;
-=======
-
-    private int id;
->>>>>>> Marat
     private String horario;
 
     public Venta() {
@@ -102,20 +97,10 @@ public class Venta {
             System.out.println("Datos guardados con exito.");
         } catch (SQLException ex) {
             System.out.println("¡ERROR! no se pudieron guardar los datos de la venta en la BBDD.");
-        } finally {
-<<<<<<< HEAD
-            if (Utils.prst != null) {
-                try {
-                    Utils.prst.close();//cierra el objeto prepareStatement llamado prst
-                } catch (SQLException throwables) {
-                    System.out.println("¡ERROR! no se ha podido cerrar la conexion.");
-                }
-=======
-            try {
+        } finally { try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
->>>>>>> Marat
             }
         }
     }
