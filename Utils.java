@@ -157,7 +157,7 @@ public class Utils {
      * Metodo para conectar a la base de datos, no devuelve nada
      */
     public static void conectarBBDD2() {
-        String url = "jdbc:mysql://51.178.152.221:3306/concesionario";
+        String url = "jdbc:mysql://51.178.152.221:3306/test";
         String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
         String password = "ContraseñaDeLaOstia69";
         try {
@@ -213,6 +213,7 @@ public class Utils {
      * Cerrar la conexión a la base de datos
      * @throws SQLException 
      */
+    
     public static void cerrarGeneral() throws SQLException {
         try {
             if (rs != null) rs.close();

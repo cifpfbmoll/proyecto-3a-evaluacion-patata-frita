@@ -263,8 +263,7 @@ public class Taller {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id);
             Utils.rs = Utils.prst.executeQuery();
-            Utils.rs.next();
-            if (Utils.rs != null) {
+            if (Utils.rs.next()) {
                 encontrado = true;
             }
 
