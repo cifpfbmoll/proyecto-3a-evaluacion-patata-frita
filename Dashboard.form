@@ -1298,22 +1298,61 @@
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="15" rowCount="1">
-                            <Column editable="false" title="Bastidor" type="java.lang.String"/>
-                            <Column editable="false" title="Tipo" type="java.lang.String"/>
-                            <Column editable="false" title="Clase" type="java.lang.String"/>
-                            <Column editable="false" title="Kilometraje" type="java.lang.String"/>
-                            <Column editable="false" title="Autonomia" type="java.lang.String"/>
-                            <Column editable="false" title="Puertas" type="java.lang.String"/>
-                            <Column editable="false" title="Asientos" type="java.lang.String"/>
-                            <Column editable="false" title="Color" type="java.lang.String"/>
-                            <Column editable="false" title="Marca" type="java.lang.String"/>
-                            <Column editable="false" title="Modelo" type="java.lang.String"/>
-                            <Column editable="false" title="Precio" type="java.lang.String"/>
-                            <Column editable="false" title="Extras" type="java.lang.String"/>
-                            <Column editable="false" title="Motor" type="java.lang.String"/>
-                            <Column editable="false" title="ventaid" type="java.lang.String"/>
-                            <Column editable="false" title="Cliente" type="java.lang.String"/>
+                          <Table columnCount="18" rowCount="1">
+                            <Column editable="false" title="Bastidor" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Tipo" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Clase" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Kilometraje" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Autonomia" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Puertas" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Asientos" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Color" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Marca" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Modelo" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Precio" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Extras" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Motor" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="ventaid" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Cliente" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Motor: Tipo" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Motor: Potencia" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
+                            <Column editable="false" title="Motor: Cilindrada" type="java.lang.String">
+                              <Data value="--"/>
+                            </Column>
                           </Table>
                         </Property>
                         <Property name="autoResizeMode" type="int" value="0"/>
@@ -1934,7 +1973,7 @@
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {&quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;ID&quot;, &quot;Ubicaci&#xf3;n&quot;, &quot;Nombre&quot;, &quot;Tel&#xe9;fono&quot;, &quot;Taller&quot;, &quot;Venta&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {&quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;, &quot;--&quot;}&#xa;    },&#xa;    new String [] {&#xa;        &quot;ID&quot;, &quot;Ubicaci&#xf3;n&quot;, &quot;Nombre&quot;, &quot;Tel&#xe9;fono&quot;, &quot;ID Taller&quot;, &quot;ID Venta&quot;, &quot;Espacios Taller&quot;, &quot;Horario Taller&quot;, &quot;Horario Venta&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false, false, false, false, false, false&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}" type="code"/>
                         </Property>
                       </Properties>
                     </Component>

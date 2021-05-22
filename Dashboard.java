@@ -765,17 +765,17 @@ public class Dashboard extends javax.swing.JFrame {
         Vehiculos_Tabla.setAutoCreateRowSorter(true);
         Vehiculos_Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {"--", "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", "--"}
             },
             new String [] {
-                "Bastidor", "Tipo", "Clase", "Kilometraje", "Autonomia", "Puertas", "Asientos", "Color", "Marca", "Modelo", "Precio", "Extras", "Motor", "ventaid", "Cliente"
+                "Bastidor", "Tipo", "Clase", "Kilometraje", "Autonomia", "Puertas", "Asientos", "Color", "Marca", "Modelo", "Precio", "Extras", "Motor", "ventaid", "Cliente", "Motor: Tipo", "Motor: Potencia", "Motor: Cilindrada"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1132,14 +1132,14 @@ public class Dashboard extends javax.swing.JFrame {
                 {"--", "--", "--", "--", "--", "--"}
             },
             new String [] {
-                "ID", "Ubicación", "Nombre", "Teléfono", "Taller", "Venta"
+                "ID", "Ubicación", "Nombre", "Teléfono", "ID Taller", "ID Venta", "Espacios Taller", "Horario Taller", "Horario Venta"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1782,14 +1782,14 @@ public class Dashboard extends javax.swing.JFrame {
         Concesionarios_Tabla.setModel(new javax.swing.table.DefaultTableModel(
                 Concesionario.devolverTodosConcesionarioBBDD(),
                 new String[]{
-                    "ID", "Ubicación", "Nombre", "Teléfono", "Taller", "Venta"
+                    "ID", "Ubicación", "Nombre", "Teléfono", "Taller", "Venta", "Espacios Taller", "Horario Taller", "Horario Venta"
                 }
         ) {
             Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1809,14 +1809,14 @@ public class Dashboard extends javax.swing.JFrame {
         Vehiculos_Tabla.setModel(new javax.swing.table.DefaultTableModel(
                 Vehiculo.devolverTodosVehiculoBBDD(),
                 new String[]{
-                    "Bastidor", "Tipo", "Clase", "Kilometraje", "Autonomia", "Puertas", "Asientos", "Color", "Marca", "Modelo", "Precio", "Extras", "Motor", "ventaid", "Cliente"
+                    "Bastidor", "Tipo", "Clase", "Kilometraje", "Autonomia", "Puertas", "Asientos", "Color", "Marca", "Modelo", "Precio", "Extras", "Motor", "ventaid", "Cliente", "Motor: Tipo", "Motor: Potencia", "Motor: Cilindrada"
                 }
         ) {
             Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1902,16 +1902,22 @@ public class Dashboard extends javax.swing.JFrame {
              * Configuración inicial de los paneles
              */
             private void configureLabels() {
-                gui.NIF_Menu.setText(user.getNif());
-                gui.Label_SesionNIF.setText("Sesión iniciada con:   " + user.getNif());
-                gui.Label_NIF.setText("NIF:   " + user.getNif());
-                gui.Label_Nombre.setText("Nombre:   " + user.getNombre());
-                gui.Label_Apellidos.setText("Apellidos:   " + user.getApellidos());
-                gui.Label_Telefono.setText("Telefono:   " + user.getTelefono());
-                gui.Label_Domicilio.setText("Domicilio:   " + user.getDomicilio());
+                    gui.NIF_Menu.setText(user.getNif());
+                    gui.Label_SesionNIF.setText("Sesión iniciada con:   " + user.getNif());
                 if (user instanceof Empleado) {
+                    gui.Label_NIF.setText("NIF:   " + user.getNif());
+                    gui.Label_Nombre.setText("Nombre:   " + user.getNombre());
+                    gui.Label_Apellidos.setText("Apellidos:   " + user.getApellidos());
+                    gui.Label_Telefono.setText("Telefono:   " + user.getTelefono());
+                    gui.Label_Domicilio.setText("Domicilio:   " + user.getDomicilio());
                     gui.Label_Venta.setText("Venta ID:   " + ((Empleado) user).getVentaId());
                     gui.Label_Taller.setText("Taller ID:   " + ((Empleado) user).getTallerId());
+                } else {
+                    gui.Label_NIFCliente.setText("NIF:   " + user.getNif());
+                    gui.Label_NombreCliente.setText("Nombre:   " + user.getNombre());
+                    gui.Label_ApellidosCliente.setText("Apellidos:   " + user.getApellidos());
+                    gui.Label_TelefonoCliente.setText("Telefono:   " + user.getTelefono());
+                    gui.Label_DomicilioCliente.setText("Domicilio:   " + user.getDomicilio());
                 }
             }
 
@@ -1920,14 +1926,16 @@ public class Dashboard extends javax.swing.JFrame {
                 gui.MenuCLIENTE.setVisible(false);
                 gui.MenuTALLER.setVisible(false);
                 gui.MenuADMIN.setVisible(false);
-                gui.Board_AreaCliente.setVisible(false);
-                gui.Board_Clientes.setVisible(false);
-                gui.Board_Empleados.setVisible(false);
                 gui.Board_Facturas.setVisible(false);
+                gui.Board_Clientes.setVisible(false);
                 gui.Board_Motores.setVisible(false);
-                gui.Board_Nominas.setVisible(false);
-                gui.Board_Reservas.setVisible(false);
                 gui.Board_Vehiculos.setVisible(false);
+                gui.Board_Reservas.setVisible(false);
+                gui.Board_Nominas.setVisible(false);
+                gui.Board_AreaEmpleados.setVisible(false);
+                gui.Board_Empleados.setVisible(false);
+                gui.Board_Concesionarios.setVisible(false);
+                gui.Board_AreaCliente.setVisible(false);
                 if (user instanceof Empleado) {
                     switch (((Empleado) user).getPuestoTrabajo()) {
                         case "Administrativo":

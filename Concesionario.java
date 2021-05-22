@@ -2,8 +2,9 @@ package eu.fp.concesionario;
 
 import java.sql.SQLException;
 /**
- * CONCESIONARIOS
- * Esta clase  guarda la informacion sobre los diferentes concesionarios del proyecto.
+ * CONCESIONARIOS Esta clase guarda la informacion sobre los diferentes
+ * concesionarios del proyecto.
+ *
  * @author Jose Luis Cardona
  * @version 1 - 29/03/2021
  */
@@ -123,7 +124,7 @@ public class Concesionario {
         }
         return concesionario;
     }
-    
+
     /**
      * insertamos datos del concesionario a BBDD a partir de un objeto
      *
@@ -141,16 +142,17 @@ public class Concesionario {
         } catch (SQLException e) {
             System.out.println("Error al insertar datos a la BBDD");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
     }
 
     /**
-     * Método para insertar los datos del concesionario actual a la base de datos
+     * Método para insertar los datos del concesionario actual a la base de
+     * datos
      */
     public void insertarDatosConcesionarioBBDD() {
         String consulta = "INSERT INTO CONCESIONARIO (UBICACION, NOMBRE, TELEFONO ) VALUES (?,?,?)";
@@ -165,13 +167,12 @@ public class Concesionario {
             System.out.println("Error al insertar datos a la BBDD");
 
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
-
 
     }
 
@@ -195,9 +196,9 @@ public class Concesionario {
             System.out.println("Error consultar BBDD");
             e.printStackTrace();
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -207,6 +208,7 @@ public class Concesionario {
 
     /**
      * Metodo para buscar concesionarios mediante la id.
+     *
      * @param id
      * @return Objeto "concesionario" con sus datos guardados.
      */
@@ -229,9 +231,9 @@ public class Concesionario {
             } catch (SQLException ex) {
                 System.out.println("¡ERROR! No se ha encontrado el concesionario.");
             } finally {
-                try{
+                try {
                     Utils.cerrarVariables();
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println("Error al cerrar variables");
                 }
             }
@@ -250,54 +252,58 @@ public class Concesionario {
 
             while (Utils.rs.next()) {
                 System.out.println(
-                        "ID: "+Utils.rs.getInt(1) + ", " +
-                                "NOMBRE : "+Utils.rs.getString(2) + ", " +
-                                "UBICACION : "+Utils.rs.getString(3) + ", " +
-                                "TELEFONO : "+Utils.rs.getInt(4));
+                        "ID: " + Utils.rs.getInt(1) + ", "
+                        + "NOMBRE : " + Utils.rs.getString(2) + ", "
+                        + "UBICACION : " + Utils.rs.getString(3) + ", "
+                        + "TELEFONO : " + Utils.rs.getInt(4));
             }
         } catch (SQLException ex) {
             System.out.println("¡ERROR! No se han podido mostrar los datos");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
     }
 
     /**
-     * Devolver todos los concesionarios de la base de datos, útil para
-     * la gui
+     * Devolver todos los concesionarios de la base de datos, útil para la gui
+     *
      * @return Concesionario[][]
      */
     public static Object[][] devolverTodosConcesionarioBBDD() {
-        String consulta = "SELECT * FROM Concesionario ORDER BY id";
+        //String consulta = "SELECT * FROM CONCESIONARIO ORDER BY id";
+        String consulta = "SELECT `concesionario`.*,`taller`.`espacios`,`taller`.`horario`,`venta`.`horario` "
+                + "FROM `concesionario` "
+                + "LEFT JOIN `taller` ON `concesionario`.`tallerid` = `taller`.`id` "
+                + "LEFT JOIN `venta` ON `concesionario`.`ventaid` = `venta`.`id` ORDER BY id";
         String[][] objectList = null;
         try {
             Utils.connection = Utils.conectarBBDD();
-            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Concesionario"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM CONCESIONARIO"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
-                String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
-                list[0] = Integer.toString(Utils.rs.getInt(1));
-                list[1] = (Utils.rs.getString(2));
-                list[2] = (Utils.rs.getString(3));
-                list[3] = Integer.toString(Utils.rs.getInt(4));
-                list[4] = Integer.toString(Utils.rs.getInt(5));
-                list[5] = Integer.toString(Utils.rs.getInt(6));
+                Integer COLUMNAS = 9;
+                String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                int x = 0;
+                while (x < COLUMNAS) {
+                    list[x] = (Utils.rs.getString(x + 1));
+                    x++;
+                }
                 objectList[i] = list;
                 i++;
             }
-            return objectList;
         } catch (SQLException e) {
-            System.out.println("Error mostrando todos los clientes");
+            System.out.println("Error devolviendo todos los concesionarios");
+            e.getStackTrace();
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
@@ -308,6 +314,7 @@ public class Concesionario {
 
     /**
      * Metodo para borrar concesionarios de la BBDD.
+     *
      * @param id
      */
     public static void borrarConcesionario(int id) {
@@ -320,9 +327,9 @@ public class Concesionario {
         } catch (SQLException ex) {
             System.out.println("¡ERROR! No se han podido borrar los datos.");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -330,6 +337,7 @@ public class Concesionario {
 
     /**
      * Metodo para modificar los datos de los concesionarios de la BBDD.
+     *
      * @param id
      * @param nombre
      * @param ubicacion
@@ -350,9 +358,9 @@ public class Concesionario {
         } catch (SQLException ex) {
             System.out.println("¡ERROR! No se han podido modificar los datos.");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -360,9 +368,11 @@ public class Concesionario {
 
     /**
      * 1º metodo exist que sirve para buscar concesionarios mediante la id.
+     *
      * @param id
-     * @return Booleano llamado "encontrado" el cual si sale true es que el concesionario ha sido
-     * hallado, si sale false significa que no se ha localizado.
+     * @return Booleano llamado "encontrado" el cual si sale true es que el
+     * concesionario ha sido hallado, si sale false significa que no se ha
+     * localizado.
      */
     public static boolean existConcesionario(int id) {
         boolean encontrado = false;
@@ -379,9 +389,9 @@ public class Concesionario {
         } catch (SQLException ex) {
             System.out.println("¡ERROR! No se ha encontrado el concesionario.");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -390,8 +400,10 @@ public class Concesionario {
 
     /**
      * 2º metodo exist que sirve para buscar concesionarios mediante la id.
-     * @return Booleano llamado "encontrado" el cual si sale true es que el concesionario ha sido
-     * hallado, si sale false significa que no se ha localizado.
+     *
+     * @return Booleano llamado "encontrado" el cual si sale true es que el
+     * concesionario ha sido hallado, si sale false significa que no se ha
+     * localizado.
      */
     public boolean existConcesionario() {
         boolean encontrado = false;
@@ -408,21 +420,23 @@ public class Concesionario {
         } catch (SQLException ex) {
             System.out.println("¡ERROR! No se ha encontrado el concesionario.");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
         return encontrado;
     }
+
     //Los dos metodos siguientes son redundantes, usados para tests, pueden ser borrados en un futuro
     /**
      * Método para relacionar en la base de datos un concesionario con su taller
+     *
      * @param id_concesionario
      * @param id_taller
      */
-    public static void relacionarConcesionarioConTaller(int id_concesionario, int id_taller){
+    public static void relacionarConcesionarioConTaller(int id_concesionario, int id_taller) {
         String consulta = "UPDATE concesionario SET tallerid = ? WHERE id=?";
         try {
             //La conexión se irà cuando el main este completo
@@ -434,9 +448,9 @@ public class Concesionario {
         } catch (SQLException ex) {
             System.out.println("¡ERROR! No se ha encontrado el concesionario.");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -444,10 +458,11 @@ public class Concesionario {
 
     /**
      * Método para relacionar en la base de datos un concesionario con su venta
+     *
      * @param id_concesionario
      * @param id_venta
      */
-    public static void relacionarConcesionarioConVenta(int id_concesionario, int id_venta){
+    public static void relacionarConcesionarioConVenta(int id_concesionario, int id_venta) {
         String consulta = "UPDATE concesionario SET ventaid = ? WHERE id=?";
         try {
             //La conexión se irà cuando el main este completo
@@ -458,10 +473,10 @@ public class Concesionario {
             Utils.rs.next();
         } catch (SQLException ex) {
             System.out.println("¡ERROR! No se ha encontrado el concesionario.");
-        }  finally {
-            try{
+        } finally {
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }

@@ -577,7 +577,6 @@ public class Factura {
     //TODO
     /**
      * Devolver todos las facturas de la base de datos
-     *
      * @return objectList
      */
     public static Object[][] devolverTodasFacturasBBDD() {

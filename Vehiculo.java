@@ -514,37 +514,43 @@ public class Vehiculo {
     }
 
     /**
-     * Devolver todos los Vehiculos de la base de datos, útil para
-     * la gui
+     * Devolver todos los Vehiculos de la base de datos, útil para la gui
      * @return Vehiculo[][]
      */
     public static Object[][] devolverTodosVehiculoBBDD() {
-        String consulta = "SELECT * FROM Vehiculo ORDER BY bastidor";
+        String consulta = "SELECT `VEHICULO`.*,`MOTOR`.`tipo`,`MOTOR`.`potencia`,`MOTOR`.`cilindrada` FROM VEHICULO,MOTOR WHERE `VEHICULO`.`motorid` like `MOTOR`.`id` ORDER BY bastidor";
         String[][] objectList = null;
         try {
             Utils.connection = Utils.conectarBBDD();
-            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Vehiculo"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM VEHICULO"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
-                String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
-                list[0] = Integer.toString(Utils.rs.getInt(1));
-                list[1] = (Utils.rs.getString(2));
-                list[2] = (Utils.rs.getString(3));
-                list[3] = Integer.toString(Utils.rs.getInt(4));
-                list[4] = Integer.toString(Utils.rs.getInt(5));
-                list[5] = Integer.toString(Utils.rs.getInt(6));
+                System.out.println("Column ");
+                Integer COLUMNAS = 18;
+                String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                int x = 0;
+                while (x < COLUMNAS) {
+                    switch (x) {
+                        case 4:
+                            list[x] = (Utils.rs.getString(x + 1) + "km");
+                            break;
+                        default:
+                            list[x] = (Utils.rs.getString(x + 1));
+                    }
+                    x++;
+                }
                 objectList[i] = list;
                 i++;
             }
-            return objectList;
         } catch (SQLException e) {
-            System.out.println("Error mostrando todos los clientes");
+            System.out.println("Error devolviendo todos los vehiculos");
+            e.getStackTrace();
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
