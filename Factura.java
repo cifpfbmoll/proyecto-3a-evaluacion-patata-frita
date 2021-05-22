@@ -620,5 +620,51 @@ public class Factura {
         }
         return objectList;
     }
+    
+    public static Object[][] devolverTodasFacturasBBDD(String nif) {
+        String consulta = "SELECT `factura`.*,`cliente`.`nif` "
+                + "FROM `factura` "
+                + "LEFT JOIN `vehiculo` ON `vehiculo`.`bastidor` = `factura`.`vehiculoid` "
+                + "LEFT JOIN `cliente` ON `vehiculo`.`clientenif` = `cliente`.`nif` "
+                + "WHERE \""+ nif +"\" like `vehiculo`.`clientenif` ORDER BY ID";
+        String[][] objectList = null;
+        try {
+
+            Utils.st = Utils.connection.createStatement();
+            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM FACTURA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+
+                list[0] = (Utils.rs.getString(1));
+                list[1] = (Utils.rs.getString(2));
+                if (Utils.rs.getString(5) != null) {
+                    list[2] = ("Venta " + Utils.rs.getString(5));
+                } else {
+                    list[2] = ("Taller " + Utils.rs.getString(6));
+                }
+                list[3] = (Utils.rs.getString(7));
+                list[4] = (Utils.rs.getString(4));
+                list[5] = (Utils.rs.getString(3));
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
 
 }

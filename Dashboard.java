@@ -61,8 +61,6 @@ public class Dashboard extends javax.swing.JFrame {
         MenuCLIENTE = new javax.swing.JPanel();
         ClienteInicio = new javax.swing.JLabel();
         ClienteAreaPersonal = new javax.swing.JLabel();
-        ClienteReservas = new javax.swing.JLabel();
-        ClienteFacturas = new javax.swing.JLabel();
         PanelBoard = new javax.swing.JPanel();
         Board_Facturas = new javax.swing.JPanel();
         Title_Facturas = new javax.swing.JLabel();
@@ -147,19 +145,26 @@ public class Dashboard extends javax.swing.JFrame {
         Concesionarios_Eliminar = new javax.swing.JButton();
         Board_AreaCliente = new javax.swing.JPanel();
         Title_AreaCliente = new javax.swing.JLabel();
-        AreaCliente_Scroll = new javax.swing.JScrollPane();
-        AreaCliente_Table = new javax.swing.JTable();
+        AreaCliente_ScrollReservas = new javax.swing.JScrollPane();
+        AreaCliente_TableReservas = new javax.swing.JTable();
+        AreaDescargarReserva = new javax.swing.JButton();
+        AreaBuscarReserva = new javax.swing.JButton();
+        AreaCliente_ScrollFacturas = new javax.swing.JScrollPane();
+        AreaCliente_TableFacturas = new javax.swing.JTable();
+        AreaBuscarFactura = new javax.swing.JButton();
+        AreaDescargarFactura = new javax.swing.JButton();
         Sb_Cliente = new javax.swing.JLabel();
         Label_ApellidosCliente = new javax.swing.JLabel();
         Label_TelefonoCliente = new javax.swing.JLabel();
         Label_NombreCliente = new javax.swing.JLabel();
         Label_DomicilioCliente = new javax.swing.JLabel();
         Label_NIFCliente = new javax.swing.JLabel();
-        AreaBuscar1 = new javax.swing.JButton();
-        AreaDescargar1 = new javax.swing.JButton();
+        Sb_Cliente1 = new javax.swing.JLabel();
+        Sb_Cliente2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Concesionario");
+        setResizable(false);
 
         VentanaCompleta.setBackground(new java.awt.Color(255, 255, 255));
         VentanaCompleta.setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -449,16 +454,6 @@ public class Dashboard extends javax.swing.JFrame {
         ClienteAreaPersonal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ClienteAreaPersonal.setName("areacliente"); // NOI18N
 
-        ClienteReservas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        ClienteReservas.setForeground(new java.awt.Color(255, 255, 255));
-        ClienteReservas.setText("Reservas");
-        ClienteReservas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        ClienteFacturas.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        ClienteFacturas.setForeground(new java.awt.Color(255, 255, 255));
-        ClienteFacturas.setText("Facturas");
-        ClienteFacturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         javax.swing.GroupLayout MenuCLIENTELayout = new javax.swing.GroupLayout(MenuCLIENTE);
         MenuCLIENTE.setLayout(MenuCLIENTELayout);
         MenuCLIENTELayout.setHorizontalGroup(
@@ -466,10 +461,8 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(MenuCLIENTELayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MenuCLIENTELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ClienteReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ClienteInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ClienteAreaPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                    .addComponent(ClienteFacturas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ClienteAreaPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
                 .addContainerGap())
         );
         MenuCLIENTELayout.setVerticalGroup(
@@ -479,11 +472,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(ClienteInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ClienteAreaPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ClienteFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ClienteReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(419, Short.MAX_VALUE))
+                .addContainerGap(531, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PanelMenuLayout = new javax.swing.GroupLayout(PanelMenu);
@@ -976,7 +965,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         AreaEmpleado_Table.setAutoCreateRowSorter(true);
         AreaEmpleado_Table.setModel(new javax.swing.table.DefaultTableModel(
-            Nomina.devolverTodasNominasBBDD("12345678x"),
+            Nomina.devolverTodasNominasBBDD(NIF_Menu.getText()),
             new String [] {
                 "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
             }
@@ -1196,18 +1185,20 @@ public class Dashboard extends javax.swing.JFrame {
         Title_AreaCliente.setText("Área personal");
         Board_AreaCliente.add(Title_AreaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        AreaCliente_Table.setAutoCreateRowSorter(true);
-        AreaCliente_Table.setModel(new javax.swing.table.DefaultTableModel(
-            Nomina.devolverTodasNominasBBDD("12345678x"),
+        AreaCliente_TableReservas.setAutoCreateRowSorter(true);
+        AreaCliente_TableReservas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"--", "--", "--", "--", "--"}
+            },
             new String [] {
-                "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
+                "ID", "Espacio Reservado", "Fecha", "TallerID", "NIF Cliente"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1218,14 +1209,54 @@ public class Dashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        AreaCliente_Scroll.setViewportView(AreaCliente_Table);
+        AreaCliente_ScrollReservas.setViewportView(AreaCliente_TableReservas);
 
-        Board_AreaCliente.add(AreaCliente_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 740, 520));
+        Board_AreaCliente.add(AreaCliente_ScrollReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 740, 220));
+
+        AreaDescargarReserva.setText("Descargar reserva");
+        Board_AreaCliente.add(AreaDescargarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 200, 200, -1));
+
+        AreaBuscarReserva.setText("Buscar reserva");
+        Board_AreaCliente.add(AreaBuscarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 200, -1));
+
+        AreaCliente_TableFacturas.setAutoCreateRowSorter(true);
+        AreaCliente_TableFacturas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"--", "--", "--", "--", "--", "--"}
+            },
+            new String [] {
+                "ID", "Concepto", "Local ID", "Vehículo", "Fecha", "Coste"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        AreaCliente_ScrollFacturas.setViewportView(AreaCliente_TableFacturas);
+
+        Board_AreaCliente.add(AreaCliente_ScrollFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 740, 220));
+
+        AreaBuscarFactura.setText("Buscar factura");
+        Board_AreaCliente.add(AreaBuscarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 510, 200, -1));
+
+        AreaDescargarFactura.setText("Descargar factura");
+        Board_AreaCliente.add(AreaDescargarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, 200, -1));
 
         Sb_Cliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Sb_Cliente.setForeground(new java.awt.Color(0, 0, 0));
-        Sb_Cliente.setText("Ficha de empleado");
-        Board_AreaCliente.add(Sb_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        Sb_Cliente.setText("Reservas");
+        Board_AreaCliente.add(Sb_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         Label_ApellidosCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Label_ApellidosCliente.setForeground(new java.awt.Color(51, 51, 51));
@@ -1252,11 +1283,15 @@ public class Dashboard extends javax.swing.JFrame {
         Label_NIFCliente.setText("NIF: 88447766X");
         Board_AreaCliente.add(Label_NIFCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
 
-        AreaBuscar1.setText("Buscar nómina");
-        Board_AreaCliente.add(AreaBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 220, 200, -1));
+        Sb_Cliente1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Sb_Cliente1.setForeground(new java.awt.Color(0, 0, 0));
+        Sb_Cliente1.setText("Ficha de cliente");
+        Board_AreaCliente.add(Sb_Cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
-        AreaDescargar1.setText("Descargar nómina");
-        Board_AreaCliente.add(AreaDescargar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 180, 200, -1));
+        Sb_Cliente2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Sb_Cliente2.setForeground(new java.awt.Color(0, 0, 0));
+        Sb_Cliente2.setText("Facturas");
+        Board_AreaCliente.add(Sb_Cliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
 
         javax.swing.GroupLayout PanelBoardLayout = new javax.swing.GroupLayout(PanelBoard);
         PanelBoard.setLayout(PanelBoardLayout);
@@ -1563,6 +1598,7 @@ public class Dashboard extends javax.swing.JFrame {
                                         showPanel(Board_Concesionarios);
                                         break;
                                     case "areacliente":
+                                        refreshTableAreaCliente();
                                         showPanel(Board_AreaCliente);
                                         break;
                                     case "areaempleado":
@@ -1856,6 +1892,51 @@ public class Dashboard extends javax.swing.JFrame {
         });
     }
 
+    private void refreshTableAreaCliente() {
+        AreaCliente_TableReservas.setModel(new javax.swing.table.DefaultTableModel(
+                Reserva.devolverTodasReservasBBDD(NIF_Menu.getText()),
+                new String[]{
+                    "ID", "Espacio Reservado", "Fecha", "TallerID", "NIF Cliente"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        AreaCliente_TableFacturas.setModel(new javax.swing.table.DefaultTableModel(
+                Factura.devolverTodasFacturasBBDD(NIF_Menu.getText()),
+                new String[]{
+                    "ID", "Concepto", "Local ID", "Vehículo", "Fecha", "Coste"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }
+
     /**
      * Iniciar dashboard
      *
@@ -1902,8 +1983,8 @@ public class Dashboard extends javax.swing.JFrame {
              * Configuración inicial de los paneles
              */
             private void configureLabels() {
-                    gui.NIF_Menu.setText(user.getNif());
-                    gui.Label_SesionNIF.setText("Sesión iniciada con:   " + user.getNif());
+                gui.NIF_Menu.setText(user.getNif());
+                gui.Label_SesionNIF.setText("Sesión iniciada con:   " + user.getNif());
                 if (user instanceof Empleado) {
                     gui.Label_NIF.setText("NIF:   " + user.getNif());
                     gui.Label_Nombre.setText("Nombre:   " + user.getNombre());
@@ -1970,11 +2051,15 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel AdminReservas;
     private javax.swing.JLabel AdminVehiculos;
     private javax.swing.JButton AreaBuscar;
-    private javax.swing.JButton AreaBuscar1;
-    private javax.swing.JScrollPane AreaCliente_Scroll;
-    private javax.swing.JTable AreaCliente_Table;
+    private javax.swing.JButton AreaBuscarFactura;
+    private javax.swing.JButton AreaBuscarReserva;
+    private javax.swing.JScrollPane AreaCliente_ScrollFacturas;
+    private javax.swing.JScrollPane AreaCliente_ScrollReservas;
+    private javax.swing.JTable AreaCliente_TableFacturas;
+    private javax.swing.JTable AreaCliente_TableReservas;
     private javax.swing.JButton AreaDescargar;
-    private javax.swing.JButton AreaDescargar1;
+    private javax.swing.JButton AreaDescargarFactura;
+    private javax.swing.JButton AreaDescargarReserva;
     private javax.swing.JScrollPane AreaEmpleado_Scroll;
     private javax.swing.JTable AreaEmpleado_Table;
     private javax.swing.JPanel Board_AreaCliente;
@@ -1989,9 +2074,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel Board_Reservas;
     private javax.swing.JPanel Board_Vehiculos;
     private javax.swing.JLabel ClienteAreaPersonal;
-    private javax.swing.JLabel ClienteFacturas;
     private javax.swing.JLabel ClienteInicio;
-    private javax.swing.JLabel ClienteReservas;
     private javax.swing.JTable Cliente_Tabla;
     private javax.swing.JButton Clientes_Anadir;
     private javax.swing.JButton Clientes_Buscar;
@@ -2057,6 +2140,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane Reservas_Scroll;
     private javax.swing.JTable Reservas_Tabla;
     private javax.swing.JLabel Sb_Cliente;
+    private javax.swing.JLabel Sb_Cliente1;
+    private javax.swing.JLabel Sb_Cliente2;
     private javax.swing.JLabel Sb_Empleado;
     private javax.swing.JLabel TallerArea;
     private javax.swing.JLabel TallerClientes;
