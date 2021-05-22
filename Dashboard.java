@@ -75,8 +75,6 @@ public class Dashboard extends javax.swing.JFrame {
         Board_Inicio = new javax.swing.JPanel();
         Label_SesionNIF = new javax.swing.JLabel();
         LabelTitle_Inicio = new javax.swing.JLabel();
-        Board_AreaCliente = new javax.swing.JPanel();
-        LabelTitle_AreaCliente = new javax.swing.JLabel();
         Board_Clientes = new javax.swing.JPanel();
         Title_Clientes = new javax.swing.JLabel();
         Clientes_Scroll = new javax.swing.JScrollPane();
@@ -147,6 +145,18 @@ public class Dashboard extends javax.swing.JFrame {
         Concesionarios_Anadir = new javax.swing.JButton();
         Concesionarios_Modificar = new javax.swing.JButton();
         Concesionarios_Eliminar = new javax.swing.JButton();
+        Board_AreaCliente = new javax.swing.JPanel();
+        Title_AreaCliente = new javax.swing.JLabel();
+        AreaCliente_Scroll = new javax.swing.JScrollPane();
+        AreaCliente_Table = new javax.swing.JTable();
+        Sb_Cliente = new javax.swing.JLabel();
+        Label_ApellidosCliente = new javax.swing.JLabel();
+        Label_TelefonoCliente = new javax.swing.JLabel();
+        Label_NombreCliente = new javax.swing.JLabel();
+        Label_DomicilioCliente = new javax.swing.JLabel();
+        Label_NIFCliente = new javax.swing.JLabel();
+        AreaBuscar1 = new javax.swing.JButton();
+        AreaDescargar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Concesionario");
@@ -601,16 +611,6 @@ public class Dashboard extends javax.swing.JFrame {
         LabelTitle_Inicio.setForeground(new java.awt.Color(0, 0, 0));
         LabelTitle_Inicio.setText("Inicio");
         Board_Inicio.add(LabelTitle_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        Board_AreaCliente.setBackground(new java.awt.Color(242, 242, 242));
-        Board_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
-        Board_AreaCliente.setName("areacliente"); // NOI18N
-        Board_AreaCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        LabelTitle_AreaCliente.setFont(LabelTitle_Inicio.getFont());
-        LabelTitle_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
-        LabelTitle_AreaCliente.setText("Área personal");
-        Board_AreaCliente.add(LabelTitle_AreaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         Board_Clientes.setBackground(new java.awt.Color(242, 242, 242));
         Board_Clientes.setForeground(new java.awt.Color(0, 0, 0));
@@ -1186,105 +1186,157 @@ public class Dashboard extends javax.swing.JFrame {
         });
         Board_Concesionarios.add(Concesionarios_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
 
+        Board_AreaCliente.setBackground(new java.awt.Color(242, 242, 242));
+        Board_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
+        Board_AreaCliente.setName("areaempleado"); // NOI18N
+        Board_AreaCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title_AreaCliente.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
+        Title_AreaCliente.setText("Área personal");
+        Board_AreaCliente.add(Title_AreaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        AreaCliente_Table.setAutoCreateRowSorter(true);
+        AreaCliente_Table.setModel(new javax.swing.table.DefaultTableModel(
+            Nomina.devolverTodasNominasBBDD("12345678x"),
+            new String [] {
+                "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        AreaCliente_Scroll.setViewportView(AreaCliente_Table);
+
+        Board_AreaCliente.add(AreaCliente_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 740, 520));
+
+        Sb_Cliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Sb_Cliente.setForeground(new java.awt.Color(0, 0, 0));
+        Sb_Cliente.setText("Ficha de empleado");
+        Board_AreaCliente.add(Sb_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        Label_ApellidosCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_ApellidosCliente.setForeground(new java.awt.Color(51, 51, 51));
+        Label_ApellidosCliente.setText("Apellidos: <Apellidos>");
+        Board_AreaCliente.add(Label_ApellidosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+
+        Label_TelefonoCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_TelefonoCliente.setForeground(new java.awt.Color(51, 51, 51));
+        Label_TelefonoCliente.setText("Telefono: 999888777");
+        Board_AreaCliente.add(Label_TelefonoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, -1, -1));
+
+        Label_NombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_NombreCliente.setForeground(new java.awt.Color(51, 51, 51));
+        Label_NombreCliente.setText("Nombre: <Nombre>");
+        Board_AreaCliente.add(Label_NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        Label_DomicilioCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_DomicilioCliente.setForeground(new java.awt.Color(51, 51, 51));
+        Label_DomicilioCliente.setText("Domicilio: <Domicilio>");
+        Board_AreaCliente.add(Label_DomicilioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
+
+        Label_NIFCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_NIFCliente.setForeground(new java.awt.Color(51, 51, 51));
+        Label_NIFCliente.setText("NIF: 88447766X");
+        Board_AreaCliente.add(Label_NIFCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
+
+        AreaBuscar1.setText("Buscar nómina");
+        Board_AreaCliente.add(AreaBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 220, 200, -1));
+
+        AreaDescargar1.setText("Descargar nómina");
+        Board_AreaCliente.add(AreaDescargar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 180, 200, -1));
+
         javax.swing.GroupLayout PanelBoardLayout = new javax.swing.GroupLayout(PanelBoard);
         PanelBoard.setLayout(PanelBoardLayout);
         PanelBoardLayout.setHorizontalGroup(
             PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 992, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 22, Short.MAX_VALUE)))
-            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Board_Facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_AreaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Board_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Board_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Motores, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Board_Motores, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Vehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Board_Vehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Reservas, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(Board_Reservas, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Nominas, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 22, Short.MAX_VALUE)))
+                    .addComponent(Board_Nominas, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_AreaEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(Board_AreaEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Empleados, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(Board_Empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_Concesionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBoardLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Board_Concesionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Board_AreaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
+
+        PanelBoardLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Board_AreaCliente, Board_AreaEmpleados, Board_Clientes, Board_Concesionarios, Board_Empleados, Board_Facturas, Board_Inicio, Board_Motores, Board_Nominas, Board_Reservas, Board_Vehiculos});
+
         PanelBoardLayout.setVerticalGroup(
             PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGap(0, 708, Short.MAX_VALUE)
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(Board_Facturas, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(Board_Inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_AreaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(Board_Clientes, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 8, Short.MAX_VALUE)))
+                .addComponent(Board_Motores, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Motores, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                .addComponent(Board_Vehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Vehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(Board_Reservas, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Reservas, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(Board_Nominas, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Nominas, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 8, Short.MAX_VALUE)))
+                .addComponent(Board_AreaEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_AreaEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(Board_Empleados, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBoardLayout.createSequentialGroup()
-                    .addComponent(Board_Empleados, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(Board_Concesionarios, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBoardLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Board_Concesionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                .addComponent(Board_AreaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout VentanaCompletaLayout = new javax.swing.GroupLayout(VentanaCompleta);
@@ -1294,7 +1346,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(VentanaCompletaLayout.createSequentialGroup()
                 .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         VentanaCompletaLayout.setVerticalGroup(
@@ -1857,8 +1909,10 @@ public class Dashboard extends javax.swing.JFrame {
                 gui.Label_Apellidos.setText("Apellidos:   " + user.getApellidos());
                 gui.Label_Telefono.setText("Telefono:   " + user.getTelefono());
                 gui.Label_Domicilio.setText("Domicilio:   " + user.getDomicilio());
-                gui.Label_Venta.setText("Venta ID:   " + ((Empleado) user).getVentaId());
-                gui.Label_Taller.setText("Taller ID:   " + ((Empleado) user).getTallerId());
+                if (user instanceof Empleado) {
+                    gui.Label_Venta.setText("Venta ID:   " + ((Empleado) user).getVentaId());
+                    gui.Label_Taller.setText("Taller ID:   " + ((Empleado) user).getTallerId());
+                }
             }
 
             private void configurePanels() {
@@ -1866,22 +1920,6 @@ public class Dashboard extends javax.swing.JFrame {
                 gui.MenuCLIENTE.setVisible(false);
                 gui.MenuTALLER.setVisible(false);
                 gui.MenuADMIN.setVisible(false);
-                switch (((Empleado) user).getPuestoTrabajo()) {
-                    case "Administrativo":
-                        gui.MenuADMIN.setVisible(true);
-                        break;
-                    case "Taller":
-                        gui.MenuTALLER.setVisible(true);
-                        break;
-                    case "Ventas":
-                        gui.MenuVENTAS.setVisible(true);
-                        break;
-                    case "Cliente":
-                        gui.MenuCLIENTE.setVisible(true);
-                        break;
-                    default:
-                        System.out.println("Puesto no detectado");
-                }
                 gui.Board_AreaCliente.setVisible(false);
                 gui.Board_Clientes.setVisible(false);
                 gui.Board_Empleados.setVisible(false);
@@ -1890,6 +1928,23 @@ public class Dashboard extends javax.swing.JFrame {
                 gui.Board_Nominas.setVisible(false);
                 gui.Board_Reservas.setVisible(false);
                 gui.Board_Vehiculos.setVisible(false);
+                if (user instanceof Empleado) {
+                    switch (((Empleado) user).getPuestoTrabajo()) {
+                        case "Administrativo":
+                            gui.MenuADMIN.setVisible(true);
+                            break;
+                        case "Taller":
+                            gui.MenuTALLER.setVisible(true);
+                            break;
+                        case "Ventas":
+                            gui.MenuVENTAS.setVisible(true);
+                            break;
+                        default:
+                            System.out.println("Puesto no detectado");
+                    }
+                } else {
+                    gui.MenuCLIENTE.setVisible(true);
+                }
                 gui.Board_Inicio.setVisible(true);
             }
         });
@@ -1907,7 +1962,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel AdminReservas;
     private javax.swing.JLabel AdminVehiculos;
     private javax.swing.JButton AreaBuscar;
+    private javax.swing.JButton AreaBuscar1;
+    private javax.swing.JScrollPane AreaCliente_Scroll;
+    private javax.swing.JTable AreaCliente_Table;
     private javax.swing.JButton AreaDescargar;
+    private javax.swing.JButton AreaDescargar1;
     private javax.swing.JScrollPane AreaEmpleado_Scroll;
     private javax.swing.JTable AreaEmpleado_Table;
     private javax.swing.JPanel Board_AreaCliente;
@@ -1950,15 +2009,19 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Facturas_Modificar;
     private javax.swing.JScrollPane Facturas_Scroll;
     private javax.swing.JTable Facturas_Tabla;
-    private javax.swing.JLabel LabelTitle_AreaCliente;
     private javax.swing.JLabel LabelTitle_Inicio;
     private javax.swing.JLabel Label_Apellidos;
+    private javax.swing.JLabel Label_ApellidosCliente;
     private javax.swing.JLabel Label_Domicilio;
+    private javax.swing.JLabel Label_DomicilioCliente;
     private javax.swing.JLabel Label_NIF;
+    private javax.swing.JLabel Label_NIFCliente;
     private javax.swing.JLabel Label_Nombre;
+    private javax.swing.JLabel Label_NombreCliente;
     private javax.swing.JLabel Label_SesionNIF;
     private javax.swing.JLabel Label_Taller;
     private javax.swing.JLabel Label_Telefono;
+    private javax.swing.JLabel Label_TelefonoCliente;
     private javax.swing.JLabel Label_Venta;
     private javax.swing.JPanel MenuADMIN;
     private javax.swing.JPanel MenuCLIENTE;
@@ -1985,6 +2048,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Reservas_Modificar;
     private javax.swing.JScrollPane Reservas_Scroll;
     private javax.swing.JTable Reservas_Tabla;
+    private javax.swing.JLabel Sb_Cliente;
     private javax.swing.JLabel Sb_Empleado;
     private javax.swing.JLabel TallerArea;
     private javax.swing.JLabel TallerClientes;
@@ -1992,6 +2056,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel TallerInicio;
     private javax.swing.JLabel TallerReservas;
     private javax.swing.JLabel Title;
+    private javax.swing.JLabel Title_AreaCliente;
     private javax.swing.JLabel Title_AreaEmpleados;
     private javax.swing.JLabel Title_Clientes;
     private javax.swing.JLabel Title_Concesionarios;

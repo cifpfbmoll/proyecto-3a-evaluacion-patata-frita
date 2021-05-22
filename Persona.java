@@ -144,9 +144,11 @@ public abstract class Persona {
             usuario.setApellidos(Utils.rs.getString(3));
             usuario.setTelefono(Utils.rs.getInt(4));
             usuario.setDomicilio(Utils.rs.getString(5));
-            ((Empleado) usuario).setPuestoTrabajo(Utils.rs.getString(6));
-            ((Empleado) usuario).setTallerId(Utils.rs.getInt(7));
-            ((Empleado) usuario).setVentaId(Utils.rs.getInt(8));
+            if (usuario instanceof Empleado) {
+                ((Empleado) usuario).setPuestoTrabajo(Utils.rs.getString(6));
+                ((Empleado) usuario).setTallerId(Utils.rs.getInt(7));
+                ((Empleado) usuario).setVentaId(Utils.rs.getInt(8));
+            }
             usuario.setPassword(Utils.rs.getString(9));
         } catch (SQLException e) {
             System.out.println("Error al buscar empleado / Empleado no encontrado");
