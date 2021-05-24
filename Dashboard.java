@@ -3,7 +3,6 @@ package eu.fp.concesionario;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -527,7 +526,7 @@ public class Dashboard extends javax.swing.JFrame {
         Title_AreaCliente.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
         Title_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
         Title_AreaCliente.setText("Área personal");
-        Board_AreaCliente.add(Title_AreaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        Board_AreaCliente.add(Title_AreaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, -1));
 
         AreaCliente_TableReservas.setAutoCreateRowSorter(true);
         AreaCliente_TableReservas.setModel(new javax.swing.table.DefaultTableModel(
@@ -558,6 +557,11 @@ public class Dashboard extends javax.swing.JFrame {
         Board_AreaCliente.add(AreaCliente_ScrollReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 740, 220));
 
         AreaDescargarReserva.setText("Descargar reserva");
+        AreaDescargarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AreaDescargarReservaActionPerformed(evt);
+            }
+        });
         Board_AreaCliente.add(AreaDescargarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 200, 200, -1));
 
         AreaBuscarReserva.setText("Buscar reserva");
@@ -595,6 +599,11 @@ public class Dashboard extends javax.swing.JFrame {
         Board_AreaCliente.add(AreaBuscarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 510, 200, -1));
 
         AreaDescargarFactura.setText("Descargar factura");
+        AreaDescargarFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AreaDescargarFacturaActionPerformed(evt);
+            }
+        });
         Board_AreaCliente.add(AreaDescargarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, 200, -1));
 
         Sb_Cliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -1556,19 +1565,43 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void AreaEmpleadoDescargarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaEmpleadoDescargarNominaActionPerformed
         try {
-            int rowIndex = AreaEmpleado_Table.getSelectedRow();
-            int columnCount = AreaEmpleado_Table.getColumnCount();
-            String[] rowStrings = new String[columnCount];
-            for (int i = 0; i < columnCount; i++) {
-                rowStrings[i] = (AreaEmpleado_Table.getModel().getValueAt(rowIndex, i).toString());
-            }
-            Nomina.descargarNomina(rowStrings);
+            Nomina.descargarNomina(getRowData(AreaEmpleado_Table));
             PopUp.create("success", "La nómina se ha descargado correctamente.");
         } catch (Exception ex) {
             PopUp.create("error", "La nómina no se ha creado correctamente.");
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_AreaEmpleadoDescargarNominaActionPerformed
+
+    private void AreaDescargarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaDescargarReservaActionPerformed
+        try {
+            Reserva.descargarReserva(getRowData(AreaCliente_TableReservas));
+            PopUp.create("success", "La reserva se ha descargado correctamente.");
+        } catch (Exception ex) {
+            PopUp.create("error", "La reserva no se ha creado correctamente.");
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_AreaDescargarReservaActionPerformed
+
+    private void AreaDescargarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaDescargarFacturaActionPerformed
+        try {
+            Factura.descargarFactura(getRowData(AreaCliente_TableFacturas));
+            PopUp.create("success", "La factura se ha descargado correctamente.");
+        } catch (Exception ex) {
+            PopUp.create("error", "La factura no se ha creado correctamente.");
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_AreaDescargarFacturaActionPerformed
+
+    private String[] getRowData(javax.swing.JTable tabla) {
+        int rowIndex = tabla.getSelectedRow();
+        int columnCount = tabla.getColumnCount();
+        String[] rowStrings = new String[columnCount];
+        for (int i = 0; i < columnCount; i++) {
+            rowStrings[i] = (tabla.getModel().getValueAt(rowIndex, i).toString());
+        }
+        return rowStrings;
+    }
 
     /**
      * Hace reaccionar las labels de los menús
