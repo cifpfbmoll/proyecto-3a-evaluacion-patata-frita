@@ -1,3 +1,5 @@
+package eu.fp.concesionario;
+
 /*
 Crear un main, un menú simple por consola que permita:
 1- Crear nuevos objetos (nuevas instancias de las clases)
@@ -20,10 +22,11 @@ public class AppMain {
         boolean salir = false;
         boolean volver = false;
         int opcion;
+        
+        Login.initGui();
 
         try {
             do {
-
                 System.out.println("MENU");
                 System.out.println("1 factura");
                 System.out.println("2 nomina");
@@ -52,10 +55,17 @@ public class AppMain {
                         manageConcesionario();
                         break;
                     case 5:
-                        
+                        Reserva r = Reserva.buscarReservaBBDD(1);
+                        System.out.println(r.toString());
                         break;
                     case 6:
-                        
+                        //probando cliente
+                        boolean e = Cliente.existsInDB("22222222x");
+                        if(e) {
+                            System.out.println("si");
+                        }else{
+                            System.out.println("NO");
+                        }
                         break;
                     case 7:
                         break;

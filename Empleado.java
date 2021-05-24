@@ -1,4 +1,4 @@
-import jdk.jshell.execution.Util;
+package eu.fp.concesionario;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +12,7 @@ public class Empleado extends Persona {
     private String puestoTrabajo;
     private Integer tallerId;
     private Integer ventaId;
+    private Nomina nomina;
 
     /**
      * Constructor vacio
@@ -23,7 +24,7 @@ public class Empleado extends Persona {
     /**
      * Constructor con todos los parametros
      *
-     * @param nomina Lista de las nominas
+     * @param nomina Nominas
      * @param puestoTrabajo Puesto de trabajo
      * @param nombre Nombre del trabajador
      * @param apellidos Apellidos del trabajador
@@ -34,6 +35,9 @@ public class Empleado extends Persona {
     public Empleado(Nomina nomina, String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio, String password) {
         super(nombre, apellidos, nif, telefono, domicilio, password);
         this.puestoTrabajo = puestoTrabajo;
+        this.nomina = nomina;
+        this.tallerId = tallerId;
+        this.ventaId = ventaId;
     }
 
     /**
@@ -73,7 +77,7 @@ public class Empleado extends Persona {
     
     @Override
     public String toString() {
-        return super.toString() + " puesto de trabajo: " + puestoTrabajo; //Sin el conjunto de nominas, eso vendra con la base de datos y serà una simple llamada
+        return super.toString() + " | Puesto de trabajo: " + puestoTrabajo + " | VentaID: " + ventaId + " | TallerID: " + tallerId; //Sin el conjunto de nominas, eso vendra con la base de datos y serà una simple llamada
     }
 
     /**
@@ -245,6 +249,46 @@ public class Empleado extends Persona {
                 System.out.println("Error al cerrar variables");
             }
         }
+    }
+    
+    /**
+     * Devolver todos los clientes de la base de datos
+     * @return 
+     */
+    public static Object[][] devolverTodosEmpleadosBBDD() {
+        String consulta = "SELECT * FROM EMPLEADO ORDER BY NIF";
+        String[][] objectList = null;
+        try {
+            Utils.connection = Utils.conectarBBDD();
+            Utils.st = Utils.connection.createStatement();
+            Utils.rs = Utils.st.executeQuery("SELECT count(*) FROM EMPLEADO");
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                String[] list = new String[8];
+                list[0] = (Utils.rs.getString(1));
+                list[1] = (Utils.rs.getString(2));
+                list[2] = (Utils.rs.getString(3));
+                list[3] = Integer.toString(Utils.rs.getInt(4));
+                list[4] = (Utils.rs.getString(5));
+                list[5] = (Utils.rs.getString(6));
+                list[6] = Integer.toString(Utils.rs.getInt(7));
+                list[7] = Integer.toString(Utils.rs.getInt(8));
+                objectList[i] = list;
+                i++;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
     }
 
     /**
