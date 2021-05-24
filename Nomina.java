@@ -3,9 +3,7 @@ package eu.fp.concesionario;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.*;
 
 
 /**
@@ -545,7 +543,7 @@ public class Nomina {
      *
      * @param data Información de la nómina
      */
-    public static void descargarNomina(String[] data) throws IOException {
+    public static void descargarNomina(String[] data) throws Exception {
         File txt = new File("nomina_" + data[5] + "_" + data[0] + ".txt");
         BufferedWriter escritor = new BufferedWriter(new FileWriter(txt));
 

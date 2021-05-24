@@ -1309,48 +1309,47 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
                     .addComponent(Board_Facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
                     .addComponent(Board_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
                     .addComponent(Board_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
                     .addComponent(Board_Motores, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
                     .addComponent(Board_Vehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
                     .addComponent(Board_Reservas, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
                     .addComponent(Board_Nominas, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
                     .addComponent(Board_AreaEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
                     .addComponent(Board_Empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelBoardLayout.createSequentialGroup()
                     .addComponent(Board_Concesionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBoardLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Board_AreaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 978, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                .addGroup(PanelBoardLayout.createSequentialGroup()
+                    .addComponent(Board_AreaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 984, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         PanelBoardLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Board_AreaCliente, Board_AreaEmpleados, Board_Clientes, Board_Concesionarios, Board_Empleados, Board_Facturas, Board_Inicio, Board_Motores, Board_Nominas, Board_Reservas, Board_Vehiculos});
@@ -1359,28 +1358,30 @@ public class Dashboard extends javax.swing.JFrame {
             PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 708, Short.MAX_VALUE)
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Facturas, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                .addComponent(Board_Facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                .addComponent(Board_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Clientes, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                .addComponent(Board_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Motores, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                .addComponent(Board_Motores, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Vehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                .addComponent(Board_Vehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Reservas, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                .addComponent(Board_Reservas, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Nominas, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                .addComponent(Board_Nominas, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_AreaEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                .addComponent(Board_AreaEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Empleados, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                .addComponent(Board_Empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_Concesionarios, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                .addComponent(Board_Concesionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(PanelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(Board_AreaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
+                .addComponent(Board_AreaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        PanelBoardLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Board_AreaCliente, Board_AreaEmpleados, Board_Clientes, Board_Concesionarios, Board_Empleados, Board_Facturas, Board_Inicio, Board_Motores, Board_Nominas, Board_Reservas, Board_Vehiculos});
 
         javax.swing.GroupLayout VentanaCompletaLayout = new javax.swing.GroupLayout(VentanaCompleta);
         VentanaCompleta.setLayout(VentanaCompletaLayout);
@@ -1389,7 +1390,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(VentanaCompletaLayout.createSequentialGroup()
                 .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 981, Short.MAX_VALUE)
                 .addContainerGap())
         );
         VentanaCompletaLayout.setVerticalGroup(
@@ -1554,7 +1555,6 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_Concesionarios_EliminarActionPerformed
 
     private void AreaEmpleadoDescargarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaEmpleadoDescargarNominaActionPerformed
-        // TODO add your handling code here:
         try {
             int rowIndex = AreaEmpleado_Table.getSelectedRow();
             int columnCount = AreaEmpleado_Table.getColumnCount();
@@ -1565,7 +1565,7 @@ public class Dashboard extends javax.swing.JFrame {
             Nomina.descargarNomina(rowStrings);
             PopUp.create("success", "La nómina se ha descargado correctamente.");
         } catch (Exception ex) {
-            PopUp.create("error", "<html>La nómina no se ha creado correctamente.<html>");
+            PopUp.create("error", "La nómina no se ha creado correctamente.");
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_AreaEmpleadoDescargarNominaActionPerformed
@@ -1945,14 +1945,14 @@ public class Dashboard extends javax.swing.JFrame {
         AreaCliente_TableFacturas.setModel(new javax.swing.table.DefaultTableModel(
                 Factura.devolverTodasFacturasBBDD(NIF_Menu.getText()),
                 new String[]{
-                    "ID", "Concepto", "Local ID", "Vehículo", "Fecha", "Coste"
+                    "ID", "Concepto", "Local ID", "Vehículo", "NIF Cliente", "Fecha", "Coste"
                 }
         ) {
             Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

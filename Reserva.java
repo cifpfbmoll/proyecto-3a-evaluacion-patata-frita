@@ -5,6 +5,9 @@ package eu.fp.concesionario;
  *
  * @author Marat Rafael
  */
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.*;
 import java.text.*;
 import java.util.Date;
@@ -526,4 +529,41 @@ public class Reserva {
         return objectList;
     }
 
+    /**
+     * Descargar una reserva de forma local
+     * data[0] = ID, data[1] = Espacio reservado, data[2] = Fecha, 
+     * data[3] = Taller ID, data[4] = NIF Cliente,
+     * @param data
+     * @throws Exception 
+     */
+    public static void descargarReserva(String[] data) throws Exception {
+        File txt = new File("reserva_" + data[4] + "_" + data[0] + ".txt");
+        BufferedWriter escritor = new BufferedWriter(new FileWriter(txt));
+
+        String separador = "##################################################";
+
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("         NIF: " + data[4]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("       ID de reserva: " + data[0]);
+        escritor.newLine();
+        escritor.write("               Fecha: " + data[2]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("   Espacio reservado: " + data[1]);
+        escritor.newLine();
+        escritor.write("           Taller ID: " + data[3]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.close();
+    }
 }

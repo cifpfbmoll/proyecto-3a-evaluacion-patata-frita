@@ -1,5 +1,8 @@
 package eu.fp.concesionario;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.*;
 
 /**
@@ -577,6 +580,7 @@ public class Factura {
     //TODO
     /**
      * Devolver todos las facturas de la base de datos
+     *
      * @return objectList
      */
     public static Object[][] devolverTodasFacturasBBDD() {
@@ -612,7 +616,7 @@ public class Factura {
             e.printStackTrace();
             System.out.println("Error mostrando todos los clientes");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
@@ -620,13 +624,13 @@ public class Factura {
         }
         return objectList;
     }
-    
+
     public static Object[][] devolverTodasFacturasBBDD(String nif) {
         String consulta = "SELECT `factura`.*,`cliente`.`nif` "
                 + "FROM `factura` "
                 + "LEFT JOIN `vehiculo` ON `vehiculo`.`bastidor` = `factura`.`vehiculoid` "
                 + "LEFT JOIN `cliente` ON `vehiculo`.`clientenif` = `cliente`.`nif` "
-                + "WHERE \""+ nif +"\" like `vehiculo`.`clientenif` ORDER BY ID";
+                + "WHERE \"" + nif + "\" like `vehiculo`.`clientenif` ORDER BY ID";
         String[][] objectList = null;
         try {
 
@@ -637,7 +641,7 @@ public class Factura {
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
-                String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                String[] list = new String[7]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
 
                 list[0] = (Utils.rs.getString(1));
                 list[1] = (Utils.rs.getString(2));
@@ -647,8 +651,9 @@ public class Factura {
                     list[2] = ("Taller " + Utils.rs.getString(6));
                 }
                 list[3] = (Utils.rs.getString(7));
-                list[4] = (Utils.rs.getString(4));
-                list[5] = (Utils.rs.getString(3));
+                list[4] = (Utils.rs.getString(8));
+                list[5] = (Utils.rs.getString(4));
+                list[6] = (Utils.rs.getString(3));
                 objectList[i] = list;
                 i++;
             }
@@ -658,7 +663,7 @@ public class Factura {
             e.printStackTrace();
             System.out.println("Error mostrando todos los clientes");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
@@ -667,4 +672,44 @@ public class Factura {
         return objectList;
     }
 
+    /**
+     * Descargar una factura de forma local desde la tabla data[0] = ID, 
+     * data[1] = Concepto, data[2] = Local, data[3] = Vehículo, data[4] = NIF,
+     * data[5] = Fecha, data[6] = Coste,
+     *
+     * @param data Información de la factura a imprimir
+     * @throws Exception
+     */
+    public static void descargarFactura(String[] data) throws Exception {
+        File txt = new File("factura_" + data[4] + "_" + data[0] + ".txt");
+        BufferedWriter escritor = new BufferedWriter(new FileWriter(txt));
+
+        String separador = "##################################################";
+
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("   NIF: " + data[4] + "      Vehículo: " + data[3]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("    ID de factura: " + data[0]);
+        escritor.newLine();
+        escritor.write("            Fecha: " + data[5]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("     Local emisor: " + data[2]);
+        escritor.newLine();
+        escritor.write("         Concepto: " + data[1]);
+        escritor.newLine();
+        escritor.write("            Coste: " + data[6]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.close();
+    }
 }

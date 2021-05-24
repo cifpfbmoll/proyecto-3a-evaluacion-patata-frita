@@ -65,7 +65,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="PanelMenu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="PanelBoard" max="32767" attributes="0"/>
+                  <Component id="PanelBoard" pref="981" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -754,68 +754,67 @@
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="Board_Facturas" linkSize="5" min="-2" pref="978" max="-2" attributes="0"/>
-                          <EmptySpace min="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="Board_Inicio" linkSize="5" min="-2" pref="978" max="-2" attributes="0"/>
-                          <EmptySpace min="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="3" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="Board_Clientes" linkSize="5" min="-2" pref="978" max="-2" attributes="0"/>
-                          <EmptySpace min="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="4" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="Board_Motores" linkSize="5" min="-2" pref="978" max="-2" attributes="0"/>
-                          <EmptySpace min="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="5" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="Board_Vehiculos" linkSize="5" min="-2" pref="978" max="-2" attributes="0"/>
-                          <EmptySpace min="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="6" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="Board_Reservas" linkSize="5" min="-2" pref="978" max="-2" attributes="0"/>
-                          <EmptySpace min="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="7" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="Board_Nominas" linkSize="5" min="-2" pref="978" max="-2" attributes="0"/>
-                          <EmptySpace min="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="8" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="Board_AreaEmpleados" linkSize="5" min="-2" pref="978" max="-2" attributes="0"/>
-                          <EmptySpace min="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="9" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="Board_Empleados" linkSize="5" min="-2" pref="978" max="-2" attributes="0"/>
-                          <EmptySpace min="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="10" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="Board_Concesionarios" linkSize="5" min="-2" pref="978" max="-2" attributes="0"/>
-                          <EmptySpace min="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" rootIndex="11" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="Board_AreaCliente" linkSize="5" min="-2" pref="984" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="Board_AreaCliente" linkSize="5" min="-2" pref="978" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -824,37 +823,37 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <EmptySpace min="0" pref="708" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Component id="Board_Facturas" alignment="0" pref="708" max="32767" attributes="0"/>
+                      <Component id="Board_Facturas" linkSize="6" alignment="0" min="-2" pref="708" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
-                      <Component id="Board_Inicio" alignment="0" pref="708" max="32767" attributes="0"/>
+                      <Component id="Board_Inicio" linkSize="6" alignment="0" min="-2" pref="708" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="3" groupAlignment="0" attributes="0">
-                      <Component id="Board_Clientes" alignment="0" pref="708" max="32767" attributes="0"/>
+                      <Component id="Board_Clientes" linkSize="6" alignment="0" min="-2" pref="708" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="4" groupAlignment="0" attributes="0">
-                      <Component id="Board_Motores" alignment="0" pref="708" max="32767" attributes="0"/>
+                      <Component id="Board_Motores" linkSize="6" alignment="0" min="-2" pref="708" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="5" groupAlignment="0" attributes="0">
-                      <Component id="Board_Vehiculos" alignment="0" pref="708" max="32767" attributes="0"/>
+                      <Component id="Board_Vehiculos" linkSize="6" alignment="0" min="-2" pref="708" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="6" groupAlignment="0" attributes="0">
-                      <Component id="Board_Reservas" alignment="0" pref="708" max="32767" attributes="0"/>
+                      <Component id="Board_Reservas" linkSize="6" alignment="0" min="-2" pref="708" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="7" groupAlignment="0" attributes="0">
-                      <Component id="Board_Nominas" alignment="0" pref="708" max="32767" attributes="0"/>
+                      <Component id="Board_Nominas" linkSize="6" alignment="0" min="-2" pref="708" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="8" groupAlignment="0" attributes="0">
-                      <Component id="Board_AreaEmpleados" alignment="0" pref="708" max="32767" attributes="0"/>
+                      <Component id="Board_AreaEmpleados" linkSize="6" alignment="0" min="-2" pref="708" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="9" groupAlignment="0" attributes="0">
-                      <Component id="Board_Empleados" alignment="0" pref="708" max="32767" attributes="0"/>
+                      <Component id="Board_Empleados" linkSize="6" alignment="0" min="-2" pref="708" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="10" groupAlignment="0" attributes="0">
-                      <Component id="Board_Concesionarios" alignment="0" pref="708" max="32767" attributes="0"/>
+                      <Component id="Board_Concesionarios" linkSize="6" alignment="0" min="-2" pref="708" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="11" groupAlignment="0" attributes="0">
-                      <Component id="Board_AreaCliente" alignment="0" pref="708" max="32767" attributes="0"/>
+                      <Component id="Board_AreaCliente" linkSize="6" alignment="0" min="-2" pref="708" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
