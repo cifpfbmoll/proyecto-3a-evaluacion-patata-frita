@@ -517,6 +517,7 @@ public class Vehiculo {
      * Devolver todos los Vehiculos de la base de datos, útil para la gui
      * @return Vehiculo[][]
      */
+    //Si hay algun fallo en esta clase puede ser por el finally, no se como reorganizarlo...
     public static Object[][] devolverTodosVehiculoBBDD() {
         String consulta = "SELECT `VEHICULO`.*,`MOTOR`.`tipo`,`MOTOR`.`potencia`,`MOTOR`.`cilindrada` FROM VEHICULO,MOTOR WHERE `VEHICULO`.`motorid` like `MOTOR`.`id` ORDER BY bastidor";
         String[][] objectList = null;

@@ -1,10 +1,4 @@
-package eu.fp.concesionario;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.sql.*;
-
 /**
  * Clase Factura
  *

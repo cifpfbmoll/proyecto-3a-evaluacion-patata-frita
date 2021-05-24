@@ -273,15 +273,10 @@ public class Concesionario {
      * @return Concesionario[][]
      */
     public static Object[][] devolverTodosConcesionarioBBDD() {
-        //String consulta = "SELECT * FROM CONCESIONARIO ORDER BY id";
-        String consulta = "SELECT `concesionario`.*,`taller`.`espacios`,`taller`.`horario`,`venta`.`horario` "
-                + "FROM `concesionario` "
-                + "LEFT JOIN `taller` ON `concesionario`.`tallerid` = `taller`.`id` "
-                + "LEFT JOIN `venta` ON `concesionario`.`ventaid` = `venta`.`id` ORDER BY id";
+        String consulta = "SELECT * FROM Concesionario ORDER BY id";
         String[][] objectList = null;
         try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM CONCESIONARIO"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Concesionario"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
