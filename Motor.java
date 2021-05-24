@@ -288,6 +288,43 @@ public class Motor {
     }
 
     /**
+     * Devuelve todos los motores en forma de matriz 2D de Strings para
+     * la interfaz grafica
+     * @return
+     */
+    public static Object[][] devolverTodosMotoresBBDD() {
+        String consulta = "SELECT * FROM Motor ORDER BY id";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Motor"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                String[] list = new String[5]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                list[0] = Integer.toString(Utils.rs.getInt(1));
+                list[1] = (Utils.rs.getString(2));
+                list[2] = Integer.toString(Utils.rs.getInt(3));
+                list[3] = Integer.toString(Utils.rs.getInt(4));
+                list[4] = Integer.toString(Utils.rs.getInt(5));
+                objectList[i] = list;
+                i++;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
+
+    /**
      * Comprueba si el vehiculo actual ya existe en la base de datos
      */
     public boolean existsInDB(){
