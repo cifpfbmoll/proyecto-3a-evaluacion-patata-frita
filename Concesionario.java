@@ -175,13 +175,13 @@ public class Concesionario {
         }
 
     }
-
+    //TODO : Esto sobra ya que abajo estan los 2 exist de Concesionario
     /**
      * metodo de instancia para comprobar si concesionario esta en BBDD
      *
      * @return
      */
-    public boolean existBD() {
+   /* public boolean existBD() {
         String consulta = "SELECT * FROM CONCESIONARIO WHERE ID=?";
         boolean existe = false;
         try {
@@ -204,8 +204,7 @@ public class Concesionario {
         }
 
         return existe;
-    }
-
+    }*/
     /**
      * Metodo para buscar concesionarios mediante la id.
      *
@@ -244,7 +243,7 @@ public class Concesionario {
     /**
      * Metodo para ver los datos de los concesionarios de la BBDD.
      */
-    public static void mostrarConcesionarios() {
+    public static void mostrarConcesionario() {
         String consulta = "SELECT * FROM CONCESIONARIO ORDER BY ID";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -431,15 +430,15 @@ public class Concesionario {
 
     //Los dos metodos siguientes son redundantes, usados para tests, pueden ser borrados en un futuro
     /**
-     * Método para relacionar en la base de datos un concesionario con su taller
-     *
+     * Metodo para relacionar en la base de datos un concesionario con su taller.
      * @param id_concesionario
      * @param id_taller
      */
     public static void relacionarConcesionarioConTaller(int id_concesionario, int id_taller) {
         String consulta = "UPDATE concesionario SET tallerid = ? WHERE id=?";
         try {
-            //La conexión se irà cuando el main este completo
+            //La conexión se irá cuando el main este completo
+            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id_taller);
             Utils.prst.setInt(2, id_concesionario);
@@ -457,15 +456,15 @@ public class Concesionario {
     }
 
     /**
-     * Método para relacionar en la base de datos un concesionario con su venta
-     *
+     * Metodo para relacionar en la base de datos un concesionario con su venta.
      * @param id_concesionario
      * @param id_venta
      */
     public static void relacionarConcesionarioConVenta(int id_concesionario, int id_venta) {
         String consulta = "UPDATE concesionario SET ventaid = ? WHERE id=?";
         try {
-            //La conexión se irà cuando el main este completo
+            //La conexión se irá cuando el main este completo
+            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id_venta);
             Utils.prst.setInt(2, id_concesionario);

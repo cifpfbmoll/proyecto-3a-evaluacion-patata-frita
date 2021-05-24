@@ -5,6 +5,7 @@ package eu.fp.concesionario;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,6 +27,9 @@ public class Utils {
     public static ResultSet rs;
     public static PreparedStatement prst;
     public static Statement st;
+    public static File archivo = null;
+    public static BufferedReader lectorArchivo = null;
+    public static BufferedWriter escritorArchivo = null;
 
     /**
      * metodo estatico para sacar fecha y hora del sistema
@@ -273,5 +277,82 @@ public class Utils {
         // casting a mysql formato
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
         return sqlDate;
+    }
+    //TODO : CREAR METODOS : ABRIR, CERRAR, LEER Y ESCRIBIR ARCHIVO JUNTO A UN BUFFERED STREAM
+
+    /*
+    -BufferedInputStream y BufferedOutputStream por byte streams
+    -BufferedReader y BufferedWriter para streams de carácter.
+
+    Para crear un buffered stream, a su constructor le debemos pasar un flujo sin buffer:
+    -InputStream = new BufferedReader (new FileReader ( "entrada.txt"));
+    -OutputStream = new BufferedWriter (new FileWriter ( "salida.txt"));
+    */
+
+    public static void abrirArchivo(){
+        if (archivo == null){
+            //crea el archivo en caso de que no exista
+            archivo = new File("archivo.txt");
+            //else con throw exception
+        }
+    }
+
+    public static void cerrarArchivo() throws IOException{
+        if (lectorArchivo != null){
+            //si el buffer de lectura ya no es nulo se cerrará una vez se acabe de leer
+            lectorArchivo.close();
+            lectorArchivo = null;
+        }
+        if (escritorArchivo != null){
+            //si el buffer de escritura ya no es nulo se cerrará una vez se acabe de escribir
+            escritorArchivo.close();
+            escritorArchivo = null;
+        }
+        if(archivo != null){
+            //si el archivo ya no es nulo se cerrará una vez acabado
+            archivo = null;
+        }
+    }
+
+    /**
+     * Metodo que permite leer una linea entera de un fichero/archivo.
+     * Una vez finalice dejara de leer y mostrara un mensaje indicando
+     * que se ha llegado al final.
+     * ¡OJO! Debes cerrar el archivo despues de escribir para que se guarde los datos introducidos.
+     * @throws IOException
+     */
+
+    public static void leerArchivo() throws IOException{
+        if (lectorArchivo == null){
+            //crea un Buffer de lectura en caso de que no se haya creado antes
+            lectorArchivo = new BufferedReader(new FileReader(archivo));
+        }
+        String lineaLeida = "";
+        //Lee 1 linea entera
+        lineaLeida = lectorArchivo.readLine();
+        if (lineaLeida != null){
+            System.out.println(lineaLeida);
+        }else {
+            throw new EOFException("¡ERROR! Es posible que el archivo no se haya cerrado despues de escribir.");
+        }
+    }
+
+    /**
+     * Metodo que permite escribir dentro de un archivo/fichero.
+     * @param linea
+     * @throws IOException
+     */
+    public static void escribirArchivo(String linea) throws IOException{
+        if (escritorArchivo == null){
+            //crea un Buffer de escritura en caso de que no se haya creado antes
+            escritorArchivo = new BufferedWriter(new FileWriter(archivo));
+        }
+        escritorArchivo.write(linea);
+        escritorArchivo.newLine();
+        //Puede ser util para el examen crear un metodo para mover punteros
+        //esto es util por si en el examen pide escribir varias veces y con ese metodo
+        //puedo hacer que lo anterior(lo que he escrito primero) no se sobreescriba con lo siguiente.
+        //EJEMPLO : escribo hasta tener 20 lineas, con este metodo podre leer esas 20 y saltara a la 21
+        // y empezare a escribir por la 21, haciendo que no se sobreescriba las 20 lineas anteriores.
     }
 }
