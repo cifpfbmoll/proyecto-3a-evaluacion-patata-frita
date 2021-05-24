@@ -1564,9 +1564,9 @@ public class Dashboard extends javax.swing.JFrame {
             }
             Nomina.descargarNomina(rowStrings);
             PopUp.create("success", "La nómina se ha descargado correctamente.");
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             PopUp.create("error", "<html>La nómina no se ha creado correctamente.<html>");
-            //Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_AreaEmpleadoDescargarNominaActionPerformed
 
