@@ -132,6 +132,7 @@ public class PopUp extends javax.swing.JDialog {
             public void run() {
                 PopUp pop = new PopUp(new javax.swing.JFrame(), true);
                 pop.setLocationRelativeTo(null);
+                System.out.println("lanzando popup");
                 switch (type) {
                     case "error":
                         pop.setTitle("Error");
@@ -139,6 +140,13 @@ public class PopUp extends javax.swing.JDialog {
                         pop.Popup_Title.setForeground(new java.awt.Color(255, 0, 0));
                         pop.Popup_Description.setText(message);
                         pop.Popup_Subtext.setText("Si el problema persiste, contacta con un administrador.");
+                        break;
+                    case "success":
+                        pop.setTitle("Completado");
+                        pop.Popup_Title.setText("✔ Completado ✔");
+                        pop.Popup_Title.setForeground(new java.awt.Color(0, 255, 0));
+                        pop.Popup_Description.setText(message);
+                        pop.Popup_Subtext.setText("Cierra esta pestaña para continuar.");
                         break;
                     default:
                         pop.setTitle("Default Title");

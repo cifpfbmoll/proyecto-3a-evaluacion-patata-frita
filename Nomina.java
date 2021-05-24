@@ -1,5 +1,9 @@
 package eu.fp.concesionario;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.*;
 
@@ -11,7 +15,7 @@ import java.util.logging.*;
 public class Nomina {
 
     //atributos
-    private int id=-1; //Se carga únicamente al leer de la base de datos
+    private int id = -1; //Se carga únicamente al leer de la base de datos
     private int horasTrabajadas;
     private float sueldoBruto;
     private float sueldoNeto;
@@ -26,12 +30,13 @@ public class Nomina {
 
     /**
      * Constructor con todos los atributos
+     *
      * @param id
      * @param horasTrabajadas
      * @param sueldoBruto
      * @param sueldoNeto
      * @param fechaNomina
-     * @param empleado 
+     * @param empleado
      */
     public Nomina(int id, int horasTrabajadas, float sueldoBruto, float sueldoNeto, String fechaNomina, Empleado empleado) {
         this.id = id;
@@ -44,6 +49,7 @@ public class Nomina {
 
     /**
      * Constructor copia
+     *
      * @param nomina una nomina pasa como parametro
      */
     public Nomina(Nomina nomina) {
@@ -97,9 +103,13 @@ public class Nomina {
         }
     }
 
-    public void setId(int id){this.id = id;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public int getId(){return this.id;}
+    public int getId() {
+        return this.id;
+    }
 
     public String getFechaNomina() {
         return fechaNomina;
@@ -110,17 +120,15 @@ public class Nomina {
     }
 
     // toString
-
     @Override
     public String toString() {
-        return "Nomina { " + "id=" + id + 
-                ", horasTrabajadas=" + horasTrabajadas + 
-                ", sueldoBruto=" + sueldoBruto + 
-                ", sueldoNeto=" + sueldoNeto + 
-                ", fechaNomina=" + fechaNomina + 
-                ", empleado=" + empleado + '}';
+        return "Nomina { " + "id=" + id
+                + ", horasTrabajadas=" + horasTrabajadas
+                + ", sueldoBruto=" + sueldoBruto
+                + ", sueldoNeto=" + sueldoNeto
+                + ", fechaNomina=" + fechaNomina
+                + ", empleado=" + empleado + '}';
     }
-
 
     /**
      * metodo estatico para crear nueva nomina
@@ -143,9 +151,9 @@ public class Nomina {
             mostrarNifNombreApelidoEmpleados();
             System.out.println("Elige NIF para nomina");
             String nifEmpleado = Utils.kString();
-            
-           nomina.setEmpleado(Empleado.buscarEmpleadoBBDD(nifEmpleado));
-            
+
+            nomina.setEmpleado(Empleado.buscarEmpleadoBBDD(nifEmpleado));
+
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getLocalizedMessage());
         }
@@ -169,9 +177,9 @@ public class Nomina {
         } catch (SQLException e) {
             System.out.println("Error !!!");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -199,9 +207,9 @@ public class Nomina {
         } catch (SQLException ex) {
             System.out.println("Error insertas datos");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -226,9 +234,9 @@ public class Nomina {
         } catch (SQLException ex) {
             System.out.println("Error insertas datos");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -255,9 +263,9 @@ public class Nomina {
         } catch (SQLException ex) {
             System.out.println("Error mostrar todas nominas");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -278,9 +286,9 @@ public class Nomina {
         } catch (SQLException e) {
             System.out.println("Error al borar datos");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -298,16 +306,16 @@ public class Nomina {
         try {
             Utils.prst = Utils.connection.prepareStatement(buscar);
             Utils.prst.setInt(1, idNomina);
-            Utils.rs = Utils.prst.executeQuery();         
+            Utils.rs = Utils.prst.executeQuery();
             if (Utils.rs.next()) {
                 encontrado = true;
             }
         } catch (SQLException e) {
             System.out.println("Error a buscar nomina");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -340,9 +348,9 @@ public class Nomina {
         } catch (SQLException ex) {
             System.out.println("Error modificar nomina");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -367,9 +375,9 @@ public class Nomina {
         } catch (SQLException e) {
             System.out.println("Error relacionar Nomina " + NominaID + " con Empleado " + NifEmpleado);
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -400,14 +408,14 @@ public class Nomina {
                 n.setFechaNomina(Utils.rs.getString(4));
                 String empleadoNif = Utils.rs.getString(5);//nos devuelve nifEmpleado             
                 n.setEmpleado(Empleado.buscarEmpleadoBBDD(empleadoNif));// establecemos empleado
-                
+
                 System.out.println("Nomina encontrada y creada " + n.toString());
             } catch (SQLException ex) {
                 System.out.println("Error buscar nomina");
             } finally {
-                try{
+                try {
                     Utils.cerrarVariables();
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println("Error al cerrar variables");
                 }
             }
@@ -428,31 +436,32 @@ public class Nomina {
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, this.getId());
-            Utils.rs = Utils.prst.executeQuery();   
+            Utils.rs = Utils.prst.executeQuery();
             if (Utils.rs.next()) {
                 existe = true;
-            } 
+            }
         } catch (SQLException e) {
             System.out.println("Error consultar BBDD");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
         return existe;
     }
-    
-     /**
+
+    /**
      * Devolver todos las nominas de la base de datos
+     *
      * @return objectList
      */
     public static Object[][] devolverTodasNominasBBDD() {
         String consulta = "SELECT `NOMINA`.*,`EMPLEADO`.`NOMBRE`,`EMPLEADO`.`APELLIDOS` FROM NOMINA,EMPLEADO WHERE `NOMINA`.`EMPLEADONIF` like `EMPLEADO`.`NIF` ORDER BY ID";
         String[][] objectList = null;
         try {
-            
+
             Utils.st = Utils.connection.createStatement();
             Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM NOMINA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
@@ -461,7 +470,7 @@ public class Nomina {
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
                 String[] list = new String[7]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
-                
+
                 list[0] = (Utils.rs.getString(1));
                 list[1] = (Utils.rs.getString(2));
                 list[2] = (Utils.rs.getString(3));
@@ -469,7 +478,7 @@ public class Nomina {
                 list[4] = (Utils.rs.getString(5));
                 list[5] = (Utils.rs.getString(6));
                 list[6] = (Utils.rs.getString(7) + " " + Utils.rs.getString(8));
-                
+
                 objectList[i] = list;
                 i++;
             }
@@ -479,7 +488,7 @@ public class Nomina {
             e.printStackTrace();
             System.out.println("Error mostrando todos los clientes");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
@@ -487,17 +496,18 @@ public class Nomina {
         }
         return objectList;
     }
-    
+
     /**
      * Devolver todas las nominas de un empleado en concreto
+     *
      * @param nif NIF del empleado
-     * @return 
+     * @return
      */
     public static Object[][] devolverTodasNominasBBDD(String nif) {
         String consulta = "SELECT `NOMINA`.*,`EMPLEADO`.`NOMBRE`,`EMPLEADO`.`APELLIDOS` FROM NOMINA,EMPLEADO "
                 + "WHERE `NOMINA`.`EMPLEADONIF` like `EMPLEADO`.`NIF` AND `NOMINA`.`EMPLEADONIF` like \"" + nif + "\" ORDER BY ID";
         try {
-            
+
             Utils.st = Utils.connection.createStatement();
             Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM NOMINA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
@@ -506,7 +516,7 @@ public class Nomina {
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
                 String[] list = new String[7]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
-                
+
                 list[0] = (Utils.rs.getString(1));
                 list[1] = (Utils.rs.getString(2));
                 list[2] = (Utils.rs.getString(3));
@@ -514,7 +524,7 @@ public class Nomina {
                 list[4] = (Utils.rs.getString(5));
                 list[5] = (Utils.rs.getString(6));
                 list[6] = (Utils.rs.getString(7) + " " + Utils.rs.getString(8));
-                
+
                 objectList[i] = list;
                 i++;
             }
@@ -527,6 +537,43 @@ public class Nomina {
         return null;
     }
 
-    
-    
+    /**
+     * Descargar de forma local la información de una nómina data[0] = ID,
+     * data[1] = Horas, data[2] = Sueldo Bruto, data[3] = Sueldo Neto, data[4] =
+     * Fecha, data[5] = NIF Empleado, data[6] = Nombre
+     *
+     * @param data Información de la nómina
+     */
+    public static void descargarNomina(String[] data) throws IOException {
+        File txt = new File("nomina_" + data[5] + "_" + data[0] + ".txt");
+        BufferedWriter escritor = new BufferedWriter(new FileWriter(txt));
+
+        String separador = "##################################################";
+
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("   NIF: " + data[5] + "      Nombre: " + data[6]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("     ID de nómina: " + data[0]);
+        escritor.newLine();
+        escritor.write("            Fecha: " + data[4]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("   Horas fichadas: " + data[1]);
+        escritor.newLine();
+        escritor.write("     Sueldo bruto: " + data[2]);
+        escritor.newLine();
+        escritor.write("      Sueldo neto: " + data[3]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.close();
+    }
 }

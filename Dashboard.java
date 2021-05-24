@@ -3,6 +3,9 @@ package eu.fp.concesionario;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -62,6 +65,27 @@ public class Dashboard extends javax.swing.JFrame {
         ClienteInicio = new javax.swing.JLabel();
         ClienteAreaPersonal = new javax.swing.JLabel();
         PanelBoard = new javax.swing.JPanel();
+        Board_AreaCliente = new javax.swing.JPanel();
+        Title_AreaCliente = new javax.swing.JLabel();
+        AreaCliente_ScrollReservas = new javax.swing.JScrollPane();
+        AreaCliente_TableReservas = new javax.swing.JTable();
+        AreaDescargarReserva = new javax.swing.JButton();
+        AreaBuscarReserva = new javax.swing.JButton();
+        AreaCliente_ScrollFacturas = new javax.swing.JScrollPane();
+        AreaCliente_TableFacturas = new javax.swing.JTable();
+        AreaBuscarFactura = new javax.swing.JButton();
+        AreaDescargarFactura = new javax.swing.JButton();
+        Sb_Cliente = new javax.swing.JLabel();
+        Label_ApellidosCliente = new javax.swing.JLabel();
+        Label_TelefonoCliente = new javax.swing.JLabel();
+        Label_NombreCliente = new javax.swing.JLabel();
+        Label_DomicilioCliente = new javax.swing.JLabel();
+        Label_NIFCliente = new javax.swing.JLabel();
+        Sb_Cliente1 = new javax.swing.JLabel();
+        Sb_Cliente2 = new javax.swing.JLabel();
+        Board_Inicio = new javax.swing.JPanel();
+        Label_SesionNIF = new javax.swing.JLabel();
+        LabelTitle_Inicio = new javax.swing.JLabel();
         Board_Facturas = new javax.swing.JPanel();
         Title_Facturas = new javax.swing.JLabel();
         Facturas_Scroll = new javax.swing.JScrollPane();
@@ -70,9 +94,22 @@ public class Dashboard extends javax.swing.JFrame {
         Facturas_Anadir = new javax.swing.JButton();
         Facturas_Modificar = new javax.swing.JButton();
         Facturas_Eliminar = new javax.swing.JButton();
-        Board_Inicio = new javax.swing.JPanel();
-        Label_SesionNIF = new javax.swing.JLabel();
-        LabelTitle_Inicio = new javax.swing.JLabel();
+        Board_Nominas = new javax.swing.JPanel();
+        Title_Nominas = new javax.swing.JLabel();
+        Nominas_Scroll = new javax.swing.JScrollPane();
+        Nominas_Tabla = new javax.swing.JTable();
+        Nominas_Buscar = new javax.swing.JButton();
+        Nominas_Anadir = new javax.swing.JButton();
+        Nominas_Modificar = new javax.swing.JButton();
+        Nominas_Eliminar = new javax.swing.JButton();
+        Board_Empleados = new javax.swing.JPanel();
+        Title_Empleados = new javax.swing.JLabel();
+        Empleados_Scroll = new javax.swing.JScrollPane();
+        Empleados_Tabla = new javax.swing.JTable();
+        Empleados_Buscar = new javax.swing.JButton();
+        Empleados_Anadir = new javax.swing.JButton();
+        Empleados_Modificar = new javax.swing.JButton();
+        Empleados_Eliminar = new javax.swing.JButton();
         Board_Clientes = new javax.swing.JPanel();
         Title_Clientes = new javax.swing.JLabel();
         Clientes_Scroll = new javax.swing.JScrollPane();
@@ -105,14 +142,14 @@ public class Dashboard extends javax.swing.JFrame {
         Reservas_Anadir = new javax.swing.JButton();
         Reservas_Modificar = new javax.swing.JButton();
         Reservas_Eliminar = new javax.swing.JButton();
-        Board_Nominas = new javax.swing.JPanel();
-        Title_Nominas = new javax.swing.JLabel();
-        Nominas_Scroll = new javax.swing.JScrollPane();
-        Nominas_Tabla = new javax.swing.JTable();
-        Nominas_Buscar = new javax.swing.JButton();
-        Nominas_Anadir = new javax.swing.JButton();
-        Nominas_Modificar = new javax.swing.JButton();
-        Nominas_Eliminar = new javax.swing.JButton();
+        Board_Concesionarios = new javax.swing.JPanel();
+        Title_Concesionarios = new javax.swing.JLabel();
+        Concesionarios_Scroll = new javax.swing.JScrollPane();
+        Concesionarios_Tabla = new javax.swing.JTable();
+        Concesionarios_Buscar = new javax.swing.JButton();
+        Concesionarios_Anadir = new javax.swing.JButton();
+        Concesionarios_Modificar = new javax.swing.JButton();
+        Concesionarios_Eliminar = new javax.swing.JButton();
         Board_AreaEmpleados = new javax.swing.JPanel();
         Title_AreaEmpleados = new javax.swing.JLabel();
         AreaEmpleado_Scroll = new javax.swing.JScrollPane();
@@ -127,40 +164,6 @@ public class Dashboard extends javax.swing.JFrame {
         Label_NIF = new javax.swing.JLabel();
         AreaBuscar = new javax.swing.JButton();
         AreaDescargar = new javax.swing.JButton();
-        Board_Empleados = new javax.swing.JPanel();
-        Title_Empleados = new javax.swing.JLabel();
-        Empleados_Scroll = new javax.swing.JScrollPane();
-        Empleados_Tabla = new javax.swing.JTable();
-        Empleados_Buscar = new javax.swing.JButton();
-        Empleados_Anadir = new javax.swing.JButton();
-        Empleados_Modificar = new javax.swing.JButton();
-        Empleados_Eliminar = new javax.swing.JButton();
-        Board_Concesionarios = new javax.swing.JPanel();
-        Title_Concesionarios = new javax.swing.JLabel();
-        Concesionarios_Scroll = new javax.swing.JScrollPane();
-        Concesionarios_Tabla = new javax.swing.JTable();
-        Concesionarios_Buscar = new javax.swing.JButton();
-        Concesionarios_Anadir = new javax.swing.JButton();
-        Concesionarios_Modificar = new javax.swing.JButton();
-        Concesionarios_Eliminar = new javax.swing.JButton();
-        Board_AreaCliente = new javax.swing.JPanel();
-        Title_AreaCliente = new javax.swing.JLabel();
-        AreaCliente_ScrollReservas = new javax.swing.JScrollPane();
-        AreaCliente_TableReservas = new javax.swing.JTable();
-        AreaDescargarReserva = new javax.swing.JButton();
-        AreaBuscarReserva = new javax.swing.JButton();
-        AreaCliente_ScrollFacturas = new javax.swing.JScrollPane();
-        AreaCliente_TableFacturas = new javax.swing.JTable();
-        AreaBuscarFactura = new javax.swing.JButton();
-        AreaDescargarFactura = new javax.swing.JButton();
-        Sb_Cliente = new javax.swing.JLabel();
-        Label_ApellidosCliente = new javax.swing.JLabel();
-        Label_TelefonoCliente = new javax.swing.JLabel();
-        Label_NombreCliente = new javax.swing.JLabel();
-        Label_DomicilioCliente = new javax.swing.JLabel();
-        Label_NIFCliente = new javax.swing.JLabel();
-        Sb_Cliente1 = new javax.swing.JLabel();
-        Sb_Cliente2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Concesionario");
@@ -516,6 +519,139 @@ public class Dashboard extends javax.swing.JFrame {
         PanelBoard.setBackground(new java.awt.Color(242, 242, 242));
         PanelBoard.setForeground(new java.awt.Color(0, 0, 0));
 
+        Board_AreaCliente.setBackground(new java.awt.Color(242, 242, 242));
+        Board_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
+        Board_AreaCliente.setName("areaempleado"); // NOI18N
+        Board_AreaCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title_AreaCliente.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
+        Title_AreaCliente.setText("Área personal");
+        Board_AreaCliente.add(Title_AreaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        AreaCliente_TableReservas.setAutoCreateRowSorter(true);
+        AreaCliente_TableReservas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"--", "--", "--", "--", "--"}
+            },
+            new String [] {
+                "ID", "Espacio Reservado", "Fecha", "TallerID", "NIF Cliente"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        AreaCliente_ScrollReservas.setViewportView(AreaCliente_TableReservas);
+
+        Board_AreaCliente.add(AreaCliente_ScrollReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 740, 220));
+
+        AreaDescargarReserva.setText("Descargar reserva");
+        Board_AreaCliente.add(AreaDescargarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 200, 200, -1));
+
+        AreaBuscarReserva.setText("Buscar reserva");
+        Board_AreaCliente.add(AreaBuscarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 200, -1));
+
+        AreaCliente_TableFacturas.setAutoCreateRowSorter(true);
+        AreaCliente_TableFacturas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"--", "--", "--", "--", "--", "--"}
+            },
+            new String [] {
+                "ID", "Concepto", "Local ID", "Vehículo", "Fecha", "Coste"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        AreaCliente_ScrollFacturas.setViewportView(AreaCliente_TableFacturas);
+
+        Board_AreaCliente.add(AreaCliente_ScrollFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 740, 220));
+
+        AreaBuscarFactura.setText("Buscar factura");
+        Board_AreaCliente.add(AreaBuscarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 510, 200, -1));
+
+        AreaDescargarFactura.setText("Descargar factura");
+        Board_AreaCliente.add(AreaDescargarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, 200, -1));
+
+        Sb_Cliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Sb_Cliente.setForeground(new java.awt.Color(0, 0, 0));
+        Sb_Cliente.setText("Reservas");
+        Board_AreaCliente.add(Sb_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+
+        Label_ApellidosCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_ApellidosCliente.setForeground(new java.awt.Color(51, 51, 51));
+        Label_ApellidosCliente.setText("Apellidos: <Apellidos>");
+        Board_AreaCliente.add(Label_ApellidosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+
+        Label_TelefonoCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_TelefonoCliente.setForeground(new java.awt.Color(51, 51, 51));
+        Label_TelefonoCliente.setText("Telefono: 999888777");
+        Board_AreaCliente.add(Label_TelefonoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, -1, -1));
+
+        Label_NombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_NombreCliente.setForeground(new java.awt.Color(51, 51, 51));
+        Label_NombreCliente.setText("Nombre: <Nombre>");
+        Board_AreaCliente.add(Label_NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        Label_DomicilioCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_DomicilioCliente.setForeground(new java.awt.Color(51, 51, 51));
+        Label_DomicilioCliente.setText("Domicilio: <Domicilio>");
+        Board_AreaCliente.add(Label_DomicilioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
+
+        Label_NIFCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_NIFCliente.setForeground(new java.awt.Color(51, 51, 51));
+        Label_NIFCliente.setText("NIF: 88447766X");
+        Board_AreaCliente.add(Label_NIFCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
+
+        Sb_Cliente1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Sb_Cliente1.setForeground(new java.awt.Color(0, 0, 0));
+        Sb_Cliente1.setText("Ficha de cliente");
+        Board_AreaCliente.add(Sb_Cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        Sb_Cliente2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Sb_Cliente2.setForeground(new java.awt.Color(0, 0, 0));
+        Sb_Cliente2.setText("Facturas");
+        Board_AreaCliente.add(Sb_Cliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
+
+        Board_Inicio.setBackground(new java.awt.Color(242, 242, 242));
+        Board_Inicio.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Inicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Label_SesionNIF.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        Label_SesionNIF.setForeground(new java.awt.Color(0, 0, 0));
+        Label_SesionNIF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Label_SesionNIF.setText("Sesión iniciada con: <NIF>");
+        Board_Inicio.add(Label_SesionNIF, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 985, 60));
+
+        LabelTitle_Inicio.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        LabelTitle_Inicio.setForeground(new java.awt.Color(0, 0, 0));
+        LabelTitle_Inicio.setText("Inicio");
+        Board_Inicio.add(LabelTitle_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
         Board_Facturas.setBackground(new java.awt.Color(242, 242, 242));
         Board_Facturas.setForeground(new java.awt.Color(0, 0, 0));
         Board_Facturas.setName("facturas"); // NOI18N
@@ -586,20 +722,145 @@ public class Dashboard extends javax.swing.JFrame {
         });
         Board_Facturas.add(Facturas_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
 
-        Board_Inicio.setBackground(new java.awt.Color(242, 242, 242));
-        Board_Inicio.setForeground(new java.awt.Color(0, 0, 0));
-        Board_Inicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Board_Nominas.setBackground(new java.awt.Color(242, 242, 242));
+        Board_Nominas.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Nominas.setName("facturas"); // NOI18N
+        Board_Nominas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Label_SesionNIF.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
-        Label_SesionNIF.setForeground(new java.awt.Color(0, 0, 0));
-        Label_SesionNIF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Label_SesionNIF.setText("Sesión iniciada con: <NIF>");
-        Board_Inicio.add(Label_SesionNIF, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 985, 60));
+        Title_Nominas.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title_Nominas.setForeground(new java.awt.Color(0, 0, 0));
+        Title_Nominas.setText("Nominas");
+        Board_Nominas.add(Title_Nominas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        LabelTitle_Inicio.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
-        LabelTitle_Inicio.setForeground(new java.awt.Color(0, 0, 0));
-        LabelTitle_Inicio.setText("Inicio");
-        Board_Inicio.add(LabelTitle_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        Nominas_Tabla.setAutoCreateRowSorter(true);
+        Nominas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"--", "--", "--", "--", "--", "--", "--"}
+            },
+            new String [] {
+                "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Nominas_Scroll.setViewportView(Nominas_Tabla);
+
+        Board_Nominas.add(Nominas_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
+
+        Nominas_Buscar.setText("Buscar");
+        Nominas_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nominas_BuscarActionPerformed(evt);
+            }
+        });
+        Board_Nominas.add(Nominas_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 200, -1));
+
+        Nominas_Anadir.setText("Añadir");
+        Nominas_Anadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nominas_AnadirActionPerformed(evt);
+            }
+        });
+        Board_Nominas.add(Nominas_Anadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
+
+        Nominas_Modificar.setText("Modificar");
+        Nominas_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nominas_ModificarActionPerformed(evt);
+            }
+        });
+        Board_Nominas.add(Nominas_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
+
+        Nominas_Eliminar.setText("Eliminar");
+        Nominas_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nominas_EliminarActionPerformed(evt);
+            }
+        });
+        Board_Nominas.add(Nominas_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
+
+        Board_Empleados.setBackground(new java.awt.Color(242, 242, 242));
+        Board_Empleados.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Empleados.setName("empleados"); // NOI18N
+        Board_Empleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title_Empleados.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title_Empleados.setForeground(new java.awt.Color(0, 0, 0));
+        Title_Empleados.setText("Empleados");
+        Board_Empleados.add(Title_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        Empleados_Tabla.setAutoCreateRowSorter(true);
+        Empleados_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"--", "--", "--", "--", "--", "--", "--", "--"}
+            },
+            new String [] {
+                "NIF", "Nombre", "Apellidos", "Telefono", "Domicilio", "Puesto", "TallerID", "VentaID"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        Empleados_Scroll.setViewportView(Empleados_Tabla);
+
+        Board_Empleados.add(Empleados_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
+
+        Empleados_Buscar.setText("Buscar");
+        Empleados_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Empleados_BuscarActionPerformed(evt);
+            }
+        });
+        Board_Empleados.add(Empleados_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 200, -1));
+
+        Empleados_Anadir.setText("Añadir");
+        Empleados_Anadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Empleados_AnadirActionPerformed(evt);
+            }
+        });
+        Board_Empleados.add(Empleados_Anadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
+
+        Empleados_Modificar.setText("Modificar");
+        Empleados_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Empleados_ModificarActionPerformed(evt);
+            }
+        });
+        Board_Empleados.add(Empleados_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
+
+        Empleados_Eliminar.setText("Eliminar");
+        Empleados_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Empleados_EliminarActionPerformed(evt);
+            }
+        });
+        Board_Empleados.add(Empleados_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
 
         Board_Clientes.setBackground(new java.awt.Color(242, 242, 242));
         Board_Clientes.setForeground(new java.awt.Color(0, 0, 0));
@@ -883,30 +1144,30 @@ public class Dashboard extends javax.swing.JFrame {
         });
         Board_Reservas.add(Reservas_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
 
-        Board_Nominas.setBackground(new java.awt.Color(242, 242, 242));
-        Board_Nominas.setForeground(new java.awt.Color(0, 0, 0));
-        Board_Nominas.setName("facturas"); // NOI18N
-        Board_Nominas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Board_Concesionarios.setBackground(new java.awt.Color(242, 242, 242));
+        Board_Concesionarios.setForeground(new java.awt.Color(0, 0, 0));
+        Board_Concesionarios.setName("facturas"); // NOI18N
+        Board_Concesionarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Title_Nominas.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
-        Title_Nominas.setForeground(new java.awt.Color(0, 0, 0));
-        Title_Nominas.setText("Nominas");
-        Board_Nominas.add(Title_Nominas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        Title_Concesionarios.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        Title_Concesionarios.setForeground(new java.awt.Color(0, 0, 0));
+        Title_Concesionarios.setText("Concesionarios");
+        Board_Concesionarios.add(Title_Concesionarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        Nominas_Tabla.setAutoCreateRowSorter(true);
-        Nominas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+        Concesionarios_Tabla.setAutoCreateRowSorter(true);
+        Concesionarios_Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"--", "--", "--", "--", "--", "--", "--"}
+                {"--", "--", "--", "--", "--", "--"}
             },
             new String [] {
-                "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
+                "ID", "Ubicación", "Nombre", "Teléfono", "ID Taller", "ID Venta", "Espacios Taller", "Horario Taller", "Horario Venta"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -917,41 +1178,41 @@ public class Dashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        Nominas_Scroll.setViewportView(Nominas_Tabla);
+        Concesionarios_Scroll.setViewportView(Concesionarios_Tabla);
 
-        Board_Nominas.add(Nominas_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
+        Board_Concesionarios.add(Concesionarios_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
 
-        Nominas_Buscar.setText("Buscar");
-        Nominas_Buscar.addActionListener(new java.awt.event.ActionListener() {
+        Concesionarios_Buscar.setText("Buscar");
+        Concesionarios_Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Nominas_BuscarActionPerformed(evt);
+                Concesionarios_BuscarActionPerformed(evt);
             }
         });
-        Board_Nominas.add(Nominas_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 200, -1));
+        Board_Concesionarios.add(Concesionarios_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 200, -1));
 
-        Nominas_Anadir.setText("Añadir");
-        Nominas_Anadir.addActionListener(new java.awt.event.ActionListener() {
+        Concesionarios_Anadir.setText("Añadir");
+        Concesionarios_Anadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Nominas_AnadirActionPerformed(evt);
+                Concesionarios_AnadirActionPerformed(evt);
             }
         });
-        Board_Nominas.add(Nominas_Anadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
+        Board_Concesionarios.add(Concesionarios_Anadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
 
-        Nominas_Modificar.setText("Modificar");
-        Nominas_Modificar.addActionListener(new java.awt.event.ActionListener() {
+        Concesionarios_Modificar.setText("Modificar");
+        Concesionarios_Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Nominas_ModificarActionPerformed(evt);
+                Concesionarios_ModificarActionPerformed(evt);
             }
         });
-        Board_Nominas.add(Nominas_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
+        Board_Concesionarios.add(Concesionarios_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
 
-        Nominas_Eliminar.setText("Eliminar");
-        Nominas_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+        Concesionarios_Eliminar.setText("Eliminar");
+        Concesionarios_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Nominas_EliminarActionPerformed(evt);
+                Concesionarios_EliminarActionPerformed(evt);
             }
         });
-        Board_Nominas.add(Nominas_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
+        Board_Concesionarios.add(Concesionarios_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
 
         Board_AreaEmpleados.setBackground(new java.awt.Color(242, 242, 242));
         Board_AreaEmpleados.setForeground(new java.awt.Color(0, 0, 0));
@@ -1033,265 +1294,12 @@ public class Dashboard extends javax.swing.JFrame {
         Board_AreaEmpleados.add(AreaBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 220, 200, -1));
 
         AreaDescargar.setText("Descargar nómina");
+        AreaDescargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AreaEmpleadoDescargarNominaActionPerformed(evt);
+            }
+        });
         Board_AreaEmpleados.add(AreaDescargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 180, 200, -1));
-
-        Board_Empleados.setBackground(new java.awt.Color(242, 242, 242));
-        Board_Empleados.setForeground(new java.awt.Color(0, 0, 0));
-        Board_Empleados.setName("empleados"); // NOI18N
-        Board_Empleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Title_Empleados.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
-        Title_Empleados.setForeground(new java.awt.Color(0, 0, 0));
-        Title_Empleados.setText("Empleados");
-        Board_Empleados.add(Title_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        Empleados_Tabla.setAutoCreateRowSorter(true);
-        Empleados_Tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"--", "--", "--", "--", "--", "--", "--", "--"}
-            },
-            new String [] {
-                "NIF", "Nombre", "Apellidos", "Telefono", "Domicilio", "Puesto", "TallerID", "VentaID"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        Empleados_Scroll.setViewportView(Empleados_Tabla);
-
-        Board_Empleados.add(Empleados_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
-
-        Empleados_Buscar.setText("Buscar");
-        Empleados_Buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Empleados_BuscarActionPerformed(evt);
-            }
-        });
-        Board_Empleados.add(Empleados_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 200, -1));
-
-        Empleados_Anadir.setText("Añadir");
-        Empleados_Anadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Empleados_AnadirActionPerformed(evt);
-            }
-        });
-        Board_Empleados.add(Empleados_Anadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
-
-        Empleados_Modificar.setText("Modificar");
-        Empleados_Modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Empleados_ModificarActionPerformed(evt);
-            }
-        });
-        Board_Empleados.add(Empleados_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
-
-        Empleados_Eliminar.setText("Eliminar");
-        Empleados_Eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Empleados_EliminarActionPerformed(evt);
-            }
-        });
-        Board_Empleados.add(Empleados_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
-
-        Board_Concesionarios.setBackground(new java.awt.Color(242, 242, 242));
-        Board_Concesionarios.setForeground(new java.awt.Color(0, 0, 0));
-        Board_Concesionarios.setName("facturas"); // NOI18N
-        Board_Concesionarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Title_Concesionarios.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
-        Title_Concesionarios.setForeground(new java.awt.Color(0, 0, 0));
-        Title_Concesionarios.setText("Concesionarios");
-        Board_Concesionarios.add(Title_Concesionarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        Concesionarios_Tabla.setAutoCreateRowSorter(true);
-        Concesionarios_Tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"--", "--", "--", "--", "--", "--"}
-            },
-            new String [] {
-                "ID", "Ubicación", "Nombre", "Teléfono", "ID Taller", "ID Venta", "Espacios Taller", "Horario Taller", "Horario Venta"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        Concesionarios_Scroll.setViewportView(Concesionarios_Tabla);
-
-        Board_Concesionarios.add(Concesionarios_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
-
-        Concesionarios_Buscar.setText("Buscar");
-        Concesionarios_Buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Concesionarios_BuscarActionPerformed(evt);
-            }
-        });
-        Board_Concesionarios.add(Concesionarios_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, 200, -1));
-
-        Concesionarios_Anadir.setText("Añadir");
-        Concesionarios_Anadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Concesionarios_AnadirActionPerformed(evt);
-            }
-        });
-        Board_Concesionarios.add(Concesionarios_Anadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 200, -1));
-
-        Concesionarios_Modificar.setText("Modificar");
-        Concesionarios_Modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Concesionarios_ModificarActionPerformed(evt);
-            }
-        });
-        Board_Concesionarios.add(Concesionarios_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
-
-        Concesionarios_Eliminar.setText("Eliminar");
-        Concesionarios_Eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Concesionarios_EliminarActionPerformed(evt);
-            }
-        });
-        Board_Concesionarios.add(Concesionarios_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
-
-        Board_AreaCliente.setBackground(new java.awt.Color(242, 242, 242));
-        Board_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
-        Board_AreaCliente.setName("areaempleado"); // NOI18N
-        Board_AreaCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Title_AreaCliente.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
-        Title_AreaCliente.setForeground(new java.awt.Color(0, 0, 0));
-        Title_AreaCliente.setText("Área personal");
-        Board_AreaCliente.add(Title_AreaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        AreaCliente_TableReservas.setAutoCreateRowSorter(true);
-        AreaCliente_TableReservas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"--", "--", "--", "--", "--"}
-            },
-            new String [] {
-                "ID", "Espacio Reservado", "Fecha", "TallerID", "NIF Cliente"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        AreaCliente_ScrollReservas.setViewportView(AreaCliente_TableReservas);
-
-        Board_AreaCliente.add(AreaCliente_ScrollReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 740, 220));
-
-        AreaDescargarReserva.setText("Descargar reserva");
-        Board_AreaCliente.add(AreaDescargarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 200, 200, -1));
-
-        AreaBuscarReserva.setText("Buscar reserva");
-        Board_AreaCliente.add(AreaBuscarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 200, -1));
-
-        AreaCliente_TableFacturas.setAutoCreateRowSorter(true);
-        AreaCliente_TableFacturas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"--", "--", "--", "--", "--", "--"}
-            },
-            new String [] {
-                "ID", "Concepto", "Local ID", "Vehículo", "Fecha", "Coste"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        AreaCliente_ScrollFacturas.setViewportView(AreaCliente_TableFacturas);
-
-        Board_AreaCliente.add(AreaCliente_ScrollFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 740, 220));
-
-        AreaBuscarFactura.setText("Buscar factura");
-        Board_AreaCliente.add(AreaBuscarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 510, 200, -1));
-
-        AreaDescargarFactura.setText("Descargar factura");
-        Board_AreaCliente.add(AreaDescargarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, 200, -1));
-
-        Sb_Cliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        Sb_Cliente.setForeground(new java.awt.Color(0, 0, 0));
-        Sb_Cliente.setText("Reservas");
-        Board_AreaCliente.add(Sb_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
-
-        Label_ApellidosCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Label_ApellidosCliente.setForeground(new java.awt.Color(51, 51, 51));
-        Label_ApellidosCliente.setText("Apellidos: <Apellidos>");
-        Board_AreaCliente.add(Label_ApellidosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
-
-        Label_TelefonoCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Label_TelefonoCliente.setForeground(new java.awt.Color(51, 51, 51));
-        Label_TelefonoCliente.setText("Telefono: 999888777");
-        Board_AreaCliente.add(Label_TelefonoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, -1, -1));
-
-        Label_NombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Label_NombreCliente.setForeground(new java.awt.Color(51, 51, 51));
-        Label_NombreCliente.setText("Nombre: <Nombre>");
-        Board_AreaCliente.add(Label_NombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
-
-        Label_DomicilioCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Label_DomicilioCliente.setForeground(new java.awt.Color(51, 51, 51));
-        Label_DomicilioCliente.setText("Domicilio: <Domicilio>");
-        Board_AreaCliente.add(Label_DomicilioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
-
-        Label_NIFCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Label_NIFCliente.setForeground(new java.awt.Color(51, 51, 51));
-        Label_NIFCliente.setText("NIF: 88447766X");
-        Board_AreaCliente.add(Label_NIFCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
-
-        Sb_Cliente1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        Sb_Cliente1.setForeground(new java.awt.Color(0, 0, 0));
-        Sb_Cliente1.setText("Ficha de cliente");
-        Board_AreaCliente.add(Sb_Cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
-
-        Sb_Cliente2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        Sb_Cliente2.setForeground(new java.awt.Color(0, 0, 0));
-        Sb_Cliente2.setText("Facturas");
-        Board_AreaCliente.add(Sb_Cliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
 
         javax.swing.GroupLayout PanelBoardLayout = new javax.swing.GroupLayout(PanelBoard);
         PanelBoard.setLayout(PanelBoardLayout);
@@ -1544,6 +1552,23 @@ public class Dashboard extends javax.swing.JFrame {
     private void Concesionarios_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Concesionarios_EliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Concesionarios_EliminarActionPerformed
+
+    private void AreaEmpleadoDescargarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaEmpleadoDescargarNominaActionPerformed
+        // TODO add your handling code here:
+        try {
+            int rowIndex = AreaEmpleado_Table.getSelectedRow();
+            int columnCount = AreaEmpleado_Table.getColumnCount();
+            String[] rowStrings = new String[columnCount];
+            for (int i = 0; i < columnCount; i++) {
+                rowStrings[i] = (AreaEmpleado_Table.getModel().getValueAt(rowIndex, i).toString());
+            }
+            Nomina.descargarNomina(rowStrings);
+            PopUp.create("success", "La nómina se ha descargado correctamente.");
+        } catch (IOException ex) {
+            PopUp.create("error", "<html>La nómina no se ha creado correctamente.<html>");
+            //Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_AreaEmpleadoDescargarNominaActionPerformed
 
     /**
      * Hace reaccionar las labels de los menús
@@ -1892,6 +1917,9 @@ public class Dashboard extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Refrescar la seccion del area del cliente
+     */
     private void refreshTableAreaCliente() {
         AreaCliente_TableReservas.setModel(new javax.swing.table.DefaultTableModel(
                 Reserva.devolverTodasReservasBBDD(NIF_Menu.getText()),
@@ -1938,10 +1966,9 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     /**
-     * Iniciar dashboard
+     * Iniciar el panel de control
      *
-     * @param pers
-     * @param user Uusario con el que se iniciará la interfaz
+     * @param user Persona para iniciar la sesión
      */
     public void initGui(Persona user) {
         /* Set the Nimbus look and feel */
