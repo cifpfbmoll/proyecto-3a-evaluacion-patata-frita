@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+
 
 /**
  *
@@ -206,19 +206,18 @@ public class Cliente extends Persona {
      * @return
      */
     public boolean existsInDB(){
-        boolean ret = false;
+        boolean existe = false;
         String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1,getNif());
-            if (Utils.rs != null){
-                ret = true;
-            }else{
-                ret = false;
+            Utils.rs = Utils.prst.executeQuery();
+            if (Utils.rs.next()){
+                existe = true;
             }
         } catch (SQLException e) {
             System.out.println("No existe el cliente en la base de datos");
-            ret = false;
+            existe = false;
         } finally {
             try{
                 Utils.cerrarVariables();
@@ -226,7 +225,7 @@ public class Cliente extends Persona {
                 System.out.println("Error al cerrar variables");
             }
         }
-        return ret;
+        return existe;
     }
 
     /**
@@ -235,19 +234,18 @@ public class Cliente extends Persona {
      * @return
      */
     public static boolean existsInDB(String nif){
-        boolean ret = false;
+        boolean existe = false;
         String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1,nif);
-            if (Utils.rs != null){
-                ret = true;
-            }else{
-                ret = false;
+            Utils.rs = Utils.prst.executeQuery();
+            if (Utils.rs.next()){
+                existe = true;
             }
         } catch (SQLException e) {
             System.out.println("No existe el cliente en la base de datos");
-            ret = false;
+            existe = false;
         } finally {
             try{
                 Utils.cerrarVariables();
@@ -255,6 +253,6 @@ public class Cliente extends Persona {
                 System.out.println("Error al cerrar variables");
             }
         }
-        return ret;
+        return existe;
     }
 }

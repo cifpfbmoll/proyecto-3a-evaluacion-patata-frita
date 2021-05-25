@@ -177,7 +177,7 @@ public class Reserva {
             Utils.prst.setInt(3, reserva.getTaller().getId());
             Utils.prst.setString(4, reserva.getCliente().getNif());
             Utils.prst.executeUpdate();
-            System.out.println("Datos insertados correctomente señor!");
+            System.out.println("Datos insertados correctomente");
         } catch (SQLException e) {
             System.out.println("Error insertar datos");
         } finally {
@@ -214,7 +214,7 @@ public class Reserva {
             Utils.prst.setInt(3, this.getTaller().getId());
             Utils.prst.setString(4, this.getCliente().getNif());
             Utils.prst.executeUpdate();
-            System.out.println("Datos insertados correctomente señor!");
+            System.out.println("Datos insertados correctomente");
         } catch (SQLException e) {
             System.out.println("Error insertar datos");
         } finally {
@@ -234,15 +234,14 @@ public class Reserva {
      */
     public static boolean existReservaBBDD(int id) {
         String consulta = "SELECT * FROM RESERVA WHERE ID=? ORDER BY ID";
-        boolean encontrado = false;
+        boolean existe = false;
         try {
 
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id);
             Utils.rs = Utils.prst.executeQuery();
-            Utils.rs.next();
-            if (Utils.rs != null) {
-                encontrado = true;
+            if (Utils.rs.next()) {
+                existe = true;
             }
         } catch (SQLException e) {
             System.out.println("Error buscar reseva");
@@ -253,7 +252,7 @@ public class Reserva {
                 System.out.println("Error al cerrar variables");
             }
         }
-        return encontrado;
+        return existe;
     }
 
     /**
@@ -286,7 +285,7 @@ public class Reserva {
             System.out.println(Utils.prst.toString());
 
             Utils.prst.executeUpdate();
-            System.out.println("Datos modificados correctamente señor!");
+            System.out.println("Datos modificados correctamente");
         } catch (SQLException e) {
             System.out.println("Error modificar datos");
         } finally {
@@ -417,23 +416,27 @@ public class Reserva {
         if (!Reserva.existReservaBBDD(idReserva)) {
             return null;
         } else {
-            Reserva r = new Reserva();
+            Reserva reserva = new Reserva();
             try {
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setInt(1, idReserva);
                 Utils.rs = Utils.prst.executeQuery();
                 Utils.rs.next();
-                r.setEspacioReservado(Utils.rs.getInt(1));
-                r.setFechaHoraReserva(Utils.rs.getString(2));
+                reserva.setEspacioReservado(Utils.rs.getInt(1));
+                reserva.setFechaHoraReserva(Utils.rs.getString(2));
                 int idTaller = Utils.rs.getInt(3); // nos devuelve id del taller
-                r.setTaller(Taller.buscarTaller(idTaller)); //establecemos taller 
+                reserva.setTaller(Taller.buscarTaller(idTaller)); //establecemos taller 
+                
+                // salta error : java.sql.SQLException: Operation not allowed after ResultSet closed
                 String nifCliente = Utils.rs.getString(4);// nos devuelve nifCliente
-                r.setCliente(Cliente.buscarClienteBBDD(nifCliente)); // setablecemos cliente
-
-                System.out.println("Reserva encontrada y creada " + r.toString());
-
+                
+                reserva.setCliente(Cliente.buscarClienteBBDD(nifCliente)); // set cliente
+                
+                System.out.println("Reserva encontrada y creada " + reserva.toString());
+                
             } catch (Exception e) {
                 System.out.println("Error buscar reserva");
+                e.printStackTrace();
             } finally {
                 try {
                     Utils.cerrarVariables();
@@ -441,7 +444,41 @@ public class Reserva {
                     System.out.println("Error al cerrar variables");
                 }
             }
-            return r;
+            return reserva;
         }
     }
+    
+    /**
+     * Devolver todos los clientes de la base de datos
+     * @return 
+     */
+    public static Object[][] devolverTodasReservasBBDD() {
+        String consulta = "SELECT * FROM RESERVA ORDER BY ID";
+        try {
+            Utils.st = Utils.connection.createStatement();
+            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs.next();
+            String[][] objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                String[] list = new String[5]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                list[0] = (Utils.rs.getString(1));
+                list[1] = (Utils.rs.getString(2));
+                list[2] = (Utils.rs.getString(3));
+                list[3] = (Utils.rs.getString(4));
+                list[4] = (Utils.rs.getString(5));
+                
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        }
+        return null;
+    }
+
 }
