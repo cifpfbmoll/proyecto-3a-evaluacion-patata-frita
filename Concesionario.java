@@ -266,6 +266,44 @@ public class Concesionario {
     }
 
     /**
+     * Devolver todos los concesionarios de la base de datos, útil para
+     * la gui
+     * @return Concesionario[][]
+     */
+    public static Object[][] devolverTodosConcesionarioBBDD() {
+        String consulta = "SELECT * FROM Concesionario ORDER BY id";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Concesionario"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                list[0] = Integer.toString(Utils.rs.getInt(1));
+                list[1] = (Utils.rs.getString(2));
+                list[2] = (Utils.rs.getString(3));
+                list[3] = Integer.toString(Utils.rs.getInt(4));
+                list[4] = Integer.toString(Utils.rs.getInt(5));
+                list[5] = Integer.toString(Utils.rs.getInt(6));
+                objectList[i] = list;
+                i++;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
+
+    /**
      * Metodo para borrar concesionarios de la BBDD.
      * @param id
      */

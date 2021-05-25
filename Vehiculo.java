@@ -513,6 +513,58 @@ public class Vehiculo {
     }
 
     /**
+     * Devolver todos los Vehiculos de la base de datos, útil para
+     * la gui
+     * @return Vehiculo[][]
+     */
+    //Si hay algun fallo en esta clase puede ser por el finally, no se como reorganizarlo...
+    public static Object[][] devolverTodosVehiculoBBDD() {
+        String consulta = "SELECT * FROM Vehiculo ORDER BY bastidor";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Vehiculo"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                //Vehiculo tiene 15 columnas, dejare cliente y venta fuera pero cogere los datos del motor
+                //Unicamente el tipo la cilindrada y la potencia.
+                String[] list = new String[15]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                list[0] = (Utils.rs.getString(1));
+                list[1] = (Utils.rs.getString(2));
+                list[2] = (Utils.rs.getString(3));
+                list[3] = Integer.toString(Utils.rs.getInt(4));
+                list[4] = Integer.toString(Utils.rs.getInt(5));
+                list[5] = Integer.toString(Utils.rs.getInt(6));
+                list[6] = Integer.toString(Utils.rs.getInt(7));
+                list[7] = (Utils.rs.getString(8));
+                list[8] = (Utils.rs.getString(9));
+                list[9] = (Utils.rs.getString(10));
+                list[10] = Integer.toString(Utils.rs.getInt(11));
+                list[11] = (Utils.rs.getString(12));
+                //Ahora leemos el ID del motor y pedimos a la clase Motor que coja sus datos
+                Motor motor = Motor.buscarMotorBBDD(Utils.rs.getInt(5));
+                list[12] = motor.getTipo().toString();
+                list[13] = Float.toString(motor.getCilindrada());
+                list[14] = Float.toString(motor.getPotencia());
+                objectList[i] = list;
+                i++;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
+
+    /**
      * Comprueba si el vehiculo actual ya existe en la base de datos
      */
     public boolean existsInDB() {
@@ -566,5 +618,46 @@ public class Vehiculo {
             }
         }
         return ret;
+    }
+
+    /**
+     *  Devuelve todos los datos de vehiculos en la base de datos en un archivo txt
+     */
+    public static void escribirVehiculosArchivo(){
+        Utils.abrirArchivo("Vehiculo.txt");
+        String consulta = "SELECT * FROM VEHICULO";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                Utils.escribirLineaArchivo("Vehiculo bastidor: " + Utils.rs.getString(1) + " {");
+                Utils.escribirLineaArchivo("    Tipo: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Clase: " + Utils.rs.getString(3));
+                Utils.escribirLineaArchivo("    Kilometraje:" + Integer.toString(Utils.rs.getInt(4)));
+                Utils.escribirLineaArchivo("    Autonomia: " + Integer.toString(Utils.rs.getInt(5)));
+                Utils.escribirLineaArchivo("    Puertas: " + Integer.toString(Utils.rs.getInt(6)));
+                Utils.escribirLineaArchivo("    Asientos: " + Integer.toString(Utils.rs.getInt(7)));
+                Utils.escribirLineaArchivo("    Color: " + Utils.rs.getString(8));
+                Utils.escribirLineaArchivo("    Marca: " + Utils.rs.getString(9));
+                Utils.escribirLineaArchivo("    Modelo: " + Utils.rs.getString(10));
+                Utils.escribirLineaArchivo("    Precio: " + Integer.toString(Utils.rs.getInt(11)));
+                Utils.escribirLineaArchivo("    Autonomia: " + Utils.rs.getString(12));
+                Utils.escribirLineaArchivo("    MotorID: " + Integer.toString(Utils.rs.getInt(13)));
+                Utils.escribirLineaArchivo("    VentaID: " + Integer.toString(Utils.rs.getInt(14)));
+                Utils.escribirLineaArchivo("    ClienteNIF: " + Utils.rs.getString(15));
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en fichero");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
     }
 }
