@@ -522,7 +522,6 @@ public class Vehiculo {
         String consulta = "SELECT * FROM Vehiculo ORDER BY bastidor";
         String[][] objectList = null;
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Vehiculo"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
@@ -619,5 +618,46 @@ public class Vehiculo {
             }
         }
         return ret;
+    }
+
+    /**
+     *  Devuelve todos los datos de vehiculos en la base de datos en un archivo txt
+     */
+    public static void escribirVehiculosArchivo(){
+        Utils.abrirArchivo("Vehiculo.txt");
+        String consulta = "SELECT * FROM VEHICULO";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                Utils.escribirLineaArchivo("Vehiculo bastidor: " + Utils.rs.getString(1) + " {");
+                Utils.escribirLineaArchivo("    Tipo: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Clase: " + Utils.rs.getString(3));
+                Utils.escribirLineaArchivo("    Kilometraje:" + Integer.toString(Utils.rs.getInt(4)));
+                Utils.escribirLineaArchivo("    Autonomia: " + Integer.toString(Utils.rs.getInt(5)));
+                Utils.escribirLineaArchivo("    Puertas: " + Integer.toString(Utils.rs.getInt(6)));
+                Utils.escribirLineaArchivo("    Asientos: " + Integer.toString(Utils.rs.getInt(7)));
+                Utils.escribirLineaArchivo("    Color: " + Utils.rs.getString(8));
+                Utils.escribirLineaArchivo("    Marca: " + Utils.rs.getString(9));
+                Utils.escribirLineaArchivo("    Modelo: " + Utils.rs.getString(10));
+                Utils.escribirLineaArchivo("    Precio: " + Integer.toString(Utils.rs.getInt(11)));
+                Utils.escribirLineaArchivo("    Autonomia: " + Utils.rs.getString(12));
+                Utils.escribirLineaArchivo("    MotorID: " + Integer.toString(Utils.rs.getInt(13)));
+                Utils.escribirLineaArchivo("    VentaID: " + Integer.toString(Utils.rs.getInt(14)));
+                Utils.escribirLineaArchivo("    ClienteNIF: " + Utils.rs.getString(15));
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en fichero");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
     }
 }
