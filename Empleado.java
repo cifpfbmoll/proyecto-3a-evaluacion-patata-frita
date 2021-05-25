@@ -259,7 +259,7 @@ public class Empleado extends Persona {
         String consulta = "SELECT * FROM EMPLEADO ORDER BY NIF";
         String[][] objectList = null;
         try {
-            Utils.connection = Utils.conectarBBDD();
+            //Utils.connection = Utils.conectarBBDD();
             Utils.st = Utils.connection.createStatement();
             Utils.rs = Utils.st.executeQuery("SELECT count(*) FROM EMPLEADO");
             Utils.rs.next();

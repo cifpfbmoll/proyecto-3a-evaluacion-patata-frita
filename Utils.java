@@ -132,11 +132,11 @@ public class Utils {
      * Metodo para conectar a la base de datos, no devuelve nada
      */
     public static void conectarBBDD() {
-        String url = "jdbc:mysql://localhost:3306/examen";
-        String user = "examen"; //Cambiar a un archivo externo y cargar desde ahi?
-        String password = "ContraseñaDeLaOstia69";
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        String url = "jdbc:mysql://51.178.152.221:3306/test"; 
+        String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi? 
+        String password = "ContraseñaDeLaOstia69"; 
+        try { 
+            //Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
             System.out.println("No hay conexion a la BBDD");

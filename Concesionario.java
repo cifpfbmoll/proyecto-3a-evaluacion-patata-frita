@@ -273,7 +273,10 @@ public class Concesionario {
      * @return Concesionario[][]
      */
     public static Object[][] devolverTodosConcesionarioBBDD() {
-        String consulta = "SELECT * FROM Concesionario ORDER BY id";
+        String consulta = "SELECT `concesionario`.*,`taller`.`espacios`,`taller`.`horario`,`venta`.`horario` "
+                + "FROM `concesionario` "
+                + "LEFT JOIN `taller` ON `concesionario`.`tallerid` = `taller`.`id` "
+                + "LEFT JOIN `venta` ON `concesionario`.`ventaid` = `venta`.`id` ORDER BY id";
         String[][] objectList = null;
         try {
             Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Concesionario"); // MODIFICAR TABLA EN LAS OTRAS CLASES
@@ -433,7 +436,7 @@ public class Concesionario {
         String consulta = "UPDATE concesionario SET tallerid = ? WHERE id=?";
         try {
             //La conexión se irá cuando el main este completo
-            Utils.connection = Utils.conectarBBDD();
+            //Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id_taller);
             Utils.prst.setInt(2, id_concesionario);
@@ -459,7 +462,7 @@ public class Concesionario {
         String consulta = "UPDATE concesionario SET ventaid = ? WHERE id=?";
         try {
             //La conexión se irá cuando el main este completo
-            Utils.connection = Utils.conectarBBDD();
+            //Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id_venta);
             Utils.prst.setInt(2, id_concesionario);

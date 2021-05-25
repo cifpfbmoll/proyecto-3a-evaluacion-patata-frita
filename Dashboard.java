@@ -565,6 +565,11 @@ public class Dashboard extends javax.swing.JFrame {
         Board_AreaCliente.add(AreaDescargarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 200, 200, -1));
 
         AreaBuscarReserva.setText("Buscar reserva");
+        AreaBuscarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AreaBuscarReservaActionPerformed(evt);
+            }
+        });
         Board_AreaCliente.add(AreaBuscarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, 200, -1));
 
         AreaCliente_TableFacturas.setAutoCreateRowSorter(true);
@@ -1592,6 +1597,10 @@ public class Dashboard extends javax.swing.JFrame {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_AreaDescargarFacturaActionPerformed
+
+    private void AreaBuscarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaBuscarReservaActionPerformed
+        PopUp.create("f_reserva", "");
+    }//GEN-LAST:event_AreaBuscarReservaActionPerformed
 
     private String[] getRowData(javax.swing.JTable tabla) {
         int rowIndex = tabla.getSelectedRow();

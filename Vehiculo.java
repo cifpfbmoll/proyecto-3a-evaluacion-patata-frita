@@ -522,7 +522,7 @@ public class Vehiculo {
         String consulta = "SELECT `VEHICULO`.*,`MOTOR`.`tipo`,`MOTOR`.`potencia`,`MOTOR`.`cilindrada` FROM VEHICULO,MOTOR WHERE `VEHICULO`.`motorid` like `MOTOR`.`id` ORDER BY bastidor";
         String[][] objectList = null;
         try {
-            Utils.connection = Utils.conectarBBDD();
+            //Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM VEHICULO"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
@@ -530,7 +530,6 @@ public class Vehiculo {
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
-                System.out.println("Column ");
                 Integer COLUMNAS = 18;
                 String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
                 int x = 0;
