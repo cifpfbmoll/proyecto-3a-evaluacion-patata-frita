@@ -177,9 +177,9 @@ public class Login extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             if (e.getMessage() == "El usuario es nulo") {
-                PopUp.create("error", "<html>La cuenta no ha sido encontrada o la contraseña no es correcta.<br/>Revisa la información introducida.<html>");
+                PopUp.createSimple("error", "<html>La cuenta no ha sido encontrada o la contraseña no es correcta.<br/>Revisa la información introducida.<html>");
             } else {
-                PopUp.create("error", "<html>Ha habido un error al verificar la cuenta.<br/>Contacta con un administrador.<html>");
+                PopUp.createSimple("error", "<html>Ha habido un error al verificar la cuenta.<br/>Contacta con un administrador.<html>");
             }
         }
     }//GEN-LAST:event_ButtonLOGINActionPerformed

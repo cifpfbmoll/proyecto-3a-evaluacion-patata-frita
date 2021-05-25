@@ -30,6 +30,28 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        FiltroReservaCliente = new javax.swing.JDialog();
+        Panel = new javax.swing.JPanel();
+        TitleFiltroReserva = new javax.swing.JLabel();
+        ESPACIO_LABEL = new javax.swing.JLabel();
+        FECHA_LABEL = new javax.swing.JLabel();
+        TALLER_LABEL = new javax.swing.JLabel();
+        ESPACIO_SPINNER = new javax.swing.JSpinner();
+        FECHA_FORMATTED = new javax.swing.JFormattedTextField();
+        TALLER_SPINNER = new javax.swing.JSpinner();
+        Buscar = new javax.swing.JButton();
+        FiltroReserva = new javax.swing.JDialog();
+        Panel1 = new javax.swing.JPanel();
+        TitleFiltroReserva1 = new javax.swing.JLabel();
+        ESPACIO_LABEL1 = new javax.swing.JLabel();
+        FECHA_LABEL1 = new javax.swing.JLabel();
+        TALLER_LABEL1 = new javax.swing.JLabel();
+        ESPACIO_SPINNER1 = new javax.swing.JSpinner();
+        FECHA_FORMATTED1 = new javax.swing.JFormattedTextField();
+        TALLER_SPINNER1 = new javax.swing.JSpinner();
+        Buscar1 = new javax.swing.JButton();
+        NIF_LABEL = new javax.swing.JLabel();
+        NIF_FORMATTED = new javax.swing.JFormattedTextField();
         VentanaCompleta = new javax.swing.JPanel();
         PanelMenu = new javax.swing.JPanel();
         MenuHeader = new javax.swing.JPanel();
@@ -163,6 +185,246 @@ public class Dashboard extends javax.swing.JFrame {
         Label_NIF = new javax.swing.JLabel();
         AreaBuscar = new javax.swing.JButton();
         AreaDescargar = new javax.swing.JButton();
+
+        FiltroReservaCliente.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        FiltroReservaCliente.setTitle("Filtrar reservas");
+        FiltroReservaCliente.setAlwaysOnTop(true);
+        FiltroReservaCliente.setMaximumSize(new java.awt.Dimension(397, 240));
+        FiltroReservaCliente.setMinimumSize(new java.awt.Dimension(397, 240));
+        FiltroReservaCliente.setPreferredSize(new java.awt.Dimension(397, 240));
+        FiltroReservaCliente.setResizable(false);
+
+        Panel.setBackground(new java.awt.Color(255, 255, 255));
+        Panel.setForeground(new java.awt.Color(255, 255, 255));
+        Panel.setMaximumSize(new java.awt.Dimension(397, 240));
+        Panel.setMinimumSize(new java.awt.Dimension(397, 240));
+
+        TitleFiltroReserva.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
+        TitleFiltroReserva.setForeground(new java.awt.Color(0, 0, 0));
+        TitleFiltroReserva.setText("Filtrar reservas");
+
+        ESPACIO_LABEL.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ESPACIO_LABEL.setForeground(new java.awt.Color(0, 0, 0));
+        ESPACIO_LABEL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ESPACIO_LABEL.setText("Espacio reservado");
+
+        FECHA_LABEL.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        FECHA_LABEL.setForeground(new java.awt.Color(0, 0, 0));
+        FECHA_LABEL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        FECHA_LABEL.setText("Fecha");
+
+        TALLER_LABEL.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        TALLER_LABEL.setForeground(new java.awt.Color(0, 0, 0));
+        TALLER_LABEL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TALLER_LABEL.setText("Taller ID");
+
+        ESPACIO_SPINNER.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        ESPACIO_SPINNER.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        ESPACIO_SPINNER.setToolTipText("Dejar en 0 para buscar todas las ID");
+
+        try {
+            FECHA_FORMATTED.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        FECHA_FORMATTED.setToolTipText("Formato: dd/MM/yyyy");
+        FECHA_FORMATTED.setFont(new java.awt.Font("sansserif", 0, 14));
+
+        TALLER_SPINNER.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        TALLER_SPINNER.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        TALLER_SPINNER.setToolTipText("Dejar en 0 para buscar en todos los talleres");
+
+        Buscar.setText("Filtrar");
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FiltrarReservaClienteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
+        Panel.setLayout(PanelLayout);
+        PanelLayout.setHorizontalGroup(
+            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLayout.createSequentialGroup()
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TitleFiltroReserva))
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TALLER_LABEL)
+                            .addComponent(FECHA_LABEL)
+                            .addComponent(ESPACIO_LABEL))
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(FECHA_FORMATTED)
+                            .addComponent(ESPACIO_SPINNER)
+                            .addComponent(TALLER_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+        PanelLayout.setVerticalGroup(
+            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TitleFiltroReserva)
+                .addGap(18, 18, 18)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ESPACIO_LABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ESPACIO_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FECHA_LABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FECHA_FORMATTED, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TALLER_LABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TALLER_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(Buscar)
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout FiltroReservaClienteLayout = new javax.swing.GroupLayout(FiltroReservaCliente.getContentPane());
+        FiltroReservaCliente.getContentPane().setLayout(FiltroReservaClienteLayout);
+        FiltroReservaClienteLayout.setHorizontalGroup(
+            FiltroReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FiltroReservaClienteLayout.createSequentialGroup()
+                .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        FiltroReservaClienteLayout.setVerticalGroup(
+            FiltroReservaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FiltroReservaClienteLayout.createSequentialGroup()
+                .addComponent(Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        FiltroReserva.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        FiltroReserva.setTitle("Filtrar reservas");
+        FiltroReserva.setAlwaysOnTop(true);
+        FiltroReserva.setMaximumSize(new java.awt.Dimension(397, 240));
+        FiltroReserva.setMinimumSize(new java.awt.Dimension(397, 240));
+        FiltroReserva.setPreferredSize(new java.awt.Dimension(397, 240));
+        FiltroReserva.setResizable(false);
+        FiltroReserva.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Panel1.setBackground(new java.awt.Color(255, 255, 255));
+        Panel1.setForeground(new java.awt.Color(255, 255, 255));
+        Panel1.setMaximumSize(new java.awt.Dimension(397, 240));
+        Panel1.setMinimumSize(new java.awt.Dimension(397, 240));
+
+        TitleFiltroReserva1.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
+        TitleFiltroReserva1.setForeground(new java.awt.Color(0, 0, 0));
+        TitleFiltroReserva1.setText("Filtrar reservas");
+
+        ESPACIO_LABEL1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ESPACIO_LABEL1.setForeground(new java.awt.Color(0, 0, 0));
+        ESPACIO_LABEL1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ESPACIO_LABEL1.setText("Espacio reservado");
+
+        FECHA_LABEL1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        FECHA_LABEL1.setForeground(new java.awt.Color(0, 0, 0));
+        FECHA_LABEL1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        FECHA_LABEL1.setText("Fecha");
+
+        TALLER_LABEL1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        TALLER_LABEL1.setForeground(new java.awt.Color(0, 0, 0));
+        TALLER_LABEL1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        TALLER_LABEL1.setText("Taller ID");
+
+        ESPACIO_SPINNER1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        ESPACIO_SPINNER1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        ESPACIO_SPINNER1.setToolTipText("Dejar en 0 para buscar todas las ID");
+
+        FECHA_FORMATTED1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
+        FECHA_FORMATTED1.setToolTipText("Formato: dd/MM/yyyy");
+        FECHA_FORMATTED.setFont(new java.awt.Font("sansserif", 0, 14));
+
+        TALLER_SPINNER1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        TALLER_SPINNER1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        TALLER_SPINNER1.setToolTipText("Dejar en 0 para buscar en todos los talleres");
+
+        Buscar1.setText("Filtrar");
+        Buscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarFiltrarReservaActionPerformed(evt);
+            }
+        });
+
+        NIF_LABEL.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        NIF_LABEL.setForeground(new java.awt.Color(0, 0, 0));
+        NIF_LABEL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        NIF_LABEL.setText("NIF Cliente");
+
+        try {
+            NIF_FORMATTED.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        NIF_FORMATTED.setToolTipText("Formato: dd/MM/yyyy");
+        FECHA_FORMATTED.setFont(new java.awt.Font("sansserif", 0, 14));
+
+        javax.swing.GroupLayout Panel1Layout = new javax.swing.GroupLayout(Panel1);
+        Panel1.setLayout(Panel1Layout);
+        Panel1Layout.setHorizontalGroup(
+            Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel1Layout.createSequentialGroup()
+                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TitleFiltroReserva1))
+                    .addGroup(Panel1Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(FECHA_LABEL1)
+                            .addComponent(ESPACIO_LABEL1)
+                            .addGroup(Panel1Layout.createSequentialGroup()
+                                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(NIF_LABEL)
+                                    .addComponent(TALLER_LABEL1))
+                                .addGap(6, 6, 6)))
+                        .addGap(18, 18, 18)
+                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(FECHA_FORMATTED1)
+                            .addComponent(ESPACIO_SPINNER1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(TALLER_SPINNER1)
+                            .addComponent(NIF_FORMATTED)))
+                    .addGroup(Panel1Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(Buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(90, Short.MAX_VALUE))
+        );
+        Panel1Layout.setVerticalGroup(
+            Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TitleFiltroReserva1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ESPACIO_LABEL1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ESPACIO_SPINNER1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FECHA_LABEL1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FECHA_FORMATTED1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TALLER_SPINNER1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TALLER_LABEL1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NIF_LABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NIF_FORMATTED, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(Buscar1)
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+
+        FiltroReserva.getContentPane().add(Panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Concesionario");
@@ -564,7 +826,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         Board_AreaCliente.add(AreaDescargarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 200, 200, -1));
 
-        AreaBuscarReserva.setText("Buscar reserva");
+        AreaBuscarReserva.setText("Filtrar reserva");
         AreaBuscarReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AreaBuscarReservaActionPerformed(evt);
@@ -1126,7 +1388,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         Board_Reservas.add(Reservas_Scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 640));
 
-        Reservas_Buscar.setText("Buscar");
+        Reservas_Buscar.setText("Filtrar");
         Reservas_Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Reservas_BuscarActionPerformed(evt);
@@ -1404,7 +1666,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(VentanaCompletaLayout.createSequentialGroup()
                 .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 981, Short.MAX_VALUE)
+                .addComponent(PanelBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 981, Short.MAX_VALUE)
                 .addContainerGap())
         );
         VentanaCompletaLayout.setVerticalGroup(
@@ -1505,7 +1767,8 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_Vehiculos_EliminarActionPerformed
 
     private void Reservas_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservas_BuscarActionPerformed
-        // TODO add your handling code here:
+        FiltroReserva.setLocationRelativeTo(null);
+        FiltroReserva.setVisible(true);
     }//GEN-LAST:event_Reservas_BuscarActionPerformed
 
     private void Reservas_AnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservas_AnadirActionPerformed
@@ -1571,9 +1834,9 @@ public class Dashboard extends javax.swing.JFrame {
     private void AreaEmpleadoDescargarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaEmpleadoDescargarNominaActionPerformed
         try {
             Nomina.descargarNomina(getRowData(AreaEmpleado_Table));
-            PopUp.create("success", "La nómina se ha descargado correctamente.");
+            PopUp.createSimple("success", "La nómina se ha descargado correctamente.");
         } catch (Exception ex) {
-            PopUp.create("error", "La nómina no se ha creado correctamente.");
+            PopUp.createSimple("error", "La nómina no se ha creado correctamente.");
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_AreaEmpleadoDescargarNominaActionPerformed
@@ -1581,9 +1844,9 @@ public class Dashboard extends javax.swing.JFrame {
     private void AreaDescargarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaDescargarReservaActionPerformed
         try {
             Reserva.descargarReserva(getRowData(AreaCliente_TableReservas));
-            PopUp.create("success", "La reserva se ha descargado correctamente.");
+            PopUp.createSimple("success", "La reserva se ha descargado correctamente.");
         } catch (Exception ex) {
-            PopUp.create("error", "La reserva no se ha creado correctamente.");
+            PopUp.createSimple("error", "La reserva no se ha creado correctamente.");
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_AreaDescargarReservaActionPerformed
@@ -1591,16 +1854,80 @@ public class Dashboard extends javax.swing.JFrame {
     private void AreaDescargarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaDescargarFacturaActionPerformed
         try {
             Factura.descargarFactura(getRowData(AreaCliente_TableFacturas));
-            PopUp.create("success", "La factura se ha descargado correctamente.");
+            PopUp.createSimple("success", "La factura se ha descargado correctamente.");
         } catch (Exception ex) {
-            PopUp.create("error", "La factura no se ha creado correctamente.");
+            PopUp.createSimple("error", "La factura no se ha creado correctamente.");
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_AreaDescargarFacturaActionPerformed
 
     private void AreaBuscarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaBuscarReservaActionPerformed
-        PopUp.create("f_reserva", "");
+        FiltroReservaCliente.setLocationRelativeTo(null);
+        FiltroReservaCliente.setVisible(true);
     }//GEN-LAST:event_AreaBuscarReservaActionPerformed
+
+    private void FiltrarReservaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarReservaClienteActionPerformed
+        Object[][] rowList = Reserva.devolverReservasBBDD(NIF_Menu.getText(), ESPACIO_SPINNER.getValue(), FECHA_FORMATTED.getText(), TALLER_SPINNER.getValue());
+
+        FiltroReservaCliente.dispose();
+        ESPACIO_SPINNER.setValue(0);
+        FECHA_FORMATTED.setText("    -  -  ");
+        TALLER_SPINNER.setValue(0);
+
+        AreaCliente_TableReservas.setModel(new javax.swing.table.DefaultTableModel(
+                rowList,
+                new String[]{
+                    "ID", "Espacio Reservado", "Fecha", "TallerID", "NIF Cliente"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }//GEN-LAST:event_FiltrarReservaClienteActionPerformed
+
+    private void BuscarFiltrarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarFiltrarReservaActionPerformed
+        Object[][] rowList = Reserva.devolverTodasReservasBBDD(NIF_FORMATTED.getText(), ESPACIO_SPINNER.getValue(), FECHA_FORMATTED.getText(), TALLER_SPINNER.getValue());
+
+        FiltroReservaCliente.dispose();
+        NIF_FORMATTED.setText("");
+        ESPACIO_SPINNER.setValue(0);
+        FECHA_FORMATTED.setText("    -  -  ");
+        TALLER_SPINNER.setValue(0);
+
+        AreaCliente_TableReservas.setModel(new javax.swing.table.DefaultTableModel(
+                rowList,
+                new String[]{
+                    "ID", "Espacio Reservado", "Fecha", "TallerID", "NIF Cliente"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }//GEN-LAST:event_BuscarFiltrarReservaActionPerformed
 
     private String[] getRowData(javax.swing.JTable tabla) {
         int rowIndex = tabla.getSelectedRow();
@@ -2142,6 +2469,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel Board_Nominas;
     private javax.swing.JPanel Board_Reservas;
     private javax.swing.JPanel Board_Vehiculos;
+    private javax.swing.JButton Buscar;
+    private javax.swing.JButton Buscar1;
     private javax.swing.JLabel ClienteAreaPersonal;
     private javax.swing.JLabel ClienteInicio;
     private javax.swing.JTable Cliente_Tabla;
@@ -2156,12 +2485,20 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Concesionarios_Modificar;
     private javax.swing.JScrollPane Concesionarios_Scroll;
     private javax.swing.JTable Concesionarios_Tabla;
+    private javax.swing.JLabel ESPACIO_LABEL;
+    private javax.swing.JLabel ESPACIO_LABEL1;
+    private javax.swing.JSpinner ESPACIO_SPINNER;
+    private javax.swing.JSpinner ESPACIO_SPINNER1;
     private javax.swing.JButton Empleados_Anadir;
     private javax.swing.JButton Empleados_Buscar;
     private javax.swing.JButton Empleados_Eliminar;
     private javax.swing.JButton Empleados_Modificar;
     private javax.swing.JScrollPane Empleados_Scroll;
     private javax.swing.JTable Empleados_Tabla;
+    private javax.swing.JFormattedTextField FECHA_FORMATTED;
+    private javax.swing.JFormattedTextField FECHA_FORMATTED1;
+    private javax.swing.JLabel FECHA_LABEL;
+    private javax.swing.JLabel FECHA_LABEL1;
     private javax.swing.JButton Facturas_Anadir;
     private javax.swing.JButton Facturas_Buscar;
     private javax.swing.JButton Facturas_Eliminar;
@@ -2169,6 +2506,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Facturas_Modificar;
     private javax.swing.JScrollPane Facturas_Scroll;
     private javax.swing.JTable Facturas_Tabla;
+    private javax.swing.JDialog FiltroReserva;
+    private javax.swing.JDialog FiltroReservaCliente;
     private javax.swing.JLabel LabelTitle_Inicio;
     private javax.swing.JLabel Label_Apellidos;
     private javax.swing.JLabel Label_ApellidosCliente;
@@ -2193,6 +2532,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Motores_Modificar;
     private javax.swing.JScrollPane Motores_Scroll;
     private javax.swing.JTable Motores_Tabla;
+    private javax.swing.JFormattedTextField NIF_FORMATTED;
+    private javax.swing.JLabel NIF_LABEL;
     private javax.swing.JLabel NIF_Menu;
     private javax.swing.JButton Nominas_Anadir;
     private javax.swing.JButton Nominas_Buscar;
@@ -2200,6 +2541,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Nominas_Modificar;
     private javax.swing.JScrollPane Nominas_Scroll;
     private javax.swing.JTable Nominas_Tabla;
+    private javax.swing.JPanel Panel;
+    private javax.swing.JPanel Panel1;
     private javax.swing.JPanel PanelBoard;
     private javax.swing.JPanel PanelMenu;
     private javax.swing.JButton Reservas_Anadir;
@@ -2212,12 +2555,18 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel Sb_Cliente1;
     private javax.swing.JLabel Sb_Cliente2;
     private javax.swing.JLabel Sb_Empleado;
+    private javax.swing.JLabel TALLER_LABEL;
+    private javax.swing.JLabel TALLER_LABEL1;
+    private javax.swing.JSpinner TALLER_SPINNER;
+    private javax.swing.JSpinner TALLER_SPINNER1;
     private javax.swing.JLabel TallerArea;
     private javax.swing.JLabel TallerClientes;
     private javax.swing.JLabel TallerFacturas;
     private javax.swing.JLabel TallerInicio;
     private javax.swing.JLabel TallerReservas;
     private javax.swing.JLabel Title;
+    private javax.swing.JLabel TitleFiltroReserva;
+    private javax.swing.JLabel TitleFiltroReserva1;
     private javax.swing.JLabel Title_AreaCliente;
     private javax.swing.JLabel Title_AreaEmpleados;
     private javax.swing.JLabel Title_Clientes;

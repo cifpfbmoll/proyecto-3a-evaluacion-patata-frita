@@ -493,8 +493,108 @@ public class Reserva {
         return objectList;
     }
     
+    /**
+     * Devolver todas las reservas para un cliente
+     * @param nif NIF del cliente
+     * @return 
+     */
     public static Object[][] devolverTodasReservasBBDD(String nif) {
         String consulta = "SELECT * FROM RESERVA WHERE CLIENTENIF like \"" + nif + "\" ORDER BY ID";
+        String[][] objectList = null;
+        try {
+            Utils.st = Utils.connection.createStatement();
+            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                Integer COLUMNAS = 5;
+                String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                int x = 0;
+                while (x < COLUMNAS) {
+                    list[x] = (Utils.rs.getString(x + 1));
+                    x++;
+                }
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
+    
+    /**
+     * Devolver todas las reservas compatibles con el filtro
+     * @param nif Nif del cliente
+     * @param espacio Espacio especificado
+     * @param fecha Fecha especificada
+     * @param taller Taller especificado
+     * @return 
+     */
+    public static Object[][] devolverReservasBBDD(String nif, Object espacio, String fecha, Object taller) {
+        String consulta = "SELECT * FROM RESERVA "
+                + "WHERE CLIENTENIF like \"" + nif + "\" "
+                + "AND (espacio_reservado like \""+ espacio + "\" "
+                + "OR fecha like \"%"+ fecha + "%\" "
+                + "OR tallerid like \""+ taller + "\") ORDER BY ID";
+        String[][] objectList = null;
+        try {
+            Utils.st = Utils.connection.createStatement();
+            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                Integer COLUMNAS = 5;
+                String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                int x = 0;
+                while (x < COLUMNAS) {
+                    list[x] = (Utils.rs.getString(x + 1));
+                    x++;
+                }
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
+    
+    /**
+     * Devolver reservas compatible con el filtro
+     * @param espacio Espacio especificado
+     * @param fecha Fecha especificada
+     * @param taller Taller especificado
+     * @return 
+     */
+    public static Object[][] devolverTodasReservasBBDD(String nif, Object espacio, String fecha, Object taller) {
+        String consulta = "SELECT * FROM RESERVA "
+                + "WHERE CLIENTENIF like \"" + nif + "\" "
+                + "OR espacio_reservado like \""+ espacio + "\" "
+                + "OR fecha like \"%"+ fecha + "%\" "
+                + "OR tallerid like \""+ taller + "\" ORDER BY ID";
         String[][] objectList = null;
         try {
             Utils.st = Utils.connection.createStatement();

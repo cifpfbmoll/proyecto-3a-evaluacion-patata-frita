@@ -107,7 +107,7 @@ public abstract class Persona {
                 throw new IllegalArgumentException("Esto no es un NIF válido. Ha de contener 8 numeros y una letra al final.");
             }
         } else {
-            PopUp.create("error", "Esto no es un NIF válido, ha de contener 9 carácteres.");
+            PopUp.createSimple("error", "Esto no es un NIF válido, ha de contener 9 carácteres.");
             throw new IllegalArgumentException("Esto no es un NIF válido. Ha de contener 9 carácteres.");
         }
     }
