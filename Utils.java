@@ -130,13 +130,13 @@ public class Utils {
      * Metodo para conectar a la base de datos, no devuelve nada
      */
     public static void conectarBBDD() {
-        String url = "jdbc:mysql://51.178.152.221:3306/concesionario";
+        String url = "jdbc:mysql://51.178.152.221:3306/test";
         String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
         String password = "ContraseñaDeLaOstia69";
         try {
             //Class for name no es necesario en teoria pero es más correcto
             //Tenerlo por si acaso
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
             System.out.println("No hay conexion a la BBDD");
@@ -280,6 +280,7 @@ public class Utils {
         }
         if (escritorArchivo != null) {
             //si el buffer de escritura ya no es nulo se cerrará una vez se acabe de escribir
+            //antes de cerrarlo se fuerza a escribir en el fichero todo el contenido del buffer por precacucion
             escritorArchivo.flush();
             escritorArchivo.close();
             escritorArchivo = null;
