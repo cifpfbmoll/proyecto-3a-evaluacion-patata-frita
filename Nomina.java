@@ -243,7 +243,7 @@ public class Nomina {
                 System.out.println(
                         "ID:" + Utils.rs.getInt(1) + ", "
                         + "HORAS DE TRABAJO: " + Utils.rs.getInt(2) + ", "
-                        + "PRECIO BRUTO: " + Utils.rs.getFloat(3) + ", "
+                        + "SUELDO BRUTO: " + Utils.rs.getFloat(3) + ", "
                         + "SUELDO NETO: " + Utils.rs.getFloat(4) + ", "
                         + "FECHA: " + Utils.rs.getString(5) + ", "
                         + "NIF DEL EMPLEADO: " + Utils.rs.getString(6)
@@ -477,6 +477,40 @@ public class Nomina {
         return null;
     }
 
+        
+     /**
+     *  Devuelve todos los datos de nomina en la base de datos en un archivo txt
+     */
+    public static void escribirNominaArchivo(){
+        Utils.abrirArchivo("/home/administrador/Documentos/Nomina.txt");
+        String consulta = "SELECT * FROM NOMINA";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                
+                Utils.escribirLineaArchivo("Nomina id: " + Utils.rs.getString(1) + " {");
+                Utils.escribirLineaArchivo("    Horas de trabajo: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Sueldo bruto: " + Utils.rs.getString(3));
+                Utils.escribirLineaArchivo("    Sueldo neto:" + Utils.rs.getString(4));
+                Utils.escribirLineaArchivo("    Fecha: " + Utils.rs.getString(5));
+                Utils.escribirLineaArchivo("    NIF empleado: " + Utils.rs.getString(6)+" } ");
+
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en fichero");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
     
     
 }

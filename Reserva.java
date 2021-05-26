@@ -480,5 +480,41 @@ public class Reserva {
         }
         return null;
     }
+    
+    
+        
+     /**
+     *  Devuelve todos los datos de reserva en la base de datos en un archivo txt
+     */
+    public static void escribirReservasArchivo(){
+        Utils.abrirArchivo("/home/administrador/Documentos/Reserva.txt");
+        String consulta = "SELECT * FROM RESERVA";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                
+                Utils.escribirLineaArchivo("Reserva id: " + Utils.rs.getString(1) + " {");
+                Utils.escribirLineaArchivo("    Espacio reservado: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Fecha: " + Utils.rs.getString(3));
+                Utils.escribirLineaArchivo("    Taller:" + Utils.rs.getString(4));
+                Utils.escribirLineaArchivo("    NIF cliente: " + Utils.rs.getString(5)+" } ");
+ 
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en fichero");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+    
 
 }
