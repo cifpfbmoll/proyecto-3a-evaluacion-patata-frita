@@ -95,11 +95,11 @@ public class Dashboard extends javax.swing.JFrame {
         NominaLabel7 = new javax.swing.JLabel();
         NominaField_Horas = new javax.swing.JTextField();
         NominaField_SBruto = new javax.swing.JSpinner();
-        NominaField_SNeto = new javax.swing.JTextField();
         NominaField_Fecha = new javax.swing.JFormattedTextField();
         NominaField_Empleado = new javax.swing.JFormattedTextField();
         NominaField_Nombre = new javax.swing.JTextField();
         NominaField_Apellidos = new javax.swing.JTextField();
+        NominaField_SNeto = new javax.swing.JSpinner();
         FiltroEmpleados = new javax.swing.JDialog();
         Panel5 = new javax.swing.JPanel();
         TitleFiltrarEmpleados = new javax.swing.JLabel();
@@ -123,9 +123,9 @@ public class Dashboard extends javax.swing.JFrame {
         ClientesLabel = new javax.swing.JLabel();
         ClientesLabel2 = new javax.swing.JLabel();
         ClientesLabel3 = new javax.swing.JLabel();
-        ClientesField_NIF1 = new javax.swing.JFormattedTextField();
-        ClientesField_Nombre1 = new javax.swing.JTextField();
-        ClientesField_Apellidos1 = new javax.swing.JTextField();
+        ClientesField_NIF = new javax.swing.JFormattedTextField();
+        ClientesField_Nombre = new javax.swing.JTextField();
+        ClientesField_Apellidos = new javax.swing.JTextField();
         FiltroMotores = new javax.swing.JDialog();
         Panel6 = new javax.swing.JPanel();
         TitleFiltroMotores = new javax.swing.JLabel();
@@ -846,8 +846,6 @@ public class Dashboard extends javax.swing.JFrame {
         NominaField_SBruto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         NominaField_SBruto.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        NominaField_SNeto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-
         NominaField_Fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
         NominaField_Fecha.setToolTipText("Formato: dd/MM/yyyy");
         ReservaClienteField_Fecha.setFont(new java.awt.Font("sansserif", 0, 14));
@@ -863,6 +861,9 @@ public class Dashboard extends javax.swing.JFrame {
         NominaField_Nombre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         NominaField_Apellidos.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
+        NominaField_SNeto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        NominaField_SNeto.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout Panel4Layout = new javax.swing.GroupLayout(Panel4);
         Panel4.setLayout(Panel4Layout);
@@ -885,13 +886,13 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(TitleFiltroNomina))
                 .addGap(18, 18, 18)
                 .addGroup(Panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(NominaField_Horas)
+                    .addComponent(NominaField_Horas, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                     .addComponent(NominaField_SBruto)
-                    .addComponent(NominaField_SNeto, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                     .addComponent(NominaField_Fecha)
                     .addComponent(NominaField_Empleado)
                     .addComponent(NominaField_Nombre)
-                    .addComponent(NominaField_Apellidos))
+                    .addComponent(NominaField_Apellidos)
+                    .addComponent(NominaField_SNeto))
                 .addGap(88, 88, 88))
         );
         Panel4Layout.setVerticalGroup(
@@ -1123,16 +1124,16 @@ public class Dashboard extends javax.swing.JFrame {
         ClientesLabel3.setText("Apellidos");
 
         try {
-            ClientesField_NIF1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########U")));
+            ClientesField_NIF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########U")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ClientesField_NIF1.setToolTipText("Formato: 12345678X");
+        ClientesField_NIF.setToolTipText("Formato: 12345678X");
         ReservaClienteField_Fecha.setFont(new java.awt.Font("sansserif", 0, 14));
 
-        ClientesField_Nombre1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ClientesField_Nombre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
-        ClientesField_Apellidos1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ClientesField_Apellidos.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout Panel7Layout = new javax.swing.GroupLayout(Panel7);
         Panel7.setLayout(Panel7Layout);
@@ -1151,9 +1152,9 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(ClientesLabel))
                         .addGap(18, 18, 18)
                         .addGroup(Panel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ClientesField_NIF1)
-                            .addComponent(ClientesField_Nombre1)
-                            .addComponent(ClientesField_Apellidos1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ClientesField_NIF)
+                            .addComponent(ClientesField_Nombre)
+                            .addComponent(ClientesField_Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(Panel7Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(TitleFiltroClientes)))
@@ -1167,15 +1168,15 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(Panel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ClientesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ClientesField_NIF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ClientesField_NIF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Panel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ClientesLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ClientesField_Nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ClientesField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Panel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ClientesLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ClientesField_Apellidos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ClientesField_Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(ClientesFiltrar)
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -1186,17 +1187,17 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroMotores.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroMotores.setTitle("Filtrar");
         FiltroMotores.setAlwaysOnTop(true);
-        FiltroMotores.setMaximumSize(new java.awt.Dimension(421, 193));
-        FiltroMotores.setMinimumSize(new java.awt.Dimension(421, 193));
-        FiltroMotores.setPreferredSize(new java.awt.Dimension(421, 193));
+        FiltroMotores.setMaximumSize(new java.awt.Dimension(421, 266));
+        FiltroMotores.setMinimumSize(new java.awt.Dimension(421, 266));
+        FiltroMotores.setPreferredSize(new java.awt.Dimension(421, 266));
         FiltroMotores.setResizable(false);
         FiltroMotores.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel6.setBackground(new java.awt.Color(255, 255, 255));
         Panel6.setForeground(new java.awt.Color(255, 255, 255));
-        Panel6.setMaximumSize(new java.awt.Dimension(421, 193));
-        Panel6.setMinimumSize(new java.awt.Dimension(421, 193));
-        Panel6.setPreferredSize(new java.awt.Dimension(421, 193));
+        Panel6.setMaximumSize(new java.awt.Dimension(421, 266));
+        Panel6.setMinimumSize(new java.awt.Dimension(421, 266));
+        Panel6.setPreferredSize(new java.awt.Dimension(421, 266));
 
         TitleFiltroMotores.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
         TitleFiltroMotores.setForeground(new java.awt.Color(0, 0, 0));
@@ -1225,7 +1226,7 @@ public class Dashboard extends javax.swing.JFrame {
         MotoresLabel3.setText("Cilindrada");
 
         MotoresField_Tipo.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Gasolina95", "Gasolina98", "Diesel", "Electrico" };
+            String[] strings = { "Todos", "Gasolina95", "Gasolina98", "Diesel", "Electrico" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -1288,7 +1289,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(MotoresLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(MotoresFiltrar)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         FiltroMotores.getContentPane().add(Panel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -2936,31 +2937,234 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_FiltrarReserva
 
     private void FiltrarFactura(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarFactura
-        // TODO add your handling code here:
+        Object[][] rowList = Factura.devolverTodasFacturasBBDD();
+        
+        FiltroFactura.dispose();
+        FacturaField_Concepto.setText("");
+        FacturaField_Coste.setValue(0);
+        FacturaField_Fecha.setText("");
+        FacturaField_Local.setValue(0);
+        FacturaField_NIF.setText("");
+        FacturaField_Vehiculo.setText("");
+        
+        Facturas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                rowList,
+                new String[]{
+                    "ID", "Concepto", "Local ID", "Vehículo", "Fecha", "Coste"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
     }//GEN-LAST:event_FiltrarFactura
 
     private void FiltrarFacturaCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarFacturaCliente
-        // TODO add your handling code here:
+        Object[][] rowList = Factura.devolverTodasFacturasBBDD(NIF_Menu.getText());
+        
+        FiltroFacturaCliente.dispose();
+        FacturaFieldCliente_Concepto.setText("");
+        FacturaFieldCliente_Coste.setValue(0);
+        FacturaFieldCliente_Fecha.setText("");
+        FacturaFieldCliente_Local.setValue(0);
+        FacturaFieldCliente_Vehiculo.setText("");
+        
+        AreaCliente_TableFacturas.setModel(new javax.swing.table.DefaultTableModel(
+                rowList,
+                new String[]{
+                    "ID", "Concepto", "Local ID", "Vehículo", "NIF Cliente", "Fecha", "Coste"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
     }//GEN-LAST:event_FiltrarFacturaCliente
 
     private void FiltrarNomina(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarNomina
-        // TODO add your handling code here:
+        Object[][] rowList = Nomina.devolverTodasNominasBBDD();
+        
+        FiltroNominas.dispose();
+        NominaField_Apellidos.setText("");
+        NominaField_Empleado.setText("");
+        NominaField_Fecha.setText("");
+        NominaField_Horas.setText("");
+        NominaField_Nombre.setText("");
+        NominaField_SBruto.setValue(0);
+        NominaField_SNeto.setValue(0);
+        
+        Nominas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                rowList,
+                new String[]{
+                    "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
     }//GEN-LAST:event_FiltrarNomina
 
     private void FiltrarEmpleados(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarEmpleados
-        // TODO add your handling code here:
+        Object[][] rowList = Empleado.devolverTodosEmpleadosBBDD();
+        
+        FiltroEmpleados.dispose();
+        EmpleadosField_Apellidos.setText("");
+        EmpleadosField_NIF.setText("");
+        EmpleadosField_Nombre.setText("");
+        EmpleadosField_Puesto.setText("");
+        EmpleadosField_Taller.setValue(0);
+        EmpleadosField_Venta.setValue(0);
+        
+        Empleados_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                rowList,
+                new String[]{
+                    "NIF", "Nombre", "Apellidos", "Telefono", "Domicilio", "Puesto", "TallerID", "VentaID"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
     }//GEN-LAST:event_FiltrarEmpleados
 
     private void FiltrarMotores(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarMotores
-        // TODO add your handling code here:
+        Object[][] rowList = Motor.devolverTodosMotoresBBDD();
+        
+        FiltroMotores.dispose();
+        MotoresField_Cilindrada.setValue(0);
+        MotoresField_Potencia.setValue(0);
+        MotoresField_Tipo.setSelectedIndex(0);
+        
+        Motores_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                rowList,
+                new String[]{
+                    "ID", "Tipo", "Potencia", "Cilindrada"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
     }//GEN-LAST:event_FiltrarMotores
 
     private void FiltrarClientes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarClientes
-        // TODO add your handling code here:
+        Object[][] rowList = Cliente.devolverTodosClienteBBDD();
+        
+        FiltroClientes.dispose();
+        ClientesField_Apellidos.setText("");
+        ClientesField_Nombre.setText("");
+        ClientesField_NIF.setText("");
+        
+        Cliente_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                rowList,
+                new String[]{
+                    "NIF", "Nombre", "Apellidos", "Telefono", "Domicilio"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
     }//GEN-LAST:event_FiltrarClientes
 
     private void FiltrarConcesionarios(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarConcesionarios
-        // TODO add your handling code here:
+        Object[][] rowList = Concesionario.devolverTodosConcesionarioBBDD();
+        
+        FiltroConcesionarios.dispose();
+        ConcesionariosField_Venta.setValue(0);
+        ConcesionariosField_Taller.setValue(0);
+        ConcesionariosField_Espacios.setValue(0);
+        ConcesionariosField_Ubicacion.setText("");
+        ConcesionariosField_Nombre.setText("");
+        
+        Concesionarios_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                rowList,
+                new String[]{
+                    "ID", "Ubicación", "Nombre", "Teléfono", "Taller", "Venta", "Espacios Taller", "Horario Taller", "Horario Venta"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
     }//GEN-LAST:event_FiltrarConcesionarios
 
     private void AreaBuscarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaBuscarFacturaActionPerformed
@@ -2970,6 +3174,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     /**
      * Coger la información de una linea imprimida en la interfaz gráfica
+     *
      * @param tabla Tabla que ha sido seleccionada
      * @return Lista de strings con al información
      */
@@ -3516,9 +3721,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel ClienteAreaPersonal;
     private javax.swing.JLabel ClienteInicio;
     private javax.swing.JTable Cliente_Tabla;
-    private javax.swing.JTextField ClientesField_Apellidos1;
-    private javax.swing.JFormattedTextField ClientesField_NIF1;
-    private javax.swing.JTextField ClientesField_Nombre1;
+    private javax.swing.JTextField ClientesField_Apellidos;
+    private javax.swing.JFormattedTextField ClientesField_NIF;
+    private javax.swing.JTextField ClientesField_Nombre;
     private javax.swing.JButton ClientesFiltrar;
     private javax.swing.JLabel ClientesLabel;
     private javax.swing.JLabel ClientesLabel2;
@@ -3642,7 +3847,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField NominaField_Horas;
     private javax.swing.JTextField NominaField_Nombre;
     private javax.swing.JSpinner NominaField_SBruto;
-    private javax.swing.JTextField NominaField_SNeto;
+    private javax.swing.JSpinner NominaField_SNeto;
     private javax.swing.JButton NominaFiltrar;
     private javax.swing.JLabel NominaLabel;
     private javax.swing.JLabel NominaLabel2;
