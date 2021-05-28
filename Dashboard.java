@@ -288,15 +288,15 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroReservaCliente.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroReservaCliente.setTitle("Filtrar");
         FiltroReservaCliente.setAlwaysOnTop(true);
-        FiltroReservaCliente.setMaximumSize(new java.awt.Dimension(397, 240));
-        FiltroReservaCliente.setMinimumSize(new java.awt.Dimension(397, 240));
-        FiltroReservaCliente.setPreferredSize(new java.awt.Dimension(397, 240));
+        FiltroReservaCliente.setMaximumSize(new java.awt.Dimension(401, 392));
+        FiltroReservaCliente.setMinimumSize(new java.awt.Dimension(401, 392));
+        FiltroReservaCliente.setPreferredSize(new java.awt.Dimension(401, 392));
         FiltroReservaCliente.setResizable(false);
 
         Panel.setBackground(new java.awt.Color(255, 255, 255));
         Panel.setForeground(new java.awt.Color(255, 255, 255));
-        Panel.setMaximumSize(new java.awt.Dimension(397, 240));
-        Panel.setMinimumSize(new java.awt.Dimension(397, 240));
+        Panel.setMaximumSize(new java.awt.Dimension(401, 392));
+        Panel.setMinimumSize(new java.awt.Dimension(401, 392));
 
         TitleFiltroReservaCliente.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
         TitleFiltroReservaCliente.setForeground(new java.awt.Color(0, 0, 0));
@@ -401,15 +401,17 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroReserva.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroReserva.setTitle("Filtrar");
         FiltroReserva.setAlwaysOnTop(true);
-        FiltroReserva.setMaximumSize(new java.awt.Dimension(397, 238));
-        FiltroReserva.setMinimumSize(new java.awt.Dimension(397, 238));
+        FiltroReserva.setMaximumSize(new java.awt.Dimension(401, 266));
+        FiltroReserva.setMinimumSize(new java.awt.Dimension(401, 266));
+        FiltroReserva.setPreferredSize(new java.awt.Dimension(401, 266));
         FiltroReserva.setResizable(false);
         FiltroReserva.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel1.setBackground(new java.awt.Color(255, 255, 255));
         Panel1.setForeground(new java.awt.Color(255, 255, 255));
-        Panel1.setMaximumSize(new java.awt.Dimension(397, 238));
-        Panel1.setMinimumSize(new java.awt.Dimension(397, 238));
+        Panel1.setMaximumSize(new java.awt.Dimension(401, 392));
+        Panel1.setMinimumSize(new java.awt.Dimension(401, 392));
+        Panel1.setPreferredSize(new java.awt.Dimension(401, 392));
 
         TitleFiltroReserva.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
         TitleFiltroReserva.setForeground(new java.awt.Color(0, 0, 0));
@@ -490,7 +492,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(Panel1Layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(ReservaFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         Panel1Layout.setVerticalGroup(
             Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,7 +517,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(ReservaField_NIF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(ReservaFiltrar)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         FiltroReserva.getContentPane().add(Panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -523,14 +525,17 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroFacturaCliente.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroFacturaCliente.setTitle("Filtrar");
         FiltroFacturaCliente.setAlwaysOnTop(true);
-        FiltroFacturaCliente.setMaximumSize(new java.awt.Dimension(397, 282));
+        FiltroFacturaCliente.setMaximumSize(new java.awt.Dimension(401, 392));
+        FiltroFacturaCliente.setMinimumSize(new java.awt.Dimension(401, 392));
+        FiltroFacturaCliente.setPreferredSize(new java.awt.Dimension(401, 392));
         FiltroFacturaCliente.setResizable(false);
         FiltroFacturaCliente.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel3.setBackground(new java.awt.Color(255, 255, 255));
         Panel3.setForeground(new java.awt.Color(255, 255, 255));
-        Panel3.setMaximumSize(new java.awt.Dimension(397, 282));
-        Panel3.setMinimumSize(new java.awt.Dimension(397, 282));
+        Panel3.setMaximumSize(new java.awt.Dimension(401, 392));
+        Panel3.setMinimumSize(new java.awt.Dimension(401, 392));
+        Panel3.setPreferredSize(new java.awt.Dimension(401, 392));
 
         TitleFiltroFacturaCliente.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
         TitleFiltroFacturaCliente.setForeground(new java.awt.Color(0, 0, 0));
@@ -643,15 +648,17 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroFactura.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroFactura.setTitle("Filtrar");
         FiltroFactura.setAlwaysOnTop(true);
-        FiltroFactura.setMaximumSize(new java.awt.Dimension(397, 282));
+        FiltroFactura.setMaximumSize(new java.awt.Dimension(401, 375));
+        FiltroFactura.setMinimumSize(new java.awt.Dimension(401, 375));
+        FiltroFactura.setPreferredSize(new java.awt.Dimension(401, 375));
         FiltroFactura.setResizable(false);
         FiltroFactura.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel2.setBackground(new java.awt.Color(255, 255, 255));
         Panel2.setForeground(new java.awt.Color(255, 255, 255));
-        Panel2.setMaximumSize(new java.awt.Dimension(397, 282));
-        Panel2.setMinimumSize(new java.awt.Dimension(397, 282));
-        Panel2.setPreferredSize(new java.awt.Dimension(397, 282));
+        Panel2.setMaximumSize(new java.awt.Dimension(401, 392));
+        Panel2.setMinimumSize(new java.awt.Dimension(401, 392));
+        Panel2.setPreferredSize(new java.awt.Dimension(401, 392));
 
         TitleFiltroFactura.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
         TitleFiltroFactura.setForeground(new java.awt.Color(0, 0, 0));
@@ -720,12 +727,8 @@ public class Dashboard extends javax.swing.JFrame {
         Panel2.setLayout(Panel2Layout);
         Panel2Layout.setHorizontalGroup(
             Panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel2Layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(FacturaFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(Panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(FacturaLabel6)
                     .addComponent(FacturaLabel2)
@@ -743,6 +746,10 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(FacturaField_Coste)
                     .addComponent(FacturaField_NIF))
                 .addGap(88, 88, 88))
+            .addGroup(Panel2Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addComponent(FacturaFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Panel2Layout.setVerticalGroup(
             Panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -773,27 +780,27 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(Panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FacturaLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FacturaField_NIF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(FacturaFiltrar)
-                .addGap(21, 21, 21))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
-        FiltroFactura.getContentPane().add(Panel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        FiltroFactura.getContentPane().add(Panel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 390));
 
         FiltroNominas.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroNominas.setTitle("Filtrar");
         FiltroNominas.setAlwaysOnTop(true);
-        FiltroNominas.setMaximumSize(new java.awt.Dimension(401, 319));
-        FiltroNominas.setMinimumSize(new java.awt.Dimension(401, 319));
-        FiltroNominas.setPreferredSize(new java.awt.Dimension(401, 319));
+        FiltroNominas.setMaximumSize(new java.awt.Dimension(401, 392));
+        FiltroNominas.setMinimumSize(new java.awt.Dimension(401, 392));
+        FiltroNominas.setPreferredSize(new java.awt.Dimension(401, 392));
         FiltroNominas.setResizable(false);
         FiltroNominas.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel4.setBackground(new java.awt.Color(255, 255, 255));
         Panel4.setForeground(new java.awt.Color(255, 255, 255));
-        Panel4.setMaximumSize(new java.awt.Dimension(401, 319));
-        Panel4.setMinimumSize(new java.awt.Dimension(401, 319));
-        Panel4.setPreferredSize(new java.awt.Dimension(401, 319));
+        Panel4.setMaximumSize(new java.awt.Dimension(401, 392));
+        Panel4.setMinimumSize(new java.awt.Dimension(401, 392));
+        Panel4.setPreferredSize(new java.awt.Dimension(401, 392));
 
         TitleFiltroNomina.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
         TitleFiltroNomina.setForeground(new java.awt.Color(0, 0, 0));
@@ -870,10 +877,6 @@ public class Dashboard extends javax.swing.JFrame {
         Panel4Layout.setHorizontalGroup(
             Panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel4Layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(NominaFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(Panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(NominaLabel7)
@@ -894,6 +897,10 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(NominaField_Apellidos)
                     .addComponent(NominaField_SNeto))
                 .addGap(88, 88, 88))
+            .addGroup(Panel4Layout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addComponent(NominaFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Panel4Layout.setVerticalGroup(
             Panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -928,9 +935,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(Panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NominaLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(NominaField_Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(NominaFiltrar)
-                .addGap(21, 21, 21))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         FiltroNominas.getContentPane().add(Panel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -938,17 +945,17 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroEmpleados.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroEmpleados.setTitle("Filtrar");
         FiltroEmpleados.setAlwaysOnTop(true);
-        FiltroEmpleados.setMaximumSize(new java.awt.Dimension(421, 280));
-        FiltroEmpleados.setMinimumSize(new java.awt.Dimension(421, 280));
-        FiltroEmpleados.setPreferredSize(new java.awt.Dimension(421, 280));
+        FiltroEmpleados.setMaximumSize(new java.awt.Dimension(401, 392));
+        FiltroEmpleados.setMinimumSize(new java.awt.Dimension(401, 392));
+        FiltroEmpleados.setPreferredSize(new java.awt.Dimension(401, 392));
         FiltroEmpleados.setResizable(false);
         FiltroEmpleados.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel5.setBackground(new java.awt.Color(255, 255, 255));
         Panel5.setForeground(new java.awt.Color(255, 255, 255));
-        Panel5.setMaximumSize(new java.awt.Dimension(421, 280));
-        Panel5.setMinimumSize(new java.awt.Dimension(421, 280));
-        Panel5.setPreferredSize(new java.awt.Dimension(421, 280));
+        Panel5.setMaximumSize(new java.awt.Dimension(401, 392));
+        Panel5.setMinimumSize(new java.awt.Dimension(401, 392));
+        Panel5.setPreferredSize(new java.awt.Dimension(401, 392));
 
         TitleFiltrarEmpleados.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
         TitleFiltrarEmpleados.setForeground(new java.awt.Color(0, 0, 0));
@@ -1080,7 +1087,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(EmpleadosLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(EmpleadosFiltrar)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         FiltroEmpleados.getContentPane().add(Panel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -1088,14 +1095,17 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroClientes.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroClientes.setTitle("Filtrar");
         FiltroClientes.setAlwaysOnTop(true);
-        FiltroClientes.setMaximumSize(new java.awt.Dimension(430, 193));
+        FiltroClientes.setMaximumSize(new java.awt.Dimension(401, 254));
+        FiltroClientes.setMinimumSize(new java.awt.Dimension(401, 254));
+        FiltroClientes.setPreferredSize(new java.awt.Dimension(401, 254));
         FiltroClientes.setResizable(false);
         FiltroClientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel7.setBackground(new java.awt.Color(255, 255, 255));
         Panel7.setForeground(new java.awt.Color(255, 255, 255));
-        Panel7.setMaximumSize(new java.awt.Dimension(430, 193));
-        Panel7.setMinimumSize(new java.awt.Dimension(430, 193));
+        Panel7.setMaximumSize(new java.awt.Dimension(401, 392));
+        Panel7.setMinimumSize(new java.awt.Dimension(401, 392));
+        Panel7.setPreferredSize(new java.awt.Dimension(401, 392));
 
         TitleFiltroClientes.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
         TitleFiltroClientes.setForeground(new java.awt.Color(0, 0, 0));
@@ -1179,7 +1189,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(ClientesField_Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(ClientesFiltrar)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
 
         FiltroClientes.getContentPane().add(Panel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, -1));
@@ -1297,9 +1307,9 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroConcesionarios.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroConcesionarios.setTitle("Filtrar");
         FiltroConcesionarios.setAlwaysOnTop(true);
-        FiltroConcesionarios.setMaximumSize(new java.awt.Dimension(421, 250));
-        FiltroConcesionarios.setMinimumSize(new java.awt.Dimension(421, 250));
-        FiltroConcesionarios.setPreferredSize(new java.awt.Dimension(421, 250));
+        FiltroConcesionarios.setMaximumSize(new java.awt.Dimension(401, 307));
+        FiltroConcesionarios.setMinimumSize(new java.awt.Dimension(401, 307));
+        FiltroConcesionarios.setPreferredSize(new java.awt.Dimension(401, 307));
         FiltroConcesionarios.setResizable(false);
         FiltroConcesionarios.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
