@@ -152,7 +152,6 @@ public class Taller {
                 taller.setId(id);
                 taller.setEspacios(Utils.rs.getInt(1));
                 taller.setHorario(Utils.rs.getString(2));
-                taller.setId(id);
                 System.out.println("El taller ha sido encontrado y creado " + taller.toString());
 
             } catch (SQLException ex) {

@@ -9,7 +9,8 @@ import java.sql.SQLException;
  * @version 1 - 29/03/2021
  */
 public class Venta {
-    private int id=-1;
+
+    private int id = -1;
     private String horario;
 
     public Venta() {
@@ -98,7 +99,7 @@ public class Venta {
             System.out.println("Datos guardados con exito.");
         } catch (SQLException ex) {
             System.out.println("¡ERROR! no se pudieron guardar los datos de la venta en la BBDD.");
-        } finally { 
+        } finally {
             try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
@@ -119,6 +120,7 @@ public class Venta {
             return null;
         } else {
             Venta venta = new Venta();
+
             try {
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setInt(1, id);
