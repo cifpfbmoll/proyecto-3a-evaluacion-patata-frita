@@ -293,7 +293,7 @@ public class Venta {
             while(Utils.rs.next()){
                 Utils.escribirLineaArchivo("Taller id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
                 Utils.escribirLineaArchivo("    Horario: " + Utils.rs.getInt(2) + " }");
-                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                //Dejamos espacio para poder diferenciar facilmente entre ventas
                 Utils.escribirLineaArchivo(" ");
             }
             Utils.cerrarArchivo();

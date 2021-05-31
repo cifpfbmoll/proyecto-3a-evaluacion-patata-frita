@@ -477,7 +477,7 @@ public class Concesionario {
                 Utils.escribirLineaArchivo("    Telefono: " + Integer.toString(Utils.rs.getInt(4)));
                 Utils.escribirLineaArchivo("    Taller id: " + Integer.toString(Utils.rs.getInt(5)));
                 Utils.escribirLineaArchivo("    Venta id: " + Integer.toString(Utils.rs.getInt(6))+ " }");
-                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                //Dejamos espacio para poder diferenciar facilmente entre concesionarios
                 Utils.escribirLineaArchivo(" ");
             }
             Utils.cerrarArchivo();

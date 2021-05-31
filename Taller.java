@@ -322,7 +322,7 @@ public class Taller {
                 Utils.escribirLineaArchivo("Taller id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
                 Utils.escribirLineaArchivo("    Espacios: " + Integer.toString(Utils.rs.getInt(2)));
                 Utils.escribirLineaArchivo("    Horario: " + Utils.rs.getInt(3) + " }");
-                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                //Dejamos espacio para poder diferenciar facilmente entre talleres
                 Utils.escribirLineaArchivo(" ");
             }
             Utils.cerrarArchivo();
