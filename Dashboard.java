@@ -155,8 +155,6 @@ public class Dashboard extends javax.swing.JFrame {
         Panel9 = new javax.swing.JPanel();
         TitleAnadirReserva = new javax.swing.JLabel();
         ReservaAnadir = new javax.swing.JButton();
-        Separador = new javax.swing.JLabel();
-        Separador1 = new javax.swing.JLabel();
         ReservaNombreAnadirLabel = new javax.swing.JLabel();
         ReservaNombreAnadirLabel1 = new javax.swing.JLabel();
         ReservaNombreAnadirLabel2 = new javax.swing.JLabel();
@@ -169,8 +167,6 @@ public class Dashboard extends javax.swing.JFrame {
         Panel11 = new javax.swing.JPanel();
         TitleAnadirFactura = new javax.swing.JLabel();
         FacturaAnadir = new javax.swing.JButton();
-        Separador4 = new javax.swing.JLabel();
-        Separador5 = new javax.swing.JLabel();
         FacturaAnadirLabel = new javax.swing.JLabel();
         FacturaAnadirLabel1 = new javax.swing.JLabel();
         FacturaAnadirLabel2 = new javax.swing.JLabel();
@@ -193,8 +189,6 @@ public class Dashboard extends javax.swing.JFrame {
         Panel10 = new javax.swing.JPanel();
         TitleAnadirNomina = new javax.swing.JLabel();
         NominaAnadir = new javax.swing.JButton();
-        Separador2 = new javax.swing.JLabel();
-        Separador3 = new javax.swing.JLabel();
         NominaAnadirLabel = new javax.swing.JLabel();
         NominaAnadirLabel1 = new javax.swing.JLabel();
         NominaAnadirLabel2 = new javax.swing.JLabel();
@@ -210,8 +204,6 @@ public class Dashboard extends javax.swing.JFrame {
         Panel13 = new javax.swing.JPanel();
         TitleAnadirFactura1 = new javax.swing.JLabel();
         FacturaAnadir1 = new javax.swing.JButton();
-        Separador8 = new javax.swing.JLabel();
-        Separador9 = new javax.swing.JLabel();
         EmpleadoAnadirLabel = new javax.swing.JLabel();
         EmpleadoAnadirLabel1 = new javax.swing.JLabel();
         EmpleadoAnadirLabel2 = new javax.swing.JLabel();
@@ -236,6 +228,49 @@ public class Dashboard extends javax.swing.JFrame {
         FacturaAnadirLabel13 = new javax.swing.JLabel();
         FacturaFieldAnadir_Venta1 = new javax.swing.JSpinner();
         TallerOVenta2 = new javax.swing.ButtonGroup();
+        AnadirClientes = new javax.swing.JDialog();
+        Panel12 = new javax.swing.JPanel();
+        TitleAnadirClientes = new javax.swing.JLabel();
+        ClientesAñadir = new javax.swing.JButton();
+        ClientesLabel1 = new javax.swing.JLabel();
+        ClientesLabel4 = new javax.swing.JLabel();
+        ClientesLabel5 = new javax.swing.JLabel();
+        ClientesLabel6 = new javax.swing.JLabel();
+        ClientesLabel7 = new javax.swing.JLabel();
+        ClientesLabel8 = new javax.swing.JLabel();
+        ClienteAnadirField_NIF = new javax.swing.JFormattedTextField();
+        ClienteAnadirField_Nombre = new javax.swing.JTextField();
+        ClienteAnadirField_Apellido = new javax.swing.JTextField();
+        ClienteAnadirField_Telefono = new javax.swing.JFormattedTextField();
+        ClienteAnadirField_Domicilio = new javax.swing.JTextField();
+        ClienteAnadirField_Contra = new javax.swing.JPasswordField();
+        AnadirMotores = new javax.swing.JDialog();
+        Panel14 = new javax.swing.JPanel();
+        TitleAnadirClientes1 = new javax.swing.JLabel();
+        MotoresAnadir = new javax.swing.JButton();
+        MotoresLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        MotoresAnadirField_Tipo = new javax.swing.JList<>();
+        MotoresLabel4 = new javax.swing.JLabel();
+        MotoresAnadiField_Potencia = new javax.swing.JSpinner();
+        MotoresLabel5 = new javax.swing.JLabel();
+        MotoresAnadirField_Cilindrada = new javax.swing.JSpinner();
+        MotoresLabel6 = new javax.swing.JLabel();
+        MotoresAnadirField_NumMotores = new javax.swing.JSpinner();
+        AnadirConcesionarios = new javax.swing.JDialog();
+        Panel15 = new javax.swing.JPanel();
+        TitleAnadirClientes2 = new javax.swing.JLabel();
+        ConcesionariosLabel11 = new javax.swing.JButton();
+        ConcesionariosLabel12 = new javax.swing.JLabel();
+        ConcesionariosLabel13 = new javax.swing.JLabel();
+        ConcesionariosLabel14 = new javax.swing.JLabel();
+        ConcesionariosLabel15 = new javax.swing.JLabel();
+        ConcesionariosLabel16 = new javax.swing.JLabel();
+        ClienteAnadirField_Ubicacion = new javax.swing.JTextField();
+        ClienteAnadirField_Nombre3 = new javax.swing.JTextField();
+        ClienteAnadirField_Telefono1 = new javax.swing.JFormattedTextField();
+        MotoresAnadirField_Cilindrada1 = new javax.swing.JSpinner();
+        MotoresAnadirField_Cilindrada2 = new javax.swing.JSpinner();
         VentanaCompleta = new javax.swing.JPanel();
         PanelMenu = new javax.swing.JPanel();
         MenuHeader = new javax.swing.JPanel();
@@ -373,9 +408,7 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroReservaCliente.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroReservaCliente.setTitle("Filtrar");
         FiltroReservaCliente.setAlwaysOnTop(true);
-        FiltroReservaCliente.setMaximumSize(new java.awt.Dimension(401, 392));
         FiltroReservaCliente.setMinimumSize(new java.awt.Dimension(401, 392));
-        FiltroReservaCliente.setPreferredSize(new java.awt.Dimension(401, 392));
         FiltroReservaCliente.setResizable(false);
 
         Panel.setBackground(new java.awt.Color(255, 255, 255));
@@ -534,7 +567,7 @@ public class Dashboard extends javax.swing.JFrame {
         ReservaField_Espacio.setToolTipText("");
 
         ReservaField_Fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
-        ReservaField_Fecha.setToolTipText("Formato: dd/MM/yyyy");
+        ReservaField_Fecha.setToolTipText("Formato: yyyy-MM-dd");
         ReservaClienteField_Fecha.setFont(new java.awt.Font("sansserif", 0, 14));
 
         ReservaField_Taller.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
@@ -546,6 +579,7 @@ public class Dashboard extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ReservaField_NIF.setText("");
         ReservaField_NIF.setToolTipText("Formato: 12345678X");
         ReservaClienteField_Fecha.setFont(new java.awt.Font("sansserif", 0, 14));
 
@@ -610,9 +644,7 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroFacturaCliente.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroFacturaCliente.setTitle("Filtrar");
         FiltroFacturaCliente.setAlwaysOnTop(true);
-        FiltroFacturaCliente.setMaximumSize(new java.awt.Dimension(401, 392));
         FiltroFacturaCliente.setMinimumSize(new java.awt.Dimension(401, 392));
-        FiltroFacturaCliente.setPreferredSize(new java.awt.Dimension(401, 392));
         FiltroFacturaCliente.setResizable(false);
         FiltroFacturaCliente.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -875,9 +907,7 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroNominas.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroNominas.setTitle("Filtrar");
         FiltroNominas.setAlwaysOnTop(true);
-        FiltroNominas.setMaximumSize(new java.awt.Dimension(401, 392));
         FiltroNominas.setMinimumSize(new java.awt.Dimension(401, 392));
-        FiltroNominas.setPreferredSize(new java.awt.Dimension(401, 392));
         FiltroNominas.setResizable(false);
         FiltroNominas.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1030,9 +1060,7 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroEmpleados.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroEmpleados.setTitle("Filtrar");
         FiltroEmpleados.setAlwaysOnTop(true);
-        FiltroEmpleados.setMaximumSize(new java.awt.Dimension(401, 392));
         FiltroEmpleados.setMinimumSize(new java.awt.Dimension(401, 392));
-        FiltroEmpleados.setPreferredSize(new java.awt.Dimension(401, 392));
         FiltroEmpleados.setResizable(false);
         FiltroEmpleados.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1180,9 +1208,7 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroClientes.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroClientes.setTitle("Filtrar");
         FiltroClientes.setAlwaysOnTop(true);
-        FiltroClientes.setMaximumSize(new java.awt.Dimension(401, 254));
         FiltroClientes.setMinimumSize(new java.awt.Dimension(401, 254));
-        FiltroClientes.setPreferredSize(new java.awt.Dimension(401, 254));
         FiltroClientes.setResizable(false);
         FiltroClientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1282,9 +1308,7 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroMotores.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroMotores.setTitle("Filtrar");
         FiltroMotores.setAlwaysOnTop(true);
-        FiltroMotores.setMaximumSize(new java.awt.Dimension(421, 266));
         FiltroMotores.setMinimumSize(new java.awt.Dimension(421, 266));
-        FiltroMotores.setPreferredSize(new java.awt.Dimension(421, 266));
         FiltroMotores.setResizable(false);
         FiltroMotores.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1392,9 +1416,7 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroConcesionarios.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroConcesionarios.setTitle("Filtrar");
         FiltroConcesionarios.setAlwaysOnTop(true);
-        FiltroConcesionarios.setMaximumSize(new java.awt.Dimension(401, 307));
         FiltroConcesionarios.setMinimumSize(new java.awt.Dimension(401, 307));
-        FiltroConcesionarios.setPreferredSize(new java.awt.Dimension(401, 307));
         FiltroConcesionarios.setResizable(false);
         FiltroConcesionarios.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1537,10 +1559,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         ReservaAnadir.setText("Añadir");
 
-        Separador.setText("jLabel1");
-
-        Separador1.setText("jLabel1");
-
         ReservaNombreAnadirLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         ReservaNombreAnadirLabel.setForeground(new java.awt.Color(0, 0, 0));
         ReservaNombreAnadirLabel.setText("Fecha");
@@ -1582,31 +1600,26 @@ public class Dashboard extends javax.swing.JFrame {
         Panel9Layout.setHorizontalGroup(
             Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Panel9Layout.createSequentialGroup()
-                        .addComponent(Separador)
+                .addGap(61, 61, 61)
+                .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel9Layout.createSequentialGroup()
+                        .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ReservaNombreAnadirLabel1)
+                            .addComponent(ReservaNombreAnadirLabel2)
+                            .addComponent(ReservaNombreAnadirLabel3)
+                            .addComponent(ReservaNombreAnadirLabel))
                         .addGap(18, 18, 18)
                         .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(Panel9Layout.createSequentialGroup()
-                                .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ReservaNombreAnadirLabel1)
-                                    .addComponent(ReservaNombreAnadirLabel2)
-                                    .addComponent(ReservaNombreAnadirLabel3)
-                                    .addComponent(ReservaNombreAnadirLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ReservaFieldAnadir_Fecha)
-                                    .addComponent(ReservaFieldAnadir_Cliente)
-                                    .addComponent(ReservaFieldAnadir_Taller)
-                                    .addComponent(ReservaFieldAnadir_Espacio)))
-                            .addComponent(ReservaAnadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18))
-                    .addGroup(Panel9Layout.createSequentialGroup()
-                        .addComponent(TitleAnadirReserva)
-                        .addGap(228, 228, 228)))
-                .addComponent(Separador1)
-                .addGap(25, 25, 25))
+                            .addComponent(ReservaFieldAnadir_Fecha)
+                            .addComponent(ReservaFieldAnadir_Cliente)
+                            .addComponent(ReservaFieldAnadir_Taller)
+                            .addComponent(ReservaFieldAnadir_Espacio)))
+                    .addComponent(ReservaAnadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(80, 80, 80))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TitleAnadirReserva)
+                .addGap(290, 290, 290))
         );
         Panel9Layout.setVerticalGroup(
             Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1614,31 +1627,24 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(TitleAnadirReserva)
                 .addGap(18, 18, 18)
-                .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel9Layout.createSequentialGroup()
-                        .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Separador, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Separador1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(5, Short.MAX_VALUE))
-                    .addGroup(Panel9Layout.createSequentialGroup()
-                        .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ReservaFieldAnadir_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ReservaNombreAnadirLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ReservaNombreAnadirLabel3)
-                            .addComponent(ReservaFieldAnadir_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ReservaNombreAnadirLabel2)
-                            .addComponent(ReservaFieldAnadir_Taller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ReservaNombreAnadirLabel1)
-                            .addComponent(ReservaFieldAnadir_Espacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ReservaAnadir)
-                        .addGap(22, 22, 22))))
+                .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ReservaFieldAnadir_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ReservaNombreAnadirLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ReservaNombreAnadirLabel3)
+                    .addComponent(ReservaFieldAnadir_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ReservaNombreAnadirLabel2)
+                    .addComponent(ReservaFieldAnadir_Taller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ReservaNombreAnadirLabel1)
+                    .addComponent(ReservaFieldAnadir_Espacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addComponent(ReservaAnadir)
+                .addGap(22, 22, 22))
         );
 
         AnadirReserva.getContentPane().add(Panel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 310));
@@ -1646,9 +1652,7 @@ public class Dashboard extends javax.swing.JFrame {
         AnadirFactura.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         AnadirFactura.setTitle("Filtrar");
         AnadirFactura.setAlwaysOnTop(true);
-        AnadirFactura.setMaximumSize(new java.awt.Dimension(401, 391));
-        AnadirFactura.setMinimumSize(new java.awt.Dimension(401, 391));
-        AnadirFactura.setPreferredSize(new java.awt.Dimension(401, 391));
+        AnadirFactura.setMinimumSize(new java.awt.Dimension(401, 422));
         AnadirFactura.setResizable(false);
         AnadirFactura.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1665,12 +1669,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         FacturaAnadir.setText("Añadir");
         Panel11.add(FacturaAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 332, 300, -1));
-
-        Separador4.setText("jLabel1");
-        Panel11.add(Separador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 48, -1, 340));
-
-        Separador5.setText("jLabel1");
-        Panel11.add(Separador5, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 48, -1, 340));
 
         FacturaAnadirLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         FacturaAnadirLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -1766,7 +1764,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(FacturaAnadirLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FacturaFieldAnadir_Taller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         Panel11.add(OpcionTaller, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 300, 70));
@@ -1802,7 +1800,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(FacturaAnadirLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FacturaFieldAnadir_Venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         Panel11.add(OpcionVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 300, 70));
@@ -1812,9 +1810,7 @@ public class Dashboard extends javax.swing.JFrame {
         AnadirNomina.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         AnadirNomina.setTitle("Filtrar");
         AnadirNomina.setAlwaysOnTop(true);
-        AnadirNomina.setMaximumSize(new java.awt.Dimension(401, 342));
         AnadirNomina.setMinimumSize(new java.awt.Dimension(401, 342));
-        AnadirNomina.setPreferredSize(new java.awt.Dimension(401, 342));
         AnadirNomina.setResizable(false);
         AnadirNomina.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1833,10 +1829,6 @@ public class Dashboard extends javax.swing.JFrame {
                 NominaCalcularSNetoActionPerformed(evt);
             }
         });
-
-        Separador2.setText("jLabel1");
-
-        Separador3.setText("jLabel1");
 
         NominaAnadirLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         NominaAnadirLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -1898,8 +1890,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Panel10Layout.createSequentialGroup()
-                        .addComponent(Separador2)
-                        .addGap(18, 18, 18)
+                        .addGap(55, 55, 55)
                         .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NominaAnadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(Panel10Layout.createSequentialGroup()
@@ -1922,9 +1913,7 @@ public class Dashboard extends javax.swing.JFrame {
                                             .addComponent(NominaFieldAnadir_SBruto)))
                                     .addComponent(NominaCalcularSNeto))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(Separador3)
-                        .addContainerGap(51, Short.MAX_VALUE))
+                        .addContainerGap(106, Short.MAX_VALUE))
                     .addGroup(Panel10Layout.createSequentialGroup()
                         .addComponent(TitleAnadirNomina)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -1935,35 +1924,30 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(TitleAnadirNomina)
                 .addGap(18, 18, 18)
-                .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Separador2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Separador3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Panel10Layout.createSequentialGroup()
-                        .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NominaAnadirLabel)
-                            .addComponent(NominaFieldAnadir_Horas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NominaAnadirLabel3)
-                            .addComponent(NominaFieldAnadir_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NominaAnadirLabel2)
-                            .addComponent(NominaFieldAnadir_SBruto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NominaAnadirLabel1)
-                            .addComponent(NominaFieldAnadir_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NominaAnadirLabel4)
-                            .addComponent(NominaFieldAnadir_SNeto))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NominaCalcularSNeto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(NominaAnadir)))
-                .addContainerGap(5, Short.MAX_VALUE))
+                .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NominaAnadirLabel)
+                    .addComponent(NominaFieldAnadir_Horas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NominaAnadirLabel3)
+                    .addComponent(NominaFieldAnadir_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NominaAnadirLabel2)
+                    .addComponent(NominaFieldAnadir_SBruto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NominaAnadirLabel1)
+                    .addComponent(NominaFieldAnadir_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(Panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NominaAnadirLabel4)
+                    .addComponent(NominaFieldAnadir_SNeto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NominaCalcularSNeto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(NominaAnadir)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         AnadirNomina.getContentPane().add(Panel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 310));
@@ -1971,9 +1955,7 @@ public class Dashboard extends javax.swing.JFrame {
         AnadirEmpleados.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         AnadirEmpleados.setTitle("Filtrar");
         AnadirEmpleados.setAlwaysOnTop(true);
-        AnadirEmpleados.setMaximumSize(new java.awt.Dimension(401, 350));
-        AnadirEmpleados.setMinimumSize(new java.awt.Dimension(401, 350));
-        AnadirEmpleados.setPreferredSize(new java.awt.Dimension(401, 350));
+        AnadirEmpleados.setMinimumSize(new java.awt.Dimension(405, 530));
         AnadirEmpleados.setResizable(false);
         AnadirEmpleados.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1990,12 +1972,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         FacturaAnadir1.setText("Añadir");
         Panel13.add(FacturaAnadir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 300, -1));
-
-        Separador8.setText("jLabel1");
-        Panel13.add(Separador8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 48, -1, 340));
-
-        Separador9.setText("jLabel1");
-        Panel13.add(Separador9, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 48, -1, 340));
 
         EmpleadoAnadirLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         EmpleadoAnadirLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -2117,7 +2093,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(FacturaAnadirLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FacturaFieldAnadir_Taller1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         Panel13.add(OpcionTaller1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 300, 70));
@@ -2153,12 +2129,391 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(FacturaAnadirLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FacturaFieldAnadir_Venta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         Panel13.add(OpcionVenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 300, 70));
 
         AnadirEmpleados.getContentPane().add(Panel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 430));
+
+        AnadirClientes.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        AnadirClientes.setTitle("Filtrar");
+        AnadirClientes.setAlwaysOnTop(true);
+        AnadirClientes.setMinimumSize(new java.awt.Dimension(420, 530));
+        AnadirClientes.setResizable(false);
+        AnadirClientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Panel12.setBackground(new java.awt.Color(255, 255, 255));
+        Panel12.setForeground(new java.awt.Color(255, 255, 255));
+        Panel12.setMaximumSize(new java.awt.Dimension(430, 411));
+        Panel12.setMinimumSize(new java.awt.Dimension(430, 411));
+
+        TitleAnadirClientes.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
+        TitleAnadirClientes.setForeground(new java.awt.Color(0, 0, 0));
+        TitleAnadirClientes.setText("Añadir clientes");
+
+        ClientesAñadir.setText("Añadir");
+        ClientesAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClientesAñadirFiltrarClientes(evt);
+            }
+        });
+
+        ClientesLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ClientesLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        ClientesLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ClientesLabel1.setText("NIF Cliente");
+
+        ClientesLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ClientesLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        ClientesLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ClientesLabel4.setText("Nombre");
+
+        ClientesLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ClientesLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        ClientesLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ClientesLabel5.setText("Apellidos");
+
+        ClientesLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ClientesLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        ClientesLabel6.setText("Teléfono");
+
+        ClientesLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ClientesLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        ClientesLabel7.setText("Domicilio");
+
+        ClientesLabel8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ClientesLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        ClientesLabel8.setText("Contraseña");
+
+        try {
+            ClienteAnadirField_NIF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########U")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ClienteAnadirField_NIF.setToolTipText("Formato: 12345678X");
+        ReservaClienteField_Fecha.setFont(new java.awt.Font("sansserif", 0, 14));
+
+        ClienteAnadirField_Nombre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
+        ClienteAnadirField_Apellido.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
+        try {
+            ClienteAnadirField_Telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ClienteAnadirField_Telefono.setToolTipText("Ha de tener 9 números");
+        ReservaClienteField_Fecha.setFont(new java.awt.Font("sansserif", 0, 14));
+
+        ClienteAnadirField_Contra.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ClienteAnadirField_Contra.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout Panel12Layout = new javax.swing.GroupLayout(Panel12);
+        Panel12.setLayout(Panel12Layout);
+        Panel12Layout.setHorizontalGroup(
+            Panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel12Layout.createSequentialGroup()
+                .addGroup(Panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel12Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(Panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ClientesLabel5)
+                            .addComponent(ClientesLabel4)
+                            .addComponent(ClientesLabel1)
+                            .addComponent(ClientesLabel7)
+                            .addComponent(ClientesLabel6)
+                            .addComponent(ClientesLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(Panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ClienteAnadirField_NIF)
+                            .addComponent(ClienteAnadirField_Nombre)
+                            .addComponent(ClienteAnadirField_Apellido, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(ClienteAnadirField_Domicilio)
+                            .addComponent(ClienteAnadirField_Telefono)
+                            .addComponent(ClienteAnadirField_Contra)))
+                    .addGroup(Panel12Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TitleAnadirClientes))
+                    .addGroup(Panel12Layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(ClientesAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+        Panel12Layout.setVerticalGroup(
+            Panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TitleAnadirClientes)
+                .addGap(15, 15, 15)
+                .addGroup(Panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClientesLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ClienteAnadirField_NIF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClientesLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ClienteAnadirField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClientesLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ClienteAnadirField_Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClientesLabel7)
+                    .addComponent(ClienteAnadirField_Domicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClientesLabel6)
+                    .addComponent(ClienteAnadirField_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClientesLabel8)
+                    .addComponent(ClienteAnadirField_Contra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(ClientesAñadir)
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+
+        AnadirClientes.getContentPane().add(Panel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, -1));
+
+        AnadirMotores.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        AnadirMotores.setTitle("Filtrar");
+        AnadirMotores.setAlwaysOnTop(true);
+        AnadirMotores.setMinimumSize(new java.awt.Dimension(420, 326));
+        AnadirMotores.setResizable(false);
+        AnadirMotores.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Panel14.setBackground(new java.awt.Color(255, 255, 255));
+        Panel14.setForeground(new java.awt.Color(255, 255, 255));
+        Panel14.setMaximumSize(new java.awt.Dimension(401, 392));
+        Panel14.setMinimumSize(new java.awt.Dimension(401, 392));
+
+        TitleAnadirClientes1.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
+        TitleAnadirClientes1.setForeground(new java.awt.Color(0, 0, 0));
+        TitleAnadirClientes1.setText("Añadir motores");
+
+        MotoresAnadir.setText("Añadir");
+        MotoresAnadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MotoresAnadirFiltrarClientes(evt);
+            }
+        });
+
+        MotoresLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MotoresLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        MotoresLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        MotoresLabel1.setText("Tipo motor");
+
+        MotoresAnadirField_Tipo.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Todos", "Gasolina95", "Gasolina98", "Diesel", "Electrico" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(MotoresAnadirField_Tipo);
+
+        MotoresLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MotoresLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        MotoresLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        MotoresLabel4.setText("Potencia");
+
+        MotoresAnadiField_Potencia.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MotoresAnadiField_Potencia.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
+
+        MotoresLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MotoresLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        MotoresLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        MotoresLabel5.setText("Cilindrada");
+
+        MotoresAnadirField_Cilindrada.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MotoresAnadirField_Cilindrada.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
+
+        MotoresLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MotoresLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        MotoresLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        MotoresLabel6.setText("Num motores");
+
+        MotoresAnadirField_NumMotores.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MotoresAnadirField_NumMotores.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
+
+        javax.swing.GroupLayout Panel14Layout = new javax.swing.GroupLayout(Panel14);
+        Panel14.setLayout(Panel14Layout);
+        Panel14Layout.setHorizontalGroup(
+            Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel14Layout.createSequentialGroup()
+                .addGroup(Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel14Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TitleAnadirClientes1))
+                    .addGroup(Panel14Layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addGroup(Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(MotoresLabel4)
+                            .addComponent(MotoresLabel5)
+                            .addComponent(MotoresLabel1)
+                            .addComponent(MotoresLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(MotoresAnadirField_Cilindrada)
+                            .addComponent(MotoresAnadiField_Potencia)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(MotoresAnadirField_NumMotores)))
+                    .addGroup(Panel14Layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(MotoresAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+        Panel14Layout.setVerticalGroup(
+            Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TitleAnadirClientes1)
+                .addGap(15, 15, 15)
+                .addGroup(Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MotoresLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MotoresLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MotoresAnadiField_Potencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MotoresAnadirField_Cilindrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MotoresLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MotoresLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MotoresAnadirField_NumMotores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(MotoresAnadir)
+                .addContainerGap(172, Short.MAX_VALUE))
+        );
+
+        AnadirMotores.getContentPane().add(Panel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, -1));
+
+        AnadirConcesionarios.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        AnadirConcesionarios.setTitle("Filtrar");
+        AnadirConcesionarios.setAlwaysOnTop(true);
+        AnadirConcesionarios.setMinimumSize(new java.awt.Dimension(420, 401));
+        AnadirConcesionarios.setResizable(false);
+        AnadirConcesionarios.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Panel15.setBackground(new java.awt.Color(255, 255, 255));
+        Panel15.setForeground(new java.awt.Color(255, 255, 255));
+        Panel15.setMaximumSize(new java.awt.Dimension(401, 392));
+        Panel15.setMinimumSize(new java.awt.Dimension(401, 392));
+
+        TitleAnadirClientes2.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
+        TitleAnadirClientes2.setForeground(new java.awt.Color(0, 0, 0));
+        TitleAnadirClientes2.setText("Añadir concesionarios");
+
+        ConcesionariosLabel11.setText("Añadir");
+        ConcesionariosLabel11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConcesionariosLabel11FiltrarClientes(evt);
+            }
+        });
+
+        ConcesionariosLabel12.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ConcesionariosLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        ConcesionariosLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ConcesionariosLabel12.setText("Nombre");
+
+        ConcesionariosLabel13.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ConcesionariosLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        ConcesionariosLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ConcesionariosLabel13.setText("Ubicación");
+
+        ConcesionariosLabel14.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ConcesionariosLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        ConcesionariosLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ConcesionariosLabel14.setText("Telefono");
+
+        ConcesionariosLabel15.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ConcesionariosLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        ConcesionariosLabel15.setText("ID Venta");
+
+        ConcesionariosLabel16.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ConcesionariosLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        ConcesionariosLabel16.setText("ID Taller");
+
+        ClienteAnadirField_Ubicacion.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
+        ClienteAnadirField_Nombre3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
+        try {
+            ClienteAnadirField_Telefono1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ClienteAnadirField_Telefono1.setToolTipText("Ha de tener 9 números");
+        ReservaClienteField_Fecha.setFont(new java.awt.Font("sansserif", 0, 14));
+
+        MotoresAnadirField_Cilindrada1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MotoresAnadirField_Cilindrada1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        MotoresAnadirField_Cilindrada2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MotoresAnadirField_Cilindrada2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        javax.swing.GroupLayout Panel15Layout = new javax.swing.GroupLayout(Panel15);
+        Panel15.setLayout(Panel15Layout);
+        Panel15Layout.setHorizontalGroup(
+            Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel15Layout.createSequentialGroup()
+                .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel15Layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ConcesionariosLabel14)
+                            .addComponent(ConcesionariosLabel13)
+                            .addComponent(ConcesionariosLabel12)
+                            .addComponent(ConcesionariosLabel16)
+                            .addComponent(ConcesionariosLabel15))
+                        .addGap(18, 18, 18)
+                        .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ClienteAnadirField_Ubicacion)
+                            .addComponent(ClienteAnadirField_Nombre3)
+                            .addComponent(ClienteAnadirField_Telefono1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(MotoresAnadirField_Cilindrada1)
+                            .addComponent(MotoresAnadirField_Cilindrada2)))
+                    .addGroup(Panel15Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TitleAnadirClientes2))
+                    .addGroup(Panel15Layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(ConcesionariosLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+        Panel15Layout.setVerticalGroup(
+            Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TitleAnadirClientes2)
+                .addGap(13, 13, 13)
+                .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ConcesionariosLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ClienteAnadirField_Nombre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ConcesionariosLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ClienteAnadirField_Ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ConcesionariosLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ClienteAnadirField_Telefono1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MotoresAnadirField_Cilindrada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ConcesionariosLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MotoresAnadirField_Cilindrada2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ConcesionariosLabel15))
+                .addGap(32, 32, 32)
+                .addComponent(ConcesionariosLabel11)
+                .addContainerGap(158, Short.MAX_VALUE))
+        );
+
+        AnadirConcesionarios.getContentPane().add(Panel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Concesionario");
@@ -3467,7 +3822,8 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_Clientes_BuscarActionPerformed
 
     private void Clientes_AnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clientes_AnadirActionPerformed
-        // TODO add your handling code here:
+        AnadirClientes.setLocationRelativeTo(null);
+        AnadirClientes.setVisible(true);
     }//GEN-LAST:event_Clientes_AnadirActionPerformed
 
     private void Clientes_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clientes_ModificarActionPerformed
@@ -3484,7 +3840,8 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_Motores_BuscarActionPerformed
 
     private void Motores_AnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motores_AnadirActionPerformed
-        // TODO add your handling code here:
+        AnadirMotores.setLocationRelativeTo(null);
+        AnadirMotores.setVisible(true);
     }//GEN-LAST:event_Motores_AnadirActionPerformed
 
     private void Motores_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motores_ModificarActionPerformed
@@ -3517,7 +3874,8 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_Reservas_BuscarActionPerformed
 
     private void Reservas_AnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservas_AnadirActionPerformed
-        // TODO add your handling code here:
+        AnadirReserva.setLocationRelativeTo(null);
+        AnadirReserva.setVisible(true);
     }//GEN-LAST:event_Reservas_AnadirActionPerformed
 
     private void Reservas_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservas_ModificarActionPerformed
@@ -3570,7 +3928,8 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_Concesionarios_BuscarActionPerformed
 
     private void Concesionarios_AnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Concesionarios_AnadirActionPerformed
-        // TODO add your handling code here:
+        AnadirConcesionarios.setLocationRelativeTo(null);
+        AnadirConcesionarios.setVisible(true);
     }//GEN-LAST:event_Concesionarios_AnadirActionPerformed
 
     private void Concesionarios_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Concesionarios_ModificarActionPerformed
@@ -3648,8 +4007,9 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_FiltrarReservaCliente
 
     private void FiltrarReserva(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarReserva
-        Object[][] rowList = Reserva.devolverTodasReservasBBDD(ReservaField_NIF.getText(), ReservaClienteField_Espacio.getValue(), ReservaClienteField_Fecha.getText(), ReservaClienteField_Taller.getValue());
-
+        System.out.println(ReservaClienteField_Fecha.getText());
+        System.out.println(ReservaClienteField_Fecha.getValue());
+        Object[][] rowList = Reserva.devolverTodasReservasBBDD(ReservaField_NIF.getValue(), (Integer) ReservaField_Espacio.getValue(), ReservaField_Fecha.getText(), (Integer) ReservaField_Taller.getValue());
         FiltroReserva.dispose();
         ReservaField_NIF.setText("");
         ReservaField_Espacio.setValue(0);
@@ -3943,6 +4303,18 @@ public class Dashboard extends javax.swing.JFrame {
         FacturaFieldAnadir_Venta1.setValue(0);
         OpcionTaller1.setVisible(false);
     }//GEN-LAST:event_EmpleadoAnadirField_OpVenta1ActionPerformed
+
+    private void ClientesAñadirFiltrarClientes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesAñadirFiltrarClientes
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ClientesAñadirFiltrarClientes
+
+    private void MotoresAnadirFiltrarClientes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MotoresAnadirFiltrarClientes
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MotoresAnadirFiltrarClientes
+
+    private void ConcesionariosLabel11FiltrarClientes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConcesionariosLabel11FiltrarClientes
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ConcesionariosLabel11FiltrarClientes
 
     /**
      * Coger la información de una linea imprimida en la interfaz gráfica
@@ -4467,8 +4839,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel AdminNominas;
     private javax.swing.JLabel AdminReservas;
     private javax.swing.JLabel AdminVehiculos;
+    private javax.swing.JDialog AnadirClientes;
+    private javax.swing.JDialog AnadirConcesionarios;
     private javax.swing.JDialog AnadirEmpleados;
     private javax.swing.JDialog AnadirFactura;
+    private javax.swing.JDialog AnadirMotores;
     private javax.swing.JDialog AnadirNomina;
     private javax.swing.JDialog AnadirReserva;
     private javax.swing.JButton AreaBuscar;
@@ -4494,16 +4869,32 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel Board_Nominas;
     private javax.swing.JPanel Board_Reservas;
     private javax.swing.JPanel Board_Vehiculos;
+    private javax.swing.JTextField ClienteAnadirField_Apellido;
+    private javax.swing.JPasswordField ClienteAnadirField_Contra;
+    private javax.swing.JTextField ClienteAnadirField_Domicilio;
+    private javax.swing.JFormattedTextField ClienteAnadirField_NIF;
+    private javax.swing.JTextField ClienteAnadirField_Nombre;
+    private javax.swing.JTextField ClienteAnadirField_Nombre3;
+    private javax.swing.JFormattedTextField ClienteAnadirField_Telefono;
+    private javax.swing.JFormattedTextField ClienteAnadirField_Telefono1;
+    private javax.swing.JTextField ClienteAnadirField_Ubicacion;
     private javax.swing.JLabel ClienteAreaPersonal;
     private javax.swing.JLabel ClienteInicio;
     private javax.swing.JTable Cliente_Tabla;
+    private javax.swing.JButton ClientesAñadir;
     private javax.swing.JTextField ClientesField_Apellidos;
     private javax.swing.JFormattedTextField ClientesField_NIF;
     private javax.swing.JTextField ClientesField_Nombre;
     private javax.swing.JButton ClientesFiltrar;
     private javax.swing.JLabel ClientesLabel;
+    private javax.swing.JLabel ClientesLabel1;
     private javax.swing.JLabel ClientesLabel2;
     private javax.swing.JLabel ClientesLabel3;
+    private javax.swing.JLabel ClientesLabel4;
+    private javax.swing.JLabel ClientesLabel5;
+    private javax.swing.JLabel ClientesLabel6;
+    private javax.swing.JLabel ClientesLabel7;
+    private javax.swing.JLabel ClientesLabel8;
     private javax.swing.JButton Clientes_Anadir;
     private javax.swing.JButton Clientes_Buscar;
     private javax.swing.JButton Clientes_Eliminar;
@@ -4517,6 +4908,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton ConcesionariosFiltrar;
     private javax.swing.JLabel ConcesionariosLabel;
     private javax.swing.JLabel ConcesionariosLabel1;
+    private javax.swing.JButton ConcesionariosLabel11;
+    private javax.swing.JLabel ConcesionariosLabel12;
+    private javax.swing.JLabel ConcesionariosLabel13;
+    private javax.swing.JLabel ConcesionariosLabel14;
+    private javax.swing.JLabel ConcesionariosLabel15;
+    private javax.swing.JLabel ConcesionariosLabel16;
     private javax.swing.JLabel ConcesionariosLabel2;
     private javax.swing.JLabel ConcesionariosLabel3;
     private javax.swing.JLabel ConcesionariosLabel4;
@@ -4642,13 +5039,24 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel MenuHeader;
     private javax.swing.JPanel MenuTALLER;
     private javax.swing.JPanel MenuVENTAS;
+    private javax.swing.JSpinner MotoresAnadiField_Potencia;
+    private javax.swing.JButton MotoresAnadir;
+    private javax.swing.JSpinner MotoresAnadirField_Cilindrada;
+    private javax.swing.JSpinner MotoresAnadirField_Cilindrada1;
+    private javax.swing.JSpinner MotoresAnadirField_Cilindrada2;
+    private javax.swing.JSpinner MotoresAnadirField_NumMotores;
+    private javax.swing.JList<String> MotoresAnadirField_Tipo;
     private javax.swing.JSpinner MotoresField_Cilindrada;
     private javax.swing.JSpinner MotoresField_Potencia;
     private javax.swing.JList<String> MotoresField_Tipo;
     private javax.swing.JButton MotoresFiltrar;
     private javax.swing.JLabel MotoresLabel;
+    private javax.swing.JLabel MotoresLabel1;
     private javax.swing.JLabel MotoresLabel2;
     private javax.swing.JLabel MotoresLabel3;
+    private javax.swing.JLabel MotoresLabel4;
+    private javax.swing.JLabel MotoresLabel5;
+    private javax.swing.JLabel MotoresLabel6;
     private javax.swing.JButton Motores_Anadir;
     private javax.swing.JButton Motores_Buscar;
     private javax.swing.JButton Motores_Modificar;
@@ -4696,7 +5104,10 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel Panel1;
     private javax.swing.JPanel Panel10;
     private javax.swing.JPanel Panel11;
+    private javax.swing.JPanel Panel12;
     private javax.swing.JPanel Panel13;
+    private javax.swing.JPanel Panel14;
+    private javax.swing.JPanel Panel15;
     private javax.swing.JPanel Panel2;
     private javax.swing.JPanel Panel3;
     private javax.swing.JPanel Panel4;
@@ -4742,14 +5153,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel Sb_Cliente1;
     private javax.swing.JLabel Sb_Cliente2;
     private javax.swing.JLabel Sb_Empleado;
-    private javax.swing.JLabel Separador;
-    private javax.swing.JLabel Separador1;
-    private javax.swing.JLabel Separador2;
-    private javax.swing.JLabel Separador3;
-    private javax.swing.JLabel Separador4;
-    private javax.swing.JLabel Separador5;
-    private javax.swing.JLabel Separador8;
-    private javax.swing.JLabel Separador9;
     private javax.swing.JLabel TallerArea;
     private javax.swing.JLabel TallerClientes;
     private javax.swing.JLabel TallerFacturas;
@@ -4758,6 +5161,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.ButtonGroup TallerOVenta2;
     private javax.swing.JLabel TallerReservas;
     private javax.swing.JLabel Title;
+    private javax.swing.JLabel TitleAnadirClientes;
+    private javax.swing.JLabel TitleAnadirClientes1;
+    private javax.swing.JLabel TitleAnadirClientes2;
     private javax.swing.JLabel TitleAnadirFactura;
     private javax.swing.JLabel TitleAnadirFactura1;
     private javax.swing.JLabel TitleAnadirNomina;
@@ -4796,5 +5202,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel VentasVehiculos;
     private javax.swing.JLabel icono;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

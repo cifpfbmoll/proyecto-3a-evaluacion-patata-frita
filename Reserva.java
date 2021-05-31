@@ -430,14 +430,14 @@ public class Reserva {
                 reserva.setFechaHoraReserva(Utils.rs.getString(2));
                 int idTaller = Utils.rs.getInt(3); // nos devuelve id del taller
                 reserva.setTaller(Taller.buscarTaller(idTaller)); //establecemos taller 
-                
+
                 // salta error : java.sql.SQLException: Operation not allowed after ResultSet closed
                 String nifCliente = Utils.rs.getString(4);// nos devuelve nifCliente
-                
+
                 reserva.setCliente(Cliente.buscarClienteBBDD(nifCliente)); // set cliente
-                
+
                 System.out.println("Reserva encontrada y creada " + reserva.toString());
-                
+
             } catch (Exception e) {
                 System.out.println("Error buscar reserva");
                 e.printStackTrace();
@@ -451,10 +451,11 @@ public class Reserva {
             return reserva;
         }
     }
-    
+
     /**
      * Devolver todos los clientes de la base de datos
-     * @return 
+     *
+     * @return
      */
     public static Object[][] devolverTodasReservasBBDD() {
         String consulta = "SELECT `RESERVA`.*,`CLIENTE`.`NOMBRE`,`CLIENTE`.`APELLIDOS` FROM RESERVA,CLIENTE WHERE `RESERVA`.`CLIENTENIF` like CLIENTE.`NIF` ORDER BY ID";
@@ -474,7 +475,7 @@ public class Reserva {
                 list[3] = (Utils.rs.getString(4));
                 list[4] = (Utils.rs.getString(5));
                 list[5] = (Utils.rs.getString(6) + " " + Utils.rs.getString(7));
-                
+
                 objectList[i] = list;
                 i++;
             }
@@ -484,7 +485,7 @@ public class Reserva {
             e.printStackTrace();
             System.out.println("Error mostrando todos los clientes");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
@@ -492,11 +493,12 @@ public class Reserva {
         }
         return objectList;
     }
-    
+
     /**
      * Devolver todas las reservas para un cliente
+     *
      * @param nif NIF del cliente
-     * @return 
+     * @return
      */
     public static Object[][] devolverTodasReservasBBDD(String nif) {
         String consulta = "SELECT * FROM RESERVA WHERE CLIENTENIF like \"" + nif + "\" ORDER BY ID";
@@ -525,7 +527,7 @@ public class Reserva {
             e.printStackTrace();
             System.out.println("Error mostrando todos los clientes");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
@@ -533,21 +535,22 @@ public class Reserva {
         }
         return objectList;
     }
-    
+
     /**
      * Devolver todas las reservas compatibles con el filtro
+     *
      * @param nif Nif del cliente
      * @param espacio Espacio especificado
      * @param fecha Fecha especificada
      * @param taller Taller especificado
-     * @return 
+     * @return
      */
     public static Object[][] devolverReservasBBDD(String nif, Object espacio, String fecha, Object taller) {
         String consulta = "SELECT * FROM RESERVA "
                 + "WHERE CLIENTENIF like \"" + nif + "\" "
-                + "AND (espacio_reservado like \""+ espacio + "\" "
-                + "OR fecha like \"%"+ fecha + "%\" "
-                + "OR tallerid like \""+ taller + "\") ORDER BY ID";
+                + "AND (espacio_reservado like \"" + espacio + "\" "
+                + "OR fecha like \"%" + fecha + "%\" "
+                + "OR tallerid like \"" + taller + "\") ORDER BY ID";
         String[][] objectList = null;
         try {
             Utils.st = Utils.connection.createStatement();
@@ -573,7 +576,7 @@ public class Reserva {
             e.printStackTrace();
             System.out.println("Error mostrando todos los clientes");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
@@ -581,20 +584,32 @@ public class Reserva {
         }
         return objectList;
     }
-    
+
     /**
      * Devolver reservas compatible con el filtro
+     *
      * @param espacio Espacio especificado
      * @param fecha Fecha especificada
      * @param taller Taller especificado
-     * @return 
+     * @return
      */
-    public static Object[][] devolverTodasReservasBBDD(String nif, Object espacio, String fecha, Object taller) {
-        String consulta = "SELECT * FROM RESERVA "
-                + "WHERE CLIENTENIF like \"" + nif + "\" "
-                + "OR espacio_reservado like \""+ espacio + "\" "
-                + "OR fecha like \"%"+ fecha + "%\" "
-                + "OR tallerid like \""+ taller + "\" ORDER BY ID";
+    public static Object[][] devolverTodasReservasBBDD(Object nif, Integer espacio, String fecha, Integer taller) {
+        System.out.println(taller);
+        System.out.println(espacio);
+        String consulta = "SELECT * SELECT `RESERVA`.*,CONCAT(`CLIENTE`.NOMBRE, ' ', `CLIENTE`.APELLIDOS) "
+                + "FROM RESERVA LEFT JOIN CLIENTE ON `RESERVA`.clientenif like `CLIENTE`.nif "
+                + "WHERE fecha like \"%" + fecha + "%\"";
+        if (nif != null) {
+            consulta = consulta + " AND CLIENTENIF like \"" + nif + "\"";
+        }
+        if ( espacio > 0) {
+            consulta = consulta + " AND espacio_reservado like \"" + espacio + "\"";
+        }
+        if ( taller > 0) {
+            consulta = consulta + " AND tallerid like \"" + taller + "\"";
+        }
+        consulta = consulta + " ORDER BY ID";
+        System.out.println(consulta);
         String[][] objectList = null;
         try {
             Utils.st = Utils.connection.createStatement();
@@ -620,7 +635,7 @@ public class Reserva {
             e.printStackTrace();
             System.out.println("Error mostrando todos los clientes");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
@@ -630,11 +645,11 @@ public class Reserva {
     }
 
     /**
-     * Descargar una reserva de forma local
-     * data[0] = ID, data[1] = Espacio reservado, data[2] = Fecha, 
-     * data[3] = Taller ID, data[4] = NIF Cliente,
+     * Descargar una reserva de forma local data[0] = ID, data[1] = Espacio
+     * reservado, data[2] = Fecha, data[3] = Taller ID, data[4] = NIF Cliente,
+     *
      * @param data
-     * @throws Exception 
+     * @throws Exception
      */
     public static void descargarReserva(String[] data) throws Exception {
         File txt = new File("reserva_" + data[4] + "_" + data[0] + ".txt");
