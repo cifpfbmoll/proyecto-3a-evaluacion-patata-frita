@@ -1,10 +1,4 @@
-/*
- * Esta clase es la misma que usamos en el proyecto, pero al incluir todos los datos
- * necesarios para archivos, base de datos y lectura de teclado me parece correcto
- * reutilizarla para el examen.
- * De todas formas la he editado ligeramente.
- */
-
+package patatafrita;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;

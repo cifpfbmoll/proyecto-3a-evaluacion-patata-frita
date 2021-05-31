@@ -1,12 +1,12 @@
+package patatafrita;
 import java.sql.SQLException;
 
 /**
  * CONCESIONARIOS
  * Esta clase  guarda la informacion sobre los diferentes concesionarios del proyecto.
  * @author Jose Luis Cardona
- * @version 1 - 29/03/2021
+ * @version 1 - 29/03/2021 (Fecha de inicio)
  */
-import java.sql.*;
 
 public class Concesionario {
 
@@ -101,8 +101,7 @@ public class Concesionario {
     }
 
     /**
-     * crear objeto concesionario
-     *
+     * Metodo para crear el objeto concesionario.
      * @return
      */
     public static Concesionario crearConcesionario() {
@@ -116,16 +115,14 @@ public class Concesionario {
             concesionario.setTelefono(Utils.kInt());
             System.out.println("Taller id: ");
             int tallerId = Utils.kInt();
-            // TODO concesionario.setTaller(buscarTallerBBDD(tallerId));
+            concesionario.setTaller(Taller.buscarTaller(tallerId));
         } catch (Exception e) {
-            System.out.println("Error al crear concesionario");
+            System.out.println("¡ERROR! No se ha creado el concesionario correctamente.");
         }
         return concesionario;
     }
-    
     /**
-     * insertamos datos del concesionario a BBDD a partir de un objeto
-     *
+     * Metodo para insertar los datos del concesionario a la BBDD a partir de un objeto.
      * @param concesionario
      */
     public static void insertarDatosConcesionarioBBDD(Concesionario concesionario) {
@@ -149,7 +146,7 @@ public class Concesionario {
     }
 
     /**
-     * Método para insertar los datos del concesionario actual a la base de datos
+     * Método para insertar los datos del concesionario actual a la base de datos.
      */
     public void insertarDatosConcesionarioBBDD() {
         String consulta = "INSERT INTO CONCESIONARIO (UBICACION, NOMBRE, TELEFONO ) VALUES (?,?,?)";
@@ -241,7 +238,7 @@ public class Concesionario {
     /**
      * Metodo para ver los datos de los concesionarios de la BBDD.
      */
-    public static void mostrarConcesionarios() {
+    public static void mostrarConcesionario() {
         String consulta = "SELECT * FROM CONCESIONARIO ORDER BY ID";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -415,7 +412,7 @@ public class Concesionario {
     }
     //Los dos metodos siguientes son redundantes, usados para tests, pueden ser borrados en un futuro
     /**
-     * Método para relacionar en la base de datos un concesionario con su taller
+     * Metodo para relacionar en la base de datos un concesionario con su taller.
      * @param id_concesionario
      * @param id_taller
      */
@@ -440,7 +437,7 @@ public class Concesionario {
     }
 
     /**
-     * Método para relacionar en la base de datos un concesionario con su venta
+     * Metodo para relacionar en la base de datos un concesionario con su venta.
      * @param id_concesionario
      * @param id_venta
      */
@@ -460,6 +457,38 @@ public class Concesionario {
                 Utils.cerrarVariables();
             }catch (Exception e){
                 System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+
+    /**
+     *  Devuelve todos los datos de concesionarios en la base de datos en un archivo txt.
+     */
+    public static void escribirConcesionariosArchivo(){
+        Utils.abrirArchivo("Concesionario.txt");
+        String consulta = "SELECT * FROM CONCESIONARIO";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                Utils.escribirLineaArchivo("Concesionario id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
+                Utils.escribirLineaArchivo("    Ubicacion: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Nombre: " + Utils.rs.getString(3));
+                Utils.escribirLineaArchivo("    Telefono: " + Integer.toString(Utils.rs.getInt(4)));
+                Utils.escribirLineaArchivo("    Taller id: " + Integer.toString(Utils.rs.getInt(5)));
+                Utils.escribirLineaArchivo("    Venta id: " + Integer.toString(Utils.rs.getInt(6))+ " }");
+                //Dejamos espacio para poder diferenciar facilmente entre concesionarios
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en el fichero.");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos.");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar las variables.");
             }
         }
     }

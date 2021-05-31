@@ -1,4 +1,6 @@
+package patatafrita;
 import java.sql.SQLException;
+
 
 /**
  * Clase Nomina
