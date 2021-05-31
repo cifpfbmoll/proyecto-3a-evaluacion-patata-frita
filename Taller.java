@@ -72,6 +72,8 @@ public class Taller {
                     numHorarios[pointer] = Integer.parseInt(lista3Horarios[i]);
                     pointer++;
                 }
+                this.horario=horario;
+                
             } catch (Exception ex) {
                 throw new IllegalArgumentException("Caracter/es inválido/s.");
             }
@@ -80,7 +82,7 @@ public class Taller {
 
     @Override
     public String toString() {
-        return "Taller{"
+        return "Taller { "
                 + "id=" + id
                 + ", espacios=" + espacios
                 + ", horario='" + horario + '\''
@@ -142,14 +144,14 @@ public class Taller {
             return null;
         } else {
             Taller taller = new Taller();
-
             try {
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setInt(1, id);
                 Utils.rs = Utils.prst.executeQuery();
                 Utils.rs.next();
-                taller.setId(id);
+
                 taller.setEspacios(Utils.rs.getInt(1));
+                System.out.println(Utils.rs.getString(2));
                 taller.setHorario(Utils.rs.getString(2));
                 taller.setId(id);
                 System.out.println("El taller ha sido encontrado y creado " + taller.toString());
