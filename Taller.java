@@ -1,4 +1,4 @@
-package patatafrita;
+
 import java.sql.SQLException;
 
 /**
@@ -152,7 +152,6 @@ public class Taller {
                 taller.setEspacios(Utils.rs.getInt(1));
                 System.out.println(Utils.rs.getString(2));
                 taller.setHorario(Utils.rs.getString(2));
-                taller.setId(id);
                 System.out.println("El taller ha sido encontrado y creado " + taller.toString());
 
             } catch (SQLException ex) {

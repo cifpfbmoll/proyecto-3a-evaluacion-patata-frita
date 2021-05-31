@@ -1,11 +1,5 @@
-package patatafrita;
+import java.sql.SQLException;
 
-/*
->>>>>>> develop
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Karina
@@ -64,7 +58,7 @@ public abstract class Persona {
      */
     @Override
     public String toString() {
-        return "{ Nombre: " + nombre + " | Apellidos: " + apellidos + " | NIF: " + nif + " | Telefono: " + telefono + " | Domicilio: " + domicilio + "}";
+        return "Nombre: " + nombre + " | Apellidos: " + apellidos + " | NIF: " + nif + " | Telefono: " + telefono + " | Domicilio: " + domicilio;
     }
 
     // GETTERS Y SETTERS
@@ -83,7 +77,6 @@ public abstract class Persona {
     public void setPassword(String pass) {
         this.password = pass;
     }
-
 
     public String getApellidos() {
         return apellidos;
@@ -104,10 +97,11 @@ public abstract class Persona {
                 nif.substring(8).toString();
                 this.nif = nif;
             } catch (Exception ex) {
-                throw new IllegalArgumentException("Esto no es un NIF válido.");
+                throw new IllegalArgumentException("Esto no es un NIF válido. Ha de contener 8 numeros y una letra al final.");
             }
         } else {
-            throw new IllegalArgumentException("Esto no es un NIF válido.");
+            PopUp.createSimple("error", "Esto no es un NIF válido, ha de contener 9 carácteres.");
+            throw new IllegalArgumentException("Esto no es un NIF válido. Ha de contener 9 carácteres.");
         }
     }
 
@@ -127,5 +121,64 @@ public abstract class Persona {
         this.domicilio = domicilio;
     }
 
+    public static Persona verificarPersona(String nif, String pass) {
+        String consulta_empleado = "SELECT * FROM EMPLEADO WHERE nif LIKE ? AND password LIKE ?";
+        String consulta_cliente = "SELECT * FROM CLIENTE WHERE nif LIKE ? AND password LIKE ?";
+        Persona usuario;
+        try {
+            usuario = new Empleado();
+            Utils.prst = Utils.connection.prepareStatement(consulta_empleado);
+            Utils.prst.setString(1, nif);
+            Utils.prst.setString(2, pass);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            usuario.setNif(nif);
+            usuario.setNombre(Utils.rs.getString(2));
+            usuario.setApellidos(Utils.rs.getString(3));
+            usuario.setTelefono(Utils.rs.getInt(4));
+            usuario.setDomicilio(Utils.rs.getString(5));
+            int tallerId = Utils.rs.getInt(7);
+            int ventaId = Utils.rs.getInt(8);
+            if (usuario instanceof Empleado) {
+                ((Empleado) usuario).setPuestoTrabajo(Utils.rs.getString(6));
+                ((Empleado) usuario).setTaller(Taller.buscarTaller(tallerId));
+                ((Empleado) usuario).setVenta(Venta.buscarVenta(ventaId));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error al buscar empleado / Empleado no encontrado");
+            usuario = null;
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        if (usuario == null) {
+            try {
+                usuario = new Cliente();
+                Utils.prst = Utils.connection.prepareStatement(consulta_cliente);
+                Utils.prst.setString(1, nif);
+                Utils.prst.setString(2, pass);
+                Utils.rs = Utils.prst.executeQuery();
+                Utils.rs.next();
+                usuario.setNif(Utils.rs.getString(1));
+                usuario.setNombre(Utils.rs.getString(2));
+                usuario.setApellidos(Utils.rs.getString(3));
+                usuario.setTelefono(Utils.rs.getInt(4));
+                usuario.setDomicilio(Utils.rs.getString(5));
+            } catch (SQLException e) {
+                System.out.println("Error al buscar cliente / Cliente no encontrado");
+                usuario = null;
+            } finally {
+                try {
+                    Utils.cerrarVariables();
+                } catch (Exception e) {
+                    System.out.println("Error al cerrar variables");
+                }
+            }
+        }
+        return usuario;
+    }
 }
-

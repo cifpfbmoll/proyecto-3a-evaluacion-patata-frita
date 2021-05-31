@@ -1,16 +1,14 @@
-package patatafrita;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
- * Clase motor donde se guardan los datos de los distintos motores
- * Contiene el conuunto de variables necesarias y un enum.
+ * Clase motor donde se guardan los datos de los distintos motores Contiene el
+ * conuunto de variables necesarias y un enum.
+ *
  * @author Joan
  */
 public class Motor {
 
-    public enum tipoMotor{
+    public enum tipoMotor {
         Gasolina95,
         Gasolina98,
         Diesel,
@@ -26,12 +24,13 @@ public class Motor {
     /**
      * Constructor vacío
      */
-    public Motor(){
+    public Motor() {
 
     }
 
     /**
      * Constructor borcon todos los datos por parámetro
+     *
      * @param potencia
      * @param par
      * @param cilindrada
@@ -47,6 +46,7 @@ public class Motor {
 
     /**
      * Constructor copia
+     *
      * @param motor
      */
     public Motor(Motor motor) {
@@ -65,18 +65,22 @@ public class Motor {
         this.tipo = tipo;
     }
 
-    private void setId(int id) { this.id = id; }
+    private void setId(int id) {
+        this.id = id;
+    }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
     public float getPotencia() {
         return potencia;
     }
 
-    public void setPotencia(float potencia) throws IllegalArgumentException{
-        if(potencia<0){
+    public void setPotencia(float potencia) throws IllegalArgumentException {
+        if (potencia < 0) {
             throw new IllegalArgumentException("Un motor no puede tener potencia negativa");
-        }else {
+        } else {
             this.potencia = potencia;
         }
     }
@@ -86,9 +90,9 @@ public class Motor {
     }
 
     public void setPar(float par) throws IllegalArgumentException {
-        if(par<0){
+        if (par < 0) {
             throw new IllegalArgumentException("El par no puede ser negativo");
-        }else {
+        } else {
             this.par = par;
         }
     }
@@ -97,10 +101,10 @@ public class Motor {
         return cilindrada;
     }
 
-    public void setCilindrada(float cilindrada) throws IllegalArgumentException{
-        if(cilindrada<0){
+    public void setCilindrada(float cilindrada) throws IllegalArgumentException {
+        if (cilindrada < 0) {
             throw new IllegalArgumentException("El par no puede ser negativo");
-        }else {
+        } else {
             this.cilindrada = cilindrada;
         }
     }
@@ -109,26 +113,27 @@ public class Motor {
         return num_motores;
     }
 
-    public void setNum_motores(int num_motores) throws IllegalArgumentException{
-        if(num_motores<1 || num_motores>8){
+    public void setNum_motores(int num_motores) throws IllegalArgumentException {
+        if (num_motores < 1 || num_motores > 8) {
             throw new IllegalArgumentException("Debe haber entre 1 y 8 motores");
-        }else {
+        } else {
             this.num_motores = num_motores;
         }
     }
 
     @Override
     public String toString() {
-        return "Motor{" +
-                "potencia=" + potencia +
-                ", par=" + par +
-                ", cilindrada=" + cilindrada +
-                ", num_motores=" + num_motores +
-                '}';
+        return "Motor{"
+                + "potencia=" + potencia
+                + ", par=" + par
+                + ", cilindrada=" + cilindrada
+                + ", num_motores=" + num_motores
+                + '}';
     }
 
     /**
      * crear objeto vehiculo
+     *
      * @return Vehiculo
      */
     public static Motor crearMotor() {
@@ -136,10 +141,10 @@ public class Motor {
         try {
             motor.setTipo(tipoMotor.valueOf(Utils.kString("Que tipo de motor es? (Gas95, Gas98, Diesel o Electrico)")));
             //si el vehiculo es electrico comprobar la cantidad de los mismos
-            if (motor.getTipo().toString().equals("Electrico")){
+            if (motor.getTipo().toString().equals("Electrico")) {
                 motor.setNum_motores(Utils.kInt("Cantidad de motores"));
-            //sino solo habra un motor
-            }else{
+                //sino solo habra un motor
+            } else {
                 motor.setNum_motores(1);
             }
             motor.setCilindrada(Utils.kInt("Cilindrada"));
@@ -170,16 +175,18 @@ public class Motor {
             e.printStackTrace();
             System.out.println("Error al insertar datos a la BBDD");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
     }
 
     /**
-     * buscamos un motor segun id, si no lo ecuentra devuelve null, si lo encuentra devuelve una clase motor con todos los datos
+     * buscamos un motor segun id, si no lo ecuentra devuelve null, si lo
+     * encuentra devuelve una clase motor con todos los datos
+     *
      * @param id
      * @return Null of error, else motor
      */
@@ -201,9 +208,9 @@ public class Motor {
             System.out.println("Error al buscar vehiculo");
             motor = null;
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -211,7 +218,9 @@ public class Motor {
     }
 
     /**
-     * Se modifica el concesionario actual en la base de datos con los datos actuales de la clase
+     * Se modifica el concesionario actual en la base de datos con los datos
+     * actuales de la clase
+     *
      * @return Devuelve 0 si correcto, -1 si error
      */
     public int modificarMotorBBDD() {
@@ -230,9 +239,9 @@ public class Motor {
             System.out.println("Error actualizar datos");
             ret = -1;
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -240,7 +249,8 @@ public class Motor {
     }
 
     /**
-     * Se borra el motor actual de la base de datos, puede dar errores si se borra mientras un vehiculo apunta a el
+     * Se borra el motor actual de la base de datos, puede dar errores si se
+     * borra mientras un vehiculo apunta a el
      */
     public void borrarMotorBBDD() {
         String consulta = " DELETE FROM MOTOR WHERE ID=?";
@@ -253,9 +263,9 @@ public class Motor {
         } catch (SQLException e) {
             System.out.println("Error borrar datos, asegurese de que ningun vehiculo use este motor");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -271,81 +281,44 @@ public class Motor {
             Utils.rs = Utils.prst.executeQuery();
 
             while (Utils.rs.next()) {
-                System.out.println("ID: " + Utils.rs.getInt(1) + "," +
-                        "TIPO: " + Utils.rs.getString(2) + "," +
-                        "POTENCIA: " + Utils.rs.getInt(3) + "," +
-                        "CILINDRADA: " + Utils.rs.getInt(4) + "," +
-                        "NUM_MOTORES: " + Utils.rs.getInt(5));
+                System.out.println("ID: " + Utils.rs.getInt(1) + ","
+                        + "TIPO: " + Utils.rs.getString(2) + ","
+                        + "POTENCIA: " + Utils.rs.getInt(3) + ","
+                        + "CILINDRADA: " + Utils.rs.getInt(4) + ","
+                        + "NUM_MOTORES: " + Utils.rs.getInt(5));
             }
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los motores");
         } finally {
-            try{
-                Utils.cerrarVariables();
-            }catch (Exception e){
-                System.out.println("Error al cerrar variables");
-            }
-        }
-    }
-
-    /**
-     * Devuelve todos los motores en forma de matriz 2D de Strings para
-     * la interfaz grafica
-     * @return
-     */
-    public static Object[][] devolverTodosMotoresBBDD() {
-        String consulta = "SELECT * FROM Motor ORDER BY id";
-        String[][] objectList = null;
-        try {
-            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Motor"); // MODIFICAR TABLA EN LAS OTRAS CLASES
-            Utils.rs = Utils.prst.executeQuery();
-            Utils.rs.next();
-            objectList = new String[Utils.rs.getInt(1)][];
-            int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
-            while (Utils.rs.next()) {
-                String[] list = new String[5]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
-                list[0] = Integer.toString(Utils.rs.getInt(1));
-                list[1] = (Utils.rs.getString(2));
-                list[2] = Integer.toString(Utils.rs.getInt(3));
-                list[3] = Integer.toString(Utils.rs.getInt(4));
-                list[4] = Integer.toString(Utils.rs.getInt(5));
-                objectList[i] = list;
-                i++;
-            }
-        } catch (SQLException e) {
-            System.out.println("Error mostrando todos los clientes");
-        } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
-        return objectList;
     }
 
     /**
      * Comprueba si el vehiculo actual ya existe en la base de datos
      */
-    public boolean existsInDB(){
+    public boolean existsInDB() {
         boolean ret = false;
         String consulta = "SELECT * FROM MOTOR WHERE ID=?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setInt(1,this.getId());
-            if (Utils.rs != null){
+            Utils.prst.setInt(1, this.getId());
+            if (Utils.rs != null) {
                 ret = true;
-            }else{
+            } else {
                 ret = false;
             }
         } catch (SQLException e) {
             System.out.println("No se pudo encontrar el motor");
             ret = false;
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -355,28 +328,66 @@ public class Motor {
     /**
      * Comprueba si el motor con ese id existe en la base de datos
      */
-    public static boolean existsInDB(int id){
+    public static boolean existsInDB(int id) {
         boolean ret = false;
         String consulta = "SELECT * FROM MOTOR WHERE ID=?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setInt(1,id);
-            if (Utils.rs != null){
+            Utils.prst.setInt(1, id);
+            if (Utils.rs != null) {
                 ret = true;
-            }else{
+            } else {
                 ret = false;
             }
         } catch (SQLException e) {
             System.out.println("No se pudo encontrar el motor");
             ret = false;
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
         return ret;
+    }
+
+    /**
+     * Devolver informacion de todos los motores para la interfaz gráfica
+     * @return 
+     */
+    public static Object[][] devolverTodosMotoresBBDD() {
+        String consulta = "SELECT * FROM MOTOR ORDER BY id";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM VEHICULO"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                Integer COLUMNAS = 5; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                String[] list = new String[COLUMNAS]; 
+                int x = 0;
+                while (x < COLUMNAS) {
+                    list[x] = (Utils.rs.getString(x + 1));
+                    x++;
+                }
+                objectList[i] = list;
+                i++;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error devolviendo todos los motores");
+            e.getSQLState();
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
     }
 
     /**
