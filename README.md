@@ -10,7 +10,7 @@ Para cumplirlos hemos realizado la división del programa como se puede ver en e
 
 ### Explicación de las clases
 
-[AppMain](../AppMain.java): Nuestra clase main que contiene un menú para usar el resto de clases y ver los datos. Desarrollada por todos los miembros, especialmente Marat.
+[AppMain](AppMain.java): Nuestra clase main que contiene un menú para usar el resto de clases y ver los datos. Desarrollada por todos los miembros, especialmente Marat.
 [Cliente](../Cliente.java): Extiende de la interfaz persona, contiene los datos de un cliente asi como métodos de acceso a base de datos y exportación a un fichero. Desarrollada principalmente por Karina.
 [Concesionario](../Concesionario.java): Clase que contiene los datos del concesionario así como la relación con taller y venta, también contiene métodos de acceso a la base de datos y exportación a un fichero. Desarrollada por José Luís y Marat.
 [Empleado](../Empleado.java): Extiende de la interfaz persona, contiene los datos de cada empleado, incluyendo su puesto de trabajo, contiene métodos de acceso a la base de datos y exportación a un fichero. Desarrollada principalmente por Karina.
