@@ -482,7 +482,7 @@ public class Nomina {
      *  Devuelve todos los datos de nomina en la base de datos en un archivo txt
      */
     public static void escribirNominaArchivo(){
-        Utils.abrirArchivo("/home/administrador/Documentos/Nomina.txt");
+        Utils.abrirArchivo("Nomina.txt");
         String consulta = "SELECT * FROM NOMINA";
         try{
             Utils.prst = Utils.connection.prepareStatement(consulta);

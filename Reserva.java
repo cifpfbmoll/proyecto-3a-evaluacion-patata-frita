@@ -487,7 +487,7 @@ public class Reserva {
      *  Devuelve todos los datos de reserva en la base de datos en un archivo txt
      */
     public static void escribirReservasArchivo(){
-        Utils.abrirArchivo("/home/administrador/Documentos/Reserva.txt");
+        Utils.abrirArchivo("Reserva.txt");
         String consulta = "SELECT * FROM RESERVA";
         try{
             Utils.prst = Utils.connection.prepareStatement(consulta);

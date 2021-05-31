@@ -612,7 +612,7 @@ public class Factura {
      *  Devuelve todos los datos de factura en la base de datos en un archivo txt
      */
     public static void escribirFacturasArchivo(){
-        Utils.abrirArchivo("/home/administrador/Documentos/Factura1.txt");
+        Utils.abrirArchivo("Factura.txt");
         String consulta = "SELECT * FROM FACTURA";
         try{
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -626,15 +626,7 @@ public class Factura {
                 Utils.escribirLineaArchivo("    Reserva: " + Utils.rs.getString(5));
                 Utils.escribirLineaArchivo("    Venta: " + Utils.rs.getString(6));
                 Utils.escribirLineaArchivo("    Vehiculo: " + Utils.rs.getString(7)+" } " );                
-                
-//                Utils.escribirLineaArchivo("Factura id: " + Utils.rs.getString(1) + " {");
-//                Utils.escribirLineaArchivo("    Trabajo: " + Utils.rs.getString(2));
-//                Utils.escribirLineaArchivo("    Coste: " + Utils.rs.getString(3));
-//                Utils.escribirLineaArchivo("    Fecha:" + Integer.toString(Utils.rs.getInt(4)));
-//                Utils.escribirLineaArchivo("    Reserva: " + Integer.toString(Utils.rs.getInt(5)));
-//                Utils.escribirLineaArchivo("    Venta: " + Integer.toString(Utils.rs.getInt(6)));
-//                Utils.escribirLineaArchivo("    Vehiculo: " + Integer.toString(Utils.rs.getInt(7))+" } ");
- 
+
                 //Dejamos espacio para poder diferenciar facilmente entre vehiculos
                 Utils.escribirLineaArchivo(" ");
             }
