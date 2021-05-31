@@ -596,7 +596,7 @@ public class Reserva {
     public static Object[][] devolverTodasReservasBBDD(Object nif, Integer espacio, String fecha, Integer taller) {
         System.out.println(taller);
         System.out.println(espacio);
-        String consulta = "SELECT * SELECT `RESERVA`.*,CONCAT(`CLIENTE`.NOMBRE, ' ', `CLIENTE`.APELLIDOS) "
+        String consulta = "SELECT `RESERVA`.*,CONCAT(`CLIENTE`.NOMBRE, ' ', `CLIENTE`.APELLIDOS) "
                 + "FROM RESERVA LEFT JOIN CLIENTE ON `RESERVA`.clientenif like `CLIENTE`.nif "
                 + "WHERE fecha like \"%" + fecha + "%\"";
         if (nif != null) {
@@ -619,7 +619,7 @@ public class Reserva {
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
-                Integer COLUMNAS = 5;
+                Integer COLUMNAS = 6;
                 String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
                 int x = 0;
                 while (x < COLUMNAS) {

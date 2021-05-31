@@ -4019,14 +4019,14 @@ public class Dashboard extends javax.swing.JFrame {
         Reservas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
                 rowList,
                 new String[]{
-                    "ID", "Espacio Reservado", "Fecha", "TallerID", "NIF Cliente"
+                    "ID", "Espacio", "Fecha", "Taller", "NIF Cliente", "Nombre Cliente"
                 }
         ) {
             Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
