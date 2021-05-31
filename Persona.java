@@ -1,4 +1,7 @@
-package patatafrita;/*
+package patatafrita;
+
+/*
+>>>>>>> develop
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -11,6 +14,7 @@ public abstract class Persona {
 
     private String nombre;
     private String apellidos;
+    private String password;
     private String nif;
     private Integer telefono;
     private String domicilio;
@@ -30,9 +34,10 @@ public abstract class Persona {
      * @param telefono Telefono de la persona
      * @param domicilio Domicilio de la persona
      */
-    public Persona(String nombre, String apellidos, String nif, Integer telefono, String domicilio) {
+    public Persona(String nombre, String apellidos, String nif, Integer telefono, String domicilio, String password) {
         this.nombre = nombre;
         this.apellidos = apellidos;
+        this.password = password;
         this.setNif(nif);
         this.telefono = telefono;
         this.domicilio = domicilio;
@@ -47,6 +52,7 @@ public abstract class Persona {
         this.setNombre(copia.getNombre());
         this.setApellidos(copia.getApellidos());
         this.setNif(copia.getNif());
+        this.setPassword(copia.getPassword());
         this.setTelefono(copia.getTelefono());
         this.setDomicilio(copia.getDomicilio());
     }
@@ -70,6 +76,15 @@ public abstract class Persona {
         this.nombre = nombre;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String pass) {
+        this.password = pass;
+    }
+
+
     public String getApellidos() {
         return apellidos;
     }
@@ -83,7 +98,7 @@ public abstract class Persona {
     }
 
     public void setNif(String nif) throws IllegalArgumentException {
-        if (nif.length() != 9) {
+        if (nif.length() == 9) {
             try {
                 Integer.parseInt(nif.substring(0, 7));
                 nif.substring(8).toString();
@@ -111,4 +126,6 @@ public abstract class Persona {
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
+
 }
+

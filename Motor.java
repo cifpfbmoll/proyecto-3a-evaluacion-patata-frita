@@ -2,8 +2,11 @@ package patatafrita;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> develop
 
 /**
  * Clase motor donde se guardan los datos de los distintos motores
@@ -33,7 +36,7 @@ public class Motor {
     }
 
     /**
-     * Constructor con todos los datos por parámetro
+     * Constructor borcon todos los datos por parámetro
      * @param potencia
      * @param par
      * @param cilindrada
@@ -159,19 +162,24 @@ public class Motor {
      */
     public void insertarDatosMotorBBDD() {
         //INSERT de todos los datos excepto ventaid y clientenif, ya que se supone que el vehiculo aun no se ha vendido, para ello habra otro metodo
-        String consulta = "INSERT INTO MOTOR (ID, TIPO, POTENCIA, CILINDRADA, NUM_MOTORES ) VALUES (?,?,?,?,?)";
+        String consulta = "INSERT INTO MOTOR (TIPO, POTENCIA, CILINDRADA, NUM_MOTORES ) VALUES (?,?,?,?)";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setInt(1, this.getId());
-            Utils.prst.setString(2, this.getTipo().toString());
-            Utils.prst.setFloat(3, this.getPotencia());
-            Utils.prst.setFloat(4, this.getCilindrada());
-            Utils.prst.setInt(5, this.getNum_motores());
+            Utils.prst.setString(1, this.getTipo().toString());
+            Utils.prst.setFloat(2, this.getPotencia());
+            Utils.prst.setFloat(3, this.getCilindrada());
+            Utils.prst.setInt(4, this.getNum_motores());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctomnte!");
         } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("Error al insertar datos a la BBDD");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
@@ -185,7 +193,6 @@ public class Motor {
         String consulta = "SELECT * FROM MOTOR WHERE id LIKE ?";
         Motor motor = new Motor();
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id);
             Utils.rs = Utils.prst.executeQuery();
@@ -198,6 +205,12 @@ public class Motor {
         } catch (SQLException e) {
             System.out.println("Error al buscar vehiculo");
             motor = null;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return motor;
     }
@@ -210,7 +223,6 @@ public class Motor {
         int ret = 0;
         String consulta = "UPDATE MOTOR SET TIPO=?, POTENCIA=?, CILINDRADA=?, NUM_MOTORES=? WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getTipo().toString());
             Utils.prst.setFloat(2, this.getPotencia());
@@ -222,6 +234,12 @@ public class Motor {
         } catch (SQLException e) {
             System.out.println("Error actualizar datos");
             ret = -1;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
@@ -232,7 +250,6 @@ public class Motor {
     public void borrarMotorBBDD() {
         String consulta = " DELETE FROM MOTOR WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, this.getId());
             Utils.prst.executeUpdate();
@@ -240,18 +257,23 @@ public class Motor {
 
         } catch (SQLException e) {
             System.out.println("Error borrar datos, asegurese de que ningun vehiculo use este motor");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
     }
 
     /**
      * Se muestran todos los motores en la base de datos
      */
-    public static void mostrarTodosConcesionariosBBDD() {
+    public static void mostrarTodosMotoresBBDD() {
         String consulta = "SELECT * FROM MOTOR ORDER BY ID";
         try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
 
             while (Utils.rs.next()) {
                 System.out.println("ID: " + Utils.rs.getInt(1) + "," +
@@ -262,7 +284,50 @@ public class Motor {
             }
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los motores");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
+    }
+
+    /**
+     * Devuelve todos los motores en forma de matriz 2D de Strings para
+     * la interfaz grafica
+     * @return
+     */
+    public static Object[][] devolverTodosMotoresBBDD() {
+        String consulta = "SELECT * FROM Motor ORDER BY id";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Motor"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.st.executeQuery(consulta);
+            while (Utils.rs.next()) {
+                String[] list = new String[5]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                list[0] = Integer.toString(Utils.rs.getInt(1));
+                list[1] = (Utils.rs.getString(2));
+                list[2] = Integer.toString(Utils.rs.getInt(3));
+                list[3] = Integer.toString(Utils.rs.getInt(4));
+                list[4] = Integer.toString(Utils.rs.getInt(5));
+                objectList[i] = list;
+                i++;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
     }
 
     /**
@@ -272,7 +337,6 @@ public class Motor {
         boolean ret = false;
         String consulta = "SELECT * FROM MOTOR WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1,this.getId());
             if (Utils.rs != null){
@@ -283,6 +347,12 @@ public class Motor {
         } catch (SQLException e) {
             System.out.println("No se pudo encontrar el motor");
             ret = false;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
     }
@@ -294,7 +364,6 @@ public class Motor {
         boolean ret = false;
         String consulta = "SELECT * FROM MOTOR WHERE ID=?";
         try {
-            Utils.connection = Utils.conectarBBDD();
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1,id);
             if (Utils.rs != null){
@@ -305,7 +374,44 @@ public class Motor {
         } catch (SQLException e) {
             System.out.println("No se pudo encontrar el motor");
             ret = false;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
         }
         return ret;
+    }
+
+    /**
+     *  Devuelve todos los datos de motores en la base de datos en un archivo txt
+     */
+    public static void escribirMotoresArchivo(){
+        Utils.abrirArchivo("Motor.txt");
+        String consulta = "SELECT * FROM MOTOR";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                Utils.escribirLineaArchivo("Motor id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
+                Utils.escribirLineaArchivo("    Tipo: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Potencia: " + Float.toString(Utils.rs.getFloat(3)));
+                Utils.escribirLineaArchivo("    Cilindrada:" + Float.toString(Utils.rs.getFloat(4)));
+                Utils.escribirLineaArchivo("    Numero de motores: " + Integer.toString(Utils.rs.getInt(5)) + " }");
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en fichero");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
     }
 }
