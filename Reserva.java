@@ -570,95 +570,65 @@ public class Reserva {
     }
 
     /**
-     * Devolver todas las reservas compatibles con el filtro
-     *
-     * @param nif Nif del cliente
-     * @param espacio Espacio especificado
-     * @param fecha Fecha especificada
-     * @param taller Taller especificado
-     * @return
-     */
-    public static Object[][] devolverReservasBBDD(String nif, Object espacio, String fecha, Object taller) {
-        String consulta = "SELECT * FROM RESERVA "
-                + "WHERE CLIENTENIF like \"" + nif + "\" "
-                + "AND (espacio_reservado like \"" + espacio + "\" "
-                + "OR fecha like \"%" + fecha + "%\" "
-                + "OR tallerid like \"" + taller + "\") ORDER BY ID";
-        String[][] objectList = null;
-        try {
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
-            Utils.rs.next();
-            objectList = new String[Utils.rs.getInt(1)][];
-            int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
-            while (Utils.rs.next()) {
-                Integer COLUMNAS = 5;
-                String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
-                int x = 0;
-                while (x < COLUMNAS) {
-                    list[x] = (Utils.rs.getString(x + 1));
-                    x++;
-                }
-                objectList[i] = list;
-                i++;
-            }
-            return objectList;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error mostrando todos los clientes");
-        } finally {
-            try {
-                Utils.cerrarVariables();
-            } catch (Exception e) {
-                System.out.println("Error al cerrar variables");
-            }
-        }
-        return objectList;
-    }
-
-    /**
      * Devolver reservas compatible con el filtro
      *
+     * @param nif Nif especificado
      * @param espacio Espacio especificado
      * @param fecha Fecha especificada
      * @param taller Taller especificado
      * @return
      */
     public static Object[][] devolverTodasReservasBBDD(Object nif, Integer espacio, String fecha, Integer taller) {
+        //Solo usados para testeo
         System.out.println(taller);
         System.out.println(espacio);
-        String consulta = "SELECT * SELECT `RESERVA`.*,CONCAT(`CLIENTE`.NOMBRE, ' ', `CLIENTE`.APELLIDOS) "
-                + "FROM RESERVA LEFT JOIN CLIENTE ON `RESERVA`.clientenif like `CLIENTE`.nif "
-                + "WHERE fecha like \"%" + fecha + "%\"";
-        if (nif != null) {
-            consulta = consulta + " AND CLIENTENIF like \"" + nif + "\"";
+        boolean where = false;
+        //SQL devuelve Reserva + Nombre cliente + apellidos cliente + tablas relacionadas
+        String consulta = "SELECT reserva.*,t.*,c.nombre,c.apellidos\n" +
+                "FROM test.reserva INNER JOIN cliente c on reserva.clientenif = c.nif\n" +
+                "INNER JOIN taller t on reserva.tallerid = t.id";
+        if (nif != null && !where) {
+            consulta += " WHERE CLIENTENIF like \"" + nif + "\"";
+            where = true;
+        }else if(nif != null){
+            consulta += " AND CLIENTENIF like \"" + nif + "\"";
         }
-        if ( espacio > 0) {
-            consulta = consulta + " AND espacio_reservado like \"" + espacio + "\"";
+        if ( espacio > 0 && !where) {
+            consulta += " WHERE espacio_reservado = \"" + espacio + "\"";
+            where = true;
+        }else if(espacio > 0){
+            consulta += " AND espacio_reservado = \"" + espacio + "\"";
         }
-        if ( taller > 0) {
-            consulta = consulta + " AND tallerid like \"" + taller + "\"";
+        if (taller > 0 && !where){
+            consulta += " WHERE tallerid = \"" + taller + "\"";
+            where = true;
+        }else if ( taller > 0) {
+            consulta += " AND tallerid = \"" + taller + "\"";
         }
-        consulta = consulta + " ORDER BY ID";
+        consulta += " ORDER BY ID";
+        //Borrar prints, solo para testeo
         System.out.println(consulta);
         String[][] objectList = null;
         try {
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
-                Integer COLUMNAS = 5;
-                String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
-                int x = 0;
-                while (x < COLUMNAS) {
-                    list[x] = (Utils.rs.getString(x + 1));
-                    x++;
-                }
+                //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
+                //Contar únicamente que columnas son importantes!
+                Integer COLUMNAS = 7;
+                //ReservaID, Espacio_res, fecha, clientenif, espacios, horario, nombre,apellidos
+                String[] list = new String[COLUMNAS];
+                list[0] = Utils.rs.getString(1); //ID reserva
+                list[1] = Utils.rs.getString(2); //espacio reservado
+                list[2] = Utils.rs.getString(3); //fecha
+                list[3] = Utils.rs.getString(5); //nif
+                list[4] = Utils.rs.getString(7); //Espacios
+                list[5] = Utils.rs.getString(8); //Horarios
+                list[6] = Utils.rs.getString(9) + Utils.rs.getString(10); //Nombre + apellidos
                 objectList[i] = list;
                 i++;
             }
@@ -675,43 +645,5 @@ public class Reserva {
             }
         }
         return objectList;
-    }
-
-    /**
-     * Descargar una reserva de forma local data[0] = ID, data[1] = Espacio
-     * reservado, data[2] = Fecha, data[3] = Taller ID, data[4] = NIF Cliente,
-     *
-     * @param data
-     * @throws Exception
-     */
-    public static void descargarReserva(String[] data) throws Exception {
-        File txt = new File("reserva_" + data[4] + "_" + data[0] + ".txt");
-        BufferedWriter escritor = new BufferedWriter(new FileWriter(txt));
-
-        String separador = "##################################################";
-
-        escritor.newLine();
-        escritor.write(separador);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write("         NIF: " + data[4]);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write(separador);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write("       ID de reserva: " + data[0]);
-        escritor.newLine();
-        escritor.write("               Fecha: " + data[2]);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write("   Espacio reservado: " + data[1]);
-        escritor.newLine();
-        escritor.write("           Taller ID: " + data[3]);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write(separador);
-        escritor.newLine();
-        escritor.close();
     }
 }
