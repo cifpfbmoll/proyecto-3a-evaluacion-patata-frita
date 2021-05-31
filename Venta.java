@@ -280,5 +280,32 @@ public class Venta {
         }
         return encontrado;
     }
-    //TODO exportaciond e archivos.
+
+    /**
+     *  Devuelve todos los datos de ventas en la base de datos en un archivo txt.
+     */
+    public static void escribirVentasArchivo(){
+        Utils.abrirArchivo("Venta.txt");
+        String consulta = "SELECT * FROM VENTA";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                Utils.escribirLineaArchivo("Taller id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
+                Utils.escribirLineaArchivo("    Horario: " + Utils.rs.getInt(2) + " }");
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en el fichero.");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos.");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar las variables.");
+            }
+        }
+    }
 }

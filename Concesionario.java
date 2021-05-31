@@ -473,7 +473,7 @@ public class Concesionario {
             while(Utils.rs.next()){
                 Utils.escribirLineaArchivo("Concesionario id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
                 Utils.escribirLineaArchivo("    Ubicacion: " + Utils.rs.getString(2));
-                Utils.escribirLineaArchivo("    Nombre: " + (Utils.rs.getString(3)));
+                Utils.escribirLineaArchivo("    Nombre: " + Utils.rs.getString(3));
                 Utils.escribirLineaArchivo("    Telefono: " + Integer.toString(Utils.rs.getInt(4)) + " }");
                 //Dejamos espacio para poder diferenciar facilmente entre vehiculos
                 Utils.escribirLineaArchivo(" ");

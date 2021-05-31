@@ -12,7 +12,6 @@ public class Taller {
 
 
     private int id = -1;
-
     private int espacios;
     private String horario;
 
@@ -313,17 +312,16 @@ public class Taller {
     /**
      *  Devuelve todos los datos de talleres en la base de datos en un archivo txt.
      */
-    public static void escribirConcesionariosArchivo(){
+    public static void escribirTalleresArchivo(){
         Utils.abrirArchivo("Taller.txt");
         String consulta = "SELECT * FROM TALLER";
         try{
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.rs = Utils.prst.executeQuery();
             while(Utils.rs.next()){
-                Utils.escribirLineaArchivo("Concesionario id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
-                Utils.escribirLineaArchivo("    Ubicacion: " + Utils.rs.getString(2));
-                Utils.escribirLineaArchivo("    Nombre: " + (Utils.rs.getString(3)));
-                Utils.escribirLineaArchivo("    Telefono: " + Integer.toString(Utils.rs.getInt(4)) + " }");
+                Utils.escribirLineaArchivo("Taller id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
+                Utils.escribirLineaArchivo("    Espacios: " + Integer.toString(Utils.rs.getInt(2)));
+                Utils.escribirLineaArchivo("    Horario: " + Utils.rs.getInt(3) + " }");
                 //Dejamos espacio para poder diferenciar facilmente entre vehiculos
                 Utils.escribirLineaArchivo(" ");
             }
