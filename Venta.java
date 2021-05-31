@@ -5,7 +5,7 @@ import java.sql.SQLException;
  * VENTAS
  * Esta clase contiene las ventas de cada uno de los concesionarios.
  * @author Jose Luis Cardona
- * @version 1 - 29/03/2021
+ * @version 1 - 29/03/2021 (Fecha de inicio)
  */
 public class Venta {
     private int id;

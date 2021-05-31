@@ -6,7 +6,7 @@ import java.sql.SQLException;
  * CONCESIONARIOS
  * Esta clase  guarda la informacion sobre los diferentes concesionarios del proyecto.
  * @author Jose Luis Cardona
- * @version 1 - 29/03/2021
+ * @version 1 - 29/03/2021 (Fecha de inicio)
  */
 import java.sql.*;
 
@@ -103,8 +103,7 @@ public class Concesionario {
     }
 
     /**
-     * crear objeto concesionario
-     *
+     * Metodo para crear el objeto concesionario.
      * @return
      */
     public static Concesionario crearConcesionario() {
@@ -118,16 +117,14 @@ public class Concesionario {
             concesionario.setTelefono(Utils.kInt());
             System.out.println("Taller id: ");
             int tallerId = Utils.kInt();
-            // TODO concesionario.setTaller(buscarTallerBBDD(tallerId));
+            concesionario.setTaller(Taller.buscarTaller(tallerId));
         } catch (Exception e) {
-            System.out.println("Error al crear concesionario");
+            System.out.println("¡ERROR! No se ha creado el concesionario correctamente.");
         }
         return concesionario;
     }
-    
     /**
-     * insertamos datos del concesionario a BBDD a partir de un objeto
-     *
+     * Metodo para insertar los datos del concesionario a la BBDD a partir de un objeto.
      * @param concesionario
      */
     public static void insertarDatosConcesionarioBBDD(Concesionario concesionario) {
@@ -157,7 +154,7 @@ public class Concesionario {
     }
 
     /**
-     * Método para insertar los datos del concesionario actual a la base de datos
+     * Método para insertar los datos del concesionario actual a la base de datos.
      */
     public void insertarDatosConcesionarioBBDD() {
         String consulta = "INSERT INTO CONCESIONARIO (UBICACION, NOMBRE, TELEFONO ) VALUES (?,?,?)";
@@ -187,46 +184,7 @@ public class Concesionario {
 
 
     }
-    //TODO : Esto sobra ya que abajo estan los 2 exist de Concesionario
-    /**
-     * metodo de instancia para comprobar si concesionario esta en BBDD
-     *
-     * @return
-     */
-   /* public boolean existBD() {
-        String consulta = "SELECT * FROM CONCESIONARIO WHERE ID=?";
-        boolean existe = false;
-        try {
-            Utils.connection = Utils.conectarBBDD();
-            Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setInt(1, this.getId());
-            Utils.rs = Utils.prst.executeQuery();
-            if (Utils.rs.next()) {
-                existe = true;
-            }
 
-        } catch (SQLException e) {
-            System.out.println("Error consultar BBDD");
-            e.printStackTrace();
-        } finally {
-            try {
-                if (Utils.rs != null) {
-                    Utils.rs.close();
-                }
-                if (Utils.prst != null) {
-                    Utils.prst.close();
-                }
-                if (Utils.connection != null) {
-                    Utils.connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error cerrar connexion");
-                e.printStackTrace();
-            }
-        }
-
-        return existe;
-    }*/
     /**
      * Metodo para buscar concesionarios mediante la id.
      * @param id

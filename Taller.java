@@ -5,7 +5,7 @@ import java.sql.SQLException;
  * TALLERES
  * Esta clase almacena la informacion de los diversos talleres de cada concesionario
  * @author Jose Luis Cardona
- * @version 1 - 29/03/2021
+ * @version 1 - 29/03/2021 (Fecha de inicio)
  */
 public class Taller {
     private int id;
