@@ -280,5 +280,5 @@ public class Venta {
         }
         return encontrado;
     }
-    //No cerrar la conexion cuando se termine, la conexion se mantiene hasta que el usuario se va
+    //TODO exportaciond e archivos.
 }

@@ -7,7 +7,6 @@ import java.sql.SQLException;
  * @author Jose Luis Cardona
  * @version 1 - 29/03/2021 (Fecha de inicio)
  */
-import java.sql.*;
 
 public class Concesionario {
 
@@ -458,6 +457,36 @@ public class Concesionario {
                 Utils.cerrarVariables();
             }catch (Exception e){
                 System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+
+    /**
+     *  Devuelve todos los datos de concesionarios en la base de datos en un archivo txt.
+     */
+    public static void escribirConcesionariosArchivo(){
+        Utils.abrirArchivo("Concesionario.txt");
+        String consulta = "SELECT * FROM CONCESIONARIO";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                Utils.escribirLineaArchivo("Concesionario id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
+                Utils.escribirLineaArchivo("    Ubicacion: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Nombre: " + (Utils.rs.getString(3)));
+                Utils.escribirLineaArchivo("    Telefono: " + Integer.toString(Utils.rs.getInt(4)) + " }");
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en el fichero.");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos.");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar las variables.");
             }
         }
     }
