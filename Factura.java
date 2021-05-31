@@ -179,6 +179,7 @@ public class Factura {
             System.out.println("Id de la Reserva: ");
             int ReservaId = Utils.kInt();
             // buscamos reserva y la establecemos
+            
             factura.setReserva(Reserva.buscarReservaBBDD(ReservaId));
 
         } catch (IllegalArgumentException e) {

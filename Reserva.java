@@ -133,13 +133,13 @@ public class Reserva {
             System.out.println("Espacio reservado: ");
             reserva.setEspacioReservado(Utils.kInt());
 
-            // TODO setCliente 
             System.out.println("Nif Cliente: ");
+            // Cliente.mostrarTodosClienteBBDD();
             String nifCliente = Utils.kString();
             reserva.setCliente(Cliente.buscarClienteBBDD(nifCliente));
-
-            // TODO setTaller  
+            
             System.out.println("Id del Taller: ");
+            // Taller.mostrarTaller();
             int idTaller = Utils.kInt();
             reserva.setTaller(Taller.buscarTaller(idTaller));
 
@@ -425,12 +425,10 @@ public class Reserva {
                 reserva.setEspacioReservado(Utils.rs.getInt(1));
                 reserva.setFechaHoraReserva(Utils.rs.getString(2));
                 int idTaller = Utils.rs.getInt(3); // nos devuelve id del taller
-                reserva.setTaller(Taller.buscarTaller(idTaller)); //establecemos taller 
-                
-                // salta error : java.sql.SQLException: Operation not allowed after ResultSet closed
                 String nifCliente = Utils.rs.getString(4);// nos devuelve nifCliente
                 
                 reserva.setCliente(Cliente.buscarClienteBBDD(nifCliente)); // set cliente
+                reserva.setTaller(Taller.buscarTaller(idTaller)); //establecemos taller 
                 
                 System.out.println("Reserva encontrada y creada " + reserva.toString());
                 
