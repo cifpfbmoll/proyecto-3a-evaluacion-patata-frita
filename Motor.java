@@ -1,8 +1,4 @@
-package eu.fp.concesionario;
-
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Clase motor donde se guardan los datos de los distintos motores Contiene el
@@ -166,17 +162,17 @@ public class Motor {
      */
     public void insertarDatosMotorBBDD() {
         //INSERT de todos los datos excepto ventaid y clientenif, ya que se supone que el vehiculo aun no se ha vendido, para ello habra otro metodo
-        String consulta = "INSERT INTO MOTOR (ID, TIPO, POTENCIA, CILINDRADA, NUM_MOTORES ) VALUES (?,?,?,?,?)";
+        String consulta = "INSERT INTO MOTOR (TIPO, POTENCIA, CILINDRADA, NUM_MOTORES ) VALUES (?,?,?,?)";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setInt(1, this.getId());
-            Utils.prst.setString(2, this.getTipo().toString());
-            Utils.prst.setFloat(3, this.getPotencia());
-            Utils.prst.setFloat(4, this.getCilindrada());
-            Utils.prst.setInt(5, this.getNum_motores());
+            Utils.prst.setString(1, this.getTipo().toString());
+            Utils.prst.setFloat(2, this.getPotencia());
+            Utils.prst.setFloat(3, this.getCilindrada());
+            Utils.prst.setInt(4, this.getNum_motores());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctomnte!");
         } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("Error al insertar datos a la BBDD");
         } finally {
             try {
@@ -392,5 +388,36 @@ public class Motor {
             }
         }
         return objectList;
+    }
+
+    /**
+     *  Devuelve todos los datos de motores en la base de datos en un archivo txt
+     */
+    public static void escribirMotoresArchivo(){
+        Utils.abrirArchivo("Motor.txt");
+        String consulta = "SELECT * FROM MOTOR";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                Utils.escribirLineaArchivo("Motor id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
+                Utils.escribirLineaArchivo("    Tipo: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Potencia: " + Float.toString(Utils.rs.getFloat(3)));
+                Utils.escribirLineaArchivo("    Cilindrada:" + Float.toString(Utils.rs.getFloat(4)));
+                Utils.escribirLineaArchivo("    Numero de motores: " + Integer.toString(Utils.rs.getInt(5)) + " }");
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en fichero");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
     }
 }

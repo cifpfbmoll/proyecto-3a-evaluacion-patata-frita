@@ -1,6 +1,3 @@
-package eu.fp.concesionario;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -348,5 +345,40 @@ public class Empleado extends Persona {
             }
         }
         return ret;
+    }
+
+    /**
+     *  Devuelve todos los datos de empleado en la base de datos en un archivo txt
+     */
+    public static void escribirReservasArchivo(){
+        Utils.abrirArchivo("Empleado.txt");
+        String consulta = "SELECT * FROM EMPLEADO";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+
+                Utils.escribirLineaArchivo("Empleado nif: " + Utils.rs.getString(1) + " {");
+                Utils.escribirLineaArchivo("    Nombre: " + Utils.rs.getString(2) + " " + Utils.rs.getString(3));
+                Utils.escribirLineaArchivo("    Telefono: " + Utils.rs.getString(4));
+                Utils.escribirLineaArchivo("    Domicilio:" + Utils.rs.getString(5));
+                Utils.escribirLineaArchivo("    Puesto: " + Utils.rs.getString(6));
+                Utils.escribirLineaArchivo("    Id taller: " + Utils.rs.getString(7));
+                Utils.escribirLineaArchivo("    Id venta: " + Utils.rs.getString(8)+" } ");
+
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en fichero");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
     }
 }

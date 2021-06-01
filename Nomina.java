@@ -1,10 +1,4 @@
-package eu.fp.concesionario;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.sql.SQLException;
-
 
 /**
  * Clase Nomina
@@ -253,7 +247,7 @@ public class Nomina {
                 System.out.println(
                         "ID:" + Utils.rs.getInt(1) + ", "
                         + "HORAS DE TRABAJO: " + Utils.rs.getInt(2) + ", "
-                        + "PRECIO BRUTO: " + Utils.rs.getFloat(3) + ", "
+                        + "SUELDO BRUTO: " + Utils.rs.getFloat(3) + ", "
                         + "SUELDO NETO: " + Utils.rs.getFloat(4) + ", "
                         + "FECHA: " + Utils.rs.getString(5) + ", "
                         + "NIF DEL EMPLEADO: " + Utils.rs.getString(6)
@@ -536,43 +530,40 @@ public class Nomina {
         return null;
     }
 
-    /**
-     * Descargar de forma local la información de una nómina data[0] = ID,
-     * data[1] = Horas, data[2] = Sueldo Bruto, data[3] = Sueldo Neto, data[4] =
-     * Fecha, data[5] = NIF Empleado, data[6] = Nombre
-     *
-     * @param data Información de la nómina
+        
+     /**
+     *  Devuelve todos los datos de nomina en la base de datos en un archivo txt
      */
-    public static void descargarNomina(String[] data) throws Exception {
-        File txt = new File("nomina_" + data[5] + "_" + data[0] + ".txt");
-        BufferedWriter escritor = new BufferedWriter(new FileWriter(txt));
+    public static void escribirNominaArchivo(){
+        Utils.abrirArchivo("Nomina.txt");
+        String consulta = "SELECT * FROM NOMINA";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                
+                Utils.escribirLineaArchivo("Nomina id: " + Utils.rs.getString(1) + " {");
+                Utils.escribirLineaArchivo("    Horas de trabajo: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Sueldo bruto: " + Utils.rs.getString(3));
+                Utils.escribirLineaArchivo("    Sueldo neto:" + Utils.rs.getString(4));
+                Utils.escribirLineaArchivo("    Fecha: " + Utils.rs.getString(5));
+                Utils.escribirLineaArchivo("    NIF empleado: " + Utils.rs.getString(6)+" } ");
 
-        String separador = "##################################################";
-
-        escritor.newLine();
-        escritor.write(separador);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write("   NIF: " + data[5] + "      Nombre: " + data[6]);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write(separador);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write("     ID de nómina: " + data[0]);
-        escritor.newLine();
-        escritor.write("            Fecha: " + data[4]);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write("   Horas fichadas: " + data[1]);
-        escritor.newLine();
-        escritor.write("     Sueldo bruto: " + data[2]);
-        escritor.newLine();
-        escritor.write("      Sueldo neto: " + data[3]);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write(separador);
-        escritor.newLine();
-        escritor.close();
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en fichero");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
     }
+    
+    
 }

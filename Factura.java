@@ -1,9 +1,5 @@
-package eu.fp.concesionario;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.sql.*;
+
 /**
  * Clase Factura
  *
@@ -186,6 +182,7 @@ public class Factura {
             System.out.println("Id de la Reserva: ");
             int ReservaId = Utils.kInt();
             // buscamos reserva y la establecemos
+            
             factura.setReserva(Reserva.buscarReservaBBDD(ReservaId));
 
         } catch (IllegalArgumentException e) {
@@ -623,6 +620,42 @@ public class Factura {
         }
         return objectList;
     }
+    
+    
+     /**
+     *  Devuelve todos los datos de factura en la base de datos en un archivo txt
+     */
+    public static void escribirFacturasArchivo(){
+        Utils.abrirArchivo("Factura.txt");
+        String consulta = "SELECT * FROM FACTURA";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                
+                Utils.escribirLineaArchivo("Factura id: " + Utils.rs.getString(1) + " {");
+                Utils.escribirLineaArchivo("    Trabajo: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Coste: " + Utils.rs.getString(3));
+                Utils.escribirLineaArchivo("    Fecha:" + Utils.rs.getString(4));
+                Utils.escribirLineaArchivo("    Reserva: " + Utils.rs.getString(5));
+                Utils.escribirLineaArchivo("    Venta: " + Utils.rs.getString(6));
+                Utils.escribirLineaArchivo("    Vehiculo: " + Utils.rs.getString(7)+" } " );                
+
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en fichero");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
 
     public static Object[][] devolverTodasFacturasBBDD(String nif) {
         String consulta = "SELECT `factura`.*,`cliente`.`nif` "
@@ -669,46 +702,5 @@ public class Factura {
             }
         }
         return objectList;
-    }
-
-    /**
-     * Descargar una factura de forma local desde la tabla data[0] = ID, 
-     * data[1] = Concepto, data[2] = Local, data[3] = Vehículo, data[4] = NIF,
-     * data[5] = Fecha, data[6] = Coste,
-     *
-     * @param data Información de la factura a imprimir
-     * @throws Exception
-     */
-    public static void descargarFactura(String[] data) throws Exception {
-        File txt = new File("factura_" + data[4] + "_" + data[0] + ".txt");
-        BufferedWriter escritor = new BufferedWriter(new FileWriter(txt));
-
-        String separador = "##################################################";
-
-        escritor.newLine();
-        escritor.write(separador);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write("   NIF: " + data[4] + "      Vehículo: " + data[3]);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write(separador);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write("    ID de factura: " + data[0]);
-        escritor.newLine();
-        escritor.write("            Fecha: " + data[5]);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write("     Local emisor: " + data[2]);
-        escritor.newLine();
-        escritor.write("         Concepto: " + data[1]);
-        escritor.newLine();
-        escritor.write("            Coste: " + data[6]);
-        escritor.newLine();
-        escritor.newLine();
-        escritor.write(separador);
-        escritor.newLine();
-        escritor.close();
     }
 }

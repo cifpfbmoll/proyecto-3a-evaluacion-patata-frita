@@ -1,4 +1,4 @@
-package eu.fp.concesionario;
+
 
 import java.sql.SQLException;
 /**
@@ -6,9 +6,8 @@ import java.sql.SQLException;
  * concesionarios del proyecto.
  *
  * @author Jose Luis Cardona
- * @version 1 - 29/03/2021
+ * @version 1 - 29/03/2021 (Fecha de inicio)
  */
-import java.sql.*;
 
 public class Concesionario {
 
@@ -103,8 +102,7 @@ public class Concesionario {
     }
 
     /**
-     * crear objeto concesionario
-     *
+     * Metodo para crear el objeto concesionario.
      * @return
      */
     public static Concesionario crearConcesionario() {
@@ -118,16 +116,14 @@ public class Concesionario {
             concesionario.setTelefono(Utils.kInt());
             System.out.println("Taller id: ");
             int tallerId = Utils.kInt();
-            // TODO concesionario.setTaller(buscarTallerBBDD(tallerId));
+            concesionario.setTaller(Taller.buscarTaller(tallerId));
         } catch (Exception e) {
-            System.out.println("Error al crear concesionario");
+            System.out.println("¡ERROR! No se ha creado el concesionario correctamente.");
         }
         return concesionario;
     }
-
     /**
-     * insertamos datos del concesionario a BBDD a partir de un objeto
-     *
+     * Metodo para insertar los datos del concesionario a la BBDD a partir de un objeto.
      * @param concesionario
      */
     public static void insertarDatosConcesionarioBBDD(Concesionario concesionario) {
@@ -151,8 +147,7 @@ public class Concesionario {
     }
 
     /**
-     * Método para insertar los datos del concesionario actual a la base de
-     * datos
+     * Método para insertar los datos del concesionario actual a la base de datos.
      */
     public void insertarDatosConcesionarioBBDD() {
         String consulta = "INSERT INTO CONCESIONARIO (UBICACION, NOMBRE, TELEFONO ) VALUES (?,?,?)";
@@ -175,13 +170,13 @@ public class Concesionario {
         }
 
     }
-    //TODO : Esto sobra ya que abajo estan los 2 exist de Concesionario
+
     /**
      * metodo de instancia para comprobar si concesionario esta en BBDD
      *
      * @return
      */
-   /* public boolean existBD() {
+    public boolean existBD() {
         String consulta = "SELECT * FROM CONCESIONARIO WHERE ID=?";
         boolean existe = false;
         try {
@@ -204,7 +199,8 @@ public class Concesionario {
         }
 
         return existe;
-    }*/
+    }
+
     /**
      * Metodo para buscar concesionarios mediante la id.
      *
@@ -435,8 +431,7 @@ public class Concesionario {
     public static void relacionarConcesionarioConTaller(int id_concesionario, int id_taller) {
         String consulta = "UPDATE concesionario SET tallerid = ? WHERE id=?";
         try {
-            //La conexión se irá cuando el main este completo
-            //Utils.connection = Utils.conectarBBDD();
+            //La conexión se irà cuando el main este completo
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id_taller);
             Utils.prst.setInt(2, id_concesionario);
@@ -461,8 +456,7 @@ public class Concesionario {
     public static void relacionarConcesionarioConVenta(int id_concesionario, int id_venta) {
         String consulta = "UPDATE concesionario SET ventaid = ? WHERE id=?";
         try {
-            //La conexión se irá cuando el main este completo
-            //Utils.connection = Utils.conectarBBDD();
+            //La conexión se irà cuando el main este completo
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, id_venta);
             Utils.prst.setInt(2, id_concesionario);
@@ -475,6 +469,38 @@ public class Concesionario {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+
+    /**
+     *  Devuelve todos los datos de concesionarios en la base de datos en un archivo txt.
+     */
+    public static void escribirConcesionariosArchivo(){
+        Utils.abrirArchivo("Concesionario.txt");
+        String consulta = "SELECT * FROM CONCESIONARIO";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                Utils.escribirLineaArchivo("Concesionario id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
+                Utils.escribirLineaArchivo("    Ubicacion: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Nombre: " + Utils.rs.getString(3));
+                Utils.escribirLineaArchivo("    Telefono: " + Integer.toString(Utils.rs.getInt(4)));
+                Utils.escribirLineaArchivo("    Taller id: " + Integer.toString(Utils.rs.getInt(5)));
+                Utils.escribirLineaArchivo("    Venta id: " + Integer.toString(Utils.rs.getInt(6))+ " }");
+                //Dejamos espacio para poder diferenciar facilmente entre concesionarios
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en el fichero.");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos.");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar las variables.");
             }
         }
     }

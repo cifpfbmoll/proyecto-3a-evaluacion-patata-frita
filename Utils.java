@@ -1,12 +1,3 @@
-package eu.fp.concesionario;
-
-/*
- * Esta clase es la misma que usamos en el proyecto, pero al incluir todos los datos
- * necesarios para archivos, base de datos y lectura de teclado me parece correcto
- * reutilizarla para el examen.
- * De todas formas la he editado ligeramente.
- */
-import java.io.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -131,11 +122,15 @@ public class Utils {
     /**
      * Metodo para conectar a la base de datos, no devuelve nada
      */
+
     public static void conectarBBDD() {
-        String url = "jdbc:mysql://51.178.152.221:3306/test"; 
-        String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi? 
-        String password = "ContraseñaDeLaOstia69"; 
-        try { 
+
+        String url = "jdbc:mysql://51.178.152.221:3306/test";
+        String user = "dam"; //Cambiar a un archivo externo y cargar desde ahi?
+        String password = "ContraseñaDeLaOstia69";
+        try {
+            //Class for name no es necesario en teoria pero es más correcto
+            //Tenerlo por si acaso
             //Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
@@ -211,7 +206,6 @@ public class Utils {
     }
 
     public static void deleteGeneral(String tabla, int id) {
-        PreparedStatement prst;
         try {
             String consulta = "DELETE FROM " + tabla + " WHERE ID=?";
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -281,6 +275,7 @@ public class Utils {
         }
         if (escritorArchivo != null) {
             //si el buffer de escritura ya no es nulo se cerrará una vez se acabe de escribir
+            //antes de cerrarlo se fuerza a escribir en el fichero todo el contenido del buffer por precacucion
             escritorArchivo.flush();
             escritorArchivo.close();
             escritorArchivo = null;
