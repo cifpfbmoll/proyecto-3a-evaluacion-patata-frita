@@ -1,3 +1,5 @@
+package eu.fp.concesionario;
+
 /*
 Crear un main, un menú simple por consola que permita:
 1- Crear nuevos objetos (nuevas instancias de las clases)

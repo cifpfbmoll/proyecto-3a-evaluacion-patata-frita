@@ -1,3 +1,5 @@
+package eu.fp.concesionario;
+
 
 /**
  * Clase Reserva
@@ -535,7 +537,7 @@ public class Reserva {
      */
     public static Object[][] devolverTodasReservasBBDD(String nif) {
         String consulta = "SELECT * FROM RESERVA WHERE CLIENTENIF like \"" + nif + "\" ORDER BY ID";
-        String[][] objectList = null;
+        Object[][] objectList = null;
         try {
             Utils.st = Utils.connection.createStatement();
             Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
@@ -582,8 +584,10 @@ public class Reserva {
         //Solo usados para testeo
         System.out.println(taller);
         System.out.println(espacio);
+        String consulta = "SELECT reserva.*,t.*,c.nombre,c.apellidos\n" +
+                "FROM test.reserva INNER JOIN cliente c on reserva.clientenif = c.nif\n" +
                 "INNER JOIN taller t on reserva.tallerid = t.id";
-        }
+        boolean where = false;
         if ( espacio > 0 && !where) {
             consulta += " WHERE espacio_reservado = \"" + espacio + "\"";
             where = true;
@@ -596,7 +600,7 @@ public class Reserva {
         }else if ( taller > 0) {
             consulta += " AND tallerid = \"" + taller + "\"";
         }
-        consulta += " ORDER BY ID";
+        consulta += " ORDER BY t.ID";
         //Borrar prints, solo para testeo
         System.out.println(consulta);
         String[][] objectList = null;
@@ -631,5 +635,43 @@ public class Reserva {
             }
         }
         return objectList;
+    }
+    
+    /**
+     * Descargar una reserva de forma local data[0] = ID, data[1] = Espacio
+     * reservado, data[2] = Fecha, data[3] = Taller ID, data[4] = NIF Cliente,
+     *
+     * @param data
+     * @throws Exception
+     */
+    public static void descargarReserva(String[] data) throws Exception {
+        File txt = new File("reserva_" + data[4] + "_" + data[0] + ".txt");
+        BufferedWriter escritor = new BufferedWriter(new FileWriter(txt));
+
+        String separador = "##################################################";
+
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("         NIF: " + data[4]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("       ID de reserva: " + data[0]);
+        escritor.newLine();
+        escritor.write("               Fecha: " + data[2]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("   Espacio reservado: " + data[1]);
+        escritor.newLine();
+        escritor.write("           Taller ID: " + data[3]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.close();
     }
 }

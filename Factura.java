@@ -1,3 +1,8 @@
+package eu.fp.concesionario;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.*;
 
 /**
@@ -702,5 +707,46 @@ public class Factura {
             }
         }
         return objectList;
+    }
+    
+    /**
+     * Descargar una factura de forma local desde la tabla data[0] = ID, 
+     * data[1] = Concepto, data[2] = Local, data[3] = Vehículo, data[4] = NIF,
+     * data[5] = Fecha, data[6] = Coste,
+     *
+     * @param data Información de la factura a imprimir
+     * @throws Exception
+     */
+    public static void descargarFactura(String[] data) throws Exception {
+        File txt = new File("factura_" + data[4] + "_" + data[0] + ".txt");
+        BufferedWriter escritor = new BufferedWriter(new FileWriter(txt));
+
+        String separador = "##################################################";
+
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("   NIF: " + data[4] + "      Vehículo: " + data[3]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("    ID de factura: " + data[0]);
+        escritor.newLine();
+        escritor.write("            Fecha: " + data[5]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("     Local emisor: " + data[2]);
+        escritor.newLine();
+        escritor.write("         Concepto: " + data[1]);
+        escritor.newLine();
+        escritor.write("            Coste: " + data[6]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.close();
     }
 }

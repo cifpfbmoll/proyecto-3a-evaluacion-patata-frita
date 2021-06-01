@@ -3976,7 +3976,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_AreaBuscarReservaActionPerformed
 
     private void FiltrarReservaCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarReservaCliente
-        Object[][] rowList = Reserva.devolverReservasBBDD(NIF_Menu.getText(), ReservaClienteField_Espacio.getValue(), ReservaClienteField_Fecha.getText(), ReservaClienteField_Taller.getValue());
+        Object[][] rowList = Reserva.devolverTodasReservasBBDD(NIF_Menu.getText(), (Integer)ReservaClienteField_Espacio.getValue(), ReservaClienteField_Fecha.getText(), (Integer)ReservaClienteField_Taller.getValue());
 
         FiltroReservaCliente.dispose();
         ReservaClienteField_Espacio.setValue(0);
