@@ -420,4 +420,82 @@ public class Motor {
             }
         }
     }
+
+    /**
+     * Devolver motores de la base de datos compatible con el filtro
+     *
+     * @param tipo Tipo especificado
+     * @param cilindrada Cilindrada especificada
+     * @param potencia Potencia especificada
+     * @param par Par especificado
+     * @return
+     */
+    public static Object[][] devolverTodosMotoresBBDD(String tipo, float cilindrada, float potencia, float par) {
+        boolean where = false;
+        //SQL devuelve Reserva + Nombre cliente + apellidos cliente + tablas relacionadas
+        String consulta = "SELECT motor.*\n" +
+                "FROM test.motor"; //cambiar test por concesionario
+        if (tipo != null && !where) {
+            consulta += " WHERE tipo like \"" + tipo + "\"";
+            where = true;
+        }else if(tipo != null){
+            consulta += " AND tipo like \"" + tipo + "\"";
+        }
+        if ( cilindrada > 0 && !where) {
+            consulta += " WHERE cilindrada = \"" + cilindrada + "\"";
+            where = true;
+        }else if(cilindrada > 0){
+            consulta += " AND cilindrada = \"" + cilindrada + "\"";
+        }
+        if (potencia > 0 && !where){
+            consulta += " WHERE potencia = \"" + potencia + "\"";
+            where = true;
+        }else if ( potencia > 0) {
+            consulta += " AND potencia = \"" + potencia + "\"";
+        }
+        if (par > 0 && !where){
+            consulta += " WHERE par = \"" + par + "\"";
+            where = true;
+        }else if ( par > 0) {
+            consulta += " AND par = \"" + par + "\"";
+        }
+        consulta += " ORDER BY ID";
+        //Borrar prints, solo para testeo
+        System.out.println(consulta);
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM Motor"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.prst.executeQuery();
+            while (Utils.rs.next()) {
+                //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
+                //Contar únicamente que columnas son importantes!
+                Integer COLUMNAS = 5;
+                //ID, tipo, potencia, cilindrada, par
+                String[] list = new String[COLUMNAS];
+                list[0] = Utils.rs.getString(1); //ID motor
+                list[1] = Utils.rs.getString(2); //tipo motor
+                list[2] = Utils.rs.getString(3); //Potencia motor
+                list[3] = Utils.rs.getString(4); //Cilindrada motor
+                list[4] = Utils.rs.getString(6); //Par motor
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los motores");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
 }
