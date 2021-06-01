@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.sql.*;
 
 /**
@@ -184,6 +182,7 @@ public class Factura {
             System.out.println("Id de la Reserva: ");
             int ReservaId = Utils.kInt();
             // buscamos reserva y la establecemos
+            
             factura.setReserva(Reserva.buscarReservaBBDD(ReservaId));
 
         } catch (IllegalArgumentException e) {
@@ -577,6 +576,7 @@ public class Factura {
     //TODO
     /**
      * Devolver todos las facturas de la base de datos
+     *
      * @return objectList
      */
     public static Object[][] devolverTodasFacturasBBDD() {
@@ -612,7 +612,7 @@ public class Factura {
             e.printStackTrace();
             System.out.println("Error mostrando todos los clientes");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
@@ -621,12 +621,48 @@ public class Factura {
         return objectList;
     }
     
+    
+     /**
+     *  Devuelve todos los datos de factura en la base de datos en un archivo txt
+     */
+    public static void escribirFacturasArchivo(){
+        Utils.abrirArchivo("Factura.txt");
+        String consulta = "SELECT * FROM FACTURA";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                
+                Utils.escribirLineaArchivo("Factura id: " + Utils.rs.getString(1) + " {");
+                Utils.escribirLineaArchivo("    Trabajo: " + Utils.rs.getString(2));
+                Utils.escribirLineaArchivo("    Coste: " + Utils.rs.getString(3));
+                Utils.escribirLineaArchivo("    Fecha:" + Utils.rs.getString(4));
+                Utils.escribirLineaArchivo("    Reserva: " + Utils.rs.getString(5));
+                Utils.escribirLineaArchivo("    Venta: " + Utils.rs.getString(6));
+                Utils.escribirLineaArchivo("    Vehiculo: " + Utils.rs.getString(7)+" } " );                
+
+                //Dejamos espacio para poder diferenciar facilmente entre vehiculos
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en fichero");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+
     public static Object[][] devolverTodasFacturasBBDD(String nif) {
         String consulta = "SELECT `factura`.*,`cliente`.`nif` "
                 + "FROM `factura` "
                 + "LEFT JOIN `vehiculo` ON `vehiculo`.`bastidor` = `factura`.`vehiculoid` "
                 + "LEFT JOIN `cliente` ON `vehiculo`.`clientenif` = `cliente`.`nif` "
-                + "WHERE \""+ nif +"\" like `vehiculo`.`clientenif` ORDER BY ID";
+                + "WHERE \"" + nif + "\" like `vehiculo`.`clientenif` ORDER BY ID";
         String[][] objectList = null;
         try {
 
@@ -637,7 +673,7 @@ public class Factura {
             int i = 0;
             Utils.rs = Utils.st.executeQuery(consulta);
             while (Utils.rs.next()) {
-                String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                String[] list = new String[7]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
 
                 list[0] = (Utils.rs.getString(1));
                 list[1] = (Utils.rs.getString(2));
@@ -647,8 +683,9 @@ public class Factura {
                     list[2] = ("Taller " + Utils.rs.getString(6));
                 }
                 list[3] = (Utils.rs.getString(7));
-                list[4] = (Utils.rs.getString(4));
-                list[5] = (Utils.rs.getString(3));
+                list[4] = (Utils.rs.getString(8));
+                list[5] = (Utils.rs.getString(4));
+                list[6] = (Utils.rs.getString(3));
                 objectList[i] = list;
                 i++;
             }
@@ -658,7 +695,7 @@ public class Factura {
             e.printStackTrace();
             System.out.println("Error mostrando todos los clientes");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
@@ -666,5 +703,4 @@ public class Factura {
         }
         return objectList;
     }
-
 }

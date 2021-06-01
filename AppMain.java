@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 /*
 Crear un main, un menú simple por consola que permita:
 1- Crear nuevos objetos (nuevas instancias de las clases)
@@ -17,7 +15,7 @@ public class AppMain {
      */
     public static void main(String[] args) {
 
-        Utils.conectarBBDD2();
+        Utils.conectarBBDD();
 
         boolean salir = false;
         boolean volver = false;
@@ -141,7 +139,7 @@ public class AppMain {
                     break;
                 case 5:
                     System.out.println("mostrar todos concesionarios");
-                    Concesionario.mostrarConcesionarios();
+                    Concesionario.mostrarConcesionario();
                     break;
                 case 6:
                     System.out.println("Id del concesionario: ");

@@ -37,7 +37,6 @@ public class PopUp extends javax.swing.JDialog {
         setTitle("Default Title");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(400, 158));
         setMinimumSize(new java.awt.Dimension(400, 158));
         setResizable(false);
 
@@ -97,10 +96,11 @@ public class PopUp extends javax.swing.JDialog {
 
     /**
      * Crear un nuevo PopUp
+     *
      * @param type Tipo de popUp {error}
      * @param message Mensaje del PopUp
      */
-    public static void create(String type, String message) {
+    public static void createSimple(String type, String message) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -124,8 +124,6 @@ public class PopUp extends javax.swing.JDialog {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -140,6 +138,7 @@ public class PopUp extends javax.swing.JDialog {
                         pop.Popup_Title.setForeground(new java.awt.Color(255, 0, 0));
                         pop.Popup_Description.setText(message);
                         pop.Popup_Subtext.setText("Si el problema persiste, contacta con un administrador.");
+                        pop.setVisible(true);
                         break;
                     case "success":
                         pop.setTitle("Completado");
@@ -147,6 +146,7 @@ public class PopUp extends javax.swing.JDialog {
                         pop.Popup_Title.setForeground(new java.awt.Color(0, 255, 0));
                         pop.Popup_Description.setText(message);
                         pop.Popup_Subtext.setText("Cierra esta pestaña para continuar.");
+                        pop.setVisible(true);
                         break;
                     default:
                         pop.setTitle("Default Title");
@@ -155,10 +155,10 @@ public class PopUp extends javax.swing.JDialog {
                         pop.Popup_Subtext.setText("Default Subtext.");
 
                 }
-                pop.setVisible(true);
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Popup_Description;
