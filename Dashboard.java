@@ -14,7 +14,7 @@ import javax.swing.*;
 public class Dashboard extends javax.swing.JFrame {
 
     /**
-     * Creates new form Dashboar
+     * Creates new form Dashboard
      */
     public Dashboard() {
         initComponents();
@@ -184,6 +184,7 @@ public class Dashboard extends javax.swing.JFrame {
         OpcionVenta = new javax.swing.JPanel();
         FacturaAnadirLabel6 = new javax.swing.JLabel();
         FacturaFieldAnadir_Venta = new javax.swing.JSpinner();
+        FacturaFieldAnadir_Coste1 = new javax.swing.JSpinner();
         TallerOVenta = new javax.swing.ButtonGroup();
         AnadirNomina = new javax.swing.JDialog();
         Panel10 = new javax.swing.JPanel();
@@ -268,11 +269,11 @@ public class Dashboard extends javax.swing.JFrame {
         ConcesionariosLabel14 = new javax.swing.JLabel();
         ConcesionariosLabel15 = new javax.swing.JLabel();
         ConcesionariosLabel16 = new javax.swing.JLabel();
-        ClienteAnadirField_Ubicacion = new javax.swing.JTextField();
-        ClienteAnadirField_Nombre3 = new javax.swing.JTextField();
-        ClienteAnadirField_Telefono1 = new javax.swing.JFormattedTextField();
-        MotoresAnadirField_Cilindrada1 = new javax.swing.JSpinner();
-        MotoresAnadirField_Cilindrada2 = new javax.swing.JSpinner();
+        ConcesionarioAnadirField_Ubicacion = new javax.swing.JTextField();
+        ConcesionarioAnadirField_Nombre = new javax.swing.JTextField();
+        ConcesionarioAnadirField_Telefono = new javax.swing.JFormattedTextField();
+        ConcesionarioAnadirField_Taller = new javax.swing.JSpinner();
+        ConcesionarioAnadirField_Venta = new javax.swing.JSpinner();
         Confirmacion = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         TitleFiltroConcesionarios1 = new javax.swing.JLabel();
@@ -1817,6 +1818,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         Panel11.add(OpcionVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 300, 70));
 
+        FacturaFieldAnadir_Coste1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        FacturaFieldAnadir_Coste1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        FacturaFieldAnadir_Coste1.setToolTipText("");
+        Panel11.add(FacturaFieldAnadir_Coste1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 111, 201, -1));
+
         AnadirFactura.getContentPane().add(Panel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 430));
 
         AnadirNomina.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -2467,23 +2473,28 @@ public class Dashboard extends javax.swing.JFrame {
         ConcesionariosLabel16.setForeground(new java.awt.Color(0, 0, 0));
         ConcesionariosLabel16.setText("ID Taller");
 
-        ClienteAnadirField_Ubicacion.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ConcesionarioAnadirField_Ubicacion.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ConcesionarioAnadirField_Ubicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConcesionarioAnadirField_UbicacionActionPerformed(evt);
+            }
+        });
 
-        ClienteAnadirField_Nombre3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ConcesionarioAnadirField_Nombre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         try {
-            ClienteAnadirField_Telefono1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
+            ConcesionarioAnadirField_Telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ClienteAnadirField_Telefono1.setToolTipText("Ha de tener 9 números");
+        ConcesionarioAnadirField_Telefono.setToolTipText("Ha de tener 9 números");
         ReservaClienteField_Fecha.setFont(new java.awt.Font("sansserif", 0, 14));
 
-        MotoresAnadirField_Cilindrada1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        MotoresAnadirField_Cilindrada1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        ConcesionarioAnadirField_Taller.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ConcesionarioAnadirField_Taller.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        MotoresAnadirField_Cilindrada2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        MotoresAnadirField_Cilindrada2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        ConcesionarioAnadirField_Venta.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ConcesionarioAnadirField_Venta.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout Panel15Layout = new javax.swing.GroupLayout(Panel15);
         Panel15.setLayout(Panel15Layout);
@@ -2501,11 +2512,11 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(ConcesionariosLabel15))
                         .addGap(18, 18, 18)
                         .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ClienteAnadirField_Ubicacion)
-                            .addComponent(ClienteAnadirField_Nombre3)
-                            .addComponent(ClienteAnadirField_Telefono1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                            .addComponent(MotoresAnadirField_Cilindrada1)
-                            .addComponent(MotoresAnadirField_Cilindrada2)))
+                            .addComponent(ConcesionarioAnadirField_Ubicacion)
+                            .addComponent(ConcesionarioAnadirField_Nombre)
+                            .addComponent(ConcesionarioAnadirField_Telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(ConcesionarioAnadirField_Taller)
+                            .addComponent(ConcesionarioAnadirField_Venta)))
                     .addGroup(Panel15Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(TitleAnadirClientes2))
@@ -2522,22 +2533,22 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ConcesionariosLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ClienteAnadirField_Nombre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ConcesionarioAnadirField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ConcesionariosLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ClienteAnadirField_Ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ConcesionarioAnadirField_Ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ConcesionariosLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ClienteAnadirField_Telefono1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ConcesionarioAnadirField_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MotoresAnadirField_Cilindrada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ConcesionarioAnadirField_Taller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ConcesionariosLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Panel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MotoresAnadirField_Cilindrada2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ConcesionarioAnadirField_Venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ConcesionariosLabel15))
                 .addGap(32, 32, 32)
                 .addComponent(ConcesionariosLabel11)
@@ -3772,6 +3783,11 @@ public class Dashboard extends javax.swing.JFrame {
         Board_AreaEmpleados.add(Label_NIF, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
 
         AreaBuscar.setText("Buscar nómina");
+        AreaBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AreaBuscarActionPerformed(evt);
+            }
+        });
         Board_AreaEmpleados.add(AreaBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 220, 200, -1));
 
         AreaDescargar.setText("Descargar nómina");
@@ -4465,6 +4481,25 @@ public class Dashboard extends javax.swing.JFrame {
     private void NominaAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NominaAnadirAction
         float impuestoSobreNomina = (Integer) NominaFieldAnadir_SBruto.getValue() * Utils.IMPUESTO;
         NominaFieldAnadir_SNeto.setText(Float.toString((Integer) NominaFieldAnadir_SBruto.getValue() - impuestoSobreNomina));
+        Nomina nom = new Nomina(
+                0, //El id se encarga la base de datos
+                Integer.parseInt((String)NominaFieldAnadir_Horas.getValue()),
+                Float.parseFloat((String)NominaFieldAnadir_SBruto.getValue()),
+                Float.parseFloat((NominaFieldAnadir_SNeto.getText())),
+                NominaFieldAnadir_Fecha.getText(),
+                Empleado.buscarEmpleadoBBDD(NominaFieldAnadir_Empleado.getText())
+        );
+        nom.insertarDatosNominaBBDD();
+        PopUp.createSimple("success", "Acción ejecutada con éxito.");
+        
+        AnadirNomina.dispose();
+        refreshTableNomina();
+
+        NominaFieldAnadir_Fecha.setText("");
+        NominaFieldAnadir_SNeto.setText("");
+        NominaFieldAnadir_Empleado.setText("");
+        NominaFieldAnadir_SBruto.setValue(0);
+        NominaFieldAnadir_Horas.setValue(0);
     }//GEN-LAST:event_NominaAnadirAction
 
     private void EmpleadoAnadirField_OpTaller1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpleadoAnadirField_OpTaller1ActionPerformed
@@ -4504,23 +4539,121 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_ClienteAnadirAction
 
     private void MotorAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MotorAnadirAction
-        // TODO add your handling code here:
+        Motor motor = new Motor(
+                Float.parseFloat((String)MotoresAnadiField_Potencia.getValue()),
+                Float.parseFloat((String)MotoresAnadirField_Par.getValue()),
+                Float.parseFloat((String)MotoresAnadirField_Cilindrada.getValue()),
+                Integer.parseInt((String)MotoresAnadirField_NumMotores.getValue()),
+                Motor.tipoMotor.valueOf(MotoresAnadirField_Tipo.getSelectedValue())
+        );
+        motor.insertarDatosMotorBBDD();
+        PopUp.createSimple("success","Acción ejecutada con éxito");
+        
+        AnadirMotores.dispose();
+        refreshTableMotor();
+        
+        MotoresAnadiField_Potencia.setValue(0);
+        MotoresAnadirField_Par.setValue(0);
+        MotoresAnadirField_Cilindrada.setValue(0);
+        MotoresAnadirField_NumMotores.setValue(0);
     }//GEN-LAST:event_MotorAnadirAction
 
     private void ConcesionarioAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConcesionarioAnadirAction
-        // TODO add your handling code here:
+        Concesionario conc = new Concesionario(
+                ConcesionarioAnadirField_Ubicacion.getText(),
+                ConcesionarioAnadirField_Nombre.getText(),
+                Integer.parseInt((String)ConcesionarioAnadirField_Telefono.getValue()),
+                Taller.buscarTaller(Integer.parseInt((String)ConcesionarioAnadirField_Taller.getValue())),
+                Venta.buscarVenta(Integer.parseInt((String)ConcesionarioAnadirField_Venta.getValue()))
+        );
+        conc.insertarDatosConcesionarioBBDD();
+        PopUp.createSimple("success","Acción ejecutada con éxito");
+        
+        AnadirConcesionarios.dispose();
+        refreshTableConcesionario();
+        
+        ConcesionarioAnadirField_Ubicacion.setText("");
+        ConcesionarioAnadirField_Nombre.setText("");
+        ConcesionarioAnadirField_Telefono.setText("");
+        ConcesionarioAnadirField_Taller.setValue(0);
+        ConcesionarioAnadirField_Venta.setValue(0);
     }//GEN-LAST:event_ConcesionarioAnadirAction
 
     private void EmpleadoAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpleadoAnadirAction
-        // TODO add your handling code here:
+        Empleado empl = new Empleado(
+                EmpleadoAnadirField_Puesto.getText(),
+                EmpleadoAnadirField_Nombre.getText(),
+                EmpleadoAnadirField_Apellidos.getText(),
+                EmpleadoAnadirField_NIF.getText(),
+                Integer.parseInt((String)EmpleadoAnadirField_Telefono.getValue()),
+                EmpleadoAnadirField_Domicilio.getText(),
+                EmpleadoAnadirField_Contraseña.getPassword().toString()//, aqui falta la coma
+                //Insertar taller y venta correctamente
+                /**Taller.buscarTaller(Integer.parseInt((String)//aqui falta la variable.getValue())),
+                Venta.buscarVenta(Integer.parseInt((String)//aqui falta la variable.getValue()))
+                **/
+        );
+        empl.insertarDatosEmpleadoBBDD();
+        PopUp.createSimple("success","Acción ejecutada con éxito");
+        
+        AnadirEmpleados.dispose();
+        refreshTableEmpleado();
+        
+        EmpleadoAnadirField_Nombre.setText("");
+        EmpleadoAnadirField_Apellidos.setText("");
+        EmpleadoAnadirField_NIF.setText("");
+        EmpleadoAnadirField_Telefono.setValue(0);
+        EmpleadoAnadirField_Domicilio.setText("");
+        EmpleadoAnadirField_Contraseña.setText("");
+        /** TODO: Reiniciar taller y venta **/
     }//GEN-LAST:event_EmpleadoAnadirAction
 
     private void FacturaAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturaAnadirAction
-        // TODO add your handling code here:
+        Venta venta = null;
+        Reserva reserva = null;
+        if(FacturaFieldAnadir_OpTaller.isSelected()){
+            reserva = Reserva.buscarReservaBBDD(Integer.parseInt((String)FacturaFieldAnadir_Taller.getValue()));
+        }else{
+            venta = Venta.buscarVenta(Integer.parseInt((String)FacturaFieldAnadir_Taller.getValue()));
+        }
+        Factura fact = new Factura(
+                FacturaFieldAnadir_Concepto.getText(),
+                Integer.parseInt((String)FacturaFieldAnadir_Coste.getValue()),
+                FacturaFieldAnadir_Fecha.getText(),
+                reserva,
+                venta,
+                Vehiculo.buscarVehiculoBBDD(FacturaFieldAnadir_Vehiculo.getText())
+        );
+        fact.insertarObjetoFacturaBBDD();
+        PopUp.createSimple("success","Acción ejecutada con éxito");
+        
+        AnadirFactura.dispose();
+        refreshTableFactura();
+        
+        FacturaFieldAnadir_Concepto.setText("");
+        FacturaFieldAnadir_Coste.setValue(0);
+        FacturaFieldAnadir_Fecha.setText("");
+        FacturaFieldAnadir_Vehiculo.setText("");
     }//GEN-LAST:event_FacturaAnadirAction
 
     private void ReservaAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReservaAnadirAction
-        // TODO add your handling code here:
+        Reserva res = new Reserva(
+                0, //No pedimos el id, se encarga la base de datos de asignar el correcto
+                ReservaFieldAnadir_Fecha.getText(),
+                Integer.parseInt((String)ReservaFieldAnadir_Espacio.getValue()),
+                Taller.buscarTaller(Integer.parseInt((String)ReservaFieldAnadir_Taller.getValue())),
+                Cliente.buscarClienteBBDD(ReservaFieldAnadir_Cliente.getText())
+        );
+        res.insertarDatosReservaBBDD();
+        PopUp.createSimple("success","Acción ejecutada con éxito");
+        
+        AnadirReserva.dispose();
+        refreshTableReserva();
+        
+        ReservaFieldAnadir_Fecha.setText("");
+        ReservaFieldAnadir_Espacio.setValue(0);
+        ReservaFieldAnadir_Taller.setValue(0);
+        ReservaFieldAnadir_Cliente.setText("");
     }//GEN-LAST:event_ReservaAnadirAction
 
     private void ConfirmarAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarAction
@@ -5146,10 +5279,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField ClienteAnadirField_Domicilio;
     private javax.swing.JFormattedTextField ClienteAnadirField_NIF;
     private javax.swing.JTextField ClienteAnadirField_Nombre;
-    private javax.swing.JTextField ClienteAnadirField_Nombre3;
     private javax.swing.JFormattedTextField ClienteAnadirField_Telefono;
-    private javax.swing.JFormattedTextField ClienteAnadirField_Telefono1;
-    private javax.swing.JTextField ClienteAnadirField_Ubicacion;
     private javax.swing.JLabel ClienteAreaPersonal;
     private javax.swing.JLabel ClienteInicio;
     private javax.swing.JTable Cliente_Tabla;
@@ -5172,6 +5302,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Clientes_Eliminar;
     private javax.swing.JButton Clientes_Modificar;
     private javax.swing.JScrollPane Clientes_Scroll;
+    private javax.swing.JTextField ConcesionarioAnadirField_Nombre;
+    private javax.swing.JSpinner ConcesionarioAnadirField_Taller;
+    private javax.swing.JFormattedTextField ConcesionarioAnadirField_Telefono;
+    private javax.swing.JTextField ConcesionarioAnadirField_Ubicacion;
+    private javax.swing.JSpinner ConcesionarioAnadirField_Venta;
     private javax.swing.JSpinner ConcesionariosField_Espacios;
     private javax.swing.JTextField ConcesionariosField_Nombre;
     private javax.swing.JSpinner ConcesionariosField_Taller;
@@ -5251,6 +5386,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel FacturaClienteLabel5;
     private javax.swing.JTextArea FacturaFieldAnadir_Concepto;
     private javax.swing.JSpinner FacturaFieldAnadir_Coste;
+    private javax.swing.JSpinner FacturaFieldAnadir_Coste1;
     private javax.swing.JFormattedTextField FacturaFieldAnadir_Fecha;
     private javax.swing.JRadioButton FacturaFieldAnadir_OpTaller;
     private javax.swing.JRadioButton FacturaFieldAnadir_OpVenta;
@@ -5314,8 +5450,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JSpinner MotoresAnadiField_Potencia;
     private javax.swing.JButton MotoresAnadir;
     private javax.swing.JSpinner MotoresAnadirField_Cilindrada;
-    private javax.swing.JSpinner MotoresAnadirField_Cilindrada1;
-    private javax.swing.JSpinner MotoresAnadirField_Cilindrada2;
     private javax.swing.JSpinner MotoresAnadirField_NumMotores;
     private javax.swing.JSpinner MotoresAnadirField_Par;
     private javax.swing.JList<String> MotoresAnadirField_Tipo;
