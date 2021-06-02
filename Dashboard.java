@@ -203,7 +203,7 @@ public class Dashboard extends javax.swing.JFrame {
         AnadirEmpleados = new javax.swing.JDialog();
         Panel13 = new javax.swing.JPanel();
         TitleAnadirFactura1 = new javax.swing.JLabel();
-        FacturaAnadir1 = new javax.swing.JButton();
+        EmpleadoAnadir = new javax.swing.JButton();
         EmpleadoAnadirLabel = new javax.swing.JLabel();
         EmpleadoAnadirLabel1 = new javax.swing.JLabel();
         EmpleadoAnadirLabel2 = new javax.swing.JLabel();
@@ -519,9 +519,7 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroReserva.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroReserva.setTitle("Filtrar");
         FiltroReserva.setAlwaysOnTop(true);
-        FiltroReserva.setMaximumSize(new java.awt.Dimension(401, 266));
         FiltroReserva.setMinimumSize(new java.awt.Dimension(401, 266));
-        FiltroReserva.setPreferredSize(new java.awt.Dimension(401, 266));
         FiltroReserva.setResizable(false);
         FiltroReserva.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -765,9 +763,7 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroFactura.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroFactura.setTitle("Filtrar");
         FiltroFactura.setAlwaysOnTop(true);
-        FiltroFactura.setMaximumSize(new java.awt.Dimension(401, 375));
         FiltroFactura.setMinimumSize(new java.awt.Dimension(401, 375));
-        FiltroFactura.setPreferredSize(new java.awt.Dimension(401, 375));
         FiltroFactura.setResizable(false);
         FiltroFactura.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1542,9 +1538,7 @@ public class Dashboard extends javax.swing.JFrame {
         AnadirReserva.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         AnadirReserva.setTitle("Filtrar");
         AnadirReserva.setAlwaysOnTop(true);
-        AnadirReserva.setMaximumSize(new java.awt.Dimension(401, 307));
         AnadirReserva.setMinimumSize(new java.awt.Dimension(401, 307));
-        AnadirReserva.setPreferredSize(new java.awt.Dimension(401, 307));
         AnadirReserva.setResizable(false);
         AnadirReserva.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1558,6 +1552,11 @@ public class Dashboard extends javax.swing.JFrame {
         TitleAnadirReserva.setText("Añadir reserva");
 
         ReservaAnadir.setText("Añadir");
+        ReservaAnadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReservaAnadirAction(evt);
+            }
+        });
 
         ReservaNombreAnadirLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         ReservaNombreAnadirLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -1668,6 +1667,11 @@ public class Dashboard extends javax.swing.JFrame {
         Panel11.add(TitleAnadirFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 6, -1, -1));
 
         FacturaAnadir.setText("Añadir");
+        FacturaAnadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FacturaAnadirAction(evt);
+            }
+        });
         Panel11.add(FacturaAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 332, 300, -1));
 
         FacturaAnadirLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -1826,7 +1830,7 @@ public class Dashboard extends javax.swing.JFrame {
         NominaAnadir.setText("Añadir");
         NominaAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NominaCalcularSNetoActionPerformed(evt);
+                NominaAnadirAction(evt);
             }
         });
 
@@ -1878,7 +1882,7 @@ public class Dashboard extends javax.swing.JFrame {
         NominaCalcularSNeto.setText("Calcular");
         NominaCalcularSNeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NominaCalcularSNetoActionPerformed(evt);
+                NominaAnadirAction(evt);
             }
         });
 
@@ -1970,8 +1974,13 @@ public class Dashboard extends javax.swing.JFrame {
         TitleAnadirFactura1.setText("Añadir empleado");
         Panel13.add(TitleAnadirFactura1, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 6, -1, -1));
 
-        FacturaAnadir1.setText("Añadir");
-        Panel13.add(FacturaAnadir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 300, -1));
+        EmpleadoAnadir.setText("Añadir");
+        EmpleadoAnadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmpleadoAnadirAction(evt);
+            }
+        });
+        Panel13.add(EmpleadoAnadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 300, -1));
 
         EmpleadoAnadirLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         EmpleadoAnadirLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -2155,7 +2164,7 @@ public class Dashboard extends javax.swing.JFrame {
         ClientesAñadir.setText("Añadir");
         ClientesAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClientesAñadirFiltrarClientes(evt);
+                ClienteAnadirAction(evt);
             }
         });
 
@@ -2295,7 +2304,7 @@ public class Dashboard extends javax.swing.JFrame {
         MotoresAnadir.setText("Añadir");
         MotoresAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MotoresAnadirFiltrarClientes(evt);
+                MotorAnadirAction(evt);
             }
         });
 
@@ -2409,7 +2418,7 @@ public class Dashboard extends javax.swing.JFrame {
         ConcesionariosLabel11.setText("Añadir");
         ConcesionariosLabel11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConcesionariosLabel11FiltrarClientes(evt);
+                ConcesionarioAnadirAction(evt);
             }
         });
 
@@ -3976,7 +3985,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_AreaBuscarReservaActionPerformed
 
     private void FiltrarReservaCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarReservaCliente
-        Object[][] rowList = Reserva.devolverTodasReservasBBDD(NIF_Menu.getText(), (Integer)ReservaClienteField_Espacio.getValue(), ReservaClienteField_Fecha.getText(), (Integer)ReservaClienteField_Taller.getValue());
+        Object[][] rowList = Reserva.devolverTodasReservasBBDD(NIF_Menu.getText(), (Integer) ReservaClienteField_Espacio.getValue(), ReservaClienteField_Fecha.getText(), (Integer) ReservaClienteField_Taller.getValue());
 
         FiltroReservaCliente.dispose();
         ReservaClienteField_Espacio.setValue(0);
@@ -4287,10 +4296,10 @@ public class Dashboard extends javax.swing.JFrame {
         OpcionTaller.setVisible(false);
     }//GEN-LAST:event_FacturaFieldAnadir_OpVentaActionPerformed
 
-    private void NominaCalcularSNetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NominaCalcularSNetoActionPerformed
+    private void NominaAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NominaAnadirAction
         float impuestoSobreNomina = (Integer) NominaFieldAnadir_SBruto.getValue() * Utils.IMPUESTO;
         NominaFieldAnadir_SNeto.setText(Float.toString((Integer) NominaFieldAnadir_SBruto.getValue() - impuestoSobreNomina));
-    }//GEN-LAST:event_NominaCalcularSNetoActionPerformed
+    }//GEN-LAST:event_NominaAnadirAction
 
     private void EmpleadoAnadirField_OpTaller1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpleadoAnadirField_OpTaller1ActionPerformed
         OpcionVenta1.setVisible(false);
@@ -4304,17 +4313,49 @@ public class Dashboard extends javax.swing.JFrame {
         OpcionTaller1.setVisible(false);
     }//GEN-LAST:event_EmpleadoAnadirField_OpVenta1ActionPerformed
 
-    private void ClientesAñadirFiltrarClientes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesAñadirFiltrarClientes
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ClientesAñadirFiltrarClientes
+    private void ClienteAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteAnadirAction
+        Cliente cl = new Cliente(
+                ClienteAnadirField_Nombre.getText(),
+                ClienteAnadirField_Apellido.getText(),
+                ClienteAnadirField_NIF.getText(),
+                Integer.parseInt((String)ClienteAnadirField_Telefono.getValue()),
+                ClienteAnadirField_Domicilio.getText(),
+                ClienteAnadirField_Contra.getPassword().toString()
+        );
 
-    private void MotoresAnadirFiltrarClientes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MotoresAnadirFiltrarClientes
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MotoresAnadirFiltrarClientes
+        cl.insertarClienteBBDD();
+        PopUp.createSimple("success", "Acción ejecutada con éxito.");
+        
+        AnadirClientes.dispose();
+        refreshTableCliente();
 
-    private void ConcesionariosLabel11FiltrarClientes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConcesionariosLabel11FiltrarClientes
+        ClienteAnadirField_Nombre.setText("");
+        ClienteAnadirField_Apellido.setText("");
+        ClienteAnadirField_NIF.setText("");
+        ClienteAnadirField_Telefono.setText("");
+        ClienteAnadirField_Domicilio.setText("");
+        ClienteAnadirField_Contra.setText("");
+    }//GEN-LAST:event_ClienteAnadirAction
+
+    private void MotorAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MotorAnadirAction
         // TODO add your handling code here:
-    }//GEN-LAST:event_ConcesionariosLabel11FiltrarClientes
+    }//GEN-LAST:event_MotorAnadirAction
+
+    private void ConcesionarioAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConcesionarioAnadirAction
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ConcesionarioAnadirAction
+
+    private void EmpleadoAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpleadoAnadirAction
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmpleadoAnadirAction
+
+    private void FacturaAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturaAnadirAction
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FacturaAnadirAction
+
+    private void ReservaAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReservaAnadirAction
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReservaAnadirAction
 
     /**
      * Coger la información de una linea imprimida en la interfaz gráfica
@@ -4923,6 +4964,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Concesionarios_Modificar;
     private javax.swing.JScrollPane Concesionarios_Scroll;
     private javax.swing.JTable Concesionarios_Tabla;
+    private javax.swing.JButton EmpleadoAnadir;
     private javax.swing.JTextField EmpleadoAnadirField_Apellidos;
     private javax.swing.JPasswordField EmpleadoAnadirField_Contraseña;
     private javax.swing.JTextField EmpleadoAnadirField_Domicilio;
@@ -4960,7 +5002,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane Empleados_Scroll;
     private javax.swing.JTable Empleados_Tabla;
     private javax.swing.JButton FacturaAnadir;
-    private javax.swing.JButton FacturaAnadir1;
     private javax.swing.JLabel FacturaAnadirLabel;
     private javax.swing.JLabel FacturaAnadirLabel1;
     private javax.swing.JLabel FacturaAnadirLabel12;

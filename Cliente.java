@@ -70,7 +70,7 @@ public class Cliente extends Persona {
      * Insertar un cliente en la base de datos
      */
     public void insertarClienteBBDD() {
-        String consulta = "INSERT INTO CLIENTE (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICLIO, PASSWORD) VALUES (?,?,?,?,?,?)";
+        String consulta = "INSERT INTO CLIENTE (NIF, NOMBRE, APELLIDOS, TELEFONO, DOMICILIO, PASSWORD) VALUES (?,?,?,?,?,?)";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1,this.getNif());
@@ -78,10 +78,12 @@ public class Cliente extends Persona {
             Utils.prst.setString(3,this.getApellidos());
             Utils.prst.setInt(4,this.getTelefono());
             Utils.prst.setString(5,this.getDomicilio());
+            Utils.prst.setString(6,this.getPassword());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente!");
         } catch (SQLException e) {
             System.out.println("Error al insertar datos del cliente a la BBDD");
+            e.printStackTrace();
         } finally {
             try{
                 Utils.cerrarVariables();

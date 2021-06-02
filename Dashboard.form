@@ -2253,6 +2253,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReservaAnadirAction"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="ReservaNombreAnadirLabel">
               <Properties>
@@ -2406,6 +2409,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FacturaAnadirAction"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="53" y="332" width="300" height="-1"/>
@@ -2870,7 +2876,7 @@
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NominaCalcularSNetoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NominaAnadirAction"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="NominaAnadirLabel">
@@ -2989,7 +2995,7 @@
                 <Property name="text" type="java.lang.String" value="Calcular"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NominaCalcularSNetoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NominaAnadirAction"/>
               </Events>
             </Component>
           </SubComponents>
@@ -3052,10 +3058,13 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="FacturaAnadir1">
+            <Component class="javax.swing.JButton" name="EmpleadoAnadir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmpleadoAnadirAction"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="50" y="390" width="300" height="-1"/>
@@ -3585,7 +3594,7 @@
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClientesA&#xf1;adirFiltrarClientes"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClienteAnadirAction"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="ClientesLabel1">
@@ -3828,7 +3837,7 @@
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MotoresAnadirFiltrarClientes"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MotorAnadirAction"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="MotoresLabel1">
@@ -4064,7 +4073,7 @@
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConcesionariosLabel11FiltrarClientes"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConcesionarioAnadirAction"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="ConcesionariosLabel12">
