@@ -504,4 +504,97 @@ public class Concesionario {
             }
         }
     }
+
+    /**
+     * Devuelve los concesionarios filtrados de la base de datos en formato tabla.
+     *
+     * @param concesionarioId
+     * @param ubicacion
+     * @param nombre
+     * @param telefono
+     * @param tallerId
+     * @param ventaId
+     * @return
+     */
+    public static Object[][] devolverTodosConcesionariosBBDD(int concesionarioId,String ubicacion,String nombre,int telefono,int tallerId,int ventaId) {
+        boolean where = false;
+        //SQL devuelve ID, Ubicacion, Nombre y Telefono Concesionario + ID Taller + ID Venta
+        String consulta = "SELECT concesionario.*\n"; //Cambiar test a concesionario
+        if (concesionarioId > 0 && !where) {
+            consulta += " WHERE id like \"" + concesionarioId + "\"";
+            where = true;
+        }else if(concesionarioId > 0){
+            consulta += " AND id like \"" + concesionarioId + "\"";
+        }
+        if (ubicacion != null && !where) {
+            consulta += " WHERE ubicacion like \"" + ubicacion + "\"";
+            where = true;
+        }else if(ubicacion != null){
+            consulta += " AND ubicacion like \"" + ubicacion + "\"";
+        }
+        if ( nombre != null && !where) {
+            consulta += " WHERE nombre = \"" + nombre + "\"";
+            where = true;
+        }else if(nombre != null){
+            consulta += " AND nombre = \"" + nombre + "\"";
+        }
+        if (telefono > 0 && !where){
+            consulta += " WHERE telefono = \"" + telefono + "\"";
+            where = true;
+        }else if ( telefono > 0) {
+            consulta += " AND telefono = \"" + telefono + "\"";
+        }
+        if (tallerId > 0 && !where) {
+            consulta += " WHERE tallerid like \"" + tallerId + "\"";
+            where = true;
+        }else if(tallerId > 0){
+            consulta += " AND tallerid like \"" + tallerId + "\"";
+        }
+        if (ventaId > 0 && !where) {
+            consulta += " WHERE ventaid like \"" + ventaId + "\"";
+            where = true;
+        }else if(ventaId > 0){
+            consulta += " AND ventaid like \"" + ventaId + "\"";
+        }
+        consulta += " ORDER BY id";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM Concesionario"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.prst.executeQuery();
+            while (Utils.rs.next()) {
+                //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
+                //Contar únicamente que columnas son importantes!
+                Integer COLUMNAS = 5;
+                /**
+                 * ID Concesionario, ubicacion Concesionario, nombre Concesionario, telefono Concesionario,
+                 * ID Taller y ID Venta.
+                 */
+                String[] list = new String[COLUMNAS];
+                list[0] = Utils.rs.getString(1); //ID Concesionario
+                list[1] = Utils.rs.getString(2); //Ubicacion Concesionario
+                list[2] = Utils.rs.getString(3); //Nombre Concesionario
+                list[3] = Utils.rs.getString(4); //Telefono Concesionario
+                list[4] = Utils.rs.getString(5); //ID Taller
+                list[5] = Utils.rs.getString(6); //ID Venta
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
 }

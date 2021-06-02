@@ -309,4 +309,73 @@ public class Venta {
             }
         }
     }
+
+    /**
+     * Devuelve las ventas filtradas de la base de datos en formato tabla.
+     *
+     * @param ventaId
+     * @param horario
+     * @return
+     */
+    public static Object[][] devolverTodosVentasBBDD(int ventaId,String horario) {
+        boolean where = false;
+        //SQL devuelve ID, Espacios y Horario Taller
+        String consulta = "SELECT venta.*\n" +
+                "FROM test.venta INNER JOIN concesionario c on venta.concesionarioid = c.id\n" +
+                "LEFT JOIN empleado e on venta.empleadoid = e.id\n" +
+                "LEFT JOIN vehiculo v on venta.vehiculoid = v.id"; //Cambiar test a concesionario
+        if (ventaId > 0 && !where) {
+            consulta += " WHERE id like \"" + ventaId + "\"";
+            where = true;
+        }else if(ventaId > 0){
+            consulta += " AND id like \"" + ventaId + "\"";
+        }
+        if ( horario != null && !where) {
+            consulta += " WHERE horario = \"" + horario + "\"";
+            where = true;
+        }else if(horario != null){
+            consulta += " AND horario = \"" + horario + "\"";
+        }
+        consulta += " ORDER BY id";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM Venta"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.prst.executeQuery();
+            while (Utils.rs.next()) {
+                //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
+                //Contar únicamente que columnas son importantes!
+                Integer COLUMNAS = 6;
+                /**
+                 * ID Venta, horario Venta, ubicacion Concesionario, nombre Concesionario, telefono Concesionario,
+                 * nombre y apellidos Empleado(Persona), bastidor Vehiculo.
+                 */
+                String[] list = new String[COLUMNAS];
+                list[0] = Utils.rs.getString(1); //ID Venta
+                list[1] = Utils.rs.getString(2); //Horario Venta
+                list[2] = Utils.rs.getString(4); //Ubicacion Concesionario
+                list[3] = Utils.rs.getString(5); //Nombre Concesionario
+                list[4] = Utils.rs.getString(6); //Telefono Concesionario
+                list[5] = Utils.rs.getString(10) + Utils.rs.getString(11); //Nombre + apellidos Empleado(Persona)
+                list[6] = Utils.rs.getString(18); //Bastidor Vehiculo
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
 }
