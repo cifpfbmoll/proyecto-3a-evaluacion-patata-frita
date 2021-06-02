@@ -749,4 +749,83 @@ public class Factura {
         escritor.newLine();
         escritor.close();
     }
+    
+    
+         /**
+     * Devolver facturas de la base de datos compatible con el filtro
+     *
+     * @param trabajoRealizado
+     * @param costeFactura
+     * @param fechaFactura
+     * @return
+     */
+    public static Object[][] devolverTodosFacturaBBDD(String trabajoRealizado, float costeFactura, String fechaFactura) {
+        boolean where = false;
+        //SQL devuelve Reserva + Nombre cliente + apellidos cliente + tablas relacionadas
+        String consulta = "select * from test.factura f  join test.reserva r on f.reservaid = r.id join test.venta v on f.ventaid = v.id join test.vehiculo v2 on f.vehiculoid = v2.bastidor";
+      
+        if (trabajoRealizado != null && !where) {
+            consulta += " WHERE f.trabajo like \"" + trabajoRealizado + "\"";
+            where = true;
+        }else if(trabajoRealizado != null){
+            consulta += " AND f.trabajo like \"" + trabajoRealizado + "\"";
+        }
+        
+        if ( costeFactura > 0 && !where) {
+            consulta += " WHERE f.coste = \"" + costeFactura + "\"";
+            where = true;
+        }else if(costeFactura > 0){
+            consulta += " AND f.coste = \"" + costeFactura + "\"";
+        }
+        
+        if (fechaFactura !=null && !where){
+            consulta += " WHERE f.fecha = \"" + fechaFactura + "\"";
+            where = true;
+        }else if ( fechaFactura != null) {
+            consulta += " AND f.fecha = \"" + fechaFactura + "\"";
+        }
+        
+        consulta += " ORDER BY f.ID";
+        //Borrar prints, solo para testeo
+        System.out.println(consulta);
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM test.factura"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs.next();
+            
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.prst.executeQuery();
+            while (Utils.rs.next()) {
+                //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
+                //Contar únicamente que columnas son importantes!
+                Integer COLUMNAS = 7;
+                //1-trabajo, 2-coste, 3-fecha, 4-vehiculo_id, 5-espacio_reservado, 6-taller_id, 7-nif_cliente
+                String[] list = new String[COLUMNAS];
+                list[0] = Utils.rs.getString(2); // trabajo
+                list[1] = Utils.rs.getString(3); // coste
+                list[2] = Utils.rs.getString(4); // fecha
+                list[3] = Utils.rs.getString(7); // vehiculo_id
+                list[4] = Utils.rs.getString(9); // espacio_reservado
+                list[5] = Utils.rs.getString(11); // taller_id
+                list[6] = Utils.rs.getString(12); // nif_cliente
+
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los motores");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
 }
