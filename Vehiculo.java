@@ -465,6 +465,29 @@ public class Vehiculo {
             }
         }
     }
+    
+    /**
+     * Se borra el vehiculo actual de la base de datos
+     * @param ID
+     */
+    public static void borrarVehiculoBBDD(String ID) {
+        String consulta = " DELETE FROM VEHICULO WHERE BASTIDOR LIKE ?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, ID);
+            Utils.prst.executeUpdate();
+            System.out.println("Vehiculo borrado correctamente");
+
+        } catch (SQLException e) {
+            System.out.println("Error al borrar datos, es posible que cuelguen otras tablas de esta");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
 
     /**
      * Se muestran todos los vehiculos en la base de datos

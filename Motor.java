@@ -272,6 +272,30 @@ public class Motor {
             }
         }
     }
+    
+    /**
+     * Se borra el motor actual de la base de datos, puede dar errores si se
+     * borra mientras un vehiculo apunta a el
+     * @param ID
+     */
+    public static void borrarMotorBBDD(int ID) {
+        String consulta = " DELETE FROM MOTOR WHERE ID=?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1, ID);
+            Utils.prst.executeUpdate();
+            System.out.println("Vehiculo borrado correctamente");
+
+        } catch (SQLException e) {
+            System.out.println("Error borrar datos, asegurese de que ningun vehiculo use este motor");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
 
     /**
      * Se muestran todos los motores en la base de datos

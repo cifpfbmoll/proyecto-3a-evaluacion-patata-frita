@@ -178,6 +178,29 @@ public class Cliente extends Persona {
             }
         }
     }
+    
+    /**
+     * Borrar un cliente de la base de datos
+     * @param ID
+     */
+    public static void borrarClienteBBDD(String ID) {
+        String consulta = " DELETE FROM CLIENTE WHERE NIF LIKE ?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, ID);
+            Utils.prst.executeUpdate();
+            System.out.println("Cliente borrado correctamente");
+
+        } catch (SQLException e) {
+            System.out.println("Error borrar datos");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
 
     /**
      * Mostrar todos los clientes de la base de datos

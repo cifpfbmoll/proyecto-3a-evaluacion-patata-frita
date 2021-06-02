@@ -2731,6 +2731,22 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JSpinner" name="FacturaFieldAnadir_Coste1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="sansserif" size="14" style="0"/>
+                </Property>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="140" y="111" width="201" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
@@ -3999,11 +4015,11 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="ClienteAnadirField_Ubicacion" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ClienteAnadirField_Nombre3" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ClienteAnadirField_Telefono1" alignment="0" pref="159" max="32767" attributes="0"/>
-                                  <Component id="MotoresAnadirField_Cilindrada1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="MotoresAnadirField_Cilindrada2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ConcesionarioAnadirField_Ubicacion" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ConcesionarioAnadirField_Nombre" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ConcesionarioAnadirField_Telefono" alignment="0" pref="159" max="32767" attributes="0"/>
+                                  <Component id="ConcesionarioAnadirField_Taller" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ConcesionarioAnadirField_Venta" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -4027,26 +4043,26 @@
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="ConcesionariosLabel12" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="ClienteAnadirField_Nombre3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ConcesionarioAnadirField_Nombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="ConcesionariosLabel13" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="ClienteAnadirField_Ubicacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ConcesionarioAnadirField_Ubicacion" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="ConcesionariosLabel14" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="ClienteAnadirField_Telefono1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ConcesionarioAnadirField_Telefono" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="MotoresAnadirField_Cilindrada1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ConcesionarioAnadirField_Taller" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ConcesionariosLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="MotoresAnadirField_Cilindrada2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ConcesionarioAnadirField_Venta" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ConcesionariosLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -4134,21 +4150,24 @@
                 <Property name="text" type="java.lang.String" value="ID Taller"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="ClienteAnadirField_Ubicacion">
+            <Component class="javax.swing.JTextField" name="ConcesionarioAnadirField_Ubicacion">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="SansSerif" size="14" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConcesionarioAnadirField_UbicacionActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="ConcesionarioAnadirField_Nombre">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="SansSerif" size="14" style="0"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="ClienteAnadirField_Nombre3">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SansSerif" size="14" style="0"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JFormattedTextField" name="ClienteAnadirField_Telefono1">
+            <Component class="javax.swing.JFormattedTextField" name="ConcesionarioAnadirField_Telefono">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="#########" subtype="-1" type="5"/>
@@ -4159,7 +4178,7 @@
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="ReservaClienteField_Fecha.setFont(new java.awt.Font(&quot;sansserif&quot;, 0, 14));"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JSpinner" name="MotoresAnadirField_Cilindrada1">
+            <Component class="javax.swing.JSpinner" name="ConcesionarioAnadirField_Taller">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="SansSerif" size="14" style="0"/>
@@ -4169,7 +4188,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="MotoresAnadirField_Cilindrada2">
+            <Component class="javax.swing.JSpinner" name="ConcesionarioAnadirField_Venta">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="SansSerif" size="14" style="0"/>
@@ -6415,6 +6434,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar n&#xf3;mina"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AreaBuscarActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="770" y="220" width="200" height="-1"/>
