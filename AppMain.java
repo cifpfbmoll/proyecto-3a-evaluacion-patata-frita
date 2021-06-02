@@ -20,10 +20,11 @@ public class AppMain {
         boolean salir = false;
         boolean volver = false;
         int opcion;
+        
+        Login.initGui();
 
         try {
             do {
-
                 System.out.println("MENU");
                 System.out.println("1 factura");
                 System.out.println("2 nomina");
@@ -138,7 +139,7 @@ public class AppMain {
                     break;
                 case 5:
                     System.out.println("mostrar todos concesionarios");
-                    Concesionario.mostrarConcesionarios();
+                    Concesionario.mostrarConcesionario();
                     break;
                 case 6:
                     System.out.println("Id del concesionario: ");

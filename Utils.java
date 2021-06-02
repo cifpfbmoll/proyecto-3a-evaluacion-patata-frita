@@ -1,10 +1,3 @@
-/*
- * Esta clase es la misma que usamos en el proyecto, pero al incluir todos los datos
- * necesarios para archivos, base de datos y lectura de teclado me parece correcto
- * reutilizarla para el examen.
- * De todas formas la he editado ligeramente.
- */
-
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -213,7 +206,6 @@ public class Utils {
     }
 
     public static void deleteGeneral(String tabla, int id) {
-        PreparedStatement prst;
         try {
             String consulta = "DELETE FROM " + tabla + " WHERE ID=?";
             Utils.prst = Utils.connection.prepareStatement(consulta);
