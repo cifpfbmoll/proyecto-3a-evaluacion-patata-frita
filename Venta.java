@@ -308,81 +308,38 @@ public class Venta {
             }
         }
     }
-    //TODO : Entender y modificar
+
     /**
-     * Devuelve los vehiculos filtrados de la base de datos en formato tabla
+     * Devuelve las ventas filtradas de la base de datos en formato tabla.
      *
-     * @param bastidor
-     * @param tipo
-     * @param kilometraje
-     * @param asientos
-     * @param puertas
-     * @param marca
-     * @param modelo
-     * @param precio
+     * @param ventaId
+     * @param horario
      * @return
      */
-    public static Object[][] devolverTodosVehiculosBBDD(String bastidor, String tipo, int kilometraje, int asientos, int puertas,
-                                                        String marca, String modelo, int precio) {
+    public static Object[][] devolverTodosVentasBBDD(int ventaId,String horario) {
         boolean where = false;
-        //SQL devuelve Reserva + Nombre cliente + apellidos cliente + tablas relacionadas
-        String consulta = "SELECT vehiculo.*\n" +
-                "FROM test.vehiculo INNER JOIN motor m on vehiculo.motorid = m.id\n" +
-                "LEFT JOIN venta v on vehiculo.ventaid = v.id\n" +
-                "LEFT JOIN cliente c on vehiculo.clientenif = c.nif"; //Cambiar test a concesionario
-        if (bastidor != null && !where) {
-            consulta += " WHERE bastidor like \"" + bastidor + "\"";
+        //SQL devuelve ID, Espacios y Horario Taller
+        String consulta = "SELECT venta.*\n" +
+                "FROM test.venta INNER JOIN concesionario c on venta.concesionarioid = c.id\n" +
+                "LEFT JOIN empleado e on venta.empleadoid = e.id\n" +
+                "LEFT JOIN vehiculo v on venta.vehiculoid = v.id"; //Cambiar test a concesionario
+        if (ventaId > 0 && !where) {
+            consulta += " WHERE id like \"" + ventaId + "\"";
             where = true;
-        }else if(bastidor != null){
-            consulta += " AND bastidor like \"" + bastidor + "\"";
+        }else if(ventaId > 0){
+            consulta += " AND id like \"" + ventaId + "\"";
         }
-        if (tipo != null && !where) {
-            consulta += " WHERE tipo like \"" + tipo + "\"";
+        if ( horario != null && !where) {
+            consulta += " WHERE horario = \"" + horario + "\"";
             where = true;
-        }else if(tipo != null){
-            consulta += " AND tipo like \"" + tipo + "\"";
+        }else if(horario != null){
+            consulta += " AND horario = \"" + horario + "\"";
         }
-        if ( kilometraje > 0 && !where) {
-            consulta += " WHERE kilometraje = \"" + kilometraje + "\"";
-            where = true;
-        }else if(kilometraje > 0){
-            consulta += " AND kilometraje = \"" + kilometraje + "\"";
-        }
-        if (asientos > 0 && !where){
-            consulta += " WHERE asientos = \"" + asientos + "\"";
-            where = true;
-        }else if ( asientos > 0) {
-            consulta += " AND asientos = \"" + asientos + "\"";
-        }
-        if ( puertas > 0 && !where) {
-            consulta += " WHERE puertas = \"" + puertas + "\"";
-            where = true;
-        }else if(puertas > 0){
-            consulta += " AND puertas = \"" + puertas + "\"";
-        }
-        if (precio > 0 && !where){
-            consulta += " WHERE precio = \"" + precio + "\"";
-            where = true;
-        }else if ( precio > 0) {
-            consulta += " AND precio = \"" + precio + "\"";
-        }
-        if (marca != null && !where) {
-            consulta += " WHERE marca like \"" + marca + "\"";
-            where = true;
-        }else if(marca != null){
-            consulta += " AND marca like \"" + marca + "\"";
-        }
-        if (modelo != null && !where) {
-            consulta += " WHERE modelo like \"" + modelo + "\"";
-            where = true;
-        }else if(modelo != null){
-            consulta += " AND modelo like \"" + modelo + "\"";
-        }
-        consulta += " ORDER BY v.bastidor";
+        consulta += " ORDER BY id";
         String[][] objectList = null;
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM Vehiculo"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM Venta"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
@@ -390,34 +347,19 @@ public class Venta {
             while (Utils.rs.next()) {
                 //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
                 //Contar únicamente que columnas son importantes!
-                Integer COLUMNAS = 19;
+                Integer COLUMNAS = 6;
                 /**
-                 * Bastidor, tipo, clase, kilometraje, autonomia, puertas
-                 * asientos, color, marca, modelo, precio, extras, potencia
-                 * par, tipo, venta id, nombre, apellidos
+                 * ID Venta, horario Venta, ubicacion Concesionario, nombre Concesionario, telefono Concesionario,
+                 * nombre y apellidos Empleado(Persona), bastidor Vehiculo.
                  */
-                //ReservaID, Espacio_res, fecha, clientenif, espacios, horario, nombre,apellidos
                 String[] list = new String[COLUMNAS];
-                list[0] = Utils.rs.getString(1); //Bastidor
-                list[1] = Utils.rs.getString(2); //Vehiculo tipo
-                list[2] = Utils.rs.getString(3); //Estado vehiculo
-                list[3] = Utils.rs.getString(5); //Kilometraje
-                list[4] = Utils.rs.getString(7); //Autonomia
-                list[5] = Utils.rs.getString(8); //Puertas
-                list[6] = Utils.rs.getString(9); //Asientos
-                list[7] = Utils.rs.getString(10); //Color
-                list[8] = Utils.rs.getString(11); //Marca
-                list[9] = Utils.rs.getString(12); //Modelo
-                list[10] = Utils.rs.getString(13); //Precio
-                list[11] = Utils.rs.getString(14); //Extras
-                list[12] = Utils.rs.getString(18); //Potencia
-                list[13] = Utils.rs.getString(19); //Cilindrada
-                list[14] = Utils.rs.getString(20); //Potencia
-                list[15] = Utils.rs.getString(21); //Par
-                list[16] = Utils.rs.getString(22); //Tipo
-                list[17] = Utils.rs.getString(23); //Id venta
-                list[18] = Utils.rs.getString(24); //Horario venta
-                list[19] = Utils.rs.getString(25) + Utils.rs.getString(26); //Nombre + apellidos
+                list[0] = Utils.rs.getString(1); //ID Venta
+                list[1] = Utils.rs.getString(2); //Horario Venta
+                list[2] = Utils.rs.getString(4); //Ubicacion Concesionario
+                list[3] = Utils.rs.getString(5); //Nombre Concesionario
+                list[4] = Utils.rs.getString(6); //Telefono Concesionario
+                list[5] = Utils.rs.getString(10) + Utils.rs.getString(11); //Nombre + apellidos Empleado(Persona)
+                list[6] = Utils.rs.getString(18); //Bastidor Vehiculo
                 objectList[i] = list;
                 i++;
             }

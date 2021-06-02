@@ -492,81 +492,63 @@ public class Concesionario {
             }
         }
     }
-    //TODO : Entender y modificar
+
     /**
-     * Devuelve los vehiculos filtrados de la base de datos en formato tabla
+     * Devuelve los concesionarios filtrados de la base de datos en formato tabla.
      *
-     * @param bastidor
-     * @param tipo
-     * @param kilometraje
-     * @param asientos
-     * @param puertas
-     * @param marca
-     * @param modelo
-     * @param precio
+     * @param concesionarioId
+     * @param ubicacion
+     * @param nombre
+     * @param telefono
+     * @param tallerId
+     * @param ventaId
      * @return
      */
-    public static Object[][] devolverTodosVehiculosBBDD(String bastidor, String tipo, int kilometraje, int asientos, int puertas,
-                                                        String marca, String modelo, int precio) {
+    public static Object[][] devolverTodosConcesionariosBBDD(int concesionarioId,String ubicacion,String nombre,int telefono,int tallerId,int ventaId) {
         boolean where = false;
-        //SQL devuelve Reserva + Nombre cliente + apellidos cliente + tablas relacionadas
-        String consulta = "SELECT vehiculo.*\n" +
-                "FROM test.vehiculo INNER JOIN motor m on vehiculo.motorid = m.id\n" +
-                "LEFT JOIN venta v on vehiculo.ventaid = v.id\n" +
-                "LEFT JOIN cliente c on vehiculo.clientenif = c.nif"; //Cambiar test a concesionario
-        if (bastidor != null && !where) {
-            consulta += " WHERE bastidor like \"" + bastidor + "\"";
+        //SQL devuelve ID, Ubicacion, Nombre y Telefono Concesionario + ID Taller + ID Venta
+        String consulta = "SELECT concesionario.*\n"; //Cambiar test a concesionario
+        if (concesionarioId > 0 && !where) {
+            consulta += " WHERE id like \"" + concesionarioId + "\"";
             where = true;
-        }else if(bastidor != null){
-            consulta += " AND bastidor like \"" + bastidor + "\"";
+        }else if(concesionarioId > 0){
+            consulta += " AND id like \"" + concesionarioId + "\"";
         }
-        if (tipo != null && !where) {
-            consulta += " WHERE tipo like \"" + tipo + "\"";
+        if (ubicacion != null && !where) {
+            consulta += " WHERE ubicacion like \"" + ubicacion + "\"";
             where = true;
-        }else if(tipo != null){
-            consulta += " AND tipo like \"" + tipo + "\"";
+        }else if(ubicacion != null){
+            consulta += " AND ubicacion like \"" + ubicacion + "\"";
         }
-        if ( kilometraje > 0 && !where) {
-            consulta += " WHERE kilometraje = \"" + kilometraje + "\"";
+        if ( nombre != null && !where) {
+            consulta += " WHERE nombre = \"" + nombre + "\"";
             where = true;
-        }else if(kilometraje > 0){
-            consulta += " AND kilometraje = \"" + kilometraje + "\"";
+        }else if(nombre != null){
+            consulta += " AND nombre = \"" + nombre + "\"";
         }
-        if (asientos > 0 && !where){
-            consulta += " WHERE asientos = \"" + asientos + "\"";
+        if (telefono > 0 && !where){
+            consulta += " WHERE telefono = \"" + telefono + "\"";
             where = true;
-        }else if ( asientos > 0) {
-            consulta += " AND asientos = \"" + asientos + "\"";
+        }else if ( telefono > 0) {
+            consulta += " AND telefono = \"" + telefono + "\"";
         }
-        if ( puertas > 0 && !where) {
-            consulta += " WHERE puertas = \"" + puertas + "\"";
+        if (tallerId > 0 && !where) {
+            consulta += " WHERE tallerid like \"" + tallerId + "\"";
             where = true;
-        }else if(puertas > 0){
-            consulta += " AND puertas = \"" + puertas + "\"";
+        }else if(tallerId > 0){
+            consulta += " AND tallerid like \"" + tallerId + "\"";
         }
-        if (precio > 0 && !where){
-            consulta += " WHERE precio = \"" + precio + "\"";
+        if (ventaId > 0 && !where) {
+            consulta += " WHERE ventaid like \"" + ventaId + "\"";
             where = true;
-        }else if ( precio > 0) {
-            consulta += " AND precio = \"" + precio + "\"";
+        }else if(ventaId > 0){
+            consulta += " AND ventaid like \"" + ventaId + "\"";
         }
-        if (marca != null && !where) {
-            consulta += " WHERE marca like \"" + marca + "\"";
-            where = true;
-        }else if(marca != null){
-            consulta += " AND marca like \"" + marca + "\"";
-        }
-        if (modelo != null && !where) {
-            consulta += " WHERE modelo like \"" + modelo + "\"";
-            where = true;
-        }else if(modelo != null){
-            consulta += " AND modelo like \"" + modelo + "\"";
-        }
-        consulta += " ORDER BY v.bastidor";
+        consulta += " ORDER BY id";
         String[][] objectList = null;
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM Vehiculo"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM Concesionario"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
@@ -574,34 +556,18 @@ public class Concesionario {
             while (Utils.rs.next()) {
                 //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
                 //Contar únicamente que columnas son importantes!
-                Integer COLUMNAS = 19;
+                Integer COLUMNAS = 5;
                 /**
-                 * Bastidor, tipo, clase, kilometraje, autonomia, puertas
-                 * asientos, color, marca, modelo, precio, extras, potencia
-                 * par, tipo, venta id, nombre, apellidos
+                 * ID Concesionario, ubicacion Concesionario, nombre Concesionario, telefono Concesionario,
+                 * ID Taller y ID Venta.
                  */
-                //ReservaID, Espacio_res, fecha, clientenif, espacios, horario, nombre,apellidos
                 String[] list = new String[COLUMNAS];
-                list[0] = Utils.rs.getString(1); //Bastidor
-                list[1] = Utils.rs.getString(2); //Vehiculo tipo
-                list[2] = Utils.rs.getString(3); //Estado vehiculo
-                list[3] = Utils.rs.getString(5); //Kilometraje
-                list[4] = Utils.rs.getString(7); //Autonomia
-                list[5] = Utils.rs.getString(8); //Puertas
-                list[6] = Utils.rs.getString(9); //Asientos
-                list[7] = Utils.rs.getString(10); //Color
-                list[8] = Utils.rs.getString(11); //Marca
-                list[9] = Utils.rs.getString(12); //Modelo
-                list[10] = Utils.rs.getString(13); //Precio
-                list[11] = Utils.rs.getString(14); //Extras
-                list[12] = Utils.rs.getString(18); //Potencia
-                list[13] = Utils.rs.getString(19); //Cilindrada
-                list[14] = Utils.rs.getString(20); //Potencia
-                list[15] = Utils.rs.getString(21); //Par
-                list[16] = Utils.rs.getString(22); //Tipo
-                list[17] = Utils.rs.getString(23); //Id venta
-                list[18] = Utils.rs.getString(24); //Horario venta
-                list[19] = Utils.rs.getString(25) + Utils.rs.getString(26); //Nombre + apellidos
+                list[0] = Utils.rs.getString(1); //ID Concesionario
+                list[1] = Utils.rs.getString(2); //Ubicacion Concesionario
+                list[2] = Utils.rs.getString(3); //Nombre Concesionario
+                list[3] = Utils.rs.getString(4); //Telefono Concesionario
+                list[4] = Utils.rs.getString(5); //ID Taller
+                list[5] = Utils.rs.getString(6); //ID Venta
                 objectList[i] = list;
                 i++;
             }
