@@ -2474,11 +2474,6 @@ public class Dashboard extends javax.swing.JFrame {
         ConcesionariosLabel16.setText("ID Taller");
 
         ConcesionarioAnadirField_Ubicacion.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        ConcesionarioAnadirField_Ubicacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConcesionarioAnadirField_UbicacionActionPerformed(evt);
-            }
-        });
 
         ConcesionarioAnadirField_Nombre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
@@ -4678,12 +4673,12 @@ public class Dashboard extends javax.swing.JFrame {
                     break;
                 case "empleado":
                     data = getRowData(Empleados_Tabla);
-                    Empleado.borrarEmpleadoBBDD(Integer.parseInt(data[0]));
+                    Empleado.borrarEmpleadoBBDD(data[0]);
                     refreshTableEmpleado();
                     break;
                 case "cliente":
                     data = getRowData(Cliente_Tabla);
-                    Cliente.borrarClienteBBDD(Integer.parseInt(data[0]));
+                    Cliente.borrarClienteBBDD(data[0]);
                     refreshTableCliente();
                     break;
                 case "motor":
@@ -4693,7 +4688,7 @@ public class Dashboard extends javax.swing.JFrame {
                     break;
                 case "vehiculo":
                     data = getRowData(Vehiculos_Tabla);
-                    Vehiculo.borrarVehiculoBBDD(Integer.parseInt(data[0]));
+                    Vehiculo.borrarVehiculoBBDD(data[0]);
                     refreshTableVehiculos();
                     break;
                 case "concesioanrio":
