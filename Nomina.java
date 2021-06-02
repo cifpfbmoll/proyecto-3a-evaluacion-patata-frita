@@ -274,7 +274,7 @@ public class Nomina {
      *
      * @param idNomina
      */
-    public static void borrarNomina(int idNomina) {
+    public static void borrarNominaBBDD(int idNomina) {
         String borrar = "DELETE FROM NOMINA WHERE ID=?";
         try {
             Utils.prst = Utils.connection.prepareStatement(borrar);

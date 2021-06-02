@@ -257,6 +257,8 @@ public class Dashboard extends javax.swing.JFrame {
         MotoresAnadirField_Cilindrada = new javax.swing.JSpinner();
         MotoresLabel6 = new javax.swing.JLabel();
         MotoresAnadirField_NumMotores = new javax.swing.JSpinner();
+        MotoresLabel7 = new javax.swing.JLabel();
+        MotoresAnadirField_Par = new javax.swing.JSpinner();
         AnadirConcesionarios = new javax.swing.JDialog();
         Panel15 = new javax.swing.JPanel();
         TitleAnadirClientes2 = new javax.swing.JLabel();
@@ -271,6 +273,12 @@ public class Dashboard extends javax.swing.JFrame {
         ClienteAnadirField_Telefono1 = new javax.swing.JFormattedTextField();
         MotoresAnadirField_Cilindrada1 = new javax.swing.JSpinner();
         MotoresAnadirField_Cilindrada2 = new javax.swing.JSpinner();
+        Confirmacion = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        TitleFiltroConcesionarios1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         VentanaCompleta = new javax.swing.JPanel();
         PanelMenu = new javax.swing.JPanel();
         MenuHeader = new javax.swing.JPanel();
@@ -365,7 +373,7 @@ public class Dashboard extends javax.swing.JFrame {
         Motores_Buscar = new javax.swing.JButton();
         Motores_Anadir = new javax.swing.JButton();
         Motores_Modificar = new javax.swing.JButton();
-        Facturas_Eliminar1 = new javax.swing.JButton();
+        Motores_Eliminar = new javax.swing.JButton();
         Board_Vehiculos = new javax.swing.JPanel();
         Title_Vehiculos = new javax.swing.JLabel();
         Vehiculos_Scroll = new javax.swing.JScrollPane();
@@ -2334,7 +2342,7 @@ public class Dashboard extends javax.swing.JFrame {
         MotoresLabel5.setText("Cilindrada");
 
         MotoresAnadirField_Cilindrada.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        MotoresAnadirField_Cilindrada.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
+        MotoresAnadirField_Cilindrada.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         MotoresLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         MotoresLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -2342,7 +2350,15 @@ public class Dashboard extends javax.swing.JFrame {
         MotoresLabel6.setText("Num motores");
 
         MotoresAnadirField_NumMotores.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        MotoresAnadirField_NumMotores.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
+        MotoresAnadirField_NumMotores.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        MotoresLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MotoresLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        MotoresLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        MotoresLabel7.setText("Par motor");
+
+        MotoresAnadirField_Par.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        MotoresAnadirField_Par.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
 
         javax.swing.GroupLayout Panel14Layout = new javax.swing.GroupLayout(Panel14);
         Panel14.setLayout(Panel14Layout);
@@ -2359,13 +2375,15 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(MotoresLabel4)
                             .addComponent(MotoresLabel5)
                             .addComponent(MotoresLabel1)
-                            .addComponent(MotoresLabel6))
+                            .addComponent(MotoresLabel6)
+                            .addComponent(MotoresLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(MotoresAnadirField_Cilindrada)
                             .addComponent(MotoresAnadiField_Potencia)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                            .addComponent(MotoresAnadirField_NumMotores)))
+                            .addComponent(MotoresAnadirField_NumMotores)
+                            .addComponent(MotoresAnadirField_Par)))
                     .addGroup(Panel14Layout.createSequentialGroup()
                         .addGap(114, 114, 114)
                         .addComponent(MotoresAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -2392,9 +2410,13 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MotoresLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MotoresAnadirField_NumMotores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MotoresAnadirField_Par, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MotoresLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addComponent(MotoresAnadir)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         AnadirMotores.getContentPane().add(Panel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, -1));
@@ -2523,6 +2545,86 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         AnadirConcesionarios.getContentPane().add(Panel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, -1));
+
+        Confirmacion.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        Confirmacion.setTitle("Confirmacion");
+        Confirmacion.setAlwaysOnTop(true);
+        Confirmacion.setMaximumSize(new java.awt.Dimension(369, 192));
+        Confirmacion.setMinimumSize(new java.awt.Dimension(369, 192));
+        Confirmacion.setPreferredSize(new java.awt.Dimension(369, 192));
+        Confirmacion.setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        TitleFiltroConcesionarios1.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
+        TitleFiltroConcesionarios1.setForeground(new java.awt.Color(0, 0, 0));
+        TitleFiltroConcesionarios1.setText("Confirmación");
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("<html><p style=\"text-align: center\">¿Estas seguro de querer ejecutar esta acción?<br/>Los cambios pueden ser irreversibles.</p></html>");
+
+        jButton1.setText("Cancelar");
+        jButton1.setSelected(true);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarAction(evt);
+            }
+        });
+
+        jButton2.setText("Confirmar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmarAction(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(TitleFiltroConcesionarios1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TitleFiltroConcesionarios1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout ConfirmacionLayout = new javax.swing.GroupLayout(Confirmacion.getContentPane());
+        Confirmacion.getContentPane().setLayout(ConfirmacionLayout);
+        ConfirmacionLayout.setHorizontalGroup(
+            ConfirmacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        ConfirmacionLayout.setVerticalGroup(
+            ConfirmacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        Confirmacion.getAccessibleContext().setAccessibleDescription("default");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Concesionario");
@@ -3096,7 +3198,7 @@ public class Dashboard extends javax.swing.JFrame {
         Facturas_Eliminar.setText("Eliminar");
         Facturas_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Facturas_EliminarActionPerformed(evt);
+                BorrarFactura(evt);
             }
         });
         Board_Facturas.add(Facturas_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
@@ -3166,7 +3268,7 @@ public class Dashboard extends javax.swing.JFrame {
         Nominas_Eliminar.setText("Eliminar");
         Nominas_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Nominas_EliminarActionPerformed(evt);
+                BorrarNomina(evt);
             }
         });
         Board_Nominas.add(Nominas_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
@@ -3236,7 +3338,7 @@ public class Dashboard extends javax.swing.JFrame {
         Empleados_Eliminar.setText("Eliminar");
         Empleados_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Empleados_EliminarActionPerformed(evt);
+                BorrarEmpleado(evt);
             }
         });
         Board_Empleados.add(Empleados_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
@@ -3306,7 +3408,7 @@ public class Dashboard extends javax.swing.JFrame {
         Clientes_Eliminar.setText("Eliminar");
         Clientes_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Clientes_EliminarActionPerformed(evt);
+                BorrarCliente(evt);
             }
         });
         Board_Clientes.add(Clientes_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
@@ -3373,13 +3475,13 @@ public class Dashboard extends javax.swing.JFrame {
         });
         Board_Motores.add(Motores_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 200, -1));
 
-        Facturas_Eliminar1.setText("Eliminar");
-        Facturas_Eliminar1.addActionListener(new java.awt.event.ActionListener() {
+        Motores_Eliminar.setText("Eliminar");
+        Motores_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Facturas_Eliminar1ActionPerformed(evt);
+                BorrarMotor(evt);
             }
         });
-        Board_Motores.add(Facturas_Eliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
+        Board_Motores.add(Motores_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
 
         Board_Vehiculos.setBackground(new java.awt.Color(242, 242, 242));
         Board_Vehiculos.setForeground(new java.awt.Color(0, 0, 0));
@@ -3448,7 +3550,7 @@ public class Dashboard extends javax.swing.JFrame {
         Vehiculos_Eliminar.setText("Eliminar");
         Vehiculos_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Vehiculos_EliminarActionPerformed(evt);
+                BorrarVehiculo(evt);
             }
         });
         Board_Vehiculos.add(Vehiculos_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
@@ -3518,7 +3620,7 @@ public class Dashboard extends javax.swing.JFrame {
         Reservas_Eliminar.setText("Eliminar");
         Reservas_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Reservas_EliminarActionPerformed(evt);
+                BorrarReserva(evt);
             }
         });
         Board_Reservas.add(Reservas_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 200, -1));
@@ -3817,9 +3919,17 @@ public class Dashboard extends javax.swing.JFrame {
         FiltroFactura.setVisible(true);
     }//GEN-LAST:event_Facturas_BuscarActionPerformed
 
-    private void Facturas_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Facturas_EliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Facturas_EliminarActionPerformed
+    private void BorrarFactura(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarFactura
+        try {
+            getRowData(Facturas_Tabla);
+            Confirmacion.getAccessibleContext().setAccessibleDescription("factura");
+            Confirmacion.setLocationRelativeTo(null);
+            Confirmacion.setVisible(true);
+        } catch (Exception e) {
+            PopUp.createSimple("error", "No has seleccionado ninguna factura.");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_BorrarFactura
 
     private void Facturas_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Facturas_ModificarActionPerformed
         // TODO add your handling code here:
@@ -3839,9 +3949,17 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Clientes_ModificarActionPerformed
 
-    private void Clientes_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clientes_EliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Clientes_EliminarActionPerformed
+    private void BorrarCliente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarCliente
+        try {
+            getRowData(Cliente_Tabla);
+            Confirmacion.getAccessibleContext().setAccessibleDescription("cliente");
+            Confirmacion.setLocationRelativeTo(null);
+            Confirmacion.setVisible(true);
+        } catch (Exception e) {
+            PopUp.createSimple("error", "No has seleccionado ningún cliente.");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_BorrarCliente
 
     private void Motores_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motores_BuscarActionPerformed
         FiltroMotores.setLocationRelativeTo(null);
@@ -3857,9 +3975,17 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Motores_ModificarActionPerformed
 
-    private void Facturas_Eliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Facturas_Eliminar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Facturas_Eliminar1ActionPerformed
+    private void BorrarMotor(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarMotor
+        try {
+            getRowData(Motores_Tabla);
+            Confirmacion.getAccessibleContext().setAccessibleDescription("motor");
+            Confirmacion.setLocationRelativeTo(null);
+            Confirmacion.setVisible(true);
+        } catch (Exception e) {
+            PopUp.createSimple("error", "No has seleccionado ningún motor.");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_BorrarMotor
 
     private void Vehiculos_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Vehiculos_BuscarActionPerformed
         // TODO add your handling code here:
@@ -3873,9 +3999,17 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Vehiculos_ModificarActionPerformed
 
-    private void Vehiculos_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Vehiculos_EliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Vehiculos_EliminarActionPerformed
+    private void BorrarVehiculo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarVehiculo
+        try {
+            getRowData(Vehiculos_Tabla);
+            Confirmacion.getAccessibleContext().setAccessibleDescription("vehiculo");
+            Confirmacion.setLocationRelativeTo(null);
+            Confirmacion.setVisible(true);
+        } catch (Exception e) {
+            PopUp.createSimple("error", "No has seleccionado ningún vehículo.");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_BorrarVehiculo
 
     private void Reservas_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservas_BuscarActionPerformed
         FiltroReserva.setLocationRelativeTo(null);
@@ -3891,9 +4025,17 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Reservas_ModificarActionPerformed
 
-    private void Reservas_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservas_EliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Reservas_EliminarActionPerformed
+    private void BorrarReserva(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarReserva
+        try {
+            getRowData(Reservas_Tabla);
+            Confirmacion.getAccessibleContext().setAccessibleDescription("reserva");
+            Confirmacion.setLocationRelativeTo(null);
+            Confirmacion.setVisible(true);
+        } catch (Exception e) {
+            PopUp.createSimple("error", "No has seleccionado ninguna reserva.");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_BorrarReserva
 
     private void Nominas_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nominas_BuscarActionPerformed
         FiltroNominas.setLocationRelativeTo(null);
@@ -3909,9 +4051,17 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Nominas_ModificarActionPerformed
 
-    private void Nominas_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nominas_EliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Nominas_EliminarActionPerformed
+    private void BorrarNomina(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarNomina
+        try {
+            getRowData(Nominas_Tabla);
+            Confirmacion.getAccessibleContext().setAccessibleDescription("nomina");
+            Confirmacion.setLocationRelativeTo(null);
+            Confirmacion.setVisible(true);
+        } catch (Exception e) {
+            PopUp.createSimple("error", "No has seleccionado ninguna nómina.");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_BorrarNomina
 
     private void Empleados_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Empleados_BuscarActionPerformed
         FiltroEmpleados.setLocationRelativeTo(null);
@@ -3927,9 +4077,17 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Empleados_ModificarActionPerformed
 
-    private void Empleados_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Empleados_EliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Empleados_EliminarActionPerformed
+    private void BorrarEmpleado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarEmpleado
+        try {
+            getRowData(Empleados_Tabla);
+            Confirmacion.getAccessibleContext().setAccessibleDescription("empleado");
+            Confirmacion.setLocationRelativeTo(null);
+            Confirmacion.setVisible(true);
+        } catch (Exception e) {
+            PopUp.createSimple("error", "No has seleccionado ningún empleado.");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_BorrarEmpleado
 
     private void Concesionarios_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Concesionarios_BuscarActionPerformed
         FiltroConcesionarios.setLocationRelativeTo(null);
@@ -3946,7 +4104,15 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_Concesionarios_ModificarActionPerformed
 
     private void Concesionarios_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Concesionarios_EliminarActionPerformed
-        // TODO add your handling code here:
+        try {
+            getRowData(Concesionarios_Tabla);
+            Confirmacion.getAccessibleContext().setAccessibleDescription("concesionario");
+            Confirmacion.setLocationRelativeTo(null);
+            Confirmacion.setVisible(true);
+        } catch (Exception e) {
+            PopUp.createSimple("error", "No has seleccionado ningún concesionario.");
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_Concesionarios_EliminarActionPerformed
 
     private void AreaEmpleadoDescargarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaEmpleadoDescargarNominaActionPerformed
@@ -4318,14 +4484,14 @@ public class Dashboard extends javax.swing.JFrame {
                 ClienteAnadirField_Nombre.getText(),
                 ClienteAnadirField_Apellido.getText(),
                 ClienteAnadirField_NIF.getText(),
-                Integer.parseInt((String)ClienteAnadirField_Telefono.getValue()),
+                Integer.parseInt((String) ClienteAnadirField_Telefono.getValue()),
                 ClienteAnadirField_Domicilio.getText(),
                 ClienteAnadirField_Contra.getPassword().toString()
         );
 
         cl.insertarClienteBBDD();
         PopUp.createSimple("success", "Acción ejecutada con éxito.");
-        
+
         AnadirClientes.dispose();
         refreshTableCliente();
 
@@ -4357,6 +4523,61 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ReservaAnadirAction
 
+    private void ConfirmarAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarAction
+        try {
+            String tipo = Confirmacion.getAccessibleContext().getAccessibleDescription();
+            String[] data = null;
+            switch (tipo) {
+                case "factura":
+                    data = getRowData(Facturas_Tabla);
+                    Factura.borrarFacturaBBDD(Integer.parseInt(data[0]));
+                    refreshTableFactura();
+                    break;
+                case "reserva":
+                    data = getRowData(Reservas_Tabla);
+                    Reserva.borrarReserva(Integer.parseInt(data[0]));
+                    refreshTableReserva();
+                    break;
+                case "nomina":
+                    data = getRowData(Nominas_Tabla);
+                    Nomina.borrarNominaBBDD(Integer.parseInt(data[0]));
+                    refreshTableNomina();
+                    break;
+                case "empleado":
+                    data = getRowData(Empleados_Tabla);
+                    Empleado.borrarEmpleadoBBDD(Integer.parseInt(data[0]));
+                    refreshTableEmpleado();
+                    break;
+                case "cliente":
+                    data = getRowData(Cliente_Tabla);
+                    Cliente.borrarClienteBBDD(Integer.parseInt(data[0]));
+                    refreshTableCliente();
+                    break;
+                case "motor":
+                    data = getRowData(Motores_Tabla);
+                    Motor.borrarMotorBBDD(Integer.parseInt(data[0]));
+                    refreshTableMotor();
+                    break;
+                case "vehiculo":
+                    data = getRowData(Vehiculos_Tabla);
+                    Vehiculo.borrarVehiculoBBDD(Integer.parseInt(data[0]));
+                    refreshTableVehiculos();
+                    break;
+                case "concesioanrio":
+                    data = getRowData(Concesionarios_Tabla);
+                    Concesionario.borrarConcesionario(Integer.parseInt(data[0]));
+                    refreshTableConcesionario();
+                    break;
+            }
+            Confirmacion.dispose();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_ConfirmarAction
+
+    private void CancelarAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarAction
+        Confirmacion.dispose();
+    }//GEN-LAST:event_CancelarAction
+
     /**
      * Coger la información de una linea imprimida en la interfaz gráfica
      *
@@ -4365,10 +4586,20 @@ public class Dashboard extends javax.swing.JFrame {
      */
     private String[] getRowData(javax.swing.JTable tabla) {
         int rowIndex = tabla.getSelectedRow();
-        int columnCount = tabla.getColumnCount();
-        String[] rowStrings = new String[columnCount];
-        for (int i = 0; i < columnCount; i++) {
-            rowStrings[i] = (tabla.getModel().getValueAt(rowIndex, i).toString());
+        String[] rowStrings = null;
+        try {
+            int columnCount = tabla.getColumnCount();
+            rowStrings = new String[columnCount];
+            for (int i = 0; i < columnCount; i++) {
+                try {
+                    rowStrings[i] = (tabla.getModel().getValueAt(rowIndex, i).toString());
+                } catch (Exception e) {
+                    System.out.println(e.getCause() + " " + e.getMessage());
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al recoger datos");
         }
         return rowStrings;
     }
@@ -4964,6 +5195,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Concesionarios_Modificar;
     private javax.swing.JScrollPane Concesionarios_Scroll;
     private javax.swing.JTable Concesionarios_Tabla;
+    private javax.swing.JDialog Confirmacion;
     private javax.swing.JButton EmpleadoAnadir;
     private javax.swing.JTextField EmpleadoAnadirField_Apellidos;
     private javax.swing.JPasswordField EmpleadoAnadirField_Contraseña;
@@ -5048,7 +5280,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton Facturas_Anadir;
     private javax.swing.JButton Facturas_Buscar;
     private javax.swing.JButton Facturas_Eliminar;
-    private javax.swing.JButton Facturas_Eliminar1;
     private javax.swing.JButton Facturas_Modificar;
     private javax.swing.JScrollPane Facturas_Scroll;
     private javax.swing.JTable Facturas_Tabla;
@@ -5086,6 +5317,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JSpinner MotoresAnadirField_Cilindrada1;
     private javax.swing.JSpinner MotoresAnadirField_Cilindrada2;
     private javax.swing.JSpinner MotoresAnadirField_NumMotores;
+    private javax.swing.JSpinner MotoresAnadirField_Par;
     private javax.swing.JList<String> MotoresAnadirField_Tipo;
     private javax.swing.JSpinner MotoresField_Cilindrada;
     private javax.swing.JSpinner MotoresField_Potencia;
@@ -5098,8 +5330,10 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel MotoresLabel4;
     private javax.swing.JLabel MotoresLabel5;
     private javax.swing.JLabel MotoresLabel6;
+    private javax.swing.JLabel MotoresLabel7;
     private javax.swing.JButton Motores_Anadir;
     private javax.swing.JButton Motores_Buscar;
+    private javax.swing.JButton Motores_Eliminar;
     private javax.swing.JButton Motores_Modificar;
     private javax.swing.JScrollPane Motores_Scroll;
     private javax.swing.JTable Motores_Tabla;
@@ -5212,6 +5446,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel TitleFiltrarEmpleados;
     private javax.swing.JLabel TitleFiltroClientes;
     private javax.swing.JLabel TitleFiltroConcesionarios;
+    private javax.swing.JLabel TitleFiltroConcesionarios1;
     private javax.swing.JLabel TitleFiltroFactura;
     private javax.swing.JLabel TitleFiltroFacturaCliente;
     private javax.swing.JLabel TitleFiltroMotores;
@@ -5242,6 +5477,10 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel VentasMotores;
     private javax.swing.JLabel VentasVehiculos;
     private javax.swing.JLabel icono;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
