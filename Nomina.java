@@ -565,5 +565,96 @@ public class Nomina {
         }
     }
     
+
+     /**
+     * Devolver nominas de la base de datos compatible con el filtro
+     *
+     * @param horasTrabajadas
+     * @param sueldoBruto
+     * @param sueldoNeto
+     * @param fechaNomina
+     * @return
+     */
+    public static Object[][] devolverTodosNominasBBDD(int horasTrabajadas, float sueldoBruto, float sueldoNeto, String fechaNomina) {
+        boolean where = false;
+        //SQL devuelve Reserva + Nombre cliente + apellidos cliente + tablas relacionadas
+        String consulta = "select * from nomina n join empleado e on n.empleadonif = e.nif";
+        
+        if (horasTrabajadas > 0 && !where) {
+            consulta += " WHERE n.horas = \"" + horasTrabajadas + "\"";
+            where = true;
+        }else if(horasTrabajadas > 0){
+            consulta += " AND n.horas = \"" + horasTrabajadas + "\"";
+        }
+        
+        if ( sueldoBruto > 0 && !where) {
+            consulta += " WHERE n.sueldo_bruto = \"" + sueldoBruto + "\"";
+            where = true;
+        }else if(sueldoBruto > 0){
+            consulta += " AND n.sueldo_bruto = \"" + sueldoBruto + "\"";
+        }
+        
+        if (sueldoNeto > 0 && !where){
+            consulta += " WHERE n.sueldo_neto = \"" + sueldoNeto + "\"";
+            where = true;
+        }else if ( sueldoNeto > 0) {
+            consulta += " AND n.sueldo_neto = \"" + sueldoNeto + "\"";
+        }
+        
+        if (fechaNomina !=null && !where){
+            consulta += " WHERE n.fecha = \"" + fechaNomina + "\"";
+            where = true;
+        }else if ( fechaNomina != null) {
+            consulta += " AND n.fecha = \"" + fechaNomina + "\"";
+        }
+        
+        consulta += " ORDER BY ID";
+        //Borrar prints, solo para testeo
+        System.out.println(consulta);
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM NOMINA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.rs.next();
+            
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.rs = Utils.prst.executeQuery();
+            while (Utils.rs.next()) {
+                //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
+                //Contar únicamente que columnas son importantes!
+                Integer COLUMNAS = 11;
+                //1-horas, 2-sueldoBruto, 3-sueldoNeto, 4-fecha, 5-nif, 6-nombre+apellido, 7-telefono, 8-domicilio, 9-puesto, 10-taller_id, 11-venta_id
+                String[] list = new String[COLUMNAS];
+                list[0] = Utils.rs.getString(2); // horas
+                list[1] = Utils.rs.getString(3); // sueldoBruto
+                list[2] = Utils.rs.getString(4); // sueldoNeto
+                list[3] = Utils.rs.getString(5); // fecha
+                list[4] = Utils.rs.getString(7); // nif
+                list[5] = Utils.rs.getString(8) + Utils.rs.getString(9); //Nombre + apellidos
+                list[6] = Utils.rs.getString(10); // telefono
+                list[7] = Utils.rs.getString(11); // domicilio
+                list[8] = Utils.rs.getString(12); // puesto
+                list[9] = Utils.rs.getString(13); // taller_id
+                list[10] = Utils.rs.getString(14); // venta_id
+
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los motores");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
+    
     
 }
