@@ -1,4 +1,3 @@
-package eu.fp.concesionario;
 
 /*
 Crear un main, un menú simple por consola que permita:
@@ -23,7 +22,7 @@ public class AppMain {
         boolean volver = false;
         int opcion;
         
-        Login.initGui();
+        //Login.initGui();
 
         try {
             do {
@@ -306,7 +305,7 @@ public class AppMain {
                 case 4:
                     System.out.println("Indica ID de la nomina que desea borrar");
                     int idNominaBorrar = Utils.kInteger();
-                    Nomina.borrarNomina(idNominaBorrar);
+                    Nomina.borrarNominaBBDD(idNominaBorrar);
                     break;
                 case 5:
                     System.out.println("mostrar todos nominas");

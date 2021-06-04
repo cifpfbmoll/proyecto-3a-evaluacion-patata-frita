@@ -1,7 +1,3 @@
-package eu.fp.concesionario;
-
-
-
 import java.sql.SQLException;
 /**
  * CONCESIONARIOS Esta clase guarda la informacion sobre los diferentes
@@ -282,7 +278,8 @@ public class Concesionario {
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 Integer COLUMNAS = 9;
                 String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES

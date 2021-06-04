@@ -1,6 +1,3 @@
-package eu.fp.concesionario;
-
-
 /**
  * Clase Reserva
  *
@@ -460,12 +457,13 @@ public class Reserva {
         String consulta = "SELECT `RESERVA`.*,`CLIENTE`.`NOMBRE`,`CLIENTE`.`APELLIDOS` FROM RESERVA,CLIENTE WHERE `RESERVA`.`CLIENTENIF` like CLIENTE.`NIF` ORDER BY ID";
         String[][] objectList = null;
         try {
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT COUNT(*) FROM RESERVA");
+            Utils.rs = Utils.prst.executeQuery(); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
                 list[0] = (Utils.rs.getString(1));
@@ -539,12 +537,13 @@ public class Reserva {
         String consulta = "SELECT * FROM RESERVA WHERE CLIENTENIF like \"" + nif + "\" ORDER BY ID";
         Object[][] objectList = null;
         try {
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT COUNT(*) FROM RESERVA");
+            Utils.rs = Utils.prst.executeQuery(); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 Integer COLUMNAS = 5;
                 String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES

@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -578,7 +576,6 @@ public class Factura {
 
     }
 
-    //TODO
     /**
      * Devolver todos las facturas de la base de datos
      *
@@ -588,13 +585,13 @@ public class Factura {
         String consulta = "SELECT * FROM FACTURA ORDER BY ID";
         String[][] objectList = null;
         try {
-
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM FACTURA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT COUNT(*) FROM FACTURA");
+            Utils.rs = Utils.prst.executeQuery(); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
 
@@ -670,13 +667,13 @@ public class Factura {
                 + "WHERE \"" + nif + "\" like `vehiculo`.`clientenif` ORDER BY ID";
         String[][] objectList = null;
         try {
-
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM FACTURA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT COUNT(*) FROM FACTURA");
+            Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 String[] list = new String[7]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
 

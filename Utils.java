@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -16,7 +14,6 @@ public class Utils {
     public static Connection connection;
     public static ResultSet rs;
     public static PreparedStatement prst;
-    public static Statement st;
     public static File archivo = null;
     public static BufferedReader lectorArchivo = null;
     public static BufferedWriter escritorArchivo = null;
@@ -185,7 +182,6 @@ public class Utils {
         try {
             if (rs != null) rs.close();
             if (prst != null) prst.close();
-            if (st != null) st.close();
             if (connection != null) connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -201,7 +197,6 @@ public class Utils {
         try {
             if (rs != null) rs.close();
             if (prst != null) prst.close();
-            if (st != null) st.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

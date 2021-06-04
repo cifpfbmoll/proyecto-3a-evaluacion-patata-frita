@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.sql.SQLException;
 
 /**
@@ -22,7 +20,6 @@ public class Empleado extends Persona {
     /**
      * Constructor con todos los parametros
      *
-     * @param nomina Nominas
      * @param puestoTrabajo Puesto de trabajo
      * @param nombre Nombre del trabajador
      * @param apellidos Apellidos del trabajador
@@ -283,13 +280,13 @@ public class Empleado extends Persona {
         String consulta = "SELECT * FROM EMPLEADO ORDER BY NIF";
         String[][] objectList = null;
         try {
-            //Utils.connection = Utils.conectarBBDD();
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery("SELECT count(*) FROM EMPLEADO");
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM EMPLEADO");
+            Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 String[] list = new String[8];
                 list[0] = (Utils.rs.getString(1));

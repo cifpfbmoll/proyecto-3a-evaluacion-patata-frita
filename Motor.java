@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.sql.SQLException;
 
 /**
@@ -391,7 +389,8 @@ public class Motor {
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 Integer COLUMNAS = 5; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
                 String[] list = new String[COLUMNAS]; 

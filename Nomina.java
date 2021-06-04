@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -459,13 +457,13 @@ public class Nomina {
         String consulta = "SELECT `NOMINA`.*,`EMPLEADO`.`NOMBRE`,`EMPLEADO`.`APELLIDOS` FROM NOMINA,EMPLEADO WHERE `NOMINA`.`EMPLEADONIF` like `EMPLEADO`.`NIF` ORDER BY ID";
         String[][] objectList = null;
         try {
-
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM NOMINA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT COUNT(*) FROM NOMINA");
+            Utils.rs = Utils.prst.executeQuery(); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 String[] list = new String[7]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
 
@@ -505,13 +503,13 @@ public class Nomina {
         String consulta = "SELECT `NOMINA`.*,`EMPLEADO`.`NOMBRE`,`EMPLEADO`.`APELLIDOS` FROM NOMINA,EMPLEADO "
                 + "WHERE `NOMINA`.`EMPLEADONIF` like `EMPLEADO`.`NIF` AND `NOMINA`.`EMPLEADONIF` like \"" + nif + "\" ORDER BY ID";
         try {
-
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM NOMINA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT COUNT(*) FROM NOMINA");
+            Utils.rs = Utils.prst.executeQuery(); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
             String[][] objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 String[] list = new String[7]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
 
