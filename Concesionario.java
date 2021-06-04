@@ -518,7 +518,7 @@ public class Concesionario {
     public static Object[][] devolverTodosConcesionariosBBDD(int concesionarioId,String ubicacion,String nombre,int telefono,int tallerId,int ventaId) {
         boolean where = false;
         //SQL devuelve ID, Ubicacion, Nombre y Telefono Concesionario + ID Taller + ID Venta
-        String consulta = "SELECT concesionario.*\n"; //Cambiar test a concesionario
+        String consulta = "SELECT concesionario.* FROM concesionario"; //Cambiar test a concesionario
         if (concesionarioId > 0 && !where) {
             consulta += " WHERE id like \"" + concesionarioId + "\"";
             where = true;
@@ -559,11 +559,11 @@ public class Concesionario {
         String[][] objectList = null;
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM Concesionario"); // MODIFICAR TABLA EN LAS OTRAS CLASES
-            Utils.rs.next();
-            objectList = new String[Utils.rs.getInt(1)][];
-            int i = 0;
             Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.last();
+            objectList = new String[Utils.rs.getRow()][];
+            int i = 0;
+            Utils.rs.first();
             while (Utils.rs.next()) {
                 //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
                 //Contar únicamente que columnas son importantes!

@@ -605,11 +605,11 @@ public class Reserva {
         String[][] objectList = null;
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM RESERVA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
-            Utils.rs.next();
-            objectList = new String[Utils.rs.getInt(1)][];
-            int i = 0;
             Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.last();
+            objectList = new String[Utils.rs.getRow()][];
+            int i = 0;
+            Utils.rs.first();
             while (Utils.rs.next()) {
                 Integer COLUMNAS = 5;
                 String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES

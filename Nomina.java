@@ -657,12 +657,11 @@ public class Nomina {
         String[][] objectList = null;
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM NOMINA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
-            Utils.rs.next();
-            
-            objectList = new String[Utils.rs.getInt(1)][];
-            int i = 0;
             Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.last();
+            objectList = new String[Utils.rs.getRow()][];
+            int i = 0;
+            Utils.rs.first(); //Si se salta una linea entonces ser un do while
             while (Utils.rs.next()) {
                 //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
                 //Contar únicamente que columnas son importantes!
