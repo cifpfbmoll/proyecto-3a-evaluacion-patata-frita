@@ -1,3 +1,5 @@
+package eu.fp.concesionario;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -618,7 +620,7 @@ public class Nomina {
      * @param fechaNomina
      * @return
      */
-    public static Object[][] devolverTodosNominasBBDD(int horasTrabajadas, float sueldoBruto, float sueldoNeto, String fechaNomina) {
+    public static Object[][] devolverTodosNominasBBDD(int horasTrabajadas, float sueldoBruto, float sueldoNeto, String fechaNomina, String nif) {
         boolean where = false;
         //SQL devuelve Reserva + Nombre cliente + apellidos cliente + tablas relacionadas
         String consulta = "select * from nomina n join empleado e on n.empleadonif = e.nif";
@@ -649,6 +651,13 @@ public class Nomina {
             where = true;
         }else if ( fechaNomina != null) {
             consulta += " AND n.fecha = \"" + fechaNomina + "\"";
+        }
+        
+        if (nif !=null && !where){
+            consulta += " WHERE n.empleadonif = \"" + nif + "\"";
+            where = true;
+        }else if ( fechaNomina != null) {
+            consulta += " AND n.empleadonif = \"" + nif + "\"";
         }
         
         consulta += " ORDER BY ID";

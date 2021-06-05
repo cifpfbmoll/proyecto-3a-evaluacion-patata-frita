@@ -1,6 +1,7 @@
 package eu.fp.concesionario;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.logging.Level;
@@ -82,6 +83,18 @@ public class Dashboard extends javax.swing.JFrame {
         FacturaField_Fecha = new javax.swing.JFormattedTextField();
         FacturaField_Coste = new javax.swing.JSpinner();
         FacturaField_NIF = new javax.swing.JFormattedTextField();
+        FiltroNominasCliente = new javax.swing.JDialog();
+        Panel16 = new javax.swing.JPanel();
+        TitleFiltroNomina1 = new javax.swing.JLabel();
+        NominaFiltrar1 = new javax.swing.JButton();
+        NominaLabel1 = new javax.swing.JLabel();
+        NominaLabel8 = new javax.swing.JLabel();
+        NominaLabel9 = new javax.swing.JLabel();
+        NominaLabel10 = new javax.swing.JLabel();
+        NominaField_Horas1 = new javax.swing.JTextField();
+        NominaField_SBruto1 = new javax.swing.JSpinner();
+        NominaField_Fecha1 = new javax.swing.JFormattedTextField();
+        NominaField_SNeto1 = new javax.swing.JSpinner();
         FiltroNominas = new javax.swing.JDialog();
         Panel4 = new javax.swing.JPanel();
         TitleFiltroNomina = new javax.swing.JLabel();
@@ -91,14 +104,10 @@ public class Dashboard extends javax.swing.JFrame {
         NominaLabel3 = new javax.swing.JLabel();
         NominaLabel4 = new javax.swing.JLabel();
         NominaLabel5 = new javax.swing.JLabel();
-        NominaLabel6 = new javax.swing.JLabel();
-        NominaLabel7 = new javax.swing.JLabel();
         NominaField_Horas = new javax.swing.JTextField();
         NominaField_SBruto = new javax.swing.JSpinner();
         NominaField_Fecha = new javax.swing.JFormattedTextField();
         NominaField_Empleado = new javax.swing.JFormattedTextField();
-        NominaField_Nombre = new javax.swing.JTextField();
-        NominaField_Apellidos = new javax.swing.JTextField();
         NominaField_SNeto = new javax.swing.JSpinner();
         FiltroEmpleados = new javax.swing.JDialog();
         Panel5 = new javax.swing.JPanel();
@@ -224,10 +233,10 @@ public class Dashboard extends javax.swing.JFrame {
         EmpleadoAnadirField_OpVenta1 = new javax.swing.JRadioButton();
         OpcionTaller1 = new javax.swing.JPanel();
         FacturaAnadirLabel12 = new javax.swing.JLabel();
-        FacturaFieldAnadir_Taller1 = new javax.swing.JSpinner();
+        EmpleadoFieldAnadir_Taller = new javax.swing.JSpinner();
         OpcionVenta1 = new javax.swing.JPanel();
         FacturaAnadirLabel13 = new javax.swing.JLabel();
-        FacturaFieldAnadir_Venta1 = new javax.swing.JSpinner();
+        EmpleadoFieldAnadir_Venta = new javax.swing.JSpinner();
         TallerOVenta2 = new javax.swing.ButtonGroup();
         AnadirClientes = new javax.swing.JDialog();
         Panel12 = new javax.swing.JPanel();
@@ -280,6 +289,17 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        ModificarFactura = new javax.swing.JDialog();
+        Panel17 = new javax.swing.JPanel();
+        TitleModificarFactura = new javax.swing.JLabel();
+        TitleModificarFacturaID = new javax.swing.JLabel();
+        FacturaModificar = new javax.swing.JButton();
+        FacturaLabel7 = new javax.swing.JLabel();
+        FacturaLabel10 = new javax.swing.JLabel();
+        FacturaLabel11 = new javax.swing.JLabel();
+        FacturaModificar_Concepto = new javax.swing.JTextField();
+        FacturaModificar_Fecha = new javax.swing.JFormattedTextField();
+        FacturaModificar_Coste = new javax.swing.JSpinner();
         VentanaCompleta = new javax.swing.JPanel();
         PanelMenu = new javax.swing.JPanel();
         MenuHeader = new javax.swing.JPanel();
@@ -909,10 +929,117 @@ public class Dashboard extends javax.swing.JFrame {
 
         FiltroFactura.getContentPane().add(Panel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 390));
 
+        FiltroNominasCliente.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        FiltroNominasCliente.setTitle("Filtrar");
+        FiltroNominasCliente.setAlwaysOnTop(true);
+        FiltroNominasCliente.setMinimumSize(new java.awt.Dimension(401, 312));
+        FiltroNominasCliente.setResizable(false);
+        FiltroNominasCliente.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Panel16.setBackground(new java.awt.Color(255, 255, 255));
+        Panel16.setForeground(new java.awt.Color(255, 255, 255));
+        Panel16.setMaximumSize(new java.awt.Dimension(401, 392));
+        Panel16.setMinimumSize(new java.awt.Dimension(401, 392));
+
+        TitleFiltroNomina1.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
+        TitleFiltroNomina1.setForeground(new java.awt.Color(0, 0, 0));
+        TitleFiltroNomina1.setText("Filtrar nominas");
+
+        NominaFiltrar1.setText("Filtrar");
+        NominaFiltrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AreaNominaFiltrar(evt);
+            }
+        });
+
+        NominaLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        NominaLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        NominaLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        NominaLabel1.setText("Horas");
+
+        NominaLabel8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        NominaLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        NominaLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        NominaLabel8.setText("Sueldo bruto");
+
+        NominaLabel9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        NominaLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        NominaLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        NominaLabel9.setText("Sueldo neto");
+
+        NominaLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        NominaLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        NominaLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        NominaLabel10.setText("Fecha");
+
+        NominaField_Horas1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
+        NominaField_SBruto1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        NominaField_SBruto1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        NominaField_Fecha1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
+        NominaField_Fecha1.setToolTipText("Formato: dd/MM/yyyy");
+        ReservaClienteField_Fecha.setFont(new java.awt.Font("sansserif", 0, 14));
+
+        NominaField_SNeto1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        NominaField_SNeto1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        javax.swing.GroupLayout Panel16Layout = new javax.swing.GroupLayout(Panel16);
+        Panel16.setLayout(Panel16Layout);
+        Panel16Layout.setHorizontalGroup(
+            Panel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel16Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(Panel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(NominaLabel8)
+                    .addComponent(NominaLabel1)
+                    .addComponent(NominaLabel9)
+                    .addComponent(NominaLabel10)
+                    .addComponent(TitleFiltroNomina1))
+                .addGap(18, 18, 18)
+                .addGroup(Panel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(NominaField_Horas1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                    .addComponent(NominaField_SBruto1)
+                    .addComponent(NominaField_Fecha1)
+                    .addComponent(NominaField_SNeto1))
+                .addGap(88, 88, 88))
+            .addGroup(Panel16Layout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addComponent(NominaFiltrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Panel16Layout.setVerticalGroup(
+            Panel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(TitleFiltroNomina1)
+                .addGap(18, 18, 18)
+                .addGroup(Panel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NominaLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NominaField_Horas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NominaLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NominaField_SBruto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NominaLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NominaField_SNeto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NominaLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NominaField_Fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(NominaFiltrar1)
+                .addContainerGap(164, Short.MAX_VALUE))
+        );
+
+        FiltroNominasCliente.getContentPane().add(Panel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         FiltroNominas.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         FiltroNominas.setTitle("Filtrar");
         FiltroNominas.setAlwaysOnTop(true);
-        FiltroNominas.setMinimumSize(new java.awt.Dimension(401, 392));
+        FiltroNominas.setMinimumSize(new java.awt.Dimension(401, 322));
         FiltroNominas.setResizable(false);
         FiltroNominas.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -958,16 +1085,6 @@ public class Dashboard extends javax.swing.JFrame {
         NominaLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         NominaLabel5.setText("NIF Empleado");
 
-        NominaLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        NominaLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        NominaLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        NominaLabel6.setText("Nombre");
-
-        NominaLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        NominaLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        NominaLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        NominaLabel7.setText("Apellidos");
-
         NominaField_Horas.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         NominaField_SBruto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -985,10 +1102,6 @@ public class Dashboard extends javax.swing.JFrame {
         NominaField_Empleado.setToolTipText("Formato: 12345678X");
         ReservaClienteField_Fecha.setFont(new java.awt.Font("sansserif", 0, 14));
 
-        NominaField_Nombre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-
-        NominaField_Apellidos.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-
         NominaField_SNeto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         NominaField_SNeto.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
@@ -999,8 +1112,6 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(Panel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(Panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(NominaLabel7)
-                    .addComponent(NominaLabel6)
                     .addComponent(NominaLabel5)
                     .addComponent(NominaLabel2)
                     .addComponent(NominaLabel)
@@ -1013,12 +1124,10 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(NominaField_SBruto)
                     .addComponent(NominaField_Fecha)
                     .addComponent(NominaField_Empleado)
-                    .addComponent(NominaField_Nombre)
-                    .addComponent(NominaField_Apellidos)
                     .addComponent(NominaField_SNeto))
                 .addGap(88, 88, 88))
             .addGroup(Panel4Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
+                .addGap(104, 104, 104)
                 .addComponent(NominaFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1047,17 +1156,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(Panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NominaField_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(NominaLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NominaLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NominaField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NominaLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NominaField_Apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(NominaFiltrar)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         FiltroNominas.getContentPane().add(Panel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -2092,9 +2193,9 @@ public class Dashboard extends javax.swing.JFrame {
         FacturaAnadirLabel12.setForeground(new java.awt.Color(0, 0, 0));
         FacturaAnadirLabel12.setText("Taller");
 
-        FacturaFieldAnadir_Taller1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        FacturaFieldAnadir_Taller1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        FacturaFieldAnadir_Taller1.setToolTipText("");
+        EmpleadoFieldAnadir_Taller.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        EmpleadoFieldAnadir_Taller.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        EmpleadoFieldAnadir_Taller.setToolTipText("");
 
         javax.swing.GroupLayout OpcionTaller1Layout = new javax.swing.GroupLayout(OpcionTaller1);
         OpcionTaller1.setLayout(OpcionTaller1Layout);
@@ -2106,7 +2207,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(OpcionTaller1Layout.createSequentialGroup()
                         .addComponent(FacturaAnadirLabel12)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(FacturaFieldAnadir_Taller1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                    .addComponent(EmpleadoFieldAnadir_Taller, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
                 .addContainerGap())
         );
         OpcionTaller1Layout.setVerticalGroup(
@@ -2115,7 +2216,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(FacturaAnadirLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(FacturaFieldAnadir_Taller1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(EmpleadoFieldAnadir_Taller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -2128,9 +2229,9 @@ public class Dashboard extends javax.swing.JFrame {
         FacturaAnadirLabel13.setForeground(new java.awt.Color(0, 0, 0));
         FacturaAnadirLabel13.setText("Venta");
 
-        FacturaFieldAnadir_Venta1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        FacturaFieldAnadir_Venta1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        FacturaFieldAnadir_Venta1.setToolTipText("");
+        EmpleadoFieldAnadir_Venta.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        EmpleadoFieldAnadir_Venta.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        EmpleadoFieldAnadir_Venta.setToolTipText("");
 
         javax.swing.GroupLayout OpcionVenta1Layout = new javax.swing.GroupLayout(OpcionVenta1);
         OpcionVenta1.setLayout(OpcionVenta1Layout);
@@ -2142,7 +2243,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(OpcionVenta1Layout.createSequentialGroup()
                         .addComponent(FacturaAnadirLabel13)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(FacturaFieldAnadir_Venta1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                    .addComponent(EmpleadoFieldAnadir_Venta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
                 .addContainerGap())
         );
         OpcionVenta1Layout.setVerticalGroup(
@@ -2151,7 +2252,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(FacturaAnadirLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(FacturaFieldAnadir_Venta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(EmpleadoFieldAnadir_Venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -2631,6 +2732,123 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         Confirmacion.getAccessibleContext().setAccessibleDescription("default");
+
+        ModificarFactura.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        ModificarFactura.setTitle("Filtrar");
+        ModificarFactura.setAlwaysOnTop(true);
+        ModificarFactura.setMaximumSize(new java.awt.Dimension(420, 281));
+        ModificarFactura.setMinimumSize(new java.awt.Dimension(420, 281));
+        ModificarFactura.setPreferredSize(new java.awt.Dimension(420, 281));
+        ModificarFactura.setResizable(false);
+        ModificarFactura.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Panel17.setBackground(new java.awt.Color(255, 255, 255));
+        Panel17.setForeground(new java.awt.Color(255, 255, 255));
+        Panel17.setMaximumSize(new java.awt.Dimension(401, 392));
+        Panel17.setMinimumSize(new java.awt.Dimension(401, 392));
+
+        TitleModificarFactura.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
+        TitleModificarFactura.setForeground(new java.awt.Color(0, 0, 0));
+        TitleModificarFactura.setText("Modificar factura");
+
+        TitleModificarFacturaID.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
+        TitleModificarFacturaID.setForeground(new java.awt.Color(0, 0, 0));
+        TitleModificarFacturaID.setText("ID: <ID>");
+
+        FacturaModificar.setText("Modificar");
+        FacturaModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FacturaModificar(evt);
+            }
+        });
+
+        FacturaLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        FacturaLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        FacturaLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        FacturaLabel7.setText("Concepto");
+
+        FacturaLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        FacturaLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        FacturaLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        FacturaLabel10.setText("Fecha");
+
+        FacturaLabel11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        FacturaLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        FacturaLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        FacturaLabel11.setText("Coste");
+
+        FacturaModificar_Concepto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
+        FacturaModificar_Fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
+        FacturaModificar_Fecha.setToolTipText("Formato: dd/MM/yyyy");
+        ReservaClienteField_Fecha.setFont(new java.awt.Font("sansserif", 0, 14));
+
+        FacturaModificar_Coste.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        FacturaModificar_Coste.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
+
+        javax.swing.GroupLayout Panel17Layout = new javax.swing.GroupLayout(Panel17);
+        Panel17.setLayout(Panel17Layout);
+        Panel17Layout.setHorizontalGroup(
+            Panel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel17Layout.createSequentialGroup()
+                .addGroup(Panel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel17Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(TitleModificarFactura)
+                        .addGap(18, 18, 18)
+                        .addComponent(TitleModificarFacturaID))
+                    .addGroup(Panel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(Panel17Layout.createSequentialGroup()
+                            .addGap(108, 108, 108)
+                            .addComponent(FacturaLabel10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(FacturaModificar_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(Panel17Layout.createSequentialGroup()
+                            .addGap(94, 94, 94)
+                            .addGroup(Panel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(Panel17Layout.createSequentialGroup()
+                                    .addGroup(Panel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(FacturaLabel11)
+                                        .addComponent(FacturaLabel7))
+                                    .addGroup(Panel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(Panel17Layout.createSequentialGroup()
+                                            .addGap(18, 18, 18)
+                                            .addComponent(FacturaModificar_Concepto, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(Panel17Layout.createSequentialGroup()
+                                            .addGap(18, 18, 18)
+                                            .addComponent(FacturaModificar_Coste, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(Panel17Layout.createSequentialGroup()
+                                    .addGap(24, 24, 24)
+                                    .addComponent(FacturaModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(88, 88, 88))
+        );
+        Panel17Layout.setVerticalGroup(
+            Panel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel17Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(Panel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TitleModificarFactura)
+                    .addComponent(TitleModificarFacturaID))
+                .addGap(18, 18, 18)
+                .addGroup(Panel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel17Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(FacturaLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FacturaModificar_Concepto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FacturaLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FacturaModificar_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FacturaLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FacturaModificar_Coste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(FacturaModificar)
+                .addContainerGap())
+        );
+
+        ModificarFactura.getContentPane().add(Panel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 390));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Concesionario");
@@ -3780,7 +3998,7 @@ public class Dashboard extends javax.swing.JFrame {
         AreaBuscar.setText("Buscar nómina");
         AreaBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AreaBuscarActionPerformed(evt);
+                AreaBuscarNominaActionPerformed(evt);
             }
         });
         Board_AreaEmpleados.add(AreaBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 220, 200, -1));
@@ -3938,12 +4156,17 @@ public class Dashboard extends javax.swing.JFrame {
             Confirmacion.setVisible(true);
         } catch (Exception e) {
             PopUp.createSimple("error", "No has seleccionado ninguna factura.");
-            e.printStackTrace();
         }
     }//GEN-LAST:event_BorrarFactura
 
     private void Facturas_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Facturas_ModificarActionPerformed
-        // TODO add your handling code here:
+        ModificarFactura.setLocationRelativeTo(null);
+        ModificarFactura.setVisible(true);
+        String[] data = getRowData(Facturas_Tabla);
+
+        FacturaModificar_Concepto.setText(data[1]);
+        FacturaModificar_Fecha.setText(data[4]);
+        FacturaModificar_Coste.setValue(Integer.parseInt(data[5]));
     }//GEN-LAST:event_Facturas_ModificarActionPerformed
 
     private void Clientes_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clientes_BuscarActionPerformed
@@ -3968,7 +4191,6 @@ public class Dashboard extends javax.swing.JFrame {
             Confirmacion.setVisible(true);
         } catch (Exception e) {
             PopUp.createSimple("error", "No has seleccionado ningún cliente.");
-            e.printStackTrace();
         }
     }//GEN-LAST:event_BorrarCliente
 
@@ -3994,7 +4216,6 @@ public class Dashboard extends javax.swing.JFrame {
             Confirmacion.setVisible(true);
         } catch (Exception e) {
             PopUp.createSimple("error", "No has seleccionado ningún motor.");
-            e.printStackTrace();
         }
     }//GEN-LAST:event_BorrarMotor
 
@@ -4018,7 +4239,6 @@ public class Dashboard extends javax.swing.JFrame {
             Confirmacion.setVisible(true);
         } catch (Exception e) {
             PopUp.createSimple("error", "No has seleccionado ningún vehículo.");
-            e.printStackTrace();
         }
     }//GEN-LAST:event_BorrarVehiculo
 
@@ -4044,7 +4264,6 @@ public class Dashboard extends javax.swing.JFrame {
             Confirmacion.setVisible(true);
         } catch (Exception e) {
             PopUp.createSimple("error", "No has seleccionado ninguna reserva.");
-            e.printStackTrace();
         }
     }//GEN-LAST:event_BorrarReserva
 
@@ -4135,6 +4354,11 @@ public class Dashboard extends javax.swing.JFrame {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_AreaEmpleadoDescargarNominaActionPerformed
+
+    private void AreaBuscarNominaActionPerformed(java.awt.event.ActionEvent evt) {
+        FiltroNominasCliente.setLocationRelativeTo(null);
+        FiltroNominasCliente.setVisible(true);
+    }
 
     private void AreaDescargarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaDescargarReservaActionPerformed
         try {
@@ -4296,11 +4520,9 @@ public class Dashboard extends javax.swing.JFrame {
         Object[][] rowList = Nomina.devolverTodasNominasBBDD();
 
         FiltroNominas.dispose();
-        NominaField_Apellidos.setText("");
         NominaField_Empleado.setText("");
         NominaField_Fecha.setText("");
         NominaField_Horas.setText("");
-        NominaField_Nombre.setText("");
         NominaField_SBruto.setValue(0);
         NominaField_SNeto.setValue(0);
 
@@ -4478,15 +4700,15 @@ public class Dashboard extends javax.swing.JFrame {
         NominaFieldAnadir_SNeto.setText(Float.toString((Integer) NominaFieldAnadir_SBruto.getValue() - impuestoSobreNomina));
         Nomina nom = new Nomina(
                 0, //El id se encarga la base de datos
-                Integer.parseInt((String)NominaFieldAnadir_Horas.getValue()),
-                Float.parseFloat((String)NominaFieldAnadir_SBruto.getValue()),
+                Integer.parseInt((String) NominaFieldAnadir_Horas.getValue()),
+                Float.parseFloat((String) NominaFieldAnadir_SBruto.getValue()),
                 Float.parseFloat((NominaFieldAnadir_SNeto.getText())),
                 NominaFieldAnadir_Fecha.getText(),
                 Empleado.buscarEmpleadoBBDD(NominaFieldAnadir_Empleado.getText())
         );
         nom.insertarDatosNominaBBDD();
         PopUp.createSimple("success", "Acción ejecutada con éxito.");
-        
+
         AnadirNomina.dispose();
         refreshTableNomina();
 
@@ -4499,13 +4721,13 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void EmpleadoAnadirField_OpTaller1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpleadoAnadirField_OpTaller1ActionPerformed
         OpcionVenta1.setVisible(false);
-        FacturaFieldAnadir_Taller1.setValue(0);
+        EmpleadoFieldAnadir_Taller.setValue(0);
         OpcionTaller1.setVisible(true);
     }//GEN-LAST:event_EmpleadoAnadirField_OpTaller1ActionPerformed
 
     private void EmpleadoAnadirField_OpVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpleadoAnadirField_OpVenta1ActionPerformed
         OpcionVenta1.setVisible(true);
-        FacturaFieldAnadir_Venta1.setValue(0);
+        EmpleadoFieldAnadir_Venta.setValue(0);
         OpcionTaller1.setVisible(false);
     }//GEN-LAST:event_EmpleadoAnadirField_OpVenta1ActionPerformed
 
@@ -4535,18 +4757,18 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void MotorAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MotorAnadirAction
         Motor motor = new Motor(
-                Float.parseFloat((String)MotoresAnadiField_Potencia.getValue()),
-                Float.parseFloat((String)MotoresAnadirField_Par.getValue()),
-                Float.parseFloat((String)MotoresAnadirField_Cilindrada.getValue()),
-                Integer.parseInt((String)MotoresAnadirField_NumMotores.getValue()),
+                Float.parseFloat((String) MotoresAnadiField_Potencia.getValue()),
+                Float.parseFloat((String) MotoresAnadirField_Par.getValue()),
+                Float.parseFloat((String) MotoresAnadirField_Cilindrada.getValue()),
+                Integer.parseInt((String) MotoresAnadirField_NumMotores.getValue()),
                 Motor.tipoMotor.valueOf(MotoresAnadirField_Tipo.getSelectedValue())
         );
         motor.insertarDatosMotorBBDD();
-        PopUp.createSimple("success","Acción ejecutada con éxito");
-        
+        PopUp.createSimple("success", "Acción ejecutada con éxito");
+
         AnadirMotores.dispose();
         refreshTableMotor();
-        
+
         MotoresAnadiField_Potencia.setValue(0);
         MotoresAnadirField_Par.setValue(0);
         MotoresAnadirField_Cilindrada.setValue(0);
@@ -4557,16 +4779,16 @@ public class Dashboard extends javax.swing.JFrame {
         Concesionario conc = new Concesionario(
                 ConcesionarioAnadirField_Ubicacion.getText(),
                 ConcesionarioAnadirField_Nombre.getText(),
-                Integer.parseInt((String)ConcesionarioAnadirField_Telefono.getValue()),
-                Taller.buscarTaller(Integer.parseInt((String)ConcesionarioAnadirField_Taller.getValue())),
-                Venta.buscarVenta(Integer.parseInt((String)ConcesionarioAnadirField_Venta.getValue()))
+                Integer.parseInt((String) ConcesionarioAnadirField_Telefono.getValue()),
+                Taller.buscarTaller(Integer.parseInt((String) ConcesionarioAnadirField_Taller.getValue())),
+                Venta.buscarVenta(Integer.parseInt((String) ConcesionarioAnadirField_Venta.getValue()))
         );
         conc.insertarDatosConcesionarioBBDD();
-        PopUp.createSimple("success","Acción ejecutada con éxito");
-        
+        PopUp.createSimple("success", "Acción ejecutada con éxito");
+
         AnadirConcesionarios.dispose();
         refreshTableConcesionario();
-        
+
         ConcesionarioAnadirField_Ubicacion.setText("");
         ConcesionarioAnadirField_Nombre.setText("");
         ConcesionarioAnadirField_Telefono.setText("");
@@ -4580,51 +4802,51 @@ public class Dashboard extends javax.swing.JFrame {
                 EmpleadoAnadirField_Nombre.getText(),
                 EmpleadoAnadirField_Apellidos.getText(),
                 EmpleadoAnadirField_NIF.getText(),
-                Integer.parseInt((String)EmpleadoAnadirField_Telefono.getValue()),
+                Integer.parseInt((String) EmpleadoAnadirField_Telefono.getValue()),
                 EmpleadoAnadirField_Domicilio.getText(),
-                EmpleadoAnadirField_Contraseña.getPassword().toString()//, aqui falta la coma
-                //Insertar taller y venta correctamente
-                /**Taller.buscarTaller(Integer.parseInt((String)//aqui falta la variable.getValue())),
-                Venta.buscarVenta(Integer.parseInt((String)//aqui falta la variable.getValue()))
-                **/
+                EmpleadoAnadirField_Contraseña.getPassword().toString(),
+                Taller.buscarTaller(Integer.parseInt((String) EmpleadoFieldAnadir_Taller.getValue())),
+                Venta.buscarVenta(Integer.parseInt((String) EmpleadoFieldAnadir_Venta.getValue()))
         );
         empl.insertarDatosEmpleadoBBDD();
-        PopUp.createSimple("success","Acción ejecutada con éxito");
-        
+        PopUp.createSimple("success", "Acción ejecutada con éxito");
+
         AnadirEmpleados.dispose();
         refreshTableEmpleado();
-        
+
         EmpleadoAnadirField_Nombre.setText("");
         EmpleadoAnadirField_Apellidos.setText("");
         EmpleadoAnadirField_NIF.setText("");
         EmpleadoAnadirField_Telefono.setValue(0);
         EmpleadoAnadirField_Domicilio.setText("");
         EmpleadoAnadirField_Contraseña.setText("");
-        /** TODO: Reiniciar taller y venta **/
+        /**
+         * TODO: Reiniciar taller y venta *
+         */
     }//GEN-LAST:event_EmpleadoAnadirAction
 
     private void FacturaAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturaAnadirAction
         Venta venta = null;
         Reserva reserva = null;
-        if(FacturaFieldAnadir_OpTaller.isSelected()){
-            reserva = Reserva.buscarReservaBBDD(Integer.parseInt((String)FacturaFieldAnadir_Taller.getValue()));
-        }else{
-            venta = Venta.buscarVenta(Integer.parseInt((String)FacturaFieldAnadir_Taller.getValue()));
+        if (FacturaFieldAnadir_OpTaller.isSelected()) {
+            reserva = Reserva.buscarReservaBBDD((Integer) FacturaFieldAnadir_Taller.getValue());
+        } else {
+            venta = Venta.buscarVenta((Integer) FacturaFieldAnadir_Taller.getValue());
         }
         Factura fact = new Factura(
                 FacturaFieldAnadir_Concepto.getText(),
-                Integer.parseInt((String)FacturaFieldAnadir_Coste.getValue()),
+                (Integer) FacturaFieldAnadir_Coste.getValue(),
                 FacturaFieldAnadir_Fecha.getText(),
                 reserva,
                 venta,
                 Vehiculo.buscarVehiculoBBDD(FacturaFieldAnadir_Vehiculo.getText())
         );
         fact.insertarObjetoFacturaBBDD();
-        PopUp.createSimple("success","Acción ejecutada con éxito");
-        
+        PopUp.createSimple("success", "Acción ejecutada con éxito");
+
         AnadirFactura.dispose();
         refreshTableFactura();
-        
+
         FacturaFieldAnadir_Concepto.setText("");
         FacturaFieldAnadir_Coste.setValue(0);
         FacturaFieldAnadir_Fecha.setText("");
@@ -4635,16 +4857,16 @@ public class Dashboard extends javax.swing.JFrame {
         Reserva res = new Reserva(
                 0, //No pedimos el id, se encarga la base de datos de asignar el correcto
                 ReservaFieldAnadir_Fecha.getText(),
-                Integer.parseInt((String)ReservaFieldAnadir_Espacio.getValue()),
-                Taller.buscarTaller(Integer.parseInt((String)ReservaFieldAnadir_Taller.getValue())),
+                Integer.parseInt((String) ReservaFieldAnadir_Espacio.getValue()),
+                Taller.buscarTaller(Integer.parseInt((String) ReservaFieldAnadir_Taller.getValue())),
                 Cliente.buscarClienteBBDD(ReservaFieldAnadir_Cliente.getText())
         );
         res.insertarDatosReservaBBDD();
-        PopUp.createSimple("success","Acción ejecutada con éxito");
-        
+        PopUp.createSimple("success", "Acción ejecutada con éxito");
+
         AnadirReserva.dispose();
         refreshTableReserva();
-        
+
         ReservaFieldAnadir_Fecha.setText("");
         ReservaFieldAnadir_Espacio.setValue(0);
         ReservaFieldAnadir_Taller.setValue(0);
@@ -4705,6 +4927,60 @@ public class Dashboard extends javax.swing.JFrame {
     private void CancelarAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarAction
         Confirmacion.dispose();
     }//GEN-LAST:event_CancelarAction
+
+    private void AreaNominaFiltrar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AreaNominaFiltrar
+        Object[][] rowList = Nomina.devolverTodosNominasBBDD(
+                Integer.parseInt(NominaField_Horas.getText()),
+                (Float) NominaField_SBruto.getValue(),
+                (Float) NominaField_SNeto.getValue(),
+                NominaField_Fecha.getText(),
+                NIF_Menu.getText()
+        );
+
+        FiltroNominas.dispose();
+        NominaField_Fecha.setText("");
+        NominaField_Horas.setText("");
+        NominaField_SBruto.setValue(0);
+        NominaField_SNeto.setValue(0);
+
+        Nominas_Tabla.setModel(new javax.swing.table.DefaultTableModel(
+                rowList,
+                new String[]{
+                    "ID", "Horas", "Sueldo Bruto", "Sueldo Neto", "Fecha", "NIF Empleado", "Nombre Empleado"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }//GEN-LAST:event_AreaNominaFiltrar
+
+    private void FacturaModificar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturaModificar
+        String[] data = getRowData(Facturas_Tabla);
+        
+        Factura.modificarFacturaBBDD(
+                Integer.parseInt(data[0]),
+                FacturaModificar_Concepto.getText(),
+                (Float)FacturaModificar_Coste.getValue(),
+                FacturaModificar_Fecha.getText());
+        
+        ModificarFactura.dispose();
+        
+        FacturaModificar_Concepto.setText("");
+        FacturaModificar_Coste.setValue(0);
+        FacturaModificar_Fecha.setText("");
+    }//GEN-LAST:event_FacturaModificar
 
     /**
      * Coger la información de una linea imprimida en la interfaz gráfica
@@ -5344,6 +5620,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel EmpleadoAnadirLabel5;
     private javax.swing.JLabel EmpleadoAnadirLabel6;
     private javax.swing.JLabel EmpleadoAnadirLabel7;
+    private javax.swing.JSpinner EmpleadoFieldAnadir_Taller;
+    private javax.swing.JSpinner EmpleadoFieldAnadir_Venta;
     private javax.swing.JTextField EmpleadosField_Apellidos;
     private javax.swing.JFormattedTextField EmpleadosField_NIF;
     private javax.swing.JTextField EmpleadosField_Nombre;
@@ -5386,10 +5664,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JRadioButton FacturaFieldAnadir_OpTaller;
     private javax.swing.JRadioButton FacturaFieldAnadir_OpVenta;
     private javax.swing.JSpinner FacturaFieldAnadir_Taller;
-    private javax.swing.JSpinner FacturaFieldAnadir_Taller1;
     private javax.swing.JTextField FacturaFieldAnadir_Vehiculo;
     private javax.swing.JSpinner FacturaFieldAnadir_Venta;
-    private javax.swing.JSpinner FacturaFieldAnadir_Venta1;
     private javax.swing.JTextField FacturaFieldCliente_Concepto;
     private javax.swing.JSpinner FacturaFieldCliente_Coste;
     private javax.swing.JFormattedTextField FacturaFieldCliente_Fecha;
@@ -5403,11 +5679,18 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField FacturaField_Vehiculo;
     private javax.swing.JButton FacturaFiltrar;
     private javax.swing.JLabel FacturaLabel1;
+    private javax.swing.JLabel FacturaLabel10;
+    private javax.swing.JLabel FacturaLabel11;
     private javax.swing.JLabel FacturaLabel2;
     private javax.swing.JLabel FacturaLabel3;
     private javax.swing.JLabel FacturaLabel4;
     private javax.swing.JLabel FacturaLabel5;
     private javax.swing.JLabel FacturaLabel6;
+    private javax.swing.JLabel FacturaLabel7;
+    private javax.swing.JButton FacturaModificar;
+    private javax.swing.JTextField FacturaModificar_Concepto;
+    private javax.swing.JSpinner FacturaModificar_Coste;
+    private javax.swing.JFormattedTextField FacturaModificar_Fecha;
     private javax.swing.JButton Facturas_Anadir;
     private javax.swing.JButton Facturas_Buscar;
     private javax.swing.JButton Facturas_Eliminar;
@@ -5421,6 +5704,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JDialog FiltroFacturaCliente;
     private javax.swing.JDialog FiltroMotores;
     private javax.swing.JDialog FiltroNominas;
+    private javax.swing.JDialog FiltroNominasCliente;
     private javax.swing.JDialog FiltroReserva;
     private javax.swing.JDialog FiltroReservaCliente;
     private javax.swing.JLabel LabelTitle_Inicio;
@@ -5442,6 +5726,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel MenuHeader;
     private javax.swing.JPanel MenuTALLER;
     private javax.swing.JPanel MenuVENTAS;
+    private javax.swing.JDialog ModificarFactura;
     private javax.swing.JSpinner MotoresAnadiField_Potencia;
     private javax.swing.JButton MotoresAnadir;
     private javax.swing.JSpinner MotoresAnadirField_Cilindrada;
@@ -5479,21 +5764,26 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JSpinner NominaFieldAnadir_Horas;
     private javax.swing.JSpinner NominaFieldAnadir_SBruto;
     private javax.swing.JLabel NominaFieldAnadir_SNeto;
-    private javax.swing.JTextField NominaField_Apellidos;
     private javax.swing.JFormattedTextField NominaField_Empleado;
     private javax.swing.JFormattedTextField NominaField_Fecha;
+    private javax.swing.JFormattedTextField NominaField_Fecha1;
     private javax.swing.JTextField NominaField_Horas;
-    private javax.swing.JTextField NominaField_Nombre;
+    private javax.swing.JTextField NominaField_Horas1;
     private javax.swing.JSpinner NominaField_SBruto;
+    private javax.swing.JSpinner NominaField_SBruto1;
     private javax.swing.JSpinner NominaField_SNeto;
+    private javax.swing.JSpinner NominaField_SNeto1;
     private javax.swing.JButton NominaFiltrar;
+    private javax.swing.JButton NominaFiltrar1;
     private javax.swing.JLabel NominaLabel;
+    private javax.swing.JLabel NominaLabel1;
+    private javax.swing.JLabel NominaLabel10;
     private javax.swing.JLabel NominaLabel2;
     private javax.swing.JLabel NominaLabel3;
     private javax.swing.JLabel NominaLabel4;
     private javax.swing.JLabel NominaLabel5;
-    private javax.swing.JLabel NominaLabel6;
-    private javax.swing.JLabel NominaLabel7;
+    private javax.swing.JLabel NominaLabel8;
+    private javax.swing.JLabel NominaLabel9;
     private javax.swing.JButton Nominas_Anadir;
     private javax.swing.JButton Nominas_Buscar;
     private javax.swing.JButton Nominas_Eliminar;
@@ -5512,6 +5802,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel Panel13;
     private javax.swing.JPanel Panel14;
     private javax.swing.JPanel Panel15;
+    private javax.swing.JPanel Panel16;
+    private javax.swing.JPanel Panel17;
     private javax.swing.JPanel Panel2;
     private javax.swing.JPanel Panel3;
     private javax.swing.JPanel Panel4;
@@ -5580,8 +5872,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel TitleFiltroFacturaCliente;
     private javax.swing.JLabel TitleFiltroMotores;
     private javax.swing.JLabel TitleFiltroNomina;
+    private javax.swing.JLabel TitleFiltroNomina1;
     private javax.swing.JLabel TitleFiltroReserva;
     private javax.swing.JLabel TitleFiltroReservaCliente;
+    private javax.swing.JLabel TitleModificarFactura;
+    private javax.swing.JLabel TitleModificarFacturaID;
     private javax.swing.JLabel Title_AreaCliente;
     private javax.swing.JLabel Title_AreaEmpleados;
     private javax.swing.JLabel Title_Clientes;

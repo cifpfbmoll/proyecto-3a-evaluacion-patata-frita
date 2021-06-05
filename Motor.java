@@ -1,3 +1,5 @@
+package eu.fp.concesionario;
+
 import java.sql.SQLException;
 
 /**
@@ -384,7 +386,7 @@ public class Motor {
         String consulta = "SELECT * FROM MOTOR ORDER BY id";
         String[][] objectList = null;
         try {
-            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM VEHICULO"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM MOTOR"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
