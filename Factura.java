@@ -1,3 +1,5 @@
+package eu.fp.concesionario;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -185,7 +187,7 @@ public class Factura {
             System.out.println("Id de la Reserva: ");
             int ReservaId = Utils.kInt();
             // buscamos reserva y la establecemos
-            
+
             factura.setReserva(Reserva.buscarReservaBBDD(ReservaId));
 
         } catch (IllegalArgumentException e) {
@@ -303,8 +305,11 @@ public class Factura {
             Utils.prst.setString(1, this.getTrabajoRealizado());
             Utils.prst.setFloat(2, this.getCosteFactura());
             Utils.prst.setDate(3, sqlDate);
-            Utils.prst.setInt(4, this.getReserva().getId());
-            Utils.prst.setInt(5, this.getVenta().getId());
+            try {
+                Utils.prst.setInt(4, this.getReserva().getId());
+            } catch (Exception e) {
+                Utils.prst.setInt(5, this.getVenta().getId());
+            }
             Utils.prst.setString(6, this.getVehiculo().getBastidor());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente");
@@ -622,38 +627,37 @@ public class Factura {
         }
         return objectList;
     }
-    
-    
-     /**
-     *  Devuelve todos los datos de factura en la base de datos en un archivo txt
+
+    /**
+     * Devuelve todos los datos de factura en la base de datos en un archivo txt
      */
-    public static void escribirFacturasArchivo(){
+    public static void escribirFacturasArchivo() {
         Utils.abrirArchivo("Factura.txt");
         String consulta = "SELECT * FROM FACTURA";
-        try{
+        try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.rs = Utils.prst.executeQuery();
-            while(Utils.rs.next()){
-                
+            while (Utils.rs.next()) {
+
                 Utils.escribirLineaArchivo("Factura id: " + Utils.rs.getString(1) + " {");
                 Utils.escribirLineaArchivo("    Trabajo: " + Utils.rs.getString(2));
                 Utils.escribirLineaArchivo("    Coste: " + Utils.rs.getString(3));
                 Utils.escribirLineaArchivo("    Fecha:" + Utils.rs.getString(4));
                 Utils.escribirLineaArchivo("    Reserva: " + Utils.rs.getString(5));
                 Utils.escribirLineaArchivo("    Venta: " + Utils.rs.getString(6));
-                Utils.escribirLineaArchivo("    Vehiculo: " + Utils.rs.getString(7)+" } " );                
+                Utils.escribirLineaArchivo("    Vehiculo: " + Utils.rs.getString(7) + " } ");
 
                 //Dejamos espacio para poder diferenciar facilmente entre vehiculos
                 Utils.escribirLineaArchivo(" ");
             }
             Utils.cerrarArchivo();
             System.out.println("Datos escritos correctamente en fichero");
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Problema al leer datos de la base de datos");
-        } finally{
-            try{
+        } finally {
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -680,9 +684,9 @@ public class Factura {
                 list[0] = (Utils.rs.getString(1));
                 list[1] = (Utils.rs.getString(2));
                 if (Utils.rs.getString(5) != null) {
-                    list[2] = ("Venta " + Utils.rs.getString(5));
+                    list[2] = ("Taller " + Utils.rs.getString(5));
                 } else {
-                    list[2] = ("Taller " + Utils.rs.getString(6));
+                    list[2] = ("Reserva " + Utils.rs.getString(6));
                 }
                 list[3] = (Utils.rs.getString(7));
                 list[4] = (Utils.rs.getString(8));
@@ -705,11 +709,11 @@ public class Factura {
         }
         return objectList;
     }
-    
+
     /**
-     * Descargar una factura de forma local desde la tabla data[0] = ID, 
-     * data[1] = Concepto, data[2] = Local, data[3] = Vehículo, data[4] = NIF,
-     * data[5] = Fecha, data[6] = Coste,
+     * Descargar una factura de forma local desde la tabla data[0] = ID, data[1]
+     * = Concepto, data[2] = Local, data[3] = Vehículo, data[4] = NIF, data[5] =
+     * Fecha, data[6] = Coste,
      *
      * @param data Información de la factura a imprimir
      * @throws Exception
@@ -746,9 +750,8 @@ public class Factura {
         escritor.newLine();
         escritor.close();
     }
-    
-    
-         /**
+
+    /**
      * Devolver facturas de la base de datos compatible con el filtro
      *
      * @param trabajoRealizado
@@ -760,28 +763,28 @@ public class Factura {
         boolean where = false;
         //SQL devuelve Reserva + Nombre cliente + apellidos cliente + tablas relacionadas
         String consulta = "select * from test.factura f  join test.reserva r on f.reservaid = r.id join test.venta v on f.ventaid = v.id join test.vehiculo v2 on f.vehiculoid = v2.bastidor";
-      
+
         if (trabajoRealizado != null && !where) {
             consulta += " WHERE f.trabajo like \"" + trabajoRealizado + "\"";
             where = true;
-        }else if(trabajoRealizado != null){
+        } else if (trabajoRealizado != null) {
             consulta += " AND f.trabajo like \"" + trabajoRealizado + "\"";
         }
-        
-        if ( costeFactura > 0 && !where) {
+
+        if (costeFactura > 0 && !where) {
             consulta += " WHERE f.coste = \"" + costeFactura + "\"";
             where = true;
-        }else if(costeFactura > 0){
+        } else if (costeFactura > 0) {
             consulta += " AND f.coste = \"" + costeFactura + "\"";
         }
-        
-        if (fechaFactura !=null && !where){
+
+        if (fechaFactura != null && !where) {
             consulta += " WHERE f.fecha = \"" + fechaFactura + "\"";
             where = true;
-        }else if ( fechaFactura != null) {
+        } else if (fechaFactura != null) {
             consulta += " AND f.fecha = \"" + fechaFactura + "\"";
         }
-        
+
         consulta += " ORDER BY f.ID";
         //Borrar prints, solo para testeo
         System.out.println(consulta);

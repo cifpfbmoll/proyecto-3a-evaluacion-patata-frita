@@ -1,3 +1,5 @@
+package eu.fp.concesionario;
+
 
 /*
 Crear un main, un menú simple por consola que permita:
@@ -22,7 +24,7 @@ public class AppMain {
         boolean volver = false;
         int opcion;
         
-        //Login.initGui();
+        Login.initGui();
 
         try {
             do {

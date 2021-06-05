@@ -1,3 +1,5 @@
+package eu.fp.concesionario;
+
 
 /**
 * To change this license header, choose License Headers in Project Properties.
@@ -139,8 +141,39 @@ public class Cliente extends Persona {
             Utils.prst.setString(2, this.getApellidos());
             Utils.prst.setInt(3, this.getTelefono());
             Utils.prst.setString(4, this.getDomicilio());
-            Utils.prst.setString(5, this.getNif());
-            Utils.prst.setString(6, this.getPassword());
+            Utils.prst.setString(5, this.getPassword());
+            Utils.prst.setString(6, this.getNif());
+            Utils.prst.executeUpdate();
+            System.out.println("Datos actualizados correctamente!");
+        } catch (SQLException e) {
+            System.out.println("Error actualizar datos");
+            ret = -1;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return ret;
+    }
+    
+    /**
+     * Modificar un cliente en la base de datos
+     *
+     * @return
+     */
+    public static int modificarClienteBBDD(String nif, String nombre, String apellidos, int telefono, String domicilio, String passwd) {
+        int ret = 0;
+        String consulta = "UPDATE CLIENTE SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PASSWORD=? WHERE NIF=?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, nombre);
+            Utils.prst.setString(2, apellidos);
+            Utils.prst.setInt(3, telefono);
+            Utils.prst.setString(4, domicilio);
+            Utils.prst.setString(5, passwd);
+            Utils.prst.setString(6, nif);
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados correctamente!");
         } catch (SQLException e) {
