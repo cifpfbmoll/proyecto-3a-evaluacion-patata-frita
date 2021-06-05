@@ -198,13 +198,12 @@ public class Venta {
      * @param horario
      */
     public static void modificarVenta(int id, int espacios, String horario) {
-        String consulta = "UPDATE VENTA SET HORARIO=?  WHERE ID=?";
-
+        String consulta = "UPDATE VENTA SET HORARIO=?, ESPACIO=?  WHERE ID=?";
         try {
-
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, horario);
-            Utils.prst.setInt(2, id);
+            Utils.prst.setInt(2, espacios);
+            Utils.prst.setInt(3, id);
 
             Utils.prst.executeUpdate();
             System.out.println("Los datos han sido modificados con exito.");

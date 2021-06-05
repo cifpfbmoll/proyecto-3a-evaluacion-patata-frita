@@ -218,7 +218,7 @@ public class Motor {
     }
 
     /**
-     * Se modifica el concesionario actual en la base de datos con los datos
+     * Se modifica el motor actual en la base de datos con los datos
      * actuales de la clase
      *
      * @return Devuelve 0 si correcto, -1 si error
@@ -246,6 +246,32 @@ public class Motor {
             }
         }
         return ret;
+    }
+
+    /**
+     * Modifica un motor de la base de datos mediante parametros
+     * @return
+     */
+    public static void modificarMotorBBDD(String tipo, float potencia, float cilindrada, int num_motores, int id) {
+        String consulta = "UPDATE MOTOR SET TIPO=?, POTENCIA=?, CILINDRADA=?, NUM_MOTORES=? WHERE ID=?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, tipo);
+            Utils.prst.setFloat(2, potencia);
+            Utils.prst.setFloat(3, cilindrada);
+            Utils.prst.setInt(4, num_motores);
+            Utils.prst.setInt(5, id);
+            Utils.prst.executeUpdate();
+            System.out.println("Datos actualizados correctamente!");
+        } catch (SQLException e) {
+            System.out.println("Error actualizar datos");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
     }
 
     /**
