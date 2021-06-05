@@ -198,13 +198,12 @@ public class Venta {
      * @param horario
      */
     public static void modificarVenta(int id, int espacios, String horario) {
-        String consulta = "UPDATE VENTA SET HORARIO=?  WHERE ID=?";
-
+        String consulta = "UPDATE VENTA SET HORARIO=?, ESPACIO=?  WHERE ID=?";
         try {
-
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, horario);
-            Utils.prst.setInt(2, id);
+            Utils.prst.setInt(2, espacios);
+            Utils.prst.setInt(3, id);
 
             Utils.prst.executeUpdate();
             System.out.println("Los datos han sido modificados con exito.");
@@ -320,9 +319,9 @@ public class Venta {
     public static Object[][] devolverTodosVentasBBDD(int ventaId,String horario) {
         boolean where = false;
         //SQL devuelve ID, Espacios y Horario Taller
-        String consulta = "SELECT venta.*\n" +
-                "FROM test.venta INNER JOIN concesionario c on venta.concesionarioid = c.id\n" +
-                "LEFT JOIN empleado e on venta.empleadoid = e.id\n" +
+        String consulta = "SELECT venta.*" +
+                "FROM test.venta INNER JOIN concesionario c on venta.concesionarioid = c.id" +
+                "LEFT JOIN empleado e on venta.empleadoid = e.id" +
                 "LEFT JOIN vehiculo v on venta.vehiculoid = v.id"; //Cambiar test a concesionario
         if (ventaId > 0 && !where) {
             consulta += " WHERE id like \"" + ventaId + "\"";

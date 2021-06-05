@@ -348,9 +348,9 @@ public class Taller {
     public static Object[][] devolverTodosTalleresBBDD(int tallerId,int espacios,String horario) {
         boolean where = false;
         //SQL devuelve ID, Espacios y Horario Taller
-        String consulta = "SELECT taller.*\n" +
-                "FROM test.taller INNER JOIN concesionario c on taller.concesionarioid = c.id\n" +
-                "LEFT JOIN empleado e on taller.empleadoid = e.id\n" +
+        String consulta = "SELECT taller.*" +
+                "FROM test.taller INNER JOIN concesionario c on taller.concesionarioid = c.id" +
+                "LEFT JOIN empleado e on taller.empleadoid = e.id" +
                 "LEFT JOIN reserva r on taller.reservaid = r.id"; //Cambiar test a concesionario
         if (tallerId > 0 && !where) {
             consulta += " WHERE id like \"" + tallerId + "\"";

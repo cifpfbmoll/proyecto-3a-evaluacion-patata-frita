@@ -178,8 +178,8 @@ public class Empleado extends Persona {
             Utils.prst.setString(5, this.getPuestoTrabajo());
             Utils.prst.setInt(6, this.getTaller().getId());
             Utils.prst.setInt(7, this.getVenta().getId());
-            Utils.prst.setString(8, this.getNif());
-            Utils.prst.setString(9, this.getPassword());
+            Utils.prst.setString(8, this.getPassword());
+            Utils.prst.setString(9, this.getNif());
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados correctamente!");
         } catch (SQLException e) {
@@ -193,6 +193,36 @@ public class Empleado extends Persona {
             }
         }
         return ret;
+    }
+
+    /**
+     * Modificar un empleado en la base de datos mediante parametros
+     * @return
+     */
+    public static void modificarEmpleadoBBDD(String nombre, String apellidos, int telefono, String domicilio, String puesto, int taller, int venta, String pass, String nif) {
+        String consulta = "UPDATE EMPLEADO SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PUESTO=?, TALLERID=?, VENTAID=?, PASSWORD=? WHERE NIF=?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, nombre);
+            Utils.prst.setString(2, apellidos);
+            Utils.prst.setInt(3, telefono);
+            Utils.prst.setString(4, domicilio);
+            Utils.prst.setString(5, puesto);
+            Utils.prst.setInt(6, taller);
+            Utils.prst.setInt(7, venta);
+            Utils.prst.setString(8, pass);
+            Utils.prst.setString(9, nif);
+            Utils.prst.executeUpdate();
+            System.out.println("Datos actualizados correctamente!");
+        } catch (SQLException e) {
+            System.out.println("Error actualizar datos");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
     }
 
     /**

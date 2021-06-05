@@ -269,20 +269,11 @@ public class Reserva {
 
         try {
             // convertir string fechaHoraReserva a date
-            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-            Date myDate = null;
-            try {
-                myDate = formatter.parse(fechaHoraReserva);
-            } catch (ParseException ex) {
-                System.out.println("Error aplicar formato fecha");
-            }
-            // creamos objeto sql date y le pasamos date anteriormente creada
-            Object fechaSQL = new java.sql.Timestamp(myDate.getTime());
+            java.sql.Date sql_date = Utils.adaptarFechaMYSQL(fechaHoraReserva);
 
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, espacioReservado);
-            //Utils.prst.setDate(2, sqlDate);
-            Utils.prst.setObject(2, fechaSQL);
+            Utils.prst.setObject(2, sql_date);
             Utils.prst.setInt(3, id);
             System.out.println(Utils.prst.toString());
 

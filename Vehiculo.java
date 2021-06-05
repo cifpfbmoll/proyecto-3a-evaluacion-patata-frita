@@ -423,10 +423,10 @@ public class Vehiculo {
             Utils.prst.setString(9, this.getModelo());
             Utils.prst.setFloat(10, this.getPrecio());
             Utils.prst.setString(11, this.getExtras());
-            Utils.prst.setString(12, this.getBastidor());
-            Utils.prst.setInt(13, this.getMotor().getId());
-            Utils.prst.setInt(14, this.getVenta().getId());
-            Utils.prst.setString(15, this.getCliente().getNif());
+            Utils.prst.setInt(12, this.getMotor().getId());
+            Utils.prst.setInt(13, this.getVenta().getId());
+            Utils.prst.setString(14, this.getCliente().getNif());
+            Utils.prst.setString(15, this.getBastidor());
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados correctamente!");
         } catch (SQLException e) {
@@ -440,6 +440,38 @@ public class Vehiculo {
             }
         }
         return ret;
+    }
+
+    public static void modificarVehiculoBBDD(String tipo, String estado, int kilometraje, int autonomia, int puertas, int asientos, String color, String marca, String modelo, float precio, String extras, int motor, int venta, String nif, String bastidor) {
+        String consulta = "UPDATE VEHICULO SET TIPO=?, ESTADO=?, KILOMETRAJE=?, AUTONOMIA=?, PUERTAS=?, ASIENTOS=?, COLOR=?, MARCA=?, MODELO=?, PRECIO=?, EXTRAS=?, MOTORID=?, VENTAID=?, CLIENTEID=? WHERE BASTIDOR=?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, tipo);
+            Utils.prst.setString(2, estado);
+            Utils.prst.setInt(3, kilometraje);
+            Utils.prst.setInt(4, autonomia);
+            Utils.prst.setInt(5, puertas);
+            Utils.prst.setInt(6, asientos);
+            Utils.prst.setString(7, color);
+            Utils.prst.setString(8, marca);
+            Utils.prst.setString(9, modelo);
+            Utils.prst.setFloat(10, precio);
+            Utils.prst.setString(11, extras);
+            Utils.prst.setInt(12, motor);
+            Utils.prst.setInt(13, venta);
+            Utils.prst.setString(14, nif);
+            Utils.prst.setString(15, bastidor);
+            Utils.prst.executeUpdate();
+            System.out.println("Datos actualizados correctamente!");
+        } catch (SQLException e) {
+            System.out.println("Error actualizar datos");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
     }
 
     /**

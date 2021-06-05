@@ -157,6 +157,38 @@ public class Cliente extends Persona {
     }
 
     /**
+     * Modificar un cliente en la base de datos mediante parametros
+     * @param nombre
+     * @param apellidos
+     * @param telefono
+     * @param domicilio
+     * @param pass
+     * @param nif
+     */
+    public static void modificarClienteBBDD(String nombre, String apellidos, int telefono, String domicilio, String pass, String nif) {
+        String consulta = "UPDATE CLIENTE SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PASSWORD=? WHERE NIF=?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, nombre);
+            Utils.prst.setString(2, apellidos);
+            Utils.prst.setInt(3, telefono);
+            Utils.prst.setString(4, domicilio);
+            Utils.prst.setString(5, pass);
+            Utils.prst.setString(6, nif);
+            Utils.prst.executeUpdate();
+            System.out.println("Datos actualizados correctamente!");
+        } catch (SQLException e) {
+            System.out.println("Error actualizar datos");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+
+    /**
      * Borrar un cliente de la base de datos
      */
     public void borrarClienteBBDD() {
