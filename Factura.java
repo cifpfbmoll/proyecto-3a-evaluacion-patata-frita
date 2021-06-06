@@ -1,4 +1,8 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.*;
+
 /**
  * Clase Factura
  *
@@ -7,7 +11,6 @@ import java.sql.*;
 public class Factura {
 
     //atributos
-
     private int id = -1; //Se carga cuando se lee de la base de datos unicamente
     private String trabajoRealizado;
     private float costeFactura;
@@ -43,7 +46,8 @@ public class Factura {
 
     /**
      * Constructor copia
-     * @param factura 
+     *
+     * @param factura
      */
     public Factura(Factura factura) {
         this.fechaFactura = factura.getFechaFactura();
@@ -131,7 +135,9 @@ public class Factura {
         }
     }
 
-    public void setId(int id){this.id = id;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTrabajoRealizado() {
         return trabajoRealizado;
@@ -143,20 +149,20 @@ public class Factura {
 
     /**
      * toString
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {
-        return "Factura{" + 
-                "id=" + id + 
-                ", trabajoRealizado=" + trabajoRealizado + 
-                ", costeFactura=" + costeFactura + 
-                ", fechaFactura=" + fechaFactura + 
-                ", reserva=" + reserva + 
-                ", venta=" + venta + 
-                ", vehiculo=" + vehiculo + '}';
+        return "Factura{"
+                + "id=" + id
+                + ", trabajoRealizado=" + trabajoRealizado
+                + ", costeFactura=" + costeFactura
+                + ", fechaFactura=" + fechaFactura
+                + ", reserva=" + reserva
+                + ", venta=" + venta
+                + ", vehiculo=" + vehiculo + '}';
     }
-
 
     /**
      * metodo estatico para crear una factura con objeto Reserva
@@ -179,6 +185,7 @@ public class Factura {
             System.out.println("Id de la Reserva: ");
             int ReservaId = Utils.kInt();
             // buscamos reserva y la establecemos
+
             factura.setReserva(Reserva.buscarReservaBBDD(ReservaId));
 
         } catch (IllegalArgumentException e) {
@@ -186,8 +193,8 @@ public class Factura {
         }
         return factura;
     }
-    
-        /**
+
+    /**
      * metodo estatico para crear una factura con objeto Venta y Vehiculo
      *
      * @return objeto Factura que tiene venta y vehiculo
@@ -203,12 +210,12 @@ public class Factura {
 
             System.out.println("Trabajos realizados: ");
             factura.setTrabajoRealizado(Utils.kString());
-            
+
             System.out.println("Id de la Venta: ");
             int VentaId = Utils.kInt();
             // buscamos venta y la establecemos
             factura.setVenta(Venta.buscarVenta(VentaId));
-            
+
             System.out.println("Bastidor del Vehiculo: ");
             String VehiculoId = Utils.kString();
             // buscamos vehiculo y la establecemos
@@ -221,8 +228,7 @@ public class Factura {
     }
 
     /**
-     * metodo obsoleto?
-     * buscar una factura por su ID
+     * metodo obsoleto? buscar una factura por su ID
      *
      * @param numID
      * @return ResultSet
@@ -241,9 +247,9 @@ public class Factura {
         } catch (SQLException ex) {
             System.out.println("Error consulta");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -251,7 +257,8 @@ public class Factura {
     }
 
     /**
-     * metodo estatico para insertar factura a BBDD, apartir de un objeto factura
+     * metodo estatico para insertar factura a BBDD, apartir de un objeto
+     * factura
      *
      * @param factura
      */
@@ -274,9 +281,9 @@ public class Factura {
         } catch (SQLException e) {
             System.out.println("Error al insertar datos");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -296,18 +303,27 @@ public class Factura {
             Utils.prst.setString(1, this.getTrabajoRealizado());
             Utils.prst.setFloat(2, this.getCosteFactura());
             Utils.prst.setDate(3, sqlDate);
-            Utils.prst.setInt(4, this.getReserva().getId());
-            Utils.prst.setInt(5, this.getVenta().getId());
+            if (this.getReserva() != null){
+                Utils.prst.setInt(4, this.getReserva().getId());
+            }else{
+                Utils.prst.setInt(4, -1);
+            }
+            if (this.getVenta()!=null){
+                Utils.prst.setInt(5, this.getVenta().getId());
+            }else{
+                Utils.prst.setInt(5, -1);
+            }
             Utils.prst.setString(6, this.getVehiculo().getBastidor());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente");
 
         } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("Error al insertar datos");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -336,31 +352,30 @@ public class Factura {
         } catch (SQLException ex) {
             System.out.println("Error al mostrar datos de la tabla");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
     }
 
     /**
-     * obsoleto???
-     * metodo para mostrar ResultSet , muestra todo como String , muestra 6
-     * columnas
+     * obsoleto??? metodo para mostrar ResultSet , muestra todo como String ,
+     * muestra 6 columnas
      *
      * @param rs
      */
     public static void mostrarResultSetFactura(ResultSet rs) {
         try {
             while (rs.next()) {
-                System.out.println(rs.getString(1) + 
-                        " " + rs.getString(2) + 
-                        " " + rs.getString(3) + 
-                        " " + rs.getString(4)+ 
-                        " " + rs.getString(5)+ 
-                        " " + rs.getString(6)+
-                        " " + rs.getString(7));
+                System.out.println(rs.getString(1)
+                        + " " + rs.getString(2)
+                        + " " + rs.getString(3)
+                        + " " + rs.getString(4)
+                        + " " + rs.getString(5)
+                        + " " + rs.getString(6)
+                        + " " + rs.getString(7));
             }
         } catch (SQLException ex) {
             System.out.println("Error mostrar datos de la tabla");
@@ -383,9 +398,9 @@ public class Factura {
         } catch (SQLException ex) {
             System.out.println("Error borrar datos");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -408,9 +423,9 @@ public class Factura {
         } catch (SQLException e) {
             System.out.println("Error relacionar Factura con Reserva");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -433,9 +448,9 @@ public class Factura {
         } catch (SQLException e) {
             System.out.println("Error relacionar Factura con Venta");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -458,9 +473,9 @@ public class Factura {
         } catch (SQLException e) {
             System.out.println("Error relacionar Factura con Vehiculo");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -491,9 +506,9 @@ public class Factura {
         } catch (SQLException ex) {
             System.out.println("Error actualizar datos");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -518,9 +533,9 @@ public class Factura {
         } catch (SQLException ex) {
             System.out.println("error buscar factura");
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
@@ -559,9 +574,9 @@ public class Factura {
             } catch (SQLException ex) {
                 System.out.println("Error buscar factura");
             } finally {
-                try{
+                try {
                     Utils.cerrarVariables();
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println("Error al cerrar variables");
                 }
             }
@@ -569,32 +584,36 @@ public class Factura {
         }
 
     }
-    
-    //TODO
+
     /**
-     * Devolver todos las facturas de la base de datos 
+     * Devolver todos las facturas de la base de datos
+     *
      * @return objectList
      */
     public static Object[][] devolverTodasFacturasBBDD() {
         String consulta = "SELECT * FROM FACTURA ORDER BY ID";
+        String[][] objectList = null;
         try {
-            
-            Utils.st = Utils.connection.createStatement();
-            Utils.rs = Utils.st.executeQuery("SELECT COUNT(*) FROM FACTURA"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT COUNT(*) FROM FACTURA");
+            Utils.rs = Utils.prst.executeQuery(); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs.next();
-            String[][] objectList = new String[Utils.rs.getInt(1)][];
+            objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
-                String[] list = new String[7]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
-                
+                String[] list = new String[6]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+
                 list[0] = (Utils.rs.getString(1));
                 list[1] = (Utils.rs.getString(2));
-                list[2] = (Utils.rs.getString(3));
-                list[3] = (Utils.rs.getString(4));
-                list[4] = (Utils.rs.getString(5));
-                list[5] = (Utils.rs.getString(6));
-                list[6] = (Utils.rs.getString(7));
+                if (Utils.rs.getString(5) != null) {
+                    list[2] = ("Venta " + Utils.rs.getString(5));
+                } else {
+                    list[2] = ("Taller " + Utils.rs.getString(6));
+                }
+                list[3] = (Utils.rs.getString(7));
+                list[4] = (Utils.rs.getString(4));
+                list[5] = (Utils.rs.getString(3));
                 objectList[i] = list;
                 i++;
             }
@@ -603,45 +622,213 @@ public class Factura {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
         }
-        return null;
+        return objectList;
     }
-    
-    
-     /**
-     *  Devuelve todos los datos de factura en la base de datos en un archivo txt
+
+    /**
+     * Devuelve todos los datos de factura en la base de datos en un archivo txt
      */
-    public static void escribirFacturasArchivo(){
+    public static void escribirFacturasArchivo() {
         Utils.abrirArchivo("Factura.txt");
         String consulta = "SELECT * FROM FACTURA";
-        try{
+        try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.rs = Utils.prst.executeQuery();
-            while(Utils.rs.next()){
-                
+            while (Utils.rs.next()) {
+
                 Utils.escribirLineaArchivo("Factura id: " + Utils.rs.getString(1) + " {");
                 Utils.escribirLineaArchivo("    Trabajo: " + Utils.rs.getString(2));
                 Utils.escribirLineaArchivo("    Coste: " + Utils.rs.getString(3));
                 Utils.escribirLineaArchivo("    Fecha:" + Utils.rs.getString(4));
                 Utils.escribirLineaArchivo("    Reserva: " + Utils.rs.getString(5));
                 Utils.escribirLineaArchivo("    Venta: " + Utils.rs.getString(6));
-                Utils.escribirLineaArchivo("    Vehiculo: " + Utils.rs.getString(7)+" } " );                
+                Utils.escribirLineaArchivo("    Vehiculo: " + Utils.rs.getString(7) + " } ");
 
                 //Dejamos espacio para poder diferenciar facilmente entre vehiculos
                 Utils.escribirLineaArchivo(" ");
             }
             Utils.cerrarArchivo();
             System.out.println("Datos escritos correctamente en fichero");
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Problema al leer datos de la base de datos");
-        } finally{
-            try{
+        } finally {
+            try {
                 Utils.cerrarVariables();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
             }
         }
     }
 
+    public static Object[][] devolverTodasFacturasBBDD(String nif) {
+        String consulta = "SELECT `factura`.*,`cliente`.`nif` "
+                + "FROM `factura` "
+                + "LEFT JOIN `vehiculo` ON `vehiculo`.`bastidor` = `factura`.`vehiculoid` "
+                + "LEFT JOIN `cliente` ON `vehiculo`.`clientenif` = `cliente`.`nif` "
+                + "WHERE \"" + nif + "\" like `vehiculo`.`clientenif` ORDER BY ID";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement("SELECT COUNT(*) FROM FACTURA");
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while (Utils.rs.next()) {
+                String[] list = new String[7]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
 
+                list[0] = (Utils.rs.getString(1));
+                list[1] = (Utils.rs.getString(2));
+                if (Utils.rs.getString(5) != null) {
+                    list[2] = ("Taller " + Utils.rs.getString(5));
+                } else {
+                    list[2] = ("Reserva " + Utils.rs.getString(6));
+                }
+                list[3] = (Utils.rs.getString(7));
+                list[4] = (Utils.rs.getString(8));
+                list[5] = (Utils.rs.getString(4));
+                list[6] = (Utils.rs.getString(3));
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
+
+    /**
+     * Descargar una factura de forma local desde la tabla data[0] = ID, data[1]
+     * = Concepto, data[2] = Local, data[3] = Vehículo, data[4] = NIF, data[5] =
+     * Fecha, data[6] = Coste,
+     *
+     * @param data Información de la factura a imprimir
+     * @throws Exception
+     */
+    public static void descargarFactura(String[] data) throws Exception {
+        File txt = new File("factura_" + data[4] + "_" + data[0] + ".txt");
+        BufferedWriter escritor = new BufferedWriter(new FileWriter(txt));
+
+        String separador = "##################################################";
+
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("   NIF: " + data[4] + "      Vehículo: " + data[3]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("    ID de factura: " + data[0]);
+        escritor.newLine();
+        escritor.write("            Fecha: " + data[5]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write("     Local emisor: " + data[2]);
+        escritor.newLine();
+        escritor.write("         Concepto: " + data[1]);
+        escritor.newLine();
+        escritor.write("            Coste: " + data[6]);
+        escritor.newLine();
+        escritor.newLine();
+        escritor.write(separador);
+        escritor.newLine();
+        escritor.close();
+    }
+
+    /**
+     * Devolver facturas de la base de datos compatible con el filtro
+     *
+     * @param trabajoRealizado
+     * @param costeFactura
+     * @param fechaFactura
+     * @return
+     */
+    public static Object[][] devolverTodosFacturaBBDD(String trabajoRealizado, float costeFactura, String fechaFactura) {
+        boolean where = false;
+        //SQL devuelve Reserva + Nombre cliente + apellidos cliente + tablas relacionadas
+        String consulta = "select * from test.factura f  join test.reserva r on f.reservaid = r.id join test.venta v on f.ventaid = v.id join test.vehiculo v2 on f.vehiculoid = v2.bastidor";
+
+        if (trabajoRealizado != null && !where) {
+            consulta += " WHERE f.trabajo like \"" + trabajoRealizado + "\"";
+            where = true;
+        } else if (trabajoRealizado != null) {
+            consulta += " AND f.trabajo like \"" + trabajoRealizado + "\"";
+        }
+
+        if (costeFactura > 0 && !where) {
+            consulta += " WHERE f.coste = \"" + costeFactura + "\"";
+            where = true;
+        } else if (costeFactura > 0) {
+            consulta += " AND f.coste = \"" + costeFactura + "\"";
+        }
+
+        if (fechaFactura != null && !where) {
+            consulta += " WHERE f.fecha = \"" + fechaFactura + "\"";
+            where = true;
+        } else if (fechaFactura != null) {
+            consulta += " AND f.fecha = \"" + fechaFactura + "\"";
+        }
+
+        consulta += " ORDER BY f.ID";
+        //Borrar prints, solo para testeo
+        System.out.println(consulta);
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.last();
+            objectList = new String[Utils.rs.getRow()][];
+            int i = 0;
+            Utils.rs.first();
+            while (Utils.rs.next()) {
+                //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
+                //Contar únicamente que columnas son importantes!
+                Integer COLUMNAS = 7;
+                //1-trabajo, 2-coste, 3-fecha, 4-vehiculo_id, 5-espacio_reservado, 6-taller_id, 7-nif_cliente
+                String[] list = new String[COLUMNAS];
+                list[0] = Utils.rs.getString(2); // trabajo
+                list[1] = Utils.rs.getString(3); // coste
+                list[2] = Utils.rs.getString(4); // fecha
+                list[3] = Utils.rs.getString(7); // vehiculo_id
+                list[4] = Utils.rs.getString(9); // espacio_reservado
+                list[5] = Utils.rs.getString(11); // taller_id
+                list[6] = Utils.rs.getString(12); // nif_cliente
+
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los motores");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
 }

@@ -1,4 +1,3 @@
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -424,10 +423,10 @@ public class Vehiculo {
             Utils.prst.setString(9, this.getModelo());
             Utils.prst.setFloat(10, this.getPrecio());
             Utils.prst.setString(11, this.getExtras());
-            Utils.prst.setString(12, this.getBastidor());
-            Utils.prst.setInt(13, this.getMotor().getId());
-            Utils.prst.setInt(14, this.getVenta().getId());
-            Utils.prst.setString(15, this.getCliente().getNif());
+            Utils.prst.setInt(12, this.getMotor().getId());
+            Utils.prst.setInt(13, this.getVenta().getId());
+            Utils.prst.setString(14, this.getCliente().getNif());
+            Utils.prst.setString(15, this.getBastidor());
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados correctamente!");
         } catch (SQLException e) {
@@ -443,6 +442,38 @@ public class Vehiculo {
         return ret;
     }
 
+    public static void modificarVehiculoBBDD(String tipo, String estado, int kilometraje, int autonomia, int puertas, int asientos, String color, String marca, String modelo, float precio, String extras, int motor, int venta, String nif, String bastidor) {
+        String consulta = "UPDATE VEHICULO SET TIPO=?, ESTADO=?, KILOMETRAJE=?, AUTONOMIA=?, PUERTAS=?, ASIENTOS=?, COLOR=?, MARCA=?, MODELO=?, PRECIO=?, EXTRAS=?, MOTORID=?, VENTAID=?, CLIENTEID=? WHERE BASTIDOR=?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, tipo);
+            Utils.prst.setString(2, estado);
+            Utils.prst.setInt(3, kilometraje);
+            Utils.prst.setInt(4, autonomia);
+            Utils.prst.setInt(5, puertas);
+            Utils.prst.setInt(6, asientos);
+            Utils.prst.setString(7, color);
+            Utils.prst.setString(8, marca);
+            Utils.prst.setString(9, modelo);
+            Utils.prst.setFloat(10, precio);
+            Utils.prst.setString(11, extras);
+            Utils.prst.setInt(12, motor);
+            Utils.prst.setInt(13, venta);
+            Utils.prst.setString(14, nif);
+            Utils.prst.setString(15, bastidor);
+            Utils.prst.executeUpdate();
+            System.out.println("Datos actualizados correctamente!");
+        } catch (SQLException e) {
+            System.out.println("Error actualizar datos");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+
     /**
      * Se borra el vehiculo actual de la base de datos
      */
@@ -451,6 +482,29 @@ public class Vehiculo {
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getBastidor());
+            Utils.prst.executeUpdate();
+            System.out.println("Vehiculo borrado correctamente");
+
+        } catch (SQLException e) {
+            System.out.println("Error al borrar datos, es posible que cuelguen otras tablas de esta");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+    
+    /**
+     * Se borra el vehiculo actual de la base de datos
+     * @param ID
+     */
+    public static void borrarVehiculoBBDD(String ID) {
+        String consulta = " DELETE FROM VEHICULO WHERE BASTIDOR LIKE ?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, ID);
             Utils.prst.executeUpdate();
             System.out.println("Vehiculo borrado correctamente");
 
@@ -513,13 +567,12 @@ public class Vehiculo {
     }
 
     /**
-     * Devolver todos los Vehiculos de la base de datos, útil para
-     * la gui
+     * Devolver todos los Vehiculos de la base de datos, útil para la gui
      * @return Vehiculo[][]
      */
     //Si hay algun fallo en esta clase puede ser por el finally, no se como reorganizarlo...
     public static Object[][] devolverTodosVehiculoBBDD() {
-        String consulta = "SELECT * FROM Vehiculo ORDER BY bastidor";
+        String consulta = "SELECT `VEHICULO`.*,`MOTOR`.`tipo`,`MOTOR`.`potencia`,`MOTOR`.`cilindrada` FROM VEHICULO,MOTOR WHERE `VEHICULO`.`motorid` like `MOTOR`.`id` ORDER BY bastidor";
         String[][] objectList = null;
         try {
             Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM Vehiculo"); // MODIFICAR TABLA EN LAS OTRAS CLASES
@@ -527,35 +580,30 @@ public class Vehiculo {
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];
             int i = 0;
-            Utils.rs = Utils.st.executeQuery(consulta);
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
-                //Vehiculo tiene 15 columnas, dejare cliente y venta fuera pero cogere los datos del motor
-                //Unicamente el tipo la cilindrada y la potencia.
-                String[] list = new String[15]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
-                list[0] = (Utils.rs.getString(1));
-                list[1] = (Utils.rs.getString(2));
-                list[2] = (Utils.rs.getString(3));
-                list[3] = Integer.toString(Utils.rs.getInt(4));
-                list[4] = Integer.toString(Utils.rs.getInt(5));
-                list[5] = Integer.toString(Utils.rs.getInt(6));
-                list[6] = Integer.toString(Utils.rs.getInt(7));
-                list[7] = (Utils.rs.getString(8));
-                list[8] = (Utils.rs.getString(9));
-                list[9] = (Utils.rs.getString(10));
-                list[10] = Integer.toString(Utils.rs.getInt(11));
-                list[11] = (Utils.rs.getString(12));
-                //Ahora leemos el ID del motor y pedimos a la clase Motor que coja sus datos
-                Motor motor = Motor.buscarMotorBBDD(Utils.rs.getInt(5));
-                list[12] = motor.getTipo().toString();
-                list[13] = Float.toString(motor.getCilindrada());
-                list[14] = Float.toString(motor.getPotencia());
+                Integer COLUMNAS = 18;
+                String[] list = new String[COLUMNAS]; // MODIFICAR LONGITUD DE LA LISTA EN OTRAS CLASES
+                int x = 0;
+                while (x < COLUMNAS) {
+                    switch (x) {
+                        case 4:
+                            list[x] = (Utils.rs.getString(x + 1) + "km");
+                            break;
+                        default:
+                            list[x] = (Utils.rs.getString(x + 1));
+                    }
+                    x++;
+                }
                 objectList[i] = list;
                 i++;
             }
         } catch (SQLException e) {
-            System.out.println("Error mostrando todos los clientes");
+            System.out.println("Error devolviendo todos los vehiculos");
+            e.getStackTrace();
         } finally {
-            try{
+            try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
                 System.out.println("Error al cerrar variables");
@@ -659,5 +707,132 @@ public class Vehiculo {
                 System.out.println("Error al cerrar variables");
             }
         }
+    }
+
+    /**
+     * Devuelve los vehiculos filtrados de la base de datos en formato tabla
+     *
+     * @param bastidor
+     * @param tipo
+     * @param kilometraje
+     * @param asientos
+     * @param puertas
+     * @param marca
+     * @param modelo
+     * @param precio
+     * @return
+     */
+    public static Object[][] devolverTodosVehiculosBBDD(String bastidor, String tipo, int kilometraje, int asientos, int puertas,
+    String marca, String modelo, int precio) {
+        boolean where = false;
+        //SQL devuelve Reserva + Nombre cliente + apellidos cliente + tablas relacionadas
+        String consulta = "SELECT vehiculo.*\n" +
+                "FROM test.vehiculo INNER JOIN motor m on vehiculo.motorid = m.id\n" +
+                "LEFT JOIN venta v on vehiculo.ventaid = v.id\n" +
+                "LEFT JOIN cliente c on vehiculo.clientenif = c.nif"; //Cambiar test a concesionario
+        if (bastidor != null && !where) {
+            consulta += " WHERE bastidor like \"" + bastidor + "\"";
+            where = true;
+        }else if(bastidor != null){
+            consulta += " AND bastidor like \"" + bastidor + "\"";
+        }
+        if (tipo != null && !where) {
+            consulta += " WHERE tipo like \"" + tipo + "\"";
+            where = true;
+        }else if(tipo != null){
+            consulta += " AND tipo like \"" + tipo + "\"";
+        }
+        if ( kilometraje > 0 && !where) {
+            consulta += " WHERE kilometraje = \"" + kilometraje + "\"";
+            where = true;
+        }else if(kilometraje > 0){
+            consulta += " AND kilometraje = \"" + kilometraje + "\"";
+        }
+        if (asientos > 0 && !where){
+            consulta += " WHERE asientos = \"" + asientos + "\"";
+            where = true;
+        }else if ( asientos > 0) {
+            consulta += " AND asientos = \"" + asientos + "\"";
+        }
+        if ( puertas > 0 && !where) {
+            consulta += " WHERE puertas = \"" + puertas + "\"";
+            where = true;
+        }else if(puertas > 0){
+            consulta += " AND puertas = \"" + puertas + "\"";
+        }
+        if (precio > 0 && !where){
+            consulta += " WHERE precio = \"" + precio + "\"";
+            where = true;
+        }else if ( precio > 0) {
+            consulta += " AND precio = \"" + precio + "\"";
+        }
+        if (marca != null && !where) {
+            consulta += " WHERE marca like \"" + marca + "\"";
+            where = true;
+        }else if(marca != null){
+            consulta += " AND marca like \"" + marca + "\"";
+        }
+        if (modelo != null && !where) {
+            consulta += " WHERE modelo like \"" + modelo + "\"";
+            where = true;
+        }else if(modelo != null){
+            consulta += " AND modelo like \"" + modelo + "\"";
+        }
+        consulta += " ORDER BY v.bastidor";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.last();
+            objectList = new String[Utils.rs.getRow()][];
+            int i = 0;
+            Utils.rs.first();
+            while (Utils.rs.next()) {
+                //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
+                //Contar únicamente que columnas son importantes!
+                Integer COLUMNAS = 19;
+                /**
+                 * Bastidor, tipo, clase, kilometraje, autonomia, puertas
+                 * asientos, color, marca, modelo, precio, extras, potencia
+                 * par, tipo, venta id, nombre, apellidos
+                 */
+                //ReservaID, Espacio_res, fecha, clientenif, espacios, horario, nombre,apellidos
+                String[] list = new String[COLUMNAS];
+                list[0] = Utils.rs.getString(1); //Bastidor
+                list[1] = Utils.rs.getString(2); //Vehiculo tipo
+                list[2] = Utils.rs.getString(3); //Estado vehiculo
+                list[3] = Utils.rs.getString(5); //Kilometraje
+                list[4] = Utils.rs.getString(7); //Autonomia
+                list[5] = Utils.rs.getString(8); //Puertas
+                list[6] = Utils.rs.getString(9); //Asientos
+                list[7] = Utils.rs.getString(10); //Color
+                list[8] = Utils.rs.getString(11); //Marca
+                list[9] = Utils.rs.getString(12); //Modelo
+                list[10] = Utils.rs.getString(13); //Precio
+                list[11] = Utils.rs.getString(14); //Extras
+                list[12] = Utils.rs.getString(18); //Potencia
+                list[13] = Utils.rs.getString(19); //Cilindrada
+                list[14] = Utils.rs.getString(20); //Potencia
+                list[15] = Utils.rs.getString(21); //Par
+                list[16] = Utils.rs.getString(22); //Tipo
+                list[17] = Utils.rs.getString(23); //Id venta
+                list[18] = Utils.rs.getString(24); //Horario venta
+                list[19] = Utils.rs.getString(25) + Utils.rs.getString(26); //Nombre + apellidos
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
     }
 }

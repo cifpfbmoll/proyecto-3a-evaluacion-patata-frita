@@ -1,3 +1,4 @@
+
 /*
 Crear un main, un menú simple por consola que permita:
 1- Crear nuevos objetos (nuevas instancias de las clases)
@@ -20,10 +21,11 @@ public class AppMain {
         boolean salir = false;
         boolean volver = false;
         int opcion;
+        
+        Login.initGui();
 
         try {
             do {
-
                 System.out.println("MENU");
                 System.out.println("1 factura");
                 System.out.println("2 nomina");
@@ -138,7 +140,7 @@ public class AppMain {
                     break;
                 case 5:
                     System.out.println("mostrar todos concesionarios");
-                    Concesionario.mostrarConcesionarios();
+                    Concesionario.mostrarConcesionario();
                     break;
                 case 6:
                     System.out.println("Id del concesionario: ");
@@ -303,7 +305,7 @@ public class AppMain {
                 case 4:
                     System.out.println("Indica ID de la nomina que desea borrar");
                     int idNominaBorrar = Utils.kInteger();
-                    Nomina.borrarNomina(idNominaBorrar);
+                    Nomina.borrarNominaBBDD(idNominaBorrar);
                     break;
                 case 5:
                     System.out.println("mostrar todos nominas");

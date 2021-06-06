@@ -1,6 +1,3 @@
-import jdk.jshell.execution.Util;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -10,8 +7,8 @@ import java.sql.SQLException;
 public class Empleado extends Persona {
 
     private String puestoTrabajo;
-    private Integer tallerId;
-    private Integer ventaId;
+    private Taller taller;
+    private Venta venta;
 
     /**
      * Constructor vacio
@@ -23,7 +20,6 @@ public class Empleado extends Persona {
     /**
      * Constructor con todos los parametros
      *
-     * @param nomina Lista de las nominas
      * @param puestoTrabajo Puesto de trabajo
      * @param nombre Nombre del trabajador
      * @param apellidos Apellidos del trabajador
@@ -31,9 +27,11 @@ public class Empleado extends Persona {
      * @param telefono Telefono del trabajador
      * @param domicilio Domicilio del trabajador
      */
-    public Empleado(Nomina nomina, String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio, String password) {
+    public Empleado(String puestoTrabajo, String nombre, String apellidos, String nif, Integer telefono, String domicilio, String password, Taller taller, Venta venta) {
         super(nombre, apellidos, nif, telefono, domicilio, password);
         this.puestoTrabajo = puestoTrabajo;
+        this.taller = taller;
+        this.venta = venta;
     }
 
     /**
@@ -44,6 +42,8 @@ public class Empleado extends Persona {
     public Empleado(Empleado copia) {
         super(copia.getNombre(), copia.getApellidos(), copia.getNif(), copia.getTelefono(), copia.getDomicilio(), copia.getPassword());
         this.setPuestoTrabajo(copia.getPuestoTrabajo());
+        this.setTaller(Taller.buscarTaller(copia.getTaller().getId()));
+        this.setVenta(Venta.buscarVenta(copia.getVenta().getId()));
     }
 
     // GETTERS Y SETTERS
@@ -55,25 +55,25 @@ public class Empleado extends Persona {
         this.puestoTrabajo = puestoTrabajo;
     }
 
-    public Integer getTallerId() {
-        return tallerId;
+    public Taller getTaller() {
+        return taller;
     }
 
-    public void setTallerId(Integer tallerId) {
-        this.tallerId = tallerId;
+    public void setTaller(Taller taller) {
+        this.taller = taller;
     }
 
-    public Integer getVentaId() {
-        return ventaId;
+    public Venta getVenta() {
+        return venta;
     }
 
-    public void setVentaId(Integer ventaId) {
-        this.ventaId = ventaId;
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
     
     @Override
     public String toString() {
-        return super.toString() + " puesto de trabajo: " + puestoTrabajo; //Sin el conjunto de nominas, eso vendra con la base de datos y serà una simple llamada
+        return super.toString() + " | Puesto de trabajo: " + puestoTrabajo + " | VentaID: " + venta + " | TallerID: " + taller; //Sin el conjunto de nominas, eso vendra con la base de datos y serà una simple llamada
     }
 
     /**
@@ -90,6 +90,8 @@ public class Empleado extends Persona {
             empleado.setDomicilio(Utils.kString("Direccion de empleado"));
             empleado.setPuestoTrabajo(Utils.kString("Puesto del empleado"));
             empleado.setPassword("Contraseña del empleado");
+            empleado.setTaller(Taller.buscarTaller(Utils.kInteger("Taller del empleado")));
+            empleado.setVenta(Venta.buscarVenta(Utils.kInteger("Venta del empleado")));
         }catch(Exception e){
             System.out.println("Error al insertar los datos, intentelo otra vez");
         }
@@ -109,8 +111,8 @@ public class Empleado extends Persona {
             Utils.prst.setInt(4, this.getTelefono());
             Utils.prst.setString(5, this.getDomicilio());
             Utils.prst.setString(6, this.getPuestoTrabajo());
-            Utils.prst.setInt(7, this.getTallerId());
-            Utils.prst.setInt(8, this.getVentaId());
+            Utils.prst.setInt(7, this.getTaller().getId());
+            Utils.prst.setInt(8, this.getVenta().getId());
             Utils.prst.setString(9,this.getPassword());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctomnte!");
@@ -144,8 +146,8 @@ public class Empleado extends Persona {
             empleado.setTelefono(Utils.rs.getInt(4));
             empleado.setDomicilio(Utils.rs.getString(5));
             empleado.setPuestoTrabajo(Utils.rs.getString(6));
-            empleado.setTallerId(Utils.rs.getInt(7));
-            empleado.setVentaId(Utils.rs.getInt(8));
+            empleado.setTaller(Taller.buscarTaller(Utils.rs.getInt(7)));
+            empleado.setVenta(Venta.buscarVenta(Utils.rs.getInt(8)));
             empleado.setPassword(Utils.rs.getString(9));
         } catch (SQLException e) {
             System.out.println("Error al buscar cliente");
@@ -174,10 +176,10 @@ public class Empleado extends Persona {
             Utils.prst.setInt(3, this.getTelefono());
             Utils.prst.setString(4, this.getDomicilio());
             Utils.prst.setString(5, this.getPuestoTrabajo());
-            Utils.prst.setInt(6, this.getTallerId());
-            Utils.prst.setInt(7, this.getVentaId());
-            Utils.prst.setString(8, this.getNif());
-            Utils.prst.setString(9, this.getPassword());
+            Utils.prst.setInt(6, this.getTaller().getId());
+            Utils.prst.setInt(7, this.getVenta().getId());
+            Utils.prst.setString(8, this.getPassword());
+            Utils.prst.setString(9, this.getNif());
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados correctamente!");
         } catch (SQLException e) {
@@ -194,6 +196,36 @@ public class Empleado extends Persona {
     }
 
     /**
+     * Modificar un empleado en la base de datos mediante parametros
+     * @return
+     */
+    public static void modificarEmpleadoBBDD(String nombre, String apellidos, int telefono, String domicilio, String puesto, int taller, int venta, String pass, String nif) {
+        String consulta = "UPDATE EMPLEADO SET NOMBRE=?, APELLIDOS=?, TELEFONO=?, DOMICILIO=?, PUESTO=?, TALLERID=?, VENTAID=?, PASSWORD=? WHERE NIF=?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, nombre);
+            Utils.prst.setString(2, apellidos);
+            Utils.prst.setInt(3, telefono);
+            Utils.prst.setString(4, domicilio);
+            Utils.prst.setString(5, puesto);
+            Utils.prst.setInt(6, taller);
+            Utils.prst.setInt(7, venta);
+            Utils.prst.setString(8, pass);
+            Utils.prst.setString(9, nif);
+            Utils.prst.executeUpdate();
+            System.out.println("Datos actualizados correctamente!");
+        } catch (SQLException e) {
+            System.out.println("Error actualizar datos");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+
+    /**
      * Borrar un empleado de la base de datos
      */
     public void borrarEmpleadoBBDD() {
@@ -201,6 +233,29 @@ public class Empleado extends Persona {
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNif());
+            Utils.prst.executeUpdate();
+            System.out.println("Empleado borrado correctamente");
+
+        } catch (SQLException e) {
+            System.out.println("Error borrando datos, es posible que cuelguen tablas de esta tabla");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+    
+    /**
+     * Borrar un empleado de la base de datos
+     * @param ID
+     */
+    public static void borrarEmpleadoBBDD(String ID) {
+        String consulta = " DELETE FROM EMPLEADO WHERE NIF LIKE ?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setString(1, ID);
             Utils.prst.executeUpdate();
             System.out.println("Empleado borrado correctamente");
 
@@ -245,6 +300,46 @@ public class Empleado extends Persona {
                 System.out.println("Error al cerrar variables");
             }
         }
+    }
+    
+    /**
+     * Devolver todos los clientes de la base de datos
+     * @return 
+     */
+    public static Object[][] devolverTodosEmpleadosBBDD() {
+        String consulta = "SELECT * FROM EMPLEADO ORDER BY NIF";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM EMPLEADO");
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.next();
+            objectList = new String[Utils.rs.getInt(1)][];
+            int i = 0;
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while (Utils.rs.next()) {
+                String[] list = new String[8];
+                list[0] = (Utils.rs.getString(1));
+                list[1] = (Utils.rs.getString(2));
+                list[2] = (Utils.rs.getString(3));
+                list[3] = Integer.toString(Utils.rs.getInt(4));
+                list[4] = (Utils.rs.getString(5));
+                list[5] = (Utils.rs.getString(6));
+                list[6] = Integer.toString(Utils.rs.getInt(7));
+                list[7] = Integer.toString(Utils.rs.getInt(8));
+                objectList[i] = list;
+                i++;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
     }
 
     /**

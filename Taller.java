@@ -1,4 +1,3 @@
-
 import java.sql.SQLException;
 
 /**
@@ -6,13 +5,12 @@ import java.sql.SQLException;
  * concesionario
  *
  * @author Jose Luis Cardona
- * @version 1 - 29/03/2021
+ * @version 1 - 29/03/2021 (Fecha de inicio)
  */
 public class Taller {
 
 
     private int id = -1;
-
     private int espacios;
     private String horario;
 
@@ -72,6 +70,8 @@ public class Taller {
                     numHorarios[pointer] = Integer.parseInt(lista3Horarios[i]);
                     pointer++;
                 }
+                this.horario=horario;
+                
             } catch (Exception ex) {
                 throw new IllegalArgumentException("Caracter/es inválido/s.");
             }
@@ -80,7 +80,7 @@ public class Taller {
 
     @Override
     public String toString() {
-        return "Taller{"
+        return "Taller { "
                 + "id=" + id
                 + ", espacios=" + espacios
                 + ", horario='" + horario + '\''
@@ -142,16 +142,15 @@ public class Taller {
             return null;
         } else {
             Taller taller = new Taller();
-
             try {
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setInt(1, id);
                 Utils.rs = Utils.prst.executeQuery();
                 Utils.rs.next();
-                taller.setId(id);
+
                 taller.setEspacios(Utils.rs.getInt(1));
+                System.out.println(Utils.rs.getString(2));
                 taller.setHorario(Utils.rs.getString(2));
-                taller.setId(id);
                 System.out.println("El taller ha sido encontrado y creado " + taller.toString());
 
             } catch (SQLException ex) {
@@ -309,5 +308,111 @@ public class Taller {
         }
         return encontrado;
     }
-    //No cerrar la conexion cuando se termine, la conexion se mantiene hasta que el usuario se va
+
+    /**
+     *  Devuelve todos los datos de talleres en la base de datos en un archivo txt.
+     */
+    public static void escribirTalleresArchivo(){
+        Utils.abrirArchivo("Taller.txt");
+        String consulta = "SELECT * FROM TALLER";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                Utils.escribirLineaArchivo("Taller id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
+                Utils.escribirLineaArchivo("    Espacios: " + Integer.toString(Utils.rs.getInt(2)));
+                Utils.escribirLineaArchivo("    Horario: " + Utils.rs.getInt(3) + " }");
+                //Dejamos espacio para poder diferenciar facilmente entre talleres
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en el fichero.");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos.");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar las variables.");
+            }
+        }
+    }
+    /**
+     * Devuelve los talleres filtrados de la base de datos en formato tabla.
+     *
+     * @param tallerId
+     * @param espacios
+     * @param horario
+     * @return
+     */
+    public static Object[][] devolverTodosTalleresBBDD(int tallerId,int espacios,String horario) {
+        boolean where = false;
+        //SQL devuelve ID, Espacios y Horario Taller
+        String consulta = "SELECT taller.*" +
+                "FROM test.taller INNER JOIN concesionario c on taller.concesionarioid = c.id" +
+                "LEFT JOIN empleado e on taller.empleadoid = e.id" +
+                "LEFT JOIN reserva r on taller.reservaid = r.id"; //Cambiar test a concesionario
+        if (tallerId > 0 && !where) {
+            consulta += " WHERE id like \"" + tallerId + "\"";
+            where = true;
+        }else if(tallerId > 0){
+            consulta += " AND id like \"" + tallerId + "\"";
+        }
+        if (espacios > 0 && !where) {
+            consulta += " WHERE espacios like \"" + espacios + "\"";
+            where = true;
+        }else if(espacios > 0){
+            consulta += " AND espacios like \"" + espacios + "\"";
+        }
+        if ( horario != null && !where) {
+            consulta += " WHERE horario = \"" + horario + "\"";
+            where = true;
+        }else if(horario != null){
+            consulta += " AND horario = \"" + horario + "\"";
+        }
+        consulta += " ORDER BY id";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.last();
+            objectList = new String[Utils.rs.getRow()][];
+            int i = 0;
+            Utils.rs.first();
+            while (Utils.rs.next()) {
+                //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
+                //Contar únicamente que columnas son importantes!
+                Integer COLUMNAS = 8;
+                /**
+                 * ID Taller, espacios Taller, horario Taller, ID Concesionario, nombre Concesionario,
+                 * ubicacion Concesionario, telefono Concesionario, nombre Empleado(Persona), apellidos Empleado(Persona),
+                 * espacio-reservado Reserva, fecha Reserva.
+                 */
+                String[] list = new String[COLUMNAS];
+                list[0] = Utils.rs.getString(1); //ID Taller
+                list[1] = Utils.rs.getString(2); //Espacios Taller
+                list[2] = Utils.rs.getString(3); //Horario Taller
+                list[3] = Utils.rs.getString(5); //Ubicacion Concesionario
+                list[4] = Utils.rs.getString(6); //Nombre Concesionario
+                list[5] = Utils.rs.getString(7); //Telefono Concesionario
+                list[6] = Utils.rs.getString(11) + Utils.rs.getString(12); //Nombre + apellidos Empleado(Persona)
+                list[7] = Utils.rs.getString(20); //Espacio Reservado Reserva
+                list[8] = Utils.rs.getString(21); //Fecha Reserva
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
 }

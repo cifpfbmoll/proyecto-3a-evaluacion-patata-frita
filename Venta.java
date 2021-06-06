@@ -1,14 +1,14 @@
-
 import java.sql.SQLException;
 
 /**
  * VENTAS Esta clase contiene las ventas de cada uno de los concesionarios.
  *
  * @author Jose Luis Cardona
- * @version 1 - 29/03/2021
+ * @version 1 - 29/03/2021 (Fecha de inicio)
  */
 public class Venta {
-    private int id=-1;
+
+    private int id = -1;
     private String horario;
 
     public Venta() {
@@ -97,7 +97,7 @@ public class Venta {
             System.out.println("Datos guardados con exito.");
         } catch (SQLException ex) {
             System.out.println("¡ERROR! no se pudieron guardar los datos de la venta en la BBDD.");
-        } finally { 
+        } finally {
             try {
                 Utils.cerrarVariables();
             } catch (Exception e) {
@@ -118,6 +118,7 @@ public class Venta {
             return null;
         } else {
             Venta venta = new Venta();
+
             try {
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setInt(1, id);
@@ -196,14 +197,13 @@ public class Venta {
      * @param espacios
      * @param horario
      */
-    public static void modificarTaller(int id, int espacios, String horario) {
-        String consulta = "UPDATE VENTA SET HORARIO=?  WHERE ID=?";
-
+    public static void modificarVenta(int id, int espacios, String horario) {
+        String consulta = "UPDATE VENTA SET HORARIO=?, ESPACIO=?  WHERE ID=?";
         try {
-
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, horario);
-            Utils.prst.setInt(2, id);
+            Utils.prst.setInt(2, espacios);
+            Utils.prst.setInt(3, id);
 
             Utils.prst.executeUpdate();
             System.out.println("Los datos han sido modificados con exito.");
@@ -256,7 +256,7 @@ public class Venta {
      * @return Booleano llamado "encontrado" el cual si sale true es que el
      * taller ha sido hallado, si sale false significa que no se ha localizado.
      */
-    public boolean existTaller() {
+    public boolean existVenta() {
         boolean encontrado = false;
         String consulta = "SELECT * FROM VENTA WHERE ID=?";
         try {
@@ -280,5 +280,101 @@ public class Venta {
         }
         return encontrado;
     }
-    //No cerrar la conexion cuando se termine, la conexion se mantiene hasta que el usuario se va
+
+    /**
+     *  Devuelve todos los datos de ventas en la base de datos en un archivo txt.
+     */
+    public static void escribirVentasArchivo(){
+        Utils.abrirArchivo("Venta.txt");
+        String consulta = "SELECT * FROM VENTA";
+        try{
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            while(Utils.rs.next()){
+                Utils.escribirLineaArchivo("Taller id: " + Integer.toString(Utils.rs.getInt(1)) + " {");
+                Utils.escribirLineaArchivo("    Horario: " + Utils.rs.getInt(2) + " }");
+                //Dejamos espacio para poder diferenciar facilmente entre ventas
+                Utils.escribirLineaArchivo(" ");
+            }
+            Utils.cerrarArchivo();
+            System.out.println("Datos escritos correctamente en el fichero.");
+        }catch(Exception e){
+            System.out.println("Problema al leer datos de la base de datos.");
+        } finally{
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar las variables.");
+            }
+        }
+    }
+
+    /**
+     * Devuelve las ventas filtradas de la base de datos en formato tabla.
+     *
+     * @param ventaId
+     * @param horario
+     * @return
+     */
+    public static Object[][] devolverTodosVentasBBDD(int ventaId,String horario) {
+        boolean where = false;
+        //SQL devuelve ID, Espacios y Horario Taller
+        String consulta = "SELECT venta.*" +
+                "FROM test.venta INNER JOIN concesionario c on venta.concesionarioid = c.id" +
+                "LEFT JOIN empleado e on venta.empleadoid = e.id" +
+                "LEFT JOIN vehiculo v on venta.vehiculoid = v.id"; //Cambiar test a concesionario
+        if (ventaId > 0 && !where) {
+            consulta += " WHERE id like \"" + ventaId + "\"";
+            where = true;
+        }else if(ventaId > 0){
+            consulta += " AND id like \"" + ventaId + "\"";
+        }
+        if ( horario != null && !where) {
+            consulta += " WHERE horario = \"" + horario + "\"";
+            where = true;
+        }else if(horario != null){
+            consulta += " AND horario = \"" + horario + "\"";
+        }
+        consulta += " ORDER BY id";
+        String[][] objectList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery();
+            Utils.rs.last();
+            objectList = new String[Utils.rs.getRow()][];
+            int i = 0;
+            Utils.rs.first();
+            while (Utils.rs.next()) {
+                //Columnas tiene que ser el numero de columnas que devuelva vuestro sql adaptado
+                //Contar únicamente que columnas son importantes!
+                Integer COLUMNAS = 6;
+                /**
+                 * ID Venta, horario Venta, ubicacion Concesionario, nombre Concesionario, telefono Concesionario,
+                 * nombre y apellidos Empleado(Persona), bastidor Vehiculo.
+                 */
+                String[] list = new String[COLUMNAS];
+                list[0] = Utils.rs.getString(1); //ID Venta
+                list[1] = Utils.rs.getString(2); //Horario Venta
+                list[2] = Utils.rs.getString(4); //Ubicacion Concesionario
+                list[3] = Utils.rs.getString(5); //Nombre Concesionario
+                list[4] = Utils.rs.getString(6); //Telefono Concesionario
+                list[5] = Utils.rs.getString(10) + Utils.rs.getString(11); //Nombre + apellidos Empleado(Persona)
+                list[6] = Utils.rs.getString(18); //Bastidor Vehiculo
+                objectList[i] = list;
+                i++;
+            }
+            return objectList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return objectList;
+    }
 }
