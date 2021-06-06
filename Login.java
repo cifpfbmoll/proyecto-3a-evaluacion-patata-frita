@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -49,12 +47,14 @@ public class Login extends javax.swing.JFrame {
         PanelInicio.setForeground(new java.awt.Color(60, 63, 65));
         PanelInicio.setMinimumSize(new java.awt.Dimension(417, 317));
         PanelInicio.setPreferredSize(new java.awt.Dimension(417, 317));
+        PanelInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TtitleInicio.setBackground(new java.awt.Color(0, 0, 0));
         TtitleInicio.setFont(new java.awt.Font("SansSerif", 3, 36)); // NOI18N
         TtitleInicio.setForeground(new java.awt.Color(255, 255, 0));
         TtitleInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TtitleInicio.setText("Inicio de sesión");
+        PanelInicio.add(TtitleInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 420, 100));
 
         PanelLogin.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -138,25 +138,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout PanelInicioLayout = new javax.swing.GroupLayout(PanelInicio);
-        PanelInicio.setLayout(PanelInicioLayout);
-        PanelInicioLayout.setHorizontalGroup(
-            PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelInicioLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(TtitleInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-        PanelInicioLayout.setVerticalGroup(
-            PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelInicioLayout.createSequentialGroup()
-                .addComponent(TtitleInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(PanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
-        );
+        PanelInicio.add(PanelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 100, -1, -1));
 
         getContentPane().add(PanelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 484, 391));
 

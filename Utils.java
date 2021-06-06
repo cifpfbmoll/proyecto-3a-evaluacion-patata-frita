@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;

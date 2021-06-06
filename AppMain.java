@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 
 /*
 Crear un main, un menú simple por consola que permita:

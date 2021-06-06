@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 public class main_test {
     public static void main(String args[]) {
         Utils.conectarBBDD();

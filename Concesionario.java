@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.sql.SQLException;
 /**
  * CONCESIONARIOS Esta clase guarda la informacion sobre los diferentes

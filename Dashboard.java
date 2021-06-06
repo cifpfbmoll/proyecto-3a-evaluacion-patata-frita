@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
@@ -2463,7 +2461,7 @@ public class Dashboard extends javax.swing.JFrame {
         MotoresLabel5.setText("Cilindrada");
 
         MotoresAnadirField_Cilindrada.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        MotoresAnadirField_Cilindrada.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        MotoresAnadirField_Cilindrada.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
 
         MotoresLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         MotoresLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -2750,9 +2748,7 @@ public class Dashboard extends javax.swing.JFrame {
         ModificarFactura.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         ModificarFactura.setTitle("Filtrar");
         ModificarFactura.setAlwaysOnTop(true);
-        ModificarFactura.setMaximumSize(new java.awt.Dimension(420, 281));
         ModificarFactura.setMinimumSize(new java.awt.Dimension(420, 281));
-        ModificarFactura.setPreferredSize(new java.awt.Dimension(420, 281));
         ModificarFactura.setResizable(false);
         ModificarFactura.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -2867,9 +2863,7 @@ public class Dashboard extends javax.swing.JFrame {
         ModificarCliente.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         ModificarCliente.setTitle("Filtrar");
         ModificarCliente.setAlwaysOnTop(true);
-        ModificarCliente.setMaximumSize(new java.awt.Dimension(430, 336));
         ModificarCliente.setMinimumSize(new java.awt.Dimension(430, 336));
-        ModificarCliente.setPreferredSize(new java.awt.Dimension(430, 336));
         ModificarCliente.setResizable(false);
         ModificarCliente.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -4904,13 +4898,15 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_ClienteAnadirAction
 
     private void MotorAnadirAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MotorAnadirAction
+        System.out.println("Crendo motor");
         Motor motor = new Motor(
-                Float.parseFloat((String) MotoresAnadiField_Potencia.getValue()),
-                Float.parseFloat((String) MotoresAnadirField_Par.getValue()),
-                Float.parseFloat((String) MotoresAnadirField_Cilindrada.getValue()),
-                Integer.parseInt((String) MotoresAnadirField_NumMotores.getValue()),
+                Float.parseFloat(MotoresAnadiField_Potencia.getValue().toString()),
+                Float.parseFloat(MotoresAnadirField_Par.getValue().toString()),
+                Float.parseFloat(MotoresAnadirField_Cilindrada.getValue().toString()),
+                Integer.parseInt(MotoresAnadirField_NumMotores.getValue().toString()),
                 Motor.tipoMotor.valueOf(MotoresAnadirField_Tipo.getSelectedValue())
         );
+        System.out.println("Insertando");
         motor.insertarDatosMotorBBDD();
         PopUp.createSimple("success", "Acción ejecutada con éxito");
         
@@ -4977,8 +4973,10 @@ public class Dashboard extends javax.swing.JFrame {
         Venta venta = null;
         Reserva reserva = null;
         if (FacturaFieldAnadir_OpTaller.isSelected()) {
+            System.out.println("Selected taller");
             reserva = Reserva.buscarReservaBBDD((Integer) FacturaFieldAnadir_Taller.getValue());
         } else {
+            System.out.println("Selected venta");
             venta = Venta.buscarVenta((Integer) FacturaFieldAnadir_Taller.getValue());
         }
         Factura fact = new Factura(

@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.sql.SQLException;
 
 /**
@@ -37,6 +35,7 @@ public class Motor {
      * @param par
      * @param cilindrada
      * @param num_motores
+     * @param motor
      */
     public Motor(float potencia, float par, float cilindrada, int num_motores, tipoMotor motor) {
         this.potencia = potencia;

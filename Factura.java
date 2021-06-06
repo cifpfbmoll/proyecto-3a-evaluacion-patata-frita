@@ -1,5 +1,3 @@
-package eu.fp.concesionario;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -305,16 +303,22 @@ public class Factura {
             Utils.prst.setString(1, this.getTrabajoRealizado());
             Utils.prst.setFloat(2, this.getCosteFactura());
             Utils.prst.setDate(3, sqlDate);
-            try {
+            if (this.getReserva() != null){
                 Utils.prst.setInt(4, this.getReserva().getId());
-            } catch (Exception e) {
+            }else{
+                Utils.prst.setInt(4, -1);
+            }
+            if (this.getVenta()!=null){
                 Utils.prst.setInt(5, this.getVenta().getId());
+            }else{
+                Utils.prst.setInt(5, -1);
             }
             Utils.prst.setString(6, this.getVehiculo().getBastidor());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente");
 
         } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("Error al insertar datos");
         } finally {
             try {
