@@ -35,8 +35,10 @@ public class Motor {
      * @param par
      * @param cilindrada
      * @param num_motores
+     * @param motor
      */
-    public Motor(float potencia, float par, float cilindrada, int num_motores, tipoMotor motor) {
+    public Motor(int id, float potencia, float par, float cilindrada, int num_motores, tipoMotor motor) {
+        this.id = id;
         this.potencia = potencia;
         this.par = par;
         this.cilindrada = cilindrada;
@@ -349,6 +351,33 @@ public class Motor {
     }
 
     /**
+     * Se cargan todos los motores desde la base de datos
+     */
+    public static Motor[] cargarMotores() {
+        String consulta = "SELECT * FROM MOTOR ORDER BY ID";
+        Motor[] motorList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM MOTOR");
+            Utils.rs.next();
+            motorList = new Motor[Utils.rs.getInt(1)];
+            Utils.rs = Utils.prst.executeQuery();
+            for(int i =0; Utils.rs.next();i++){
+                motorList[i] = new Motor(Utils.rs.getInt(1),Utils.rs.getFloat(3),Utils.rs.getFloat(6),Utils.rs.getFloat(4),Utils.rs.getInt(5),tipoMotor.valueOf(Utils.rs.getString(2)));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los motores");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return motorList;
+    }
+
+    /**
      * Comprueba si el vehiculo actual ya existe en la base de datos
      */
     public boolean existsInDB() {
@@ -410,7 +439,7 @@ public class Motor {
         String consulta = "SELECT * FROM MOTOR ORDER BY id";
         String[][] objectList = null;
         try {
-            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM VEHICULO"); // MODIFICAR TABLA EN LAS OTRAS CLASES
+            Utils.prst = Utils.connection.prepareStatement("SELECT count(*) FROM MOTOR"); // MODIFICAR TABLA EN LAS OTRAS CLASES
             Utils.rs = Utils.prst.executeQuery();
             Utils.rs.next();
             objectList = new String[Utils.rs.getInt(1)][];

@@ -54,7 +54,6 @@ public class Taller {
     }
 
     public void setHorario(String horario) throws IllegalArgumentException {
-        //ENTENDER BIEN ESTO
         String[] listaHorarios = horario.split("-");
         String[] lista2Horarios = listaHorarios[0].split(":");
         String[] lista3Horarios = listaHorarios[1].split(":");
@@ -149,10 +148,7 @@ public class Taller {
                 Utils.rs.next();
 
                 taller.setEspacios(Utils.rs.getInt(1));
-                System.out.println(Utils.rs.getString(2));
                 taller.setHorario(Utils.rs.getString(2));
-                System.out.println("El taller ha sido encontrado y creado " + taller.toString());
-
             } catch (SQLException ex) {
                 System.out.println("¡ERROR! No se ha encontrado el taller.");
             } finally {

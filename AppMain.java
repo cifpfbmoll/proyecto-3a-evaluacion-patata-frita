@@ -22,7 +22,7 @@ public class AppMain {
         boolean volver = false;
         int opcion;
         
-        //Login.initGui();
+        Login.initGui();
 
         try {
             do {

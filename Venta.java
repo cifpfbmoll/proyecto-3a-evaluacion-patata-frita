@@ -37,7 +37,6 @@ public class Venta {
     }
 
     public void setHorario(String horario) throws IllegalArgumentException {
-        //ENTENDER BIEN ESTO
         String[] listaHorarios = horario.split("-");
         String[] lista2Horarios = listaHorarios[0].split(":");
         String[] lista3Horarios = listaHorarios[1].split(":");
@@ -126,8 +125,6 @@ public class Venta {
                 Utils.rs.next();
                 venta.setId(id);
                 venta.setHorario(Utils.rs.getString(1));
-                System.out.println("La venta ha sido encontrada y creada " + venta.toString());
-
             } catch (SQLException ex) {
                 System.out.println("¡ERROR! No se ha encontrado la venta.");
             } finally {

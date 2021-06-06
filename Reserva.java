@@ -321,6 +321,36 @@ public class Reserva {
     }
 
     /**
+     * Cargar todas Reservas de la base de datos
+     */
+    public static void cargarReservas() {
+        String consulta = "SELECT * FROM RESERVA ORDER BY ID";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM RESERVA");
+            Utils.rs = Utils.prst.executeQuery();
+
+            while (Utils.rs.next()) {
+                System.out.println(
+                        "ID: " + Utils.rs.getInt(1) + ", "
+                                + "ESPACIO RESERVADO: " + Utils.rs.getString(2) + ", "
+                                + "FECHA: " + Utils.rs.getString(3) + ", "
+                                + "TALLER: " + Utils.rs.getInt(4) + ", "
+                                + "NIF CLIENTE: " + Utils.rs.getString(5)
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al modificar datos");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+    }
+
+    /**
      * Borrar una reserva pasando ID de la reserva
      *
      * @param id
