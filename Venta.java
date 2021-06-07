@@ -316,7 +316,7 @@ public class Venta {
      * @param horario
      * @return
      */
-    public static Object[][] devolverTodosVentasBBDD(int ventaId,String horario) {
+    public static Object[][] devolverTodasVentasBBDD(int ventaId,String horario) {
         boolean where = false;
         //SQL devuelve ID, Espacios y Horario Taller
         String consulta = "SELECT venta.*\n" +
