@@ -52,15 +52,11 @@ public class Cliente extends Persona {
      */
     public static Cliente crearCliente() {
         Cliente cliente = new Cliente();
-        try {
-            cliente.setNombre(Utils.kString("Nombre del cliente"));
-            cliente.setApellidos(Utils.kString("Apellidos del cliente"));
-            cliente.setNif(Utils.kString("NIF del cliente"));
-            cliente.setTelefono(Utils.kInteger("Telefono del cliente"));
-            cliente.setDomicilio(Utils.kString("Direccion de cliente"));
-        }catch(Exception e){
-            System.out.println("Error al insertar los datos, intentelo otra vez");
-        }
+        cliente.setNombre(Utils.kString("Nombre del cliente"));
+        cliente.setApellidos(Utils.kString("Apellidos del cliente"));
+        cliente.setNif(Utils.kString("NIF del cliente"));
+        cliente.setTelefono(Utils.kInteger("Telefono del cliente"));
+        cliente.setDomicilio(Utils.kString("Direccion de cliente"));
         return cliente;
     }
 
@@ -98,7 +94,7 @@ public class Cliente extends Persona {
      * @return
      */
     public static Cliente buscarClienteBBDD(String nif) {
-        String consulta = "SELECT * FROM CLIENTE WHERE nif LIKE ?";
+        String consulta = "SELECT * FROM CLIENTE WHERE nif = ?";
         Cliente cliente = new Cliente();
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -222,7 +218,7 @@ public class Cliente extends Persona {
      * Borrar un cliente de la base de datos
      */
     public void borrarClienteBBDD() {
-        String consulta = " DELETE FROM CLIENTE WHERE NIF LIKE ?";
+        String consulta = " DELETE FROM CLIENTE WHERE NIF = ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNif());
@@ -245,7 +241,7 @@ public class Cliente extends Persona {
      * @param ID
      */
     public static void borrarClienteBBDD(String ID) {
-        String consulta = " DELETE FROM CLIENTE WHERE NIF LIKE ?";
+        String consulta = " DELETE FROM CLIENTE WHERE NIF = ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, ID);
@@ -366,11 +362,12 @@ public class Cliente extends Persona {
      */
     public boolean existsInDB() {
         boolean existe = false;
-        String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
+        String consulta = "SELECT * FROM CLIENTE WHERE NIF = ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setString(1, getNif());
-            if (Utils.rs != null) {
+            Utils.prst.setString(1, this.getNif());
+            Utils.rs = Utils.prst.executeQuery();
+            if (Utils.rs.next()) {
                 existe = true;
             } else {
                 existe = false;
@@ -396,7 +393,7 @@ public class Cliente extends Persona {
      */
     public static boolean existsInDB(String nif) {
         boolean existe = false;
-        String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
+        String consulta = "SELECT * FROM CLIENTE WHERE NIF = ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, nif);

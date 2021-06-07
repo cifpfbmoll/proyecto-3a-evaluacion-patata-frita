@@ -323,21 +323,32 @@ public class Reserva {
     /**
      * Cargar todas Reservas de la base de datos
      */
-    public static void cargarReservas() {
+    public static Reserva[] cargarReservas() {
         String consulta = "SELECT * FROM RESERVA ORDER BY ID";
+        ResultSet auxiliar;
+        Taller taller = null;
+        Cliente cliente = null;
+        Reserva[] reservaList = null;
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM RESERVA");
+            Utils.rs.next();
+            reservaList = new Reserva[Utils.rs.getInt(1)];
             Utils.rs = Utils.prst.executeQuery();
-
-            while (Utils.rs.next()) {
-                System.out.println(
-                        "ID: " + Utils.rs.getInt(1) + ", "
-                                + "ESPACIO RESERVADO: " + Utils.rs.getString(2) + ", "
-                                + "FECHA: " + Utils.rs.getString(3) + ", "
-                                + "TALLER: " + Utils.rs.getInt(4) + ", "
-                                + "NIF CLIENTE: " + Utils.rs.getString(5)
-                );
+            //int id, String fechaHoraReserva, int espacioReservado, Taller taller, Cliente cliente
+            for(int i=0;Utils.rs.next();i++){
+                auxiliar = Utils.rs;
+                if(Utils.rs.getInt(4) != 0){
+                    taller = Taller.buscarTaller(Utils.rs.getInt(4));
+                    Utils.rs=auxiliar;
+                }
+                if(Utils.rs.getString(5) != null){
+                    cliente = Cliente.buscarClienteBBDD(Utils.rs.getString(5));
+                    Utils.rs=auxiliar;
+                }
+                reservaList[i] = new Reserva(Utils.rs.getInt(1),Utils.rs.getString(3),Utils.rs.getInt(2),taller,cliente);
+                cliente=null;
+                taller=null;
             }
         } catch (SQLException e) {
             System.out.println("Error al modificar datos");
@@ -348,6 +359,7 @@ public class Reserva {
                 System.out.println("Error al cerrar variables");
             }
         }
+        return reservaList;
     }
 
     /**

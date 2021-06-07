@@ -406,7 +406,8 @@ public class Empleado extends Persona {
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1,getNif());
-            if (Utils.rs != null){
+            Utils.rs = Utils.prst.executeQuery();
+            if (Utils.rs.next()) {
                 ret = true;
             }else{
                 ret = false;

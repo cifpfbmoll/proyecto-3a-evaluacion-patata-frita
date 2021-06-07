@@ -95,6 +95,7 @@ public class Concesionario {
     @Override
     public String toString() {
         return "Concesionario{"
+                + "id=" + id + '\''
                 + ", ubicacion='" + ubicacion + '\''
                 + ", nombre='" + nombre + '\''
                 + ", telefono=" + telefono
@@ -107,7 +108,6 @@ public class Concesionario {
      */
     public static Concesionario crearConcesionario() {
         Concesionario concesionario = new Concesionario();
-        try {
             System.out.println("Ubicacion: ");
             concesionario.setUbicacion(Utils.kString());
             System.out.println("Nombre: ");
@@ -117,11 +117,11 @@ public class Concesionario {
             System.out.println("Taller id: ");
             int tallerId = Utils.kInt();
             concesionario.setTaller(Taller.buscarTaller(tallerId));
-        } catch (Exception e) {
-            System.out.println("¡ERROR! No se ha creado el concesionario correctamente.");
-        }
+            int ventaId = Utils.kInt();
+            concesionario.setVenta(Venta.buscarVenta(ventaId));
         return concesionario;
     }
+
     /**
      * Metodo para insertar los datos del concesionario a la BBDD a partir de un objeto.
      * @param concesionario

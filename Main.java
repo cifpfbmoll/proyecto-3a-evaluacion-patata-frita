@@ -25,6 +25,7 @@ public class Main {
         System.out.println("Motores ok");
         nominaList = Nomina.cargarNominas();
         System.out.println("Nominas ok");
-
+        reservaList = Reserva.cargarReservas();
+        System.out.println("Reservas ok");
     }
 }

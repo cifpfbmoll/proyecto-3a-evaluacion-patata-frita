@@ -227,14 +227,15 @@ public class Motor {
      */
     public int modificarMotorBBDD() {
         int ret = 0;
-        String consulta = "UPDATE MOTOR SET TIPO=?, POTENCIA=?, CILINDRADA=?, NUM_MOTORES=? WHERE ID=?";
+        String consulta = "UPDATE MOTOR SET TIPO=?, POTENCIA=?, CILINDRADA=?, PAR=? ,NUM_MOTORES=? WHERE ID=?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getTipo().toString());
             Utils.prst.setFloat(2, this.getPotencia());
             Utils.prst.setFloat(3, this.getCilindrada());
-            Utils.prst.setInt(4, this.getNum_motores());
-            Utils.prst.setInt(5, this.getId());
+            Utils.prst.setFloat(4, this.getPar());
+            Utils.prst.setInt(5, this.getNum_motores());
+            Utils.prst.setInt(6, this.getId());
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados correctamente!");
         } catch (SQLException e) {
@@ -254,15 +255,16 @@ public class Motor {
      * Modifica un motor de la base de datos mediante parametros
      * @return
      */
-    public static void modificarMotorBBDD(String tipo, float potencia, float cilindrada, int num_motores, int id) {
-        String consulta = "UPDATE MOTOR SET TIPO=?, POTENCIA=?, CILINDRADA=?, NUM_MOTORES=? WHERE ID=?";
+    public static void modificarMotorBBDD(String tipo, float potencia, float cilindrada, int num_motores, float par, int id) {
+        String consulta = "UPDATE MOTOR SET TIPO=?, POTENCIA=?, CILINDRADA=?, NUM_MOTORES=?, PAR=? WHERE ID=?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, tipo);
             Utils.prst.setFloat(2, potencia);
             Utils.prst.setFloat(3, cilindrada);
             Utils.prst.setInt(4, num_motores);
-            Utils.prst.setInt(5, id);
+            Utils.prst.setFloat(5, par);
+            Utils.prst.setInt(6, id);
             Utils.prst.executeUpdate();
             System.out.println("Datos actualizados correctamente!");
         } catch (SQLException e) {
@@ -386,7 +388,8 @@ public class Motor {
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, this.getId());
-            if (Utils.rs != null) {
+            Utils.rs = Utils.prst.executeQuery();
+            if (Utils.rs.next()) {
                 ret = true;
             } else {
                 ret = false;

@@ -124,6 +124,8 @@ public class Factura {
         this.fechaFactura = fechaFactura;
     }
 
+    public int getId() {return id;}
+
     public float getCosteFactura() {
         return costeFactura;
     }
@@ -878,5 +880,30 @@ public class Factura {
             }
         }
         return objectList;
+    }
+
+    public boolean existsDB() {
+        boolean ret = false;
+        String consulta = "SELECT * FROM Factura WHERE id=?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1,this.getId());
+            Utils.rs = Utils.prst.executeQuery();
+            if (Utils.rs.next()) {
+                ret = true;
+            }else{
+                ret = false;
+            }
+        } catch (SQLException e) {
+            System.out.println("No existe la factura en la base de datos");
+            ret = false;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return ret;
     }
 }

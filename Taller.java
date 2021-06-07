@@ -190,6 +190,33 @@ public class Taller {
     }
 
     /**
+     * Metodo para cargar los datos de los talleres de la BBDD.
+     */
+    public static Taller[] cargarTalleres() {
+        String consulta = "SELECT * FROM TALLER ORDER BY ID";
+        Taller[] tallerList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM taller");
+            Utils.rs.next();
+            tallerList = new Taller[Utils.rs.getInt(1)];
+            Utils.rs = Utils.prst.executeQuery(consulta);
+            for(int i=0;Utils.rs.next();i++){
+                tallerList[i] = new Taller(Utils.rs.getInt(1),Utils.rs.getInt(2),Utils.rs.getString(3));
+            }
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! No se han podido mostrar los datos");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return tallerList;
+    }
+
+    /**
      * Metodo para borrar talleres de la BBDD.
      *
      * @param id
