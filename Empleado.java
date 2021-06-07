@@ -91,8 +91,16 @@ public class Empleado extends Persona {
             empleado.setDomicilio(Utils.kString("Direccion de empleado"));
             empleado.setPuestoTrabajo(Utils.kString("Puesto del empleado"));
             empleado.setPassword("Contraseña del empleado");
-            empleado.setTaller(Taller.buscarTaller(Utils.kInteger("Taller del empleado")));
+            try {
+                empleado.setTaller(Taller.buscarTaller(Utils.kInteger("Taller del empleado")));
+            }catch(Exception e){
+                empleado.setTaller(null);
+            }
+            try {
             empleado.setVenta(Venta.buscarVenta(Utils.kInteger("Venta del empleado")));
+            }catch(Exception e){
+                empleado.setVenta(null);
+            }
         }catch(Exception e){
             System.out.println("Error al insertar los datos, intentelo otra vez");
         }
@@ -112,8 +120,16 @@ public class Empleado extends Persona {
             Utils.prst.setInt(4, this.getTelefono());
             Utils.prst.setString(5, this.getDomicilio());
             Utils.prst.setString(6, this.getPuestoTrabajo());
-            Utils.prst.setInt(7, this.getTaller().getId());
-            Utils.prst.setInt(8, this.getVenta().getId());
+            if(this.getTaller() == null){
+                Utils.prst.setInt(7, -1);
+            }else {
+                Utils.prst.setInt(7, this.getTaller().getId());
+            }
+            if(this.getVenta() == null){
+                Utils.prst.setInt(8, -1);
+            }else {
+                Utils.prst.setInt(8, this.getVenta().getId());
+            }
             Utils.prst.setString(9,this.getPassword());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctomnte!");

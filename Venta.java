@@ -52,6 +52,7 @@ public class Venta {
                     numHorarios[pointer] = Integer.parseInt(lista3Horarios[i]);
                     pointer++;
                 }
+                this.horario = horario;
             } catch (Exception ex) {
                 throw new IllegalArgumentException("Caracter/es inválido/s.");
             }
@@ -73,12 +74,8 @@ public class Venta {
      */
     public static Venta crearVenta() {
         Venta venta = new Venta();
-        try {
-            System.out.println("Escribe el horario en formato hh:mm-hh:mm : ");
-            venta.setHorario(Utils.kString());
-        } catch (Exception ex) {
-            System.out.println("¡ERROR! el objeto no se pudo crear.");
-        }
+        System.out.println("Escribe el horario en formato hh:mm-hh:mm : ");
+        venta.setHorario(Utils.kString());
         return venta;
     }
 

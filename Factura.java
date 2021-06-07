@@ -183,12 +183,14 @@ public class Factura {
 
             System.out.println("Trabajos realizados: ");
             factura.setTrabajoRealizado(Utils.kString());
-            System.out.println("mostramos todas las reservas");
+            Vehiculo.mostrarTodosVehiculosBBDD();
+            System.out.println("Bastidor del Vehiculo: ");
+            String VehiculoId = Utils.kString();
+            factura.setVehiculo(Vehiculo.buscarVehiculoBBDD(VehiculoId));
             Reserva.mostrarTodasReservas();
             System.out.println("Id de la Reserva: ");
             int ReservaId = Utils.kInt();
             // buscamos reserva y la establecemos
-
             factura.setReserva(Reserva.buscarReservaBBDD(ReservaId));
 
         } catch (IllegalArgumentException e) {
@@ -214,11 +216,12 @@ public class Factura {
             System.out.println("Trabajos realizados: ");
             factura.setTrabajoRealizado(Utils.kString());
 
+            Venta.mostrarVenta();
             System.out.println("Id de la Venta: ");
             int VentaId = Utils.kInt();
             // buscamos venta y la establecemos
             factura.setVenta(Venta.buscarVenta(VentaId));
-
+            Vehiculo.mostrarTodosVehiculosBBDD();
             System.out.println("Bastidor del Vehiculo: ");
             String VehiculoId = Utils.kString();
             // buscamos vehiculo y la establecemos
@@ -266,18 +269,27 @@ public class Factura {
      * @param factura
      */
     public static void insertarObjetoFacturaBBDD(Factura factura) {
-        String insert = "INSERT INTO FACTURA (TRABAJO, COSTE, FECHA, RESERVAID, VENTAID, VEHICULOID )  VALUES (?,?,?,?,?,?)";
+        String insert = null;
+        if(factura.getReserva() ==null){
+            insert = "INSERT INTO FACTURA (TRABAJO, COSTE, FECHA, RESERVAID, VENTAID, VEHICULOID )  VALUES (?,?,?,?,?,?)";
+        }else if(factura.getVenta() == null){
+            insert = "INSERT INTO FACTURA (TRABAJO, COSTE, FECHA, RESERVAID, VENTAID, VEHICULOID )  VALUES (?,?,?,?,?,?)";
+        }
         try {
-
             java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(factura.getFechaFactura());
 
             Utils.prst = Utils.connection.prepareStatement(insert);
             Utils.prst.setString(1, factura.getTrabajoRealizado());
             Utils.prst.setFloat(2, factura.getCosteFactura());
             Utils.prst.setDate(3, sqlDate);
-            Utils.prst.setInt(4, factura.getReserva().getId());
-            Utils.prst.setInt(5, factura.getVenta().getId());
-            Utils.prst.setString(6, factura.getVehiculo().getBastidor());
+            if(factura.getVenta() ==null) {
+                Utils.prst.setInt(4, factura.getReserva().getId());
+                Utils.prst.setString(5, null);
+            }else {
+                Utils.prst.setInt(5, factura.getVenta().getId());
+                Utils.prst.setString(4, null);
+            }
+            Utils.prst.setString(5, factura.getVehiculo().getBastidor());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente");
 
@@ -309,12 +321,12 @@ public class Factura {
             if (this.getReserva() != null){
                 Utils.prst.setInt(4, this.getReserva().getId());
             }else{
-                Utils.prst.setInt(4, -1);
+                Utils.prst.setNull(4, 0);
             }
             if (this.getVenta()!=null){
                 Utils.prst.setInt(5, this.getVenta().getId());
             }else{
-                Utils.prst.setInt(5, -1);
+                Utils.prst.setNull(5, 0);
             }
             Utils.prst.setString(6, this.getVehiculo().getBastidor());
             Utils.prst.executeUpdate();

@@ -29,6 +29,7 @@ public class MainMain {
                             clienteList[i]=copia[i];
                         }
                         clienteList[clienteList.length-1] = cliente;
+                        clienteList = Cliente.cargarTodosClientes();
                     }else{
                         System.out.println("Ese cliente ya existe");
                     }
@@ -78,6 +79,7 @@ public class MainMain {
                     Empleado empleado = Empleado.crearEmpleado();
                     if(!empleado.existsInDB()){
                         System.out.println("Creado correctamente");
+                        empleado.insertarDatosEmpleadoBBDD();
                         Empleado[] copia = empleadoList;
                         for(int i=0;i< copia.length;i++){
                             copia[i]=empleadoList[i];
@@ -87,6 +89,7 @@ public class MainMain {
                             empleadoList[i]=copia[i];
                         }
                         empleadoList[empleadoList.length-1] = empleado;
+                        empleadoList = Empleado.cargarEmpleados();
                     }else{
                         System.out.println("Ese empleado ya existe");
                     }
@@ -135,6 +138,7 @@ public class MainMain {
                 case 1:
                     Concesionario con = Concesionario.crearConcesionario();
                     System.out.println("Creado correctamente");
+                    con.insertarDatosConcesionarioBBDD();
                     Concesionario[] copia = concesionarioList;
                     for(int i=0;i< copia.length;i++){
                         copia[i]=concesionarioList[i];
@@ -144,6 +148,7 @@ public class MainMain {
                         concesionarioList[i]=copia[i];
                     }
                     concesionarioList[concesionarioList.length-1] = con;
+                    concesionarioList = Concesionario.cargarConcesionarios();
                     break;
                 case 2:
                     mostrarConcesionarios();
@@ -194,6 +199,7 @@ public class MainMain {
                          fact = Factura.crearFacturaConVentaVehiculo();
                     }
                     System.out.println("Creado correctamente");
+                    fact.insertarObjetoFacturaBBDD();
                     Factura[] copia = facturaList;
                     for(int i=0;i< copia.length;i++){
                         copia[i]=facturaList[i];
@@ -203,6 +209,7 @@ public class MainMain {
                         facturaList[i]=copia[i];
                     }
                     facturaList[facturaList.length-1] = fact;
+                    facturaList = Factura.cargarFacturas();
                     break;
                 case 2:
                     mostrarFacturas();
@@ -248,6 +255,7 @@ public class MainMain {
                 case 1:
                     Motor mot = Motor.crearMotor();
                     System.out.println("Creado correctamente");
+                    mot.insertarDatosMotorBBDD();
                     Motor[] copia = motorList;
                     for(int i=0;i< copia.length;i++){
                         copia[i]=motorList[i];
@@ -257,7 +265,7 @@ public class MainMain {
                         motorList[i]=copia[i];
                     }
                     motorList[motorList.length-1] = mot;
-
+                    motorList = Motor.cargarMotores();
                     break;
                 case 2:
                     mostrarMotores();
@@ -303,6 +311,7 @@ public class MainMain {
                 case 1:
                     Nomina nom = Nomina.crearNomina();
                     System.out.println("Creado correctamente");
+                    nom.insertarDatosNominaBBDD();
                     Nomina[] copia = nominaList;
                     for(int i=0;i< copia.length;i++){
                         copia[i]=nominaList[i];
@@ -312,7 +321,7 @@ public class MainMain {
                         nominaList[i]=copia[i];
                     }
                     nominaList[nominaList.length-1] = nom;
-
+                    nominaList = Nomina.cargarNominas();
                     break;
                 case 2:
                     mostrarNominas();
@@ -353,10 +362,11 @@ public class MainMain {
         boolean menu = true;
         int index;
         while(menu) {
-            switch (Utils.kInt("1- Nueva nomina\n2- Editar una anterior\n3- Salir")){
+            switch (Utils.kInt("1- Nueva reserva\n2- Editar una anterior\n3- Salir")){
                 case 1:
                     Reserva nom = Reserva.crearReserva();
                     System.out.println("Creado correctamente");
+                    nom.insertarDatosReservaBBDD();
                     Reserva[] copia = reservaList;
                     for(int i=0;i< copia.length;i++){
                         copia[i]=reservaList[i];
@@ -366,7 +376,7 @@ public class MainMain {
                         reservaList[i]=copia[i];
                     }
                     reservaList[reservaList.length-1] = nom;
-
+                    reservaList = Reserva.cargarReservas();
                     break;
                 case 2:
                     mostrarReservas();
@@ -411,6 +421,7 @@ public class MainMain {
                 case 1:
                     Taller tall = Taller.crearTaller();
                     System.out.println("Creado correctamente");
+                    Taller.guardarDatosTaller(tall);
                     Taller[] copia = tallerList;
                     for(int i=0;i< copia.length;i++){
                         copia[i]=tallerList[i];
@@ -420,7 +431,7 @@ public class MainMain {
                         tallerList[i]=copia[i];
                     }
                     tallerList[tallerList.length-1] = tall;
-
+                    tallerList = Taller.cargarTalleres();
                     break;
                 case 2:
                     mostrarTalleres();
@@ -466,6 +477,7 @@ public class MainMain {
                 case 1:
                     Venta ven = Venta.crearVenta();
                     System.out.println("Creado correctamente");
+                    Venta.guardarDatosVenta(ven);
                     Venta[] copia = ventaList;
                     for(int i=0;i< copia.length;i++){
                         copia[i]=ventaList[i];
@@ -475,7 +487,7 @@ public class MainMain {
                         ventaList[i]=copia[i];
                     }
                     ventaList[ventaList.length-1] = ven;
-
+                    ventaList = Venta.cargarVenta();
                     break;
                 case 2:
                     mostrarVentas();
@@ -516,10 +528,12 @@ public class MainMain {
         boolean menu = true;
         int index;
         while(menu) {
-            switch (Utils.kInt("1- Nuevo vehhiculo\n2- Editar uno anterior\n3- Salir")){
+            switch (Utils.kInt("1- Nuevo vehiculo\n2- Editar uno anterior\n3- Salir")){
                 case 1:
+                    Motor.mostrarTodosMotoresBBDD();
                     Vehiculo veh = Vehiculo.crearVehiculo(Motor.buscarMotorBBDD(Utils.kInt("Id del motor")));
                     System.out.println("Creado correctamente");
+                    veh.insertarDatosVehiculoBBDD();
                     Vehiculo[] copia = vehiculoList;
                     for(int i=0;i< copia.length;i++){
                         copia[i]=vehiculoList[i];
@@ -529,7 +543,7 @@ public class MainMain {
                         vehiculoList[i]=copia[i];
                     }
                     vehiculoList[vehiculoList.length-1] = veh;
-
+                    vehiculoList = Vehiculo.cargarVehiculos();
                     break;
                 case 2:
                     mostrarVehiculos();

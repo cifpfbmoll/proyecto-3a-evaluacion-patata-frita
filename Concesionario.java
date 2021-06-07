@@ -108,17 +108,18 @@ public class Concesionario {
      */
     public static Concesionario crearConcesionario() {
         Concesionario concesionario = new Concesionario();
-            System.out.println("Ubicacion: ");
-            concesionario.setUbicacion(Utils.kString());
-            System.out.println("Nombre: ");
-            concesionario.setNombre(Utils.kString());
-            System.out.println("Telefono: ");
-            concesionario.setTelefono(Utils.kInt());
-            System.out.println("Taller id: ");
-            int tallerId = Utils.kInt();
-            concesionario.setTaller(Taller.buscarTaller(tallerId));
-            int ventaId = Utils.kInt();
-            concesionario.setVenta(Venta.buscarVenta(ventaId));
+        System.out.println("Ubicacion: ");
+        concesionario.setUbicacion(Utils.kString());
+        System.out.println("Nombre: ");
+        concesionario.setNombre(Utils.kString());
+        System.out.println("Telefono: ");
+        concesionario.setTelefono(Utils.kInt());
+        System.out.println("Taller id: ");
+        int tallerId = Utils.kInt();
+        concesionario.setTaller(Taller.buscarTaller(tallerId));
+        System.out.println("Venta id: ");
+        int ventaId = Utils.kInt();
+        concesionario.setVenta(Venta.buscarVenta(ventaId));
         return concesionario;
     }
 

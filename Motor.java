@@ -164,13 +164,14 @@ public class Motor {
      */
     public void insertarDatosMotorBBDD() {
         //INSERT de todos los datos excepto ventaid y clientenif, ya que se supone que el vehiculo aun no se ha vendido, para ello habra otro metodo
-        String consulta = "INSERT INTO MOTOR (TIPO, POTENCIA, CILINDRADA, NUM_MOTORES ) VALUES (?,?,?,?)";
+        String consulta = "INSERT INTO MOTOR (TIPO, POTENCIA, CILINDRADA, NUM_MOTORES, PAR ) VALUES (?,?,?,?,?)";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getTipo().toString());
             Utils.prst.setFloat(2, this.getPotencia());
             Utils.prst.setFloat(3, this.getCilindrada());
             Utils.prst.setInt(4, this.getNum_motores());
+            Utils.prst.setFloat(5, this.getPar());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctomnte!");
         } catch (SQLException e) {

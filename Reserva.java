@@ -55,6 +55,10 @@ public class Reserva {
         this.cliente = reserva.getCliente();
     }
 
+    public void setId(int id) {
+        this.id =  id;
+    }
+
     public int getId() {
         return id;
     }
@@ -134,14 +138,12 @@ public class Reserva {
             reserva.setFechaHoraReserva(fechaReserva);
             System.out.println("Espacio reservado: ");
             reserva.setEspacioReservado(Utils.kInt());
-
+            Cliente.mostrarTodosClienteBBDD();
             System.out.println("Nif Cliente: ");
-            // Cliente.mostrarTodosClienteBBDD();
             String nifCliente = Utils.kString();
             reserva.setCliente(Cliente.buscarClienteBBDD(nifCliente));
-            
+            Taller.mostrarTaller();
             System.out.println("Id del Taller: ");
-            // Taller.mostrarTaller();
             int idTaller = Utils.kInt();
             reserva.setTaller(Taller.buscarTaller(idTaller));
 
@@ -457,16 +459,14 @@ public class Reserva {
                 Utils.prst.setInt(1, idReserva);
                 Utils.rs = Utils.prst.executeQuery();
                 Utils.rs.next();
+                reserva.setId(idReserva);
                 reserva.setEspacioReservado(Utils.rs.getInt(1));
                 reserva.setFechaHoraReserva(Utils.rs.getString(2));
                 int idTaller = Utils.rs.getInt(3); // nos devuelve id del taller
                 String nifCliente = Utils.rs.getString(4);// nos devuelve nifCliente
 
                 reserva.setCliente(Cliente.buscarClienteBBDD(nifCliente)); // set cliente
-                reserva.setTaller(Taller.buscarTaller(idTaller)); //establecemos taller 
-                
-                System.out.println("Reserva encontrada y creada " + reserva.toString());
-
+                reserva.setTaller(Taller.buscarTaller(idTaller)); //establecemos taller
             } catch (Exception e) {
                 System.out.println("Error buscar reserva");
                 e.printStackTrace();

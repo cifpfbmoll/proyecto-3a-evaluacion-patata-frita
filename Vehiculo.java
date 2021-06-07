@@ -277,7 +277,7 @@ public class Vehiculo {
         try {
             vehiculo.setMotor(motor); //Seguramente por parametro sea lo mas facil, o llamar a motor y mostrar los diferentes id/datos de los motores
             System.out.println("Ponga la fecha de fabricación del vehiculo: ");
-            String date = null;
+            String date = "";
             //Pedimos la fecha por partes al usuario, formateamos correctamente la fecha y la pasamos a tipo Date
             date += Utils.kString("Dia") + "/";
             date += Utils.kString("Mes") + "/";
@@ -289,10 +289,25 @@ public class Vehiculo {
             vehiculo.setPuertas(Utils.kInteger("Numero de puertas"));
             vehiculo.setAsientos(Utils.kInteger("Numero de asientos"));
             vehiculo.setExtras(Utils.kString("Escriba los extras del vehiculo"));
-            vehiculo.setColor(Utils.kString(Utils.kString("Color del vehiculo")));
+            vehiculo.setColor((Utils.kString("Color del vehiculo")));
             vehiculo.setMarca(Utils.kString("Marca del vehiculo"));
             vehiculo.setModelo(Utils.kString("Modelo de vehiculo"));
+            System.out.println("Clases de vehiculo: SUV,\n" +
+                    "        Sedan,\n" +
+                    "        Sport,\n" +
+                    "        Coupe,\n" +
+                    "        Hatchback,\n" +
+                    "        Convertible,\n" +
+                    "        Minivan,\n" +
+                    "        Pickup");
+            vehiculo.setTipo(claseVehiculo.valueOf(Utils.kString("Clase de vehiculo")));
+            vehiculo.setEstado(estadoVehiculo.valueOf(Utils.kString("En Venta, Vendido o Alquilado?")));
+            Venta.mostrarVenta();
+            vehiculo.setVenta(Venta.buscarVenta(Utils.kInt("Venta")));
+            Cliente.mostrarTodosClienteBBDD();
+            vehiculo.setCliente(Cliente.buscarClienteBBDD(Utils.kString("NIF cliente")));
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Error al crear el vehiculo, seguramente algun dato introducido fuera incorrecto, pruebe otra vez.");
         }
         return vehiculo;
@@ -306,7 +321,7 @@ public class Vehiculo {
     public void insertarDatosVehiculoBBDD() {
         //INSERT de todos los datos, cliente puede ser null si aun no se ha vendido el vehiculo
         if (motor.getId() != -1) {
-            String consulta = "INSERT INTO VEHICULO (BASTIDOR, TIPO, ESTADO, KILOMETRAJE, AUTONOMIA, PUERTAS, ASIENTOS, COLOR, MARCA, MODELO, PRECIO, EXTRAS, MOTORID, VENTAID, CLIENTEID ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String consulta = "INSERT INTO VEHICULO (BASTIDOR, TIPO, clase, KILOMETRAJE, AUTONOMIA, PUERTAS, ASIENTOS, COLOR, MARCA, MODELO, PRECIO, EXTRAS, MOTORID, VENTAID, CLIENTENIF ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             try {
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setString(1, this.getBastidor());
@@ -327,6 +342,7 @@ public class Vehiculo {
                 Utils.prst.executeUpdate();
                 System.out.println("Datos insertados correctomnte!");
             } catch (SQLException e) {
+                e.printStackTrace();
                 System.out.println("Error al insertar datos a la BBDD");
             } finally {
                 try {

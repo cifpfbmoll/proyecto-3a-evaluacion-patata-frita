@@ -269,7 +269,7 @@ public class Cliente extends Persona {
             Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 //No se mostraran las contraseñas por razones obvias de seguridad
-                System.out.print(
+                System.out.println(
                         "NIF: " + Utils.rs.getString(1) + ","
                         + "NOMBRE: " + Utils.rs.getString(2) + ","
                         + "APELLIDOS: " + Utils.rs.getString(3) + ","
