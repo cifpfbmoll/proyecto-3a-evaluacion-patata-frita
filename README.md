@@ -30,4 +30,53 @@ Para cumplirlos hemos realizado la división del programa como se puede ver en e
 * Karina: Encargada de investigar y testear las interfaces gràficas
 * José Luís: Peón capaz de adaptarse a cualquier trabajo para ayudar.
 
-Cabe decir que cada uno ha realizado almenos una clase y apoyado a los otros compañeros cuando hiciera falta.
+
+### Trabajo por sprints
+| Sprint 1 (30 marzo) |  Autor  | Horas dedicadas | 
+|--|--|--|
+|  Clases factura, Nomina y reserva | Marat | 5  |
+|  Clases concesionario, taller y venta | JLCardona | 10  |
+|  Clases Vehiculo y Motor | Joan | 5  |
+|  Clases Persona, empleado y cliente | Karina | 10  |
+|  Dibujar modelo de la base de datos | Joan | 2 |
+|  Revisar y comprobar clases | Joan | 15 |
+|  Clase Utils (Lectura teclado) | Karina | 5  |
+
+| Sprint 2 (13 abril) |  Autor  | Horas dedicadas |
+|--|--|--|
+|  Correción clases anteriores | Marat | 5  |
+|  Correción clases anteriores | JLCardona | 10  |
+|  Correción clases anteriores | Karina | 10  |
+
+| Sprint 3 (27 abril) |  Autor  | Horas dedicadas |
+|--|--|--|
+|  Crear tablas y configurar base de datos | Joan | 10  |
+|  Funciones para borrar tablas | JLCardona | 20  |
+|  Funciones para insertar a la base de datos | Todos | (Total)50  |
+|  Añadir control de la base de datos a Utils | Marat | 20 |
+
+| Sprint 4 (5 mayo) |  Autor  | Horas dedicadas | 
+|--|--|--|
+|  Solucionar metodos y arreglar javadoc | JLCardona| 5  |
+|  Terminar sprint anterior... | Karina| 20  |
+|  Refactorizar variables | Joan | 10  |
+|  Terminar métodos base de datos | Marat | 20 |
+|  Empezar programación gràfica | Karina | 3 |
+|  Refactorizar main (adaptar interfaz) | Karina | 1 |
+|  Añadir método de exportación a archivo | JLCardona | 5 |
+|  Revisar y solucionar errores | Joan | 20 |
+
+| Sprint 5 (17 mayo) |  Autor  | Horas dedicadas | 
+|--|--|--|
+|  Conexion base de datos (usar solo una conexion en el main) | Joan | 5 |
+|  Métodos exportación archivos | Todos | 10  |
+|  Editar mostrar datos | Todos | 10  |
+|  Interfaz gràfica | Karina | 10  |
+|  Adaptar métodos para la interfaz | Todos | 20  |
+|  Añadir métodos para la interfaz | Joan | 10  |
+
+| Sprint final |  Autor  | Horas dedicadas | 
+|--|--|--|
+|  Interfaces | Karina| 00:00.00 |
+|  Menú para la presentación | Joan | 10  |
+|  Solucionar todos los errores porque la gente no testeo sus cosas antes de subirlas | Joan | 20  |
