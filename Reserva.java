@@ -55,6 +55,10 @@ public class Reserva {
         this.cliente = reserva.getCliente();
     }
 
+    public void setId(int id) {
+        this.id =  id;
+    }
+
     public int getId() {
         return id;
     }
@@ -134,14 +138,12 @@ public class Reserva {
             reserva.setFechaHoraReserva(fechaReserva);
             System.out.println("Espacio reservado: ");
             reserva.setEspacioReservado(Utils.kInt());
-
+            Cliente.mostrarTodosClienteBBDD();
             System.out.println("Nif Cliente: ");
-            // Cliente.mostrarTodosClienteBBDD();
             String nifCliente = Utils.kString();
             reserva.setCliente(Cliente.buscarClienteBBDD(nifCliente));
-            
+            Taller.mostrarTaller();
             System.out.println("Id del Taller: ");
-            // Taller.mostrarTaller();
             int idTaller = Utils.kInt();
             reserva.setTaller(Taller.buscarTaller(idTaller));
 
@@ -321,6 +323,48 @@ public class Reserva {
     }
 
     /**
+     * Cargar todas Reservas de la base de datos
+     */
+    public static Reserva[] cargarReservas() {
+        String consulta = "SELECT * FROM RESERVA ORDER BY ID";
+        ResultSet auxiliar;
+        Taller taller = null;
+        Cliente cliente = null;
+        Reserva[] reservaList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM RESERVA");
+            Utils.rs.next();
+            reservaList = new Reserva[Utils.rs.getInt(1)];
+            Utils.rs = Utils.prst.executeQuery();
+            //int id, String fechaHoraReserva, int espacioReservado, Taller taller, Cliente cliente
+            for(int i=0;Utils.rs.next();i++){
+                auxiliar = Utils.rs;
+                if(Utils.rs.getInt(4) != 0){
+                    taller = Taller.buscarTaller(Utils.rs.getInt(4));
+                    Utils.rs=auxiliar;
+                }
+                if(Utils.rs.getString(5) != null){
+                    cliente = Cliente.buscarClienteBBDD(Utils.rs.getString(5));
+                    Utils.rs=auxiliar;
+                }
+                reservaList[i] = new Reserva(Utils.rs.getInt(1),Utils.rs.getString(3),Utils.rs.getInt(2),taller,cliente);
+                cliente=null;
+                taller=null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al modificar datos");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return reservaList;
+    }
+
+    /**
      * Borrar una reserva pasando ID de la reserva
      *
      * @param id
@@ -415,16 +459,14 @@ public class Reserva {
                 Utils.prst.setInt(1, idReserva);
                 Utils.rs = Utils.prst.executeQuery();
                 Utils.rs.next();
+                reserva.setId(idReserva);
                 reserva.setEspacioReservado(Utils.rs.getInt(1));
                 reserva.setFechaHoraReserva(Utils.rs.getString(2));
                 int idTaller = Utils.rs.getInt(3); // nos devuelve id del taller
                 String nifCliente = Utils.rs.getString(4);// nos devuelve nifCliente
 
                 reserva.setCliente(Cliente.buscarClienteBBDD(nifCliente)); // set cliente
-                reserva.setTaller(Taller.buscarTaller(idTaller)); //establecemos taller 
-                
-                System.out.println("Reserva encontrada y creada " + reserva.toString());
-
+                reserva.setTaller(Taller.buscarTaller(idTaller)); //establecemos taller
             } catch (Exception e) {
                 System.out.println("Error buscar reserva");
                 e.printStackTrace();

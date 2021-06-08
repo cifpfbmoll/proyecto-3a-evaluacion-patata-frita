@@ -35,7 +35,8 @@ public class Factura {
      * @param venta
      * @param vehiculo
      */
-    public Factura(String trabajoRealizado, float costeFactura, String fechaFactura, Reserva reserva, Venta venta, Vehiculo vehiculo) {
+    public Factura(int id, String trabajoRealizado, float costeFactura, String fechaFactura, Reserva reserva, Venta venta, Vehiculo vehiculo) {
+        this.id = id;
         this.trabajoRealizado = trabajoRealizado;
         this.costeFactura = costeFactura;
         this.fechaFactura = fechaFactura;
@@ -123,6 +124,8 @@ public class Factura {
         this.fechaFactura = fechaFactura;
     }
 
+    public int getId() {return id;}
+
     public float getCosteFactura() {
         return costeFactura;
     }
@@ -180,12 +183,18 @@ public class Factura {
 
             System.out.println("Trabajos realizados: ");
             factura.setTrabajoRealizado(Utils.kString());
-            System.out.println("mostramos todas las reservas");
+            Vehiculo.mostrarTodosVehiculosBBDD();
+            System.out.println("Bastidor del Vehiculo: ");
+            String VehiculoId = Utils.kString();
+            factura.setVehiculo(Vehiculo.buscarVehiculoBBDD(VehiculoId));
             Reserva.mostrarTodasReservas();
             System.out.println("Id de la Reserva: ");
             int ReservaId = Utils.kInt();
             // buscamos reserva y la establecemos
+<<<<<<< HEAD
 
+=======
+>>>>>>> algo_mas
             factura.setReserva(Reserva.buscarReservaBBDD(ReservaId));
 
         } catch (IllegalArgumentException e) {
@@ -211,11 +220,12 @@ public class Factura {
             System.out.println("Trabajos realizados: ");
             factura.setTrabajoRealizado(Utils.kString());
 
+            Venta.mostrarVenta();
             System.out.println("Id de la Venta: ");
             int VentaId = Utils.kInt();
             // buscamos venta y la establecemos
             factura.setVenta(Venta.buscarVenta(VentaId));
-
+            Vehiculo.mostrarTodosVehiculosBBDD();
             System.out.println("Bastidor del Vehiculo: ");
             String VehiculoId = Utils.kString();
             // buscamos vehiculo y la establecemos
@@ -263,18 +273,27 @@ public class Factura {
      * @param factura
      */
     public static void insertarObjetoFacturaBBDD(Factura factura) {
-        String insert = "INSERT INTO FACTURA (TRABAJO, COSTE, FECHA, RESERVAID, VENTAID, VEHICULOID )  VALUES (?,?,?,?,?,?)";
+        String insert = null;
+        if(factura.getReserva() ==null){
+            insert = "INSERT INTO FACTURA (TRABAJO, COSTE, FECHA, RESERVAID, VENTAID, VEHICULOID )  VALUES (?,?,?,?,?,?)";
+        }else if(factura.getVenta() == null){
+            insert = "INSERT INTO FACTURA (TRABAJO, COSTE, FECHA, RESERVAID, VENTAID, VEHICULOID )  VALUES (?,?,?,?,?,?)";
+        }
         try {
-
             java.sql.Date sqlDate = Utils.adaptarFechaMYSQL(factura.getFechaFactura());
 
             Utils.prst = Utils.connection.prepareStatement(insert);
             Utils.prst.setString(1, factura.getTrabajoRealizado());
             Utils.prst.setFloat(2, factura.getCosteFactura());
             Utils.prst.setDate(3, sqlDate);
-            Utils.prst.setInt(4, factura.getReserva().getId());
-            Utils.prst.setInt(5, factura.getVenta().getId());
-            Utils.prst.setString(6, factura.getVehiculo().getBastidor());
+            if(factura.getVenta() ==null) {
+                Utils.prst.setInt(4, factura.getReserva().getId());
+                Utils.prst.setString(5, null);
+            }else {
+                Utils.prst.setInt(5, factura.getVenta().getId());
+                Utils.prst.setString(4, null);
+            }
+            Utils.prst.setString(5, factura.getVehiculo().getBastidor());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctamente");
 
@@ -306,12 +325,20 @@ public class Factura {
             if (this.getReserva() != null){
                 Utils.prst.setInt(4, this.getReserva().getId());
             }else{
+<<<<<<< HEAD
                 Utils.prst.setInt(4, -1);
+=======
+                Utils.prst.setNull(4, 0);
+>>>>>>> algo_mas
             }
             if (this.getVenta()!=null){
                 Utils.prst.setInt(5, this.getVenta().getId());
             }else{
+<<<<<<< HEAD
                 Utils.prst.setInt(5, -1);
+=======
+                Utils.prst.setNull(5, 0);
+>>>>>>> algo_mas
             }
             Utils.prst.setString(6, this.getVehiculo().getBastidor());
             Utils.prst.executeUpdate();
@@ -358,6 +385,53 @@ public class Factura {
                 System.out.println("Error al cerrar variables");
             }
         }
+    }
+
+    /**
+     * M
+     */
+    public static Factura[] cargarFacturas() {
+        String consulta = "SELECT * FROM FACTURA ORDER BY ID";
+        Factura[] facturaList = null;
+        ResultSet auxiliar;
+        Reserva reserva = null;
+        Venta venta = null;
+        Vehiculo vehiculo = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM FACTURA");
+            Utils.rs.next();
+            facturaList = new Factura[Utils.rs.getInt(1)];
+            Utils.rs = Utils.prst.executeQuery();
+            for (int i=0; Utils.rs.next();i++){
+                auxiliar = Utils.rs;
+                if(Utils.rs.getInt(5) != 0){
+                    reserva = Reserva.buscarReservaBBDD(Utils.rs.getInt(5));
+                    Utils.rs = auxiliar;
+                }
+                if(Utils.rs.getInt(6) != 0){
+                    venta = Venta.buscarVenta(Utils.rs.getInt(6));
+                    Utils.rs = auxiliar;
+                }
+                if(Utils.rs.getInt(7)!=0){
+                    vehiculo = Vehiculo.buscarVehiculoBBDD(Utils.rs.getString(7));
+                    Utils.rs = auxiliar;
+                }
+                facturaList[i] = new Factura(Utils.rs.getInt(1),Utils.rs.getString(2),Utils.rs.getFloat(3),Utils.rs.getString(4),reserva,venta,vehiculo);
+                reserva = null;
+                venta = null;
+                vehiculo = null;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al mostrar datos de la tabla");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return facturaList;
     }
 
     /**
@@ -830,5 +904,30 @@ public class Factura {
             }
         }
         return objectList;
+    }
+
+    public boolean existsDB() {
+        boolean ret = false;
+        String consulta = "SELECT * FROM Factura WHERE id=?";
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.prst.setInt(1,this.getId());
+            Utils.rs = Utils.prst.executeQuery();
+            if (Utils.rs.next()) {
+                ret = true;
+            }else{
+                ret = false;
+            }
+        } catch (SQLException e) {
+            System.out.println("No existe la factura en la base de datos");
+            ret = false;
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return ret;
     }
 }

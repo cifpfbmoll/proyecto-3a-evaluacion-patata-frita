@@ -52,15 +52,11 @@ public class Cliente extends Persona {
      */
     public static Cliente crearCliente() {
         Cliente cliente = new Cliente();
-        try {
-            cliente.setNombre(Utils.kString("Nombre del cliente"));
-            cliente.setApellidos(Utils.kString("Apellidos del cliente"));
-            cliente.setNif(Utils.kString("NIF del cliente"));
-            cliente.setTelefono(Utils.kInteger("Telefono del cliente"));
-            cliente.setDomicilio(Utils.kString("Direccion de cliente"));
-        }catch(Exception e){
-            System.out.println("Error al insertar los datos, intentelo otra vez");
-        }
+        cliente.setNombre(Utils.kString("Nombre del cliente"));
+        cliente.setApellidos(Utils.kString("Apellidos del cliente"));
+        cliente.setNif(Utils.kString("NIF del cliente"));
+        cliente.setTelefono(Utils.kInteger("Telefono del cliente"));
+        cliente.setDomicilio(Utils.kString("Direccion de cliente"));
         return cliente;
     }
 
@@ -98,7 +94,7 @@ public class Cliente extends Persona {
      * @return
      */
     public static Cliente buscarClienteBBDD(String nif) {
-        String consulta = "SELECT * FROM CLIENTE WHERE nif LIKE ?";
+        String consulta = "SELECT * FROM CLIENTE WHERE nif = ?";
         Cliente cliente = new Cliente();
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
@@ -222,7 +218,7 @@ public class Cliente extends Persona {
      * Borrar un cliente de la base de datos
      */
     public void borrarClienteBBDD() {
-        String consulta = " DELETE FROM CLIENTE WHERE NIF LIKE ?";
+        String consulta = " DELETE FROM CLIENTE WHERE NIF = ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, this.getNif());
@@ -245,7 +241,7 @@ public class Cliente extends Persona {
      * @param ID
      */
     public static void borrarClienteBBDD(String ID) {
-        String consulta = " DELETE FROM CLIENTE WHERE NIF LIKE ?";
+        String consulta = " DELETE FROM CLIENTE WHERE NIF = ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, ID);
@@ -273,7 +269,7 @@ public class Cliente extends Persona {
             Utils.rs = Utils.prst.executeQuery();
             while (Utils.rs.next()) {
                 //No se mostraran las contraseñas por razones obvias de seguridad
-                System.out.print(
+                System.out.println(
                         "NIF: " + Utils.rs.getString(1) + ","
                         + "NOMBRE: " + Utils.rs.getString(2) + ","
                         + "APELLIDOS: " + Utils.rs.getString(3) + ","
@@ -290,6 +286,34 @@ public class Cliente extends Persona {
                 System.out.println("Error al cerrar variables");
             }
         }
+    }
+
+    /**
+     * Cargar todos los clientes de la base de datos
+     * @return lista de clientes de la base de datos en memoria
+     */
+    public static Cliente[] cargarTodosClientes() {
+        String consulta = "SELECT * FROM CLIENTE ORDER BY NIF";
+        Cliente[] clientList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM cliente");
+            Utils.rs.next();
+            clientList = new Cliente[Utils.rs.getInt(1)];
+            Utils.rs = Utils.prst.executeQuery();
+            for(int i=0;Utils.rs.next();i++){
+                clientList[i] = new Cliente(Utils.rs.getString(2),Utils.rs.getString(3),Utils.rs.getString(1),Utils.rs.getInt(4),Utils.rs.getString(5),Utils.rs.getString(6));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los clientes");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return clientList;
     }
 
     /**
@@ -338,11 +362,12 @@ public class Cliente extends Persona {
      */
     public boolean existsInDB() {
         boolean existe = false;
-        String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
+        String consulta = "SELECT * FROM CLIENTE WHERE NIF = ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.prst.setString(1, getNif());
-            if (Utils.rs != null) {
+            Utils.prst.setString(1, this.getNif());
+            Utils.rs = Utils.prst.executeQuery();
+            if (Utils.rs.next()) {
                 existe = true;
             } else {
                 existe = false;
@@ -368,7 +393,7 @@ public class Cliente extends Persona {
      */
     public static boolean existsInDB(String nif) {
         boolean existe = false;
-        String consulta = "SELECT * FROM CLIENTE WHERE NIF LIKE ?";
+        String consulta = "SELECT * FROM CLIENTE WHERE NIF = ?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, nif);

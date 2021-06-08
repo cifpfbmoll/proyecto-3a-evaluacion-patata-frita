@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -265,6 +266,41 @@ public class Nomina {
                 System.out.println("Error al cerrar variables");
             }
         }
+    }
+
+    /**
+     * Metodo para cargar todas las nominas de la BBDD
+     */
+    public static Nomina[] cargarNominas() {
+        String consulta = "SELECT * FROM NOMINA ORDER BY ID";
+        Nomina[] nominaList = null;
+        Empleado empleado = null;
+        ResultSet auxiliar;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM Nomina");
+            Utils.rs.next();
+            nominaList = new Nomina[Utils.rs.getInt(1)];
+            Utils.rs = Utils.prst.executeQuery();
+            for(int i =0; Utils.rs.next();i++){
+                auxiliar = Utils.rs;
+                if(Utils.rs.getString(6) != null){
+                    empleado = Empleado.buscarEmpleadoBBDD(Utils.rs.getString(6));
+                    Utils.rs = auxiliar;
+                }
+                nominaList[i] = new Nomina(Utils.rs.getInt(1),Utils.rs.getInt(2),Utils.rs.getFloat(3),Utils.rs.getFloat(4),Utils.rs.getString(5),empleado);
+                empleado = null;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error mostrar todas nominas");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return nominaList;
     }
 
     /**

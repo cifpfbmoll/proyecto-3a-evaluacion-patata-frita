@@ -1,3 +1,4 @@
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -90,8 +91,16 @@ public class Empleado extends Persona {
             empleado.setDomicilio(Utils.kString("Direccion de empleado"));
             empleado.setPuestoTrabajo(Utils.kString("Puesto del empleado"));
             empleado.setPassword("Contraseña del empleado");
-            empleado.setTaller(Taller.buscarTaller(Utils.kInteger("Taller del empleado")));
+            try {
+                empleado.setTaller(Taller.buscarTaller(Utils.kInteger("Taller del empleado")));
+            }catch(Exception e){
+                empleado.setTaller(null);
+            }
+            try {
             empleado.setVenta(Venta.buscarVenta(Utils.kInteger("Venta del empleado")));
+            }catch(Exception e){
+                empleado.setVenta(null);
+            }
         }catch(Exception e){
             System.out.println("Error al insertar los datos, intentelo otra vez");
         }
@@ -111,8 +120,16 @@ public class Empleado extends Persona {
             Utils.prst.setInt(4, this.getTelefono());
             Utils.prst.setString(5, this.getDomicilio());
             Utils.prst.setString(6, this.getPuestoTrabajo());
-            Utils.prst.setInt(7, this.getTaller().getId());
-            Utils.prst.setInt(8, this.getVenta().getId());
+            if(this.getTaller() == null){
+                Utils.prst.setInt(7, -1);
+            }else {
+                Utils.prst.setInt(7, this.getTaller().getId());
+            }
+            if(this.getVenta() == null){
+                Utils.prst.setInt(8, -1);
+            }else {
+                Utils.prst.setInt(8, this.getVenta().getId());
+            }
             Utils.prst.setString(9,this.getPassword());
             Utils.prst.executeUpdate();
             System.out.println("Datos insertados correctomnte!");
@@ -135,6 +152,7 @@ public class Empleado extends Persona {
     public static Empleado buscarEmpleadoBBDD(String nif) {
         String consulta = "SELECT * FROM EMPLEADO WHERE nif LIKE ?";
         Empleado empleado = new Empleado();
+        ResultSet auxiliar;
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, nif);
@@ -146,8 +164,19 @@ public class Empleado extends Persona {
             empleado.setTelefono(Utils.rs.getInt(4));
             empleado.setDomicilio(Utils.rs.getString(5));
             empleado.setPuestoTrabajo(Utils.rs.getString(6));
-            empleado.setTaller(Taller.buscarTaller(Utils.rs.getInt(7)));
-            empleado.setVenta(Venta.buscarVenta(Utils.rs.getInt(8)));
+            auxiliar=Utils.rs;
+            if(Utils.rs.getInt(7) != 0) {
+                empleado.setTaller(Taller.buscarTaller(Utils.rs.getInt(7)));
+                Utils.rs = auxiliar;
+            }else{
+                empleado.setTaller(null);
+            }
+            if(Utils.rs.getInt(8) != 0) {
+                empleado.setVenta(Venta.buscarVenta(Utils.rs.getInt(8)));
+                Utils.rs = auxiliar;
+            }else{
+                empleado.setVenta(null);
+            }
             empleado.setPassword(Utils.rs.getString(9));
         } catch (SQLException e) {
             System.out.println("Error al buscar cliente");
@@ -301,6 +330,47 @@ public class Empleado extends Persona {
             }
         }
     }
+
+    /**
+     * Cargar todos los empleados
+     */
+    public static Empleado[] cargarEmpleados() {
+        String consulta = "SELECT * FROM EMPLEADO ORDER BY NIF";
+        ResultSet auxiliar;
+        Empleado[] empleadoList = null;
+        Taller taller = null;
+        Venta venta = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM EMPLEADO");
+            Utils.rs.next();
+            empleadoList = new Empleado[Utils.rs.getInt(1)];
+            Utils.rs = Utils.prst.executeQuery();
+            for(int i = 0; Utils.rs.next(); i++){
+                auxiliar=Utils.rs;
+                if (Utils.rs.getInt(7) != 0){
+                    taller = Taller.buscarTaller(Utils.rs.getInt(7));
+                    Utils.rs=auxiliar;
+                }
+                if (Utils.rs.getInt(8) != 0){
+                    venta = Venta.buscarVenta(Utils.rs.getInt(8));
+                    Utils.rs=auxiliar;
+                }
+                empleadoList[i] = new Empleado(Utils.rs.getString(6),Utils.rs.getString(2),Utils.rs.getString(3),Utils.rs.getString(1),Utils.rs.getInt(4),Utils.rs.getString(5),null,taller,venta);
+                taller = null;
+                venta = null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los empleados");
+        } finally {
+            try{
+                Utils.cerrarVariables();
+            }catch (Exception e){
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return empleadoList;
+    }
     
     /**
      * Devolver todos los clientes de la base de datos
@@ -329,7 +399,7 @@ public class Empleado extends Persona {
                 list[7] = Integer.toString(Utils.rs.getInt(8));
                 objectList[i] = list;
                 i++;
-            }
+            };
         } catch (SQLException e) {
             System.out.println("Error mostrando todos los clientes");
         } finally {
@@ -352,7 +422,8 @@ public class Empleado extends Persona {
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1,getNif());
-            if (Utils.rs != null){
+            Utils.rs = Utils.prst.executeQuery();
+            if (Utils.rs.next()) {
                 ret = true;
             }else{
                 ret = false;

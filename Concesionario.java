@@ -1,3 +1,4 @@
+import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
  * CONCESIONARIOS Esta clase guarda la informacion sobre los diferentes
@@ -19,7 +20,8 @@ public class Concesionario {
     public Concesionario() {
     }
 
-    public Concesionario(String ubicacion, String nombre, int telefono, Taller taller, Venta venta) {
+    public Concesionario(int id, String ubicacion, String nombre, int telefono, Taller taller, Venta venta) {
+        this.id = id;
         this.ubicacion = ubicacion;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -93,6 +95,7 @@ public class Concesionario {
     @Override
     public String toString() {
         return "Concesionario{"
+                + "id=" + id + '\''
                 + ", ubicacion='" + ubicacion + '\''
                 + ", nombre='" + nombre + '\''
                 + ", telefono=" + telefono
@@ -105,21 +108,21 @@ public class Concesionario {
      */
     public static Concesionario crearConcesionario() {
         Concesionario concesionario = new Concesionario();
-        try {
-            System.out.println("Ubicacion: ");
-            concesionario.setUbicacion(Utils.kString());
-            System.out.println("Nombre: ");
-            concesionario.setNombre(Utils.kString());
-            System.out.println("Telefono: ");
-            concesionario.setTelefono(Utils.kInt());
-            System.out.println("Taller id: ");
-            int tallerId = Utils.kInt();
-            concesionario.setTaller(Taller.buscarTaller(tallerId));
-        } catch (Exception e) {
-            System.out.println("¡ERROR! No se ha creado el concesionario correctamente.");
-        }
+        System.out.println("Ubicacion: ");
+        concesionario.setUbicacion(Utils.kString());
+        System.out.println("Nombre: ");
+        concesionario.setNombre(Utils.kString());
+        System.out.println("Telefono: ");
+        concesionario.setTelefono(Utils.kInt());
+        System.out.println("Taller id: ");
+        int tallerId = Utils.kInt();
+        concesionario.setTaller(Taller.buscarTaller(tallerId));
+        System.out.println("Venta id: ");
+        int ventaId = Utils.kInt();
+        concesionario.setVenta(Venta.buscarVenta(ventaId));
         return concesionario;
     }
+
     /**
      * Metodo para insertar los datos del concesionario a la BBDD a partir de un objeto.
      * @param concesionario
@@ -241,7 +244,7 @@ public class Concesionario {
         String consulta = "SELECT * FROM CONCESIONARIO ORDER BY ID";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
-            Utils.rs = Utils.prst.executeQuery(consulta);
+            Utils.rs = Utils.prst.executeQuery();
 
             while (Utils.rs.next()) {
                 System.out.println(
@@ -259,6 +262,49 @@ public class Concesionario {
                 System.out.println("Error al cerrar variables");
             }
         }
+    }
+
+    /**
+     * Metodo para cargar los datos de los concesionarios de la BBDD.
+     */
+    public static Concesionario[] cargarConcesionarios() {
+        String consulta = "SELECT * FROM CONCESIONARIO ORDER BY ID";
+        Concesionario[] concesionarioList = null;
+        ResultSet auxiliar;
+        Taller taller = null;
+        Venta venta = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM concesionario");
+            Utils.rs.next();
+            concesionarioList = new Concesionario[Utils.rs.getInt(1)];
+            Utils.rs = Utils.prst.executeQuery();
+            for(int i=0; Utils.rs.next(); i++){
+                //int id, String ubicacion, String nombre, int telefono, Taller taller, Venta venta
+                auxiliar = Utils.rs;
+                if (Utils.rs.getInt(5) != 0) {
+                    taller = Taller.buscarTaller(Utils.rs.getInt(5));
+                    Utils.rs = auxiliar;
+                }
+                if (Utils.rs.getInt(6) != 0){
+                    venta = Venta.buscarVenta(Utils.rs.getInt(6));
+                    Utils.rs = auxiliar;
+                }
+                concesionarioList[i] = new Concesionario(Utils.rs.getInt(1),Utils.rs.getString(2),Utils.rs.getString(3),Utils.rs.getInt(4),taller,venta);
+                taller=null;
+                venta=null;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("¡ERROR! No se han podido mostrar los datos");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return concesionarioList;
     }
 
     /**

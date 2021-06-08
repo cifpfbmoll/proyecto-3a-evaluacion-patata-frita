@@ -33,7 +33,6 @@ public class Vehiculo {
     private Venta venta = null;
     private Cliente cliente = null;
 
-    private Date fecha_fabricacion;
     private String bastidor;
     private int kilometraje;
     private int autonomia;
@@ -58,7 +57,6 @@ public class Vehiculo {
      * Constructor con todos los datos por parámetro
      *
      * @param motor
-     * @param fecha_fabricacion
      * @param bastidor
      * @param kilometraje
      * @param autonomia
@@ -68,8 +66,9 @@ public class Vehiculo {
      * @param color
      * @param marca
      * @param modelo
+     * @param cliente
      */
-    public Vehiculo(Motor motor, Date fecha_fabricacion, String bastidor, int kilometraje, int autonomia, int puertas, int asientos, int precio, String extras, String color, String marca, String modelo, claseVehiculo tipo, estadoVehiculo estado, Venta venta) {
+    public Vehiculo(Motor motor, String bastidor, int kilometraje, int autonomia, int puertas, int asientos, int precio, String extras, String color, String marca, String modelo, claseVehiculo tipo, estadoVehiculo estado, Venta venta,Cliente cliente) {
         //Estos dos llaman al set para comprobar errores
         try {
             this.setPuertas(puertas);
@@ -80,7 +79,6 @@ public class Vehiculo {
             System.out.println("Error con los datos insertados, reviselos");
         }
         this.motor = motor;
-        this.fecha_fabricacion = fecha_fabricacion;
         this.precio = precio;
         this.bastidor = bastidor;
         this.extras = extras;
@@ -90,6 +88,7 @@ public class Vehiculo {
         this.tipo = tipo;
         this.estado = estado;
         this.venta = venta;
+        this.cliente = cliente;
     }
 
     /**
@@ -99,7 +98,6 @@ public class Vehiculo {
      */
     public Vehiculo(Vehiculo vec) {
         this.motor = vec.getMotor();
-        this.fecha_fabricacion = vec.getFecha_fabricacion();
         this.bastidor = vec.getBastidor();
         this.kilometraje = vec.getKilometraje();
         this.autonomia = vec.getAutonomia();
@@ -162,14 +160,6 @@ public class Vehiculo {
 
     public void setMotor(Motor motor) {
         this.motor = motor;
-    }
-
-    public Date getFecha_fabricacion() {
-        return fecha_fabricacion;
-    }
-
-    public void setFecha_fabricacion(Date fecha_fabricacion) {
-        this.fecha_fabricacion = fecha_fabricacion;
     }
 
     public String getBastidor() {
@@ -264,7 +254,6 @@ public class Vehiculo {
     public String toString() {
         return "Vehiculo{"
                 + "motor=" + motor
-                + ", fecha_fabricacion=" + fecha_fabricacion
                 + ", bastidor='" + bastidor + '\''
                 + ", kilometraje=" + kilometraje
                 + ", autonomia=" + autonomia
@@ -288,23 +277,37 @@ public class Vehiculo {
         try {
             vehiculo.setMotor(motor); //Seguramente por parametro sea lo mas facil, o llamar a motor y mostrar los diferentes id/datos de los motores
             System.out.println("Ponga la fecha de fabricación del vehiculo: ");
-            String date = null;
+            String date = "";
             //Pedimos la fecha por partes al usuario, formateamos correctamente la fecha y la pasamos a tipo Date
             date += Utils.kString("Dia") + "/";
             date += Utils.kString("Mes") + "/";
             date += Utils.kString("Año");
             Date fecha = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-            vehiculo.setFecha_fabricacion(fecha);
             vehiculo.setBastidor(Utils.kString("Numero de bastidor"));
             vehiculo.setKilometraje(Utils.kInteger("Kilometraje"));
             vehiculo.setAutonomia(Utils.kInteger("Autonomia"));
             vehiculo.setPuertas(Utils.kInteger("Numero de puertas"));
             vehiculo.setAsientos(Utils.kInteger("Numero de asientos"));
             vehiculo.setExtras(Utils.kString("Escriba los extras del vehiculo"));
-            vehiculo.setColor(Utils.kString(Utils.kString("Color del vehiculo")));
+            vehiculo.setColor((Utils.kString("Color del vehiculo")));
             vehiculo.setMarca(Utils.kString("Marca del vehiculo"));
             vehiculo.setModelo(Utils.kString("Modelo de vehiculo"));
+            System.out.println("Clases de vehiculo: SUV,\n" +
+                    "        Sedan,\n" +
+                    "        Sport,\n" +
+                    "        Coupe,\n" +
+                    "        Hatchback,\n" +
+                    "        Convertible,\n" +
+                    "        Minivan,\n" +
+                    "        Pickup");
+            vehiculo.setTipo(claseVehiculo.valueOf(Utils.kString("Clase de vehiculo")));
+            vehiculo.setEstado(estadoVehiculo.valueOf(Utils.kString("En Venta, Vendido o Alquilado?")));
+            Venta.mostrarVenta();
+            vehiculo.setVenta(Venta.buscarVenta(Utils.kInt("Venta")));
+            Cliente.mostrarTodosClienteBBDD();
+            vehiculo.setCliente(Cliente.buscarClienteBBDD(Utils.kString("NIF cliente")));
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Error al crear el vehiculo, seguramente algun dato introducido fuera incorrecto, pruebe otra vez.");
         }
         return vehiculo;
@@ -318,7 +321,7 @@ public class Vehiculo {
     public void insertarDatosVehiculoBBDD() {
         //INSERT de todos los datos, cliente puede ser null si aun no se ha vendido el vehiculo
         if (motor.getId() != -1) {
-            String consulta = "INSERT INTO VEHICULO (BASTIDOR, TIPO, ESTADO, KILOMETRAJE, AUTONOMIA, PUERTAS, ASIENTOS, COLOR, MARCA, MODELO, PRECIO, EXTRAS, MOTORID, VENTAID, CLIENTEID ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String consulta = "INSERT INTO VEHICULO (BASTIDOR, TIPO, clase, KILOMETRAJE, AUTONOMIA, PUERTAS, ASIENTOS, COLOR, MARCA, MODELO, PRECIO, EXTRAS, MOTORID, VENTAID, CLIENTENIF ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             try {
                 Utils.prst = Utils.connection.prepareStatement(consulta);
                 Utils.prst.setString(1, this.getBastidor());
@@ -339,6 +342,7 @@ public class Vehiculo {
                 Utils.prst.executeUpdate();
                 System.out.println("Datos insertados correctomnte!");
             } catch (SQLException e) {
+                e.printStackTrace();
                 System.out.println("Error al insertar datos a la BBDD");
             } finally {
                 try {
@@ -567,6 +571,51 @@ public class Vehiculo {
     }
 
     /**
+     * Se cargan todos los vehiculos en la base de datos
+     */
+    public static Vehiculo[] cargarVehiculos() {
+        String consulta = "SELECT * FROM VEHICULO ORDER BY BASTIDOR";
+        Vehiculo[] vehiculoList = null;
+        ResultSet auxiliar = null; //ResultSet para guardar las querys de los motores
+        Motor motor = null;
+        Venta venta = null;
+        Cliente cliente = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM VEHICULO");
+            Utils.rs.next();
+            vehiculoList = new Vehiculo[Utils.rs.getInt(1)];
+            Utils.rs = Utils.prst.executeQuery();
+            for(int i=0;Utils.rs.next();i++){
+                auxiliar=Utils.rs;
+                if(Utils.rs.getInt(13) != 0){
+                    motor = Motor.buscarMotorBBDD(Utils.rs.getInt(13));
+                    Utils.rs=auxiliar;
+                }
+                if(Utils.rs.getInt(14) != 0){
+                    venta = Venta.buscarVenta(Utils.rs.getInt(14));
+                    Utils.rs=auxiliar;
+                }
+                if(Utils.rs.getString(15) != null){
+                    cliente = Cliente.buscarClienteBBDD(Utils.rs.getString(15));
+                    Utils.rs=auxiliar;
+                }
+                //Motor motor, String bastidor, int kilometraje, int autonomia, int puertas, int asientos, int precio, String extras, String color, String marca, String modelo, claseVehiculo tipo, estadoVehiculo estado, Venta venta
+                vehiculoList[i] = new Vehiculo(motor, Utils.rs.getString(1),Utils.rs.getInt(4),Utils.rs.getInt(5),Utils.rs.getInt(6),Utils.rs.getInt(7),Utils.rs.getInt(11),Utils.rs.getString(12),Utils.rs.getString(8),Utils.rs.getString(9),Utils.rs.getString(10),claseVehiculo.valueOf(Utils.rs.getString(2)),estadoVehiculo.valueOf(Utils.rs.getString(3)),venta,cliente);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error mostrando todos los vehiculos");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return vehiculoList;
+    }
+
+    /**
      * Devolver todos los Vehiculos de la base de datos, útil para la gui
      * @return Vehiculo[][]
      */
@@ -622,7 +671,8 @@ public class Vehiculo {
 
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, bastidor);
-            if (Utils.rs != null) {
+            Utils.rs = Utils.prst.executeQuery();
+            if (Utils.rs.next()) {
                 ret = true;
             } else {
                 ret = false;

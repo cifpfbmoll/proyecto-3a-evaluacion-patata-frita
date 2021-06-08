@@ -37,7 +37,6 @@ public class Venta {
     }
 
     public void setHorario(String horario) throws IllegalArgumentException {
-        //ENTENDER BIEN ESTO
         String[] listaHorarios = horario.split("-");
         String[] lista2Horarios = listaHorarios[0].split(":");
         String[] lista3Horarios = listaHorarios[1].split(":");
@@ -53,6 +52,7 @@ public class Venta {
                     numHorarios[pointer] = Integer.parseInt(lista3Horarios[i]);
                     pointer++;
                 }
+                this.horario = horario;
             } catch (Exception ex) {
                 throw new IllegalArgumentException("Caracter/es inválido/s.");
             }
@@ -74,12 +74,8 @@ public class Venta {
      */
     public static Venta crearVenta() {
         Venta venta = new Venta();
-        try {
-            System.out.println("Escribe el horario en formato hh:mm-hh:mm : ");
-            venta.setHorario(Utils.kString());
-        } catch (Exception ex) {
-            System.out.println("¡ERROR! el objeto no se pudo crear.");
-        }
+        System.out.println("Escribe el horario en formato hh:mm-hh:mm : ");
+        venta.setHorario(Utils.kString());
         return venta;
     }
 
@@ -126,8 +122,6 @@ public class Venta {
                 Utils.rs.next();
                 venta.setId(id);
                 venta.setHorario(Utils.rs.getString(1));
-                System.out.println("La venta ha sido encontrada y creada " + venta.toString());
-
             } catch (SQLException ex) {
                 System.out.println("¡ERROR! No se ha encontrado la venta.");
             } finally {
@@ -167,6 +161,33 @@ public class Venta {
     }
 
     /**
+     * Metodo para cargar los datos de las ventas de la BBDD.
+     */
+    public static Venta[] cargarVenta() {
+        String consulta = "SELECT * FROM VENTA ORDER BY ID";
+        Venta[] ventaList = null;
+        try {
+            Utils.prst = Utils.connection.prepareStatement(consulta);
+            Utils.rs = Utils.prst.executeQuery("SELECT COUNT(*) FROM VENTA");
+            Utils.rs.next();
+            ventaList = new Venta[Utils.rs.getInt(1)];
+            Utils.rs = Utils.prst.executeQuery();
+            for(int i=0; Utils.rs.next();i++){
+                ventaList[i] = new Venta(Utils.rs.getInt(1),Utils.rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            System.out.println("¡ERROR! No se han podido mostrar los datos");
+        } finally {
+            try {
+                Utils.cerrarVariables();
+            } catch (Exception e) {
+                System.out.println("Error al cerrar variables");
+            }
+        }
+        return ventaList;
+    }
+
+    /**
      * Metodo para borrar ventas de la BBDD.
      *
      * @param id
@@ -194,15 +215,13 @@ public class Venta {
      * Metodo para modificar los datos de las ventas de la BBDD.
      *
      * @param id
-     * @param espacios
      * @param horario
      */
-    public static void modificarVenta(int id, int espacios, String horario) {
-        String consulta = "UPDATE VENTA SET HORARIO=?, ESPACIO=?  WHERE ID=?";
+    public static void modificarVenta(int id, String horario) {
+        String consulta = "UPDATE VENTA SET HORARIO=?  WHERE ID=?";
         try {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setString(1, horario);
-            Utils.prst.setInt(2, espacios);
             Utils.prst.setInt(3, id);
 
             Utils.prst.executeUpdate();
@@ -264,8 +283,7 @@ public class Venta {
             Utils.prst = Utils.connection.prepareStatement(consulta);
             Utils.prst.setInt(1, this.id);
             Utils.rs = Utils.prst.executeQuery();
-            Utils.rs.next();
-            if (Utils.rs != null) {
+            if (Utils.rs.next()) {
                 encontrado = true;
             }
 
